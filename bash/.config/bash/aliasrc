@@ -1,0 +1,66 @@
+#!/bin/bash
+#
+# Aliases for bash
+
+alias cB="vim ~/.bashrc"
+alias cBx="vim ~/.bash_profile"
+alias cBh="vim ~/.config/bash/bash_history"
+alias cBp="vim ~/.config/bash/promptrc"
+alias cBa="vim ~/.config/bash/aliasrc"
+alias cBe="vim ~/.config/bash/exportsrc"
+alias cBi="vim ~/.config/bash/inputrc"
+alias cA="vim ~/.config/alacritty/alacritty.yml"
+alias cV="vim ~/.config/vim/vimrc"
+alias cW="vim ~/.config/herbstluftwm/autostart"
+alias cD="vim ~/.config/dunst/dunstrc"
+alias cN="vim ~/.config/ncmpcpp/config"
+alias cP="vim ~/.config/picom/picom.conf"
+
+alias v="vim"
+alias hc="herbstclient"
+alias l="ls --color=auto --group-directories-first"
+alias s="ls --color=auto --group-directories-first"
+alias ls="ls --color=auto --group-directories-first"
+alias sl="ls --color=auto --group-directories-first"
+alias la="ls -a --color=auto --group-directories-first"
+alias ll="ls -l --color=auto --group-directories-first"
+alias less='less -r'
+alias dc='cd'
+alias grep='grep --colour=always'
+alias egrep='egrep --colour=always'
+alias fgrep='fgrep --colour=always'
+
+alias gs="git status"
+alias gc="git checkout"
+alias gcb="git checkout -b"
+alias gcp="git cherry-pick"
+alias gm="git commit -m"
+alias gmg="git merge"
+alias gl="git log -1"
+alias gpo="git push origin"
+alias gada="git add --all"
+alias gd="git diff --color=always"
+alias gba="git branch --all"
+alias gbd="git branch -d"
+alias gbD="git push --delete origin"
+alias greset="git reset --hard"
+
+alias dockinfo="docker info"
+alias dockcreate="docker create -i --name <name> debian"
+alias dockimgs="docker images"
+alias dockls="docker ps -a"
+alias dockrun="docker run --name <name> -it -d <img>"
+alias dockrm="docker rm"
+alias dockexec="docker exec -it debian-docker /bin/bash"
+alias dockstart="docker start debian-docker"
+alias dockattach="docker attach"
+
+alias pdb="python -m pdb"
+alias ipd="ipdb3"
+alias jn="jupyter-notebook"
+
+alias gdb="gdb -nx -x /home/duclos/.config/gdb/init"
+alias armgdb="arm-none-eabi-gdb -nx -x /home/duclos/.config/gdb/init"
+
+alias orphans="sudo pacman -Qqdt"
+alias aurs="sudo pacman -Qqm"

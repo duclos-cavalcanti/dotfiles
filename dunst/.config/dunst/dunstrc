@@ -1,0 +1,118 @@
+[global]
+    # -------------
+    # -- Display --
+    # -------------
+    monitor = 0
+    follow = mouse
+    geometry = "0x0-20+50"
+    indicate_hidden = yes
+    shrink = no
+    notification_height = 0
+    separator_height = 1
+    padding = 8
+    horizontal_padding = 20
+    transparency = 0
+    frame_width = 2
+    frame_color = "#88c0d0"
+    separator_color = "#ffffff"
+    sort = yes
+    idle_threshold = 120
+
+    # ----------
+    # -- Text --
+    # ----------
+    font = UbuntuMonoBold 10
+    line_height = 0
+    markup = full
+    format = "<b>%s<\b>\n%b"
+    alignment = center
+    vertical_alignment = center
+    show_age_threshold = 60
+    word_wrap = yes
+    ellipsize = middle
+    ignore_newline = no
+    stack_duplicates = true
+    hide_duplicate_count = false
+    show_indicators = yes
+
+    # -----------
+    # -- Icons --
+    # -----------
+    icon_position = left
+    min_icon_size = 0
+    max_icon_size = 32
+    icon_path = /usr/share/icons/Arc/status:/usr/share/icons/Arc/devices
+
+    # -------------
+    # -- History --
+    # -------------
+    sticky_history = yes
+    history_length = 20
+
+    # ----------
+    # -- Misc --
+    # ----------
+    browser = /usr/bin/firefox -new-tab
+
+    always_run_script = true
+
+    title = Dunst
+    class = Dunst
+
+    startup_notification = false
+    verbosity = mesg
+    corner_radius = 5
+    ignore_dbusclose = false
+
+    # ------------
+    # -- Legacy --
+    # ------------
+    force_xinerama = false
+
+    # -----------
+    # -- Mouse --
+    # -----------
+    mouse_left_click = close_current
+    mouse_middle_click = do_action, close_current
+    mouse_right_click = close_all
+
+[experimental]
+    per_monitor_dpi = false
+
+[shortcuts]
+
+    close = ctrl+space
+    close_all = ctrl+space
+    history = ctrl+shift+h
+    context = ctrl+shift+period
+
+[urgency_low]
+    background = "#2e3440"
+    foreground = "#ffffff"
+    frame_color = "#88c0d0"
+    timeout = 10
+    icon = /home/duclos/.config/dunst/icons/normal.png
+
+[urgency_normal]
+    background = "#2e3440"
+    foreground = "#ffffff"
+    frame_color = "#88c0d0"
+    timeout = 10
+    icon = /home/duclos/.config/dunst/icons/normal.png
+
+[urgency_critical]
+    background = "#2e3440"
+    foreground = "#ffffff"
+    frame_color = "#88c0d0"
+    timeout = 0
+    icon = /home/duclos/.config/dunst/icons/critical.png
+
+
+#[firefox]
+#    appname = Firefox
+#    summary = "*firefox*"
+#    #format = "Firefox %a"
+#    format = "  "
+#    urgency = norm
+
+# vim: ft=cfg

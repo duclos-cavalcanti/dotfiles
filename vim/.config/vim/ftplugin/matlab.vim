@@ -1,0 +1,1 @@
+setlocal syn=matlab

@@ -1,0 +1,325 @@
+#!/bin/bash
+
+# Libraries/Globals
+. $HOME/.scripts/functions_monitors.sh
+
+wallpaper=$HOME/Documents/dotfiles/misc/wallpapers/NordWallpaper.png
+
+gap=5
+panel_height=25
+panel_width=1920
+
+upper_padding="$panel_height"
+lower_padding="0"
+lateral_padding="3"
+
+active="#88c0d0"
+normal="#1f2531"
+background="#3b4252"
+
+color_font="#ffffff"
+color_font_active="#1f2531"
+
+# Functions
+hc() {
+    herbstclient "$@"
+}
+
+monitors() {
+  count=$(monitors::count_monitors)
+  primary=$(xrandr | grep -E " connected" | head -1 | cut -d' ' -f1)
+  secondary=$(xrandr | grep -E " connected" | head -2 | tail -1 | cut -d' ' -f1)
+  tertiary=$(xrandr | grep -E " connected" | head -3 | tail -1 | cut -d' ' -f1)
+
+  case "$count" in
+    1)
+      [ -n "$(pgrep dzen2)" ] && killall -9 dzen2; killall -9 bar.sh
+
+      xrandr --output "${primary}" --mode "1920x1080" --primary
+      # [ -n "$secondary" ] && xrandr --output "${secondary}" --off
+      # [ -n "$tertiary" ] && xrandr --output "${tertiary}" --off
+
+      hc set_monitors 1920x1080+0+0
+      xwallpaper --output ${primary} --maximize $wallpaper
+      hc pad 0 $upper_padding 0 $lower_padding
+      $HOME/.config/herbstluftwm/bar/launch_bar.sh $panel_width $panel_height 1 &
+      ;;
+
+    2)
+      [ -n "$(pgrep dzen2)" ] && killall -9 dzen2; killall -9 bar.sh
+
+      xrandr --output "${primary}" --off
+      # xrandr --output "${primary}" --mode "1920x1080" --primary
+      xrandr --output "${secondary}" --mode "1920x1080" --right-of "${primary}"
+      # [ -n "$tertiary" ] && xrandr --output "${tertiary}" --off
+
+      hc set_monitors 1920x1080+0+0
+      # hc set_monitors 1920x1080+0+0 1920x1080+1920+0
+      xwallpaper --output ${secondary} --maximize $wallpaper
+      hc pad 0 $upper_padding 0 $lower_padding
+      # hc pad 1 $upper_padding 0 $lower_padding
+      $HOME/.config/herbstluftwm/bar/launch_bar.sh $panel_width $panel_height 1 &
+      # $HOME/.config/herbstluftwm/bar/launch_bar.sh $panel_width $panel_height 2 &
+      ;;
+
+    3)
+      [ -n "$(pgrep dzen2)" ] && killall -9 dzen2; killall -9 bar.sh
+
+      xrandr --output "${primary}" --off
+      xrandr --output "${secondary}" --mode "1920x1080" --primary
+      xrandr --output "${tertiary}" --mode "1920x1080" --right-of "${secondary}"
+
+      hc set_monitors 1920x1080+0+0 1920x1080+1920+0
+      xwallpaper --output ${secondary} --maximize $wallpaper
+      xwallpaper --output ${tertiary} --maximize $wallpaper
+      hc pad 0 $upper_padding 0 $lower_padding
+      hc pad 1 $upper_padding 0 $lower_padding
+      $HOME/.config/herbstluftwm/bar/launch_bar.sh $panel_width $panel_height 1 &
+      $HOME/.config/herbstluftwm/bar/launch_bar.sh $panel_width $panel_height 2 &
+      ;;
+
+    *)
+      echo "None or too many monitors connected."
+      exit 1
+      ;;
+  esac
+}
+
+startup() {
+  picom -c -b --experimental-backends
+  [ -n "$(pgrep unclutter)" ] && killall -9 unclutter ; unclutter &
+  [ -n "$(pgrep dunst)" ] && killall -9 dunst ; dunst &
+  [ -n "$(pgrep mpd)" ] && killall -9 mpd ; mpd &
+}
+
+hc emit_hook reload
+xsetroot -solid '#3b4252'
+
+# Startup
+startup
+
+# Keybindings
+hc keyunbind --all
+super=Mod4
+alt=Mod1
+term=alacritty
+editor=vim
+
+# Theming
+# Resets
+hc attr theme.tiling.reset 1
+hc attr theme.floating.reset 1
+
+# Frames
+hc set frame_border_active_color "$active"
+hc set frame_border_normal_color "$normal"
+hc set frame_border_inner_color "$normal"
+hc set frame_bg_normal_color "$normal"
+hc set frame_bg_active_color "$active"
+hc set frame_bg_transparent on
+hc set always_show_frame off
+hc set frame_border_width 1
+hc set frame_border_inner_width 0
+hc set frame_transparent_width 0
+hc set frame_gap "$gap"
+hc set frame_padding 0
+
+# Titles
+hc attr theme.title_height 15
+hc attr theme.title_font 'UbuntuMono:pixelsize=12'
+hc attr theme.padding top 0
+hc attr theme.padding_left "$lateral_padding"
+hc attr theme.padding_right "$lateral_padding"
+hc attr theme.title_color "$color_font"
+hc attr theme.normal.title_color "$color_font"
+hc attr theme.active.title_color "$color_font_active"
+
+# Window Settings
+hc attr theme.active.color "$active"
+hc attr theme.normal.color "$normal"
+hc attr theme.urgent.color "$normal"
+hc attr theme.border_width 1
+hc attr theme.floating.border_width 2
+hc attr theme.floating.outer_width 0
+hc attr theme.inner_width 0
+hc attr theme.inner_color "$normal"
+hc attr theme.active.inner_color "$active"
+hc attr theme.normal.inner_color "$normal"
+hc attr theme.urgent.inner_color "$normal"
+hc attr theme.outer_width 0
+hc attr theme.outer_color "$normal"
+hc attr theme.active.outer_color "$active"
+hc attr theme.normal.outer_color "$normal"
+hc attr theme.urgent.outer_color "$normal"
+hc attr theme.background_color "$background"
+
+hc set window_gap 0
+hc set smart_window_surroundings off
+hc set smart_frame_surroundings off
+hc set mouse_recenter_gap 0
+hc set hide_covered_windows on
+
+# Rules/Hooks
+hc emit hook
+
+hc unrule -F
+hc rule focus=on
+hc rule floatplacement=center
+hc rule class=Lxappearance floating=on
+hc rule class=Davmail floating=on
+hc rule class=Davmail-DavGateway floating=on
+hc rule class=Pcmanfm floating=on
+hc rule class=FreeRTOS_Emulator floating=on
+hc rule class=Nitrogen floating=on floating_geometry=800x800
+hc rule class=Blueman-manager floating=on
+hc rule class=Pavucontrol floating=on
+hc rule class=Galculator floating=on
+hc rule class=Gcolor3 floating=on floating_geometry=500x500
+hc rule class=Nm-connection-editor floating=on
+hc rule class=JLinkGUIServerExe floating=on
+hc rule instance=scratchpad floating=on
+hc rule instance=ncmpcpp floating=on # floating_geometry=500x500
+
+hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' floating=on
+hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
+hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
+
+herbstclient set tree_style 'X|:#+*-.'
+
+# Programs
+hc keybind $super-space       spawn rofi -show combi -modi drun,run
+hc keybind $super-equal       spawn rofi -show windowcd -window-thumbnail
+
+hc keybind $alt-Control+t spawn $HOME/.scripts/menu_launch_tags.sh
+hc keybind $alt-Control+v spawn $HOME/.scripts/menu_vpn.sh
+hc keybind $alt-Control+i spawn $HOME/.scripts/menu_wifi.sh
+hc keybind $alt-Control+s spawn $HOME/.scripts/menu_signals.sh
+
+hc keybind $super-Return spawn $term
+hc keybind $super-Shift-Return spawn $term --class scratchpad
+
+hc keybind $super+f spawn firefox
+hc keybind $super-d pcmanfm
+
+# Close Clients/Frames
+hc keybind $super-w close_and_remove
+hc keybind $super-Shift-w close
+hc keybind $super-Shift-q close_and_remove
+
+# Focusing Clients/Frames
+hc keybind $super-h             focus left
+hc keybind $super-j             focus down
+hc keybind $super-k             focus up
+hc keybind $super-l             focus right
+
+# Moving Clients/Frames
+hc keybind $super-Shift-h       shift left
+hc keybind $super-Shift-j       shift down
+hc keybind $super-Shift-k       shift up
+hc keybind $super-Shift-l       shift right
+
+# Mirroring Clients/Frames
+hc keybind $super-v       mirror horizontal # visually vertically
+hc keybind $super-s       mirror vertical   # visuallz horizontally
+
+# Resizing Clients/Frames
+hc keybind $super-Control-h      resize left
+hc keybind $super-Control-j      resize down
+hc keybind $super-Control-k      resize up
+hc keybind $super-Control-l      resize right
+
+# Splitting Clients/Frames
+hc keybind $super-u             split  bottom  0.5
+hc keybind $super-o             split  right   0.5
+hc keybind $super-Shift+u       chain , split  bottom  0.5 , focus down
+hc keybind $super-Shift+o       chain , split  right   0.5 , focus right
+hc keybind $super-e split explode
+hc keybind $super-i jumpto urgent
+
+hc keybind $super-r chain , \
+                    lock , rotate , unlock
+
+hc keybind $super+Shift-r chain , \
+                          lock , rotate , rotate , rotate , unlock
+
+# Layouting
+hc keybind $super-Shift-f floating toggle
+hc keybind $super-Shift-p pseudotile toggle
+hc keybind $super-Shift-s fullscreen toggle
+# Hiding    panel would be - hc pad $monitor 0
+# Summoning panel would be - hc pad $monitor $panel_height
+
+
+# Move through Tags/Workspaces
+hc keybind $super-n use_index +1 --skip-visible
+hc keybind $super-b  use_index -1 --skip-visible
+hc keybind $super-p  use_previous
+
+# Change Layouts within a frame
+hc keybind $super-c chain , \
+                    cycle_layout 1 vertical horizontal , \
+                    emit_hook focus_layout_changed 'change'
+
+hc keybind $super-m chain , \
+                    cycle_layout 1 max vertical , \
+                    emit_hook focus_layout_changed 'change'
+
+# Mouse
+hc set focus_follows_mouse 1
+hc mouseunbind --all
+hc mousebind $super-Button1 move
+hc mousebind $super-Button2 zoom
+hc mousebind $super-Button3 resize
+
+# Focus Cycles
+hc keybind $super-BackSpace     cycle_monitor
+hc keybind $super-Tab           cycle +1
+hc keybind $super-Shift-Tab     cycle -1
+hc keybind $super-period        cycle_all +1 --skip-invisible
+hc keybind $super-comma         cycle_all -1 --skip-invisible
+hc keybind $super-minus         set_attr clients.focus.minimized true
+
+# Tags/Workspaces
+tag_names=("1" "2" "3" "4" "5" "6" "7" "8" "9" "10")
+tag_keys=( {1..9} 0 )
+
+# Moving Clients/Going to Tags/Workspaces
+hc rename default "${tag_names[0]}" || true
+for i in ${!tag_names[@]} ; do
+    hc add "${tag_names[$i]}"
+    key="${tag_keys[$i]}"
+    if ! [ -z "$key" ] ; then
+        hc keybind "$super-$key" use_index "$i"
+        hc keybind "$super-Shift-$key" move_index "$i"
+    fi
+done
+
+# Monitors
+monitors
+
+hc set focus_crosses_monitor_boundaries 1
+hc set swap_monitors_to_get_tag 1
+
+hc keybind $alt-Control-1   spawn xrandr --output "$primary"    --rotate "left"
+hc keybind $alt-Control-2   spawn xrandr --output "$secondary"  --rotate "left"
+hc keybind $alt-Control-3   spawn xrandr --output "$tertiary"   --rotate "left"
+
+# Daemons
+hc keybind $alt-Control-l   spawn i3lock -u -i $wallpaper
+hc keybind $alt-Control-p   spawn $HOME/.config/herbstluftwm/bar/relaunch_bar.sh $panel_width $panel_height &
+hc keybind $alt-Control-d   chain , \
+                            spawn bash -c "killall -q dunst && dunst &" , \
+                            spawn bash -c "notify-send 'Relaunched Dunst'"
+
+# System
+hc keybind XF86AudioPlay spawn mpc toggle
+hc keybind XF86AudioRaiseVolume  spawn pamixer -i 5
+hc keybind XF86AudioLowerVolume  spawn pamixer -d 5
+hc keybind XF86MonBrightnessUp   spawn xbacklight -inc 5
+hc keybind XF86MonBrightnessDown spawn xbacklight -dec 5
+
+hc keybind $alt-Control-r   reload
+hc keybind $alt-Control-q   quit
+
+hc unlock
+# vim ft=bash

@@ -1,0 +1,34 @@
+watch i
+c
+run
+c
+b 37
+c
+run
+watch i
+c
+c
+c
+p i
+x i
+p /x i
+p /x *i
+p /x $i
+p /x r1
+p /x $r1
+p /x $r0
+run
+b 38
+run
+p /a i
+p i
+p &i
+p /x &i
+display i
+n
+b 45
+c
+b 40
+c
+focus cmd
+refresh

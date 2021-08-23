@@ -1,0 +1,2 @@
+*/25 * * * * /home/duclos/Documents/dotfiles/cron/scripts/cleanup.sh
+*/10 * * * * offlineimap -u quiet -c ~/.config/offlineimap/offlineimaprc ; notmuch new

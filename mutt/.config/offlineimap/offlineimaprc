@@ -1,0 +1,52 @@
+[general]
+ui = TTY.TTYUI
+accounts = daniel.duclos.cavalcanti@gmail.com 
+pythonfile = ~/.config/offlineimap/offlineimap.py
+fsync = False
+ssl = False
+# maxsyncaccounts = 1
+
+[Account daniel.duclos.cavalcanti@gmail.com]
+localrepository = daniel-local
+remoterepository = daniel-remote
+# autorefresh = 1.0
+# quick = 10
+
+[Repository daniel-local]
+type = Maildir
+localfolders = ~/Mail/daniel.duclos.cavalcanti@gmail.com
+nametrans = lambda folder: {
+    'Drafts': '[Gmail]/Drafts',
+	'Sent': '[Gmail]/Sent Mail',
+	'Important': '[Gmail]/Important',
+	'Starred': '[Gmail]/Starred',
+	'Spam': '[Gmail]/Spam',
+	'Trash': '[Gmail]/Trash',
+	}.get(folder, folder)
+
+[Repository daniel-remote]
+maxconnections = 3
+# keepalive = 60
+# holdconnectionopen = yes
+type = Gmail
+remoteuser = daniel.duclos.cavalcanti@gmail.com
+remotepasseval = get_pass()
+realdelete = yes
+ssl=true
+# https://support.google.com/a/answer/6180220?hl=en
+sslcacertfile = ~/.config/offlineimap/roots.pem
+nametrans = lambda folder: {
+    '[Gmail]/Drafts': 'Drafts',
+	'[Gmail]/Sent Mail': 'Sent',
+	'[Gmail]/Important': 'Important',
+	'[Gmail]/Starred': 'Starred',
+	'[Gmail]/Spam': 'Spam',
+	'[Gmail]/Trash': 'Trash',
+	}.get(folder, folder)
+
+folderfilter = lambda folder: folder not in [
+	'[Gmail]/Chats',
+	'[Gmail]/All Mail',
+	]
+
+# vim:ft=conf

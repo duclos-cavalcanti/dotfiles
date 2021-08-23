@@ -1,0 +1,250 @@
+configuration {
+    modi:                           "window,drun,run,ssh,file-browser,combi";
+	combi-modi:                     "drun,run";
+
+	/* Drun */
+    display-drun:                   "drun";
+    /* drun-match-fields:          "name,generic,exec,categories,keywords";*/
+    /* drun-categories:            ;*/
+    /* drun-show-actions:          false;*/
+    /* drun-display-format:        "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";*/
+    /* drun-url-launcher:          "xdg-open";*/
+    /* drun-icon-theme:            "Adwaita"; */
+
+	/* Run */
+    display-run:                    "run";
+
+    /*	run-command:                "{cmd}";*/
+    /*	run-list-command:           "";*/
+    /*	run-shell-command:          "{terminal} -e {cmd}";*/
+
+	/* Windows */
+    display-windowcd:               "windows";
+    display-window:                 "windows";
+    /*	window-command:             "wmctrl -i -R {window}";*/
+    /*	window-match-fields:        "all";*/
+    /*	window-thumbnail:           false;*/
+    window-format:                  "{c}   {t}";
+
+	/* SSH */
+    display-ssh:                    "ssh";
+    /*	ssh-client:                 "ssh";*/
+    /*	ssh-command:                "{terminal} -e {ssh-client} {host} [-p {port}]";*/
+    /*	parse-hosts:                false;*/
+    /*	parse-known-hosts:          true;*/
+
+	/* File Browser */
+	display-file-browser: "files";
+
+    show-icons:                     true;
+
+	/* Geometry */
+    /* x-offset:                    0; */
+    /* y-offset:                    0; */
+    /* location:                    center; */
+    /* anchor:                      center; */
+    /* height:                      50%; */
+	/* width:						400px; */
+    /* padding:                     5;*/
+	/* lines:                       15; */
+	/* columns:                     1; */
+    /* line-margin:                 2;*/
+    /* line-padding:                1;*/
+
+	/* Appearance */
+	sidebar-mode: 					false;
+    /*	separator-style:            "dash";*/
+    /*	hide-scrollbar:             false;*/
+    /*	scrollbar-width:            8;*/
+    /*	scroll-method:              0;*/
+    /*	fullscreen:                 false;*/
+
+	/* Filtering */
+    matching:                       "fuzzy";
+    disable-history:                false;
+    /*	sort:                       false;*/
+    /*	sorting-method:             "normal";*/
+    /*	case-sensitive:             false;*/
+    /*	cycle:                      true;*/
+}
+
+@import "global/global.rasi"
+
+window {
+	border-color:					@border-color;
+    background-color:               @background-color;
+    text-color:                     @foreground;
+
+	border:							5;
+    border-radius:                  0;
+    padding:                        0;
+
+    x-offset:                       0;
+    y-offset:                       0;
+    location:                       center;
+    anchor:                         center;
+    height:                         35%;
+	width:							700px;
+}
+
+mainbox {
+    border:  0;
+    padding: 0;
+}
+
+inputbar {
+	children: 						[ entry,case-indicator ];
+	/* children: 						[ button, entry ]; */
+    /* children:                    [ prompt,textbox-prompt-colon,entry,case-indicator ]; */
+
+    spacing:                        0;
+    padding:                        8 8 8 12;
+    border:                         0px 0px 1px dash;
+
+	background-color: 				@transparent;
+    border-color:                   @blue;
+}
+
+prompt {
+    spacing:                        0;
+
+	background-color: 				@transparent;
+	text-color: 					@foreground;
+}
+
+textbox-prompt-colon {
+    str:                            ":";
+    margin:                         0px 0.3em 0em 0em ;
+    expand:                         false;
+
+    text-color:                     @normal-foreground;
+}
+
+entry {
+    placeholder:                    "Type";
+
+    placeholder-color:              @foreground-alt;
+    background-color:               @transparent;
+    text-color:                     @foreground;
+
+    expand:                         true;
+    vertical-align:                 0;
+}
+
+case-indicator {
+    spacing:                        0;
+    text-color:                     @normal-foreground;
+}
+
+button {
+	font:                           @icon-font;
+	str:                            "  "; /* lupa */
+	action:                         "ok";
+	expand:                         false;
+    vertical-align:                 0;
+
+	background-color:               @transparent;
+	text-color:                     @foreground;
+}
+
+message {
+    padding:                        3px ;
+    border:                         1px dash 0px 0px ;
+
+    border-color:                   @border-color;
+}
+
+textbox {
+    text-color:                     @foreground;
+}
+
+listview {
+    /* fixed-height: 0; */
+    spacing:                        0px;
+    padding:                        0px;
+    lines:                          12;
+    cycle:                          true;
+    dynamic:                        true;
+    /* scrollbar:                   false; */
+
+    /* border:                      1px dash 0px 0px ; */
+    /* border-color:                @border-color; */
+
+    background-color:               @transparent;
+}
+
+element {
+    /* padding:                        10; */
+    padding:                        5;
+    border-radius:                  0;
+    border:                         1px;
+    border-color:                   @transparent;
+
+    background-color:               @transparent;
+    text-color:                     @foreground;
+}
+
+element-icon {
+    margin:                         0 15px 0 0;
+    size:                           15;
+    border:                         0px;
+}
+
+element-text {
+    highlight:                      None #b48ead; 
+    /* expand:                      true; */
+    /* vertical-align:              0.0; */
+    /* horizontal-align:            0.0; */
+}
+
+element normal.normal {
+    background-color:               @normal-background;
+    text-color:                     @normal-foreground;
+}
+
+element normal.urgent {
+    background-color:               @urgent-background;
+    text-color:                     @urgent-foreground;
+}
+
+element normal.active {
+    background-color:               @active-background;
+    text-color:                     @active-foreground;
+}
+
+element.selected {
+    background-color:               @selected-normal-background;
+    text-color:                     @selected-normal-foreground;
+}
+
+element selected.normal {
+    background-color:               @selected-normal-background;
+    text-color:                     @selected-normal-foreground;
+}
+
+element selected.urgent {
+    background-color:               @selected-urgent-background;
+    text-color:                     @selected-urgent-foreground;
+}
+
+element selected.active {
+    background-color:               @selected-active-background;
+    text-color:                     @selected-active-foreground;
+}
+
+element alternate.normal {
+    background-color:               @alternate-normal-background;
+    text-color:                     @alternate-normal-foreground;
+}
+
+element alternate.urgent {
+    background-color:               @alternate-urgent-background;
+    text-color:                     @alternate-urgent-foreground;
+}
+
+element alternate.active {
+    background-color:               @alternate-active-background;
+    text-color:                     @alternate-active-foreground;
+}
+
+/* vim:ft=css

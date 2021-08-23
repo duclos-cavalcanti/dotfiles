@@ -1,0 +1,55 @@
+/* Global attributes */
+* {
+    /**** Theme ****/
+    font: "UbuntuMono 12";
+	icon-font: "UbuntuMono Nerd Font 11";
+
+    steel:                          #2e3440;
+    steeldark:                      #1f2531;
+    yellow:                         #ebcb8b;
+    orange:                         #d08770;
+    red:                            #bf616a;
+    magenta:                        #b48ead;
+    blue:                           #88c0d0;
+    cyan:                           #a3be8c;
+    green:                          #a3be8c;
+    white:                          #ffffff;
+    black:                          #000000;
+
+    transparent:                    rgba ( 0, 0, 0, 0 % );
+
+    /* Main element styles */
+    foreground:                     @white;
+    foreground-alt:                 @cyan;
+    background-color:               @steel;
+    background-alt:                 @steel;
+
+    normal-foreground:              @foreground;
+    normal-background:              @background;
+    active-foreground:              @blue;
+    active-background:              @background;
+    urgent-foreground:              @black;
+    urgent-background:              @background;
+
+    selected-normal-foreground:     @foreground;
+    selected-normal-background:     @blue;
+    selected-active-foreground:     @magenta;
+    selected-active-background:     @blue;
+    selected-urgent-foreground:     @black;
+    selected-urgent-background:     @background;
+
+    alternate-normal-foreground:    @foreground;
+    alternate-normal-background:    @background; /* background-alt */
+    alternate-active-foreground:    @foreground;
+    alternate-active-background:    @background;
+    alternate-urgent-foreground:    @red;
+    alternate-urgent-background:    @background;
+
+    border-color:                   @blue;
+    separator-color:                @blue;
+    highlight-color:                @blue;
+
+    spacing:                        2;
+}
+
+/* vim:ft=css

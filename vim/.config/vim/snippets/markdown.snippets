@@ -1,0 +1,33 @@
+snippet todo
+	-[] $1
+
+	Description:
+	${2:...}
+
+	Idea:
+	${3:...}
+
+	Problem:
+	${4:...}
+	$0
+
+snippet tb
+	|  ${0:factors}     |    ${1:a}		|  ${2:b} |
+	| -------------		|-------------  | ------- |
+	|    ${3:f1}		|    Y          | N       |
+	|    ${4:f2}		|    Y          | N       |
+
+snippet bold
+	**${1:...}**$0
+
+snippet ita
+	*${1:...}*$0
+
+snippet code
+	\`\`\`
+	${1:${VISUAL}}
+	\`\`\`
+	$0
+
+snippet link
+	[${1:Name}](${2:Link})

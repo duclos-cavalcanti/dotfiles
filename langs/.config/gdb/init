@@ -1,0 +1,36 @@
+set style enable on
+set style source on
+
+set prompt \001\033[01;37m\002(gdb) \001\033[0m\002
+
+tui enable
+layout src      # FOR SRC VIEW
+#layout asm     # FOR ASM VIEW
+#layout split   # FOR SRC AND ASM VIEW
+
+set tui border-kind ascii
+
+set tui active-border-mode bold
+set style tui-active-border foreground blue
+
+set tui border-mode bold
+set style tui-border foreground white
+
+set confirm off
+set verbose off
+
+set history filename ~/.config/gdb/gdb_history
+set history save
+set history save on
+set history size unlimited
+set history expansion on
+
+set height 0
+set width 0
+
+set print pretty on
+set print array-indexes on
+
+define hook-next
+  refresh
+end

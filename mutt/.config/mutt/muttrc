@@ -1,0 +1,145 @@
+# TUM
+# INCOMING MAIL
+# IMAP server address   : xmail.mwn.de
+# IMAP username         : <tum username>
+# IMAP password         : <tum password>
+# IMAP port             : 993
+# IMAP TLS/SSL Req.     : Yes
+#
+# OUTGOING MAIL
+# SMTP server address   : postout.lrz.de
+# SMTP username         : ga74ped (not sure)
+# SMTP password         : <gmail password>
+# SMTP port (TLS)       : 587 (prefered maybe)
+# SMTP port (SSL)       : 465
+# SMTP TLS/SSL Req.     : Yes
+#
+# TUM
+# set from 				= "ga74ped@mytum.de"
+# set realname 			= 'Daniel Duclos-Cavalcanti'
+# set folder              = "imaps://xmail.mwn.de/"
+# set imap_user           = "ga74ped"
+# set imap_pass           = `pass show tum`
+# set smtp_url            = "smtps://ga74ped@postout.lrz.de:587"
+# set smtp_pass           = `pass show tum`
+# set spoolfile			= "+INBOX"
+# set record 		        = "+Sent"
+# set postponed 	        = "+Drafts"
+# set trash 		        = "+Trash"
+# mailboxes =INBOX =Sent =Drafts =Spam =Trash
+
+# GMAIL
+# INCOMING MAIL
+# IMAP server address   : imap.gmail.com
+# IMAP username         : <gmail address>
+# IMAP password         : <gmail password>  (may need 2-step authentication)
+# IMAP port             : 993
+# IMAP TLS/SSL Req.     : Yes
+# OUTGOING MAIL
+# SMTP server address   : smtp.gmail.com
+# SMTP username         : <gmail address>
+# SMTP password         : <gmail password>
+# SMTP port (TLS)       : 587
+# SMTP port (SSL)       : 465
+# SMTP TLS/SSL Req.     : Yes
+
+# Main
+set from 				= "daniel.duclos.cavalcanti@gmail.com"
+set realname 			= 'Daniel Duclos-Cavalcanti'
+
+set folder              = "imaps://imap.gmail.com/"
+# set folder              = "~/Mail/daniel.duclos.cavalcanti@gmail.com"
+
+set imap_user           = "daniel.duclos.cavalcanti@gmail.com"
+set imap_pass           = `pass show gmail`
+set smtp_url            = "smtps://daniel.duclos.cavalcanti@smtp.gmail.com:465"
+set smtp_pass 			= `pass show gmail`
+set spoolfile			= "+INBOX"
+
+# set record 				= "+Sent"
+# set postponed 			= "+Drafts"
+# set trash 				= "+Trash"
+# mailboxes =INBOX =Archives =Sent =Drafts =Important =Spam =Starred =Trash 
+
+set record 				= "+[Gmail]/Sent Mail"
+set postponed 			= "+[Gmail]/Drafts"
+set trash 				= "+[Gmail]/Trash"
+mailboxes =INBOX =Archives =[Gmail]/Sent\ Mail =[Gmail]/Drafts =[Gmail]/Important =[Gmail]/Spam =[Gmail]/Starred =[Gmail]/Trash 
+
+
+# Features
+set ssl_force_tls       = yes
+set sleep_time 		    = 0		                                    # Pause 0 seconds for informational messages
+set beep                = no                                        # No beep sound
+set abort_nosubject     = no
+set mail_check          = 60
+unset imap_passive                                                  # allows Mutt to open a new IMAP connection automatically
+set imap_keepalive      = 60                                        # keep imap connection alive
+set imap_poll_timeout   = 0
+set timeout             = 60
+set connect_timeout     = -1
+set sort                = "reverse-date-received"
+set copy                = no
+set editor              = "vim +':set textwidth=0' +':set wrapmargin=0' +':set wrap' +':set showtabline=0'"
+set use_from 			= yes
+set ssl_starttls 		= yes
+set markers 		    = no	                                    # Disables the `+` displayed at line wraps
+set wait_key 		    = no	                                    # mutt won't ask "press key to continue"
+set fast_reply		    = yes                                       # skip to compose when replying
+set fcc_attach		                                                # save attachments with the body
+set forward_format 	    = "Fwd: %s"	                                # format of subject when forwarding
+set forward_quote	                                                # include message in forwards
+set reverse_name	                                                # reply as whomever it was to
+set include			    = yes                                       # include message in replies
+set header_cache        = ~/.config/mutt/.config/mutt/misc/headers
+set message_cachedir    = ~/.config/mutt/.config/mutt/misc/bodies
+set certificate_file    = ~/.config/mutt/.config/mutt/misc/certificates
+
+# Security
+# set signature 			= "~/.config/mutt/signature"
+# set crypt_use_gpgme=yes
+# set postpone_encrypt = yes
+# set pgp_self_encrypt = yes
+# set crypt_use_pka = no
+# set crypt_autoencrypt = no
+# set crypt_autopgp = no
+# set crypt_autosign = no
+# set crypt_verify_sig = yes
+# set pgp_sign_as=0xYOUR123GPG
+
+
+# Sidebar
+set sidebar_visible = yes
+set sidebar_width = 20
+set sidebar_short_path = yes
+set sidebar_next_new_wrap = yes
+set mail_check_stats
+set sidebar_format = '%D%?F? [%F]?%* %?N?%N/? %?S?%S?'
+
+# Mailcap
+set mailcap_path = ~/.config/mutt/mailcap
+set mime_type_query_command = "file --mime-type -b %s"
+auto_view text/html	                                                # automatically show html (mailcap uses w3m)
+auto_view application/pgp-encrypted
+alternative_order text/plain text/enriched text/html
+
+# Notmuch
+set virtual_spoolfile = yes
+# set nm_default_url = "notmuch:///home/duclos/Mail"
+
+# Bindings
+source ~/.config/mutt/bindings
+
+# Colors
+source ~/.config/mutt/colors
+
+# Aliases
+source ~/.config/mutt/aliases
+
+# Hooks
+# startup-hook 'echo `offlineimap -u quiet -c /home/duclos/.config/offlineimap/offlineimaprc ; notmuch new`'
+# timeout-hook 'echo `offlineimap -u quiet -c /home/duclos/.config/offlineimap/offlineimaprc ; notmuch new`'
+
+# Save files here
+cd ~/Downloads
+# vim: filetype=neomuttrc

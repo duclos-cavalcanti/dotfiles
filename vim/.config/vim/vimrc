@@ -1,0 +1,219 @@
+"" _   _ ________  ___
+"| | | |_   _|  \/  |
+"| | | | | | | .  . |
+"| | | | | | | |\/| |
+"\ \_/ /_| |_| |  | |
+" \___/ \___/\_|  |_/
+"                    
+set runtimepath^=~/.config/vim              "Vim Home Folder
+set runtimepath+=~/.config/vim/after        "After Folder
+
+let &packpath = &runtimepath
+
+" -------------
+" -- Plugins --
+" -------------
+"
+call plug#begin('~/.config/vim/extern')
+"LSP and Tag Management
+Plug 'natebosch/vim-lsc'
+Plug 'preservim/tagbar'
+
+"Linter
+Plug 'dense-analysis/ale'
+
+"Snippet manager
+Plug 'SirVer/ultisnips'
+
+"Debugger
+Plug 'puremourning/vimspector'
+
+"Fuzzy searching and Project Navigation
+Plug 'junegunn/fzf.vim'
+
+"Utilities
+Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-commentary'
+
+"Markdown
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+call plug#end()
+
+" Man page plugin
+runtime! ftplugin/man.vim
+
+" ----------
+" -- Sets --
+" ----------
+filetype plugin indent on                               "Enables filetype recognition and indent vim-plugins
+set path=.,**                                           "Easier finding of files through FZF and find, as the branches and nodes are indexed
+set tags=./tags,tags;/                                  "Defining typical tag folders
+set laststatus=2                                        "Enables Statusline in Vim
+set splitbelow                                          "Splits now begin from below
+set splitright                                          "Vert Splits now begin on the right
+set noshowcmd                                           "Dont Show commands while they are being typed
+set noshowmode                                          "Dont/Do Show Modes (INSERT/REPLACE)
+set shortmess+=a                                        "Make Command Line less messy with abbreviations to certain words
+set shortmess-=S                                        "Show me the number of search hits when searching with /
+set noerrorbells                                        "No Sounds regarding command effects
+set nu                                                  "Show Line Numbers
+set norelativenumber                                    "Show Relative Line Numbers
+set scrolloff=1                                         "Minimal number of screen lines to keep above and below cursor
+set sidescrolloff=5                                     "Minimal number of screen lines to keep horizontally from cursor
+set nowrap                                              "Dont wrap lines of text
+set nowrapscan                                          "Dont Wrap Searches
+set showmatch                                           "When a bracket is inserted, briefly jump to the matching one
+set nohlsearch                                          "Dont/Do highlight all search hits
+set incsearch                                           "Show Search hit as you type
+set hidden                                              "Keep buffers hidden after leaving
+set smartcase                                           "Do not ignore casing of letters when searching
+set autoindent                                          "Try to indent smartly
+set expandtab                                           "When using >< to indent, use the appropiate number of spaces
+set tabstop=4 softtabstop=4                             "Sets tab to 4 spaces
+set shiftwidth=4                                        "Sets tab/spaces used when smartindenting
+set showtabline=2                                       "Show tablines - 2 always - 1 only if more than 1 tab - 0 never
+set wildmenu                                            "Turn Wildmenu on
+set wildmode=full,longest                               "Mode in which wildmenu completes entries / PREV: set wildmode=longest:full,full 
+set wildignore=*.o,*venv                                "Config of things to ignore during commands like find
+set pumheight=5                                         "Height of pop um menus like in Wildmenu and that of completions
+set noswapfile                                          "No need of swapfiles to store changes to buffers
+set nobackup                                            "No need for backup files of changed files
+set foldmethod=indent                                   "Lines with equal indent form a fold. 
+set foldlevelstart=99                                   "Foldlevel of file when opneing it             
+set modifiable                                          "When on, fileenconding and fileformat can be changed  
+set lazyredraw                                          "Speed Macros as they are partially delayed by redrawing
+set ttimeout                                            "Turns on timeout to diminish delay of ESC in command line
+set ttimeoutlen=50                                      "Sets timeout length
+set viminfofile=$HOME/.config/vim/info/viminfo          "Changes location of viminfo file
+set cursorline                                          "Set Cursorline to follow where cursor is, will be toggled depending on modes
+set signcolumn=yes                                      "Set Signcolumn which gives space for error and warning lint plugins to display info
+set nocursorcolumn                                      "Set Custoocolumn to follow where cursor is
+set colorcolumn=80                                      "Setting 80 char Column to respect the ancient tradition
+set cmdheight=2                                         "More space for commands in command window
+set completeopt=menu,menuone,noinsert,noselect          "Used to disable YCM preview.
+set exrc                                                "Used to have project specific external RCs.
+set mouse=a                                             "Enable Mouse
+set autoread                                            "When a file has been detected to have been changed outside of Vim automatically read it again.
+set ttyfast                                             "Make me go fast!
+set re=1
+set redrawtime=500
+set noconfirm
+
+"-----------------
+" -- Colorscheme --
+" -----------------
+syntax enable
+set background=dark
+
+colorscheme Custom
+
+" ------------
+" -- Remaps --
+" ------------
+
+"Leader Remap
+let mapleader = " "
+
+"Vim/Custom Remaps
+cnoreabbrev w!! w !sudo tee % > /dev/null
+cnoreabbrev cp w !xclip -i -sel clip
+
+tnoremap gt <C-w>gt
+tnoremap <esc> <C-\><C-n>
+tnoremap <C-w>\ <C-\><C-n><C-w>_<C-w>\|A
+
+nnoremap <silent> vv v$h
+
+nnoremap <silent> <S-Right> :vertical resize +5<CR>
+nnoremap <silent> <S-Left>  :vertical resize -5<CR>
+nnoremap <silent> <S-Down>  :resize +5<CR>
+nnoremap <silent> <S-Up>    :resize -5<CR>
+
+nnoremap <C-w>\ <C-w>\|<C-w>_
+
+nnoremap <C-s><C-o> <C-^>
+
+nnoremap <silent> <leader><space> :call TerminalManager("pane")<CR>
+nnoremap <silent> <leader>tc :call TerminalManager("current")<CR>
+nnoremap <silent> <leader>tv :call TerminalManager("v_current")<CR>
+nnoremap <silent> <leader>th :call TerminalManager("h_current")<CR>
+nnoremap <silent> <leader>tn :call TerminalManager("tab")<CR>
+
+nnoremap <silent> <leader>ft :call NetrwManager("top_right")<CR>
+nnoremap <silent> <leader>fc :call NetrwManager("current")<CR>
+nnoremap <silent> <leader>fv :call NetrwManager("v_split")<CR>
+nnoremap <silent> <leader>fh :call NetrwManager("h_split")<CR>
+nnoremap <silent> <leader>ft :call NetrwManager("tab")<CR>
+
+nmap <silent> <C-b> <Plug>TodoAddnormal
+imap <silent> <C-b> <Plug>TodoAddinsert
+nmap <silent> <C-Q> <Plug>TodoChecknormal
+imap <silent> <C-Q> <Plug>TodoCheckinsert
+
+nnoremap <silent> <leader>qq :call ToggleQuickFix()<CR>
+nnoremap <silent> <leader>qn :cnext<CR>
+nnoremap <silent> <leader>qp :cprev<CR>
+
+nnoremap <silent> <leader>sr :RG<CR>
+nnoremap <silent> <leader>sf :Files<CR>
+nnoremap <silent> <leader>sF :Files ~<CR>
+nnoremap <silent> <leader>sg :GFiles<CR>
+nnoremap <silent> <leader>sG :GFiles?<CR>
+nnoremap <silent> <leader>sb :Buffers<CR>
+nnoremap <silent> <leader>sl :BLines<CR>
+nnoremap <silent> <leader>sL :Lines<CR>
+nnoremap <silent> <leader>st :BTags<CR>
+nnoremap <silent> <leader>sT :Tags<CR>
+nnoremap <silent> <leader>sh :History:<CR>
+nnoremap <silent> <leader>sH :History<CR>
+nnoremap <silent> <leader>s/ :History/<CR>
+nnoremap <silent> <leader>ss :Snippets<CR>
+nnoremap <silent> <leader>sc :Commands<CR>
+nnoremap <silent> <leader>sm :Maps<CR>
+
+nmap <silent> <C-@> :TagbarToggle<CR>
+nmap <silent> <leader>tp :TagbarPause<CR>
+
+nmap <silent> <leader>dl :call vimspector#Launch()<CR>
+nmap <silent> <leader>dc <Plug>VimspectorContinue
+nmap <silent> <leader>ds <Plug>VimspectorStop
+nmap <silent> <leader>dr <Plug>VimspectorRestart
+nmap <silent> <leader>dR :call vimspector#Reset()<BAR>:call vimspector#ClearBreakpoints()<CR>
+nmap <silent> <leader>dp <Plug>VimspectorPause
+nmap <silent> <leader>db <Plug>VimspectorToggleBreakpoint
+nmap <silent> <leader>dB :call vimspector#ClearBreakpoints()<CR>
+nmap <silent> <leader>dz <Plug>VimspectorRunToCursor
+nmap <silent> <leader>dn <Plug>VimspectorStepOver
+nmap <silent> <leader>ds <Plug>VimspectorStepInto
+nmap <silent> <leader>du <Plug>VimspectorUpFrame
+nmap <silent> <leader>dd <Plug>VimspectorDownFrame
+
+nmap <silent> <leader>ad <Plug>(ale_detail)
+nmap <silent> <leader>an <Plug>(ale_next_wrap)
+nmap <silent> <leader>ap <Plug>(ale_previous_wrap)
+nmap <silent> = <Plug>(ale_fix)
+
+nmap <silent> <leader>SS :call UltiSnips#RefreshSnippets()<CR>:echo "Reloaded Snippets..."<CR>
+
+let g:lsc_auto_map = {
+    \ 'GoToDefinition': 'gd',
+    \ 'GoToDefinitionSplit': ['gs', 'gv'],
+    \ 'FindReferences': 'gr',
+    \ 'NextReference': '<C-n>',
+    \ 'PreviousReference': '<C-p>',
+    \ 'FindImplementations': 'gI',
+    \ 'FindCodeActions': 'ga',
+    \ 'Rename': 'gR',
+    \ 'ShowHover': 'K',
+    \ 'DocumentSymbol': 'go',
+    \ 'WorkspaceSymbol': 'gS',
+    \ 'SignatureHelp': 'gm',
+    \ 'Completion': 'omnifunc',
+    \}
+
+" ----------------
+" -- Executions --
+" ----------------
+command! ReloadConfig execute "source $HOME/.config/vim/vimrc"
+command! ConfigGoTo execute "tabnew $HOME/.config/vim/vimrc"
+command! VimGoTo execute "tabnew $HOME/.config/vim"

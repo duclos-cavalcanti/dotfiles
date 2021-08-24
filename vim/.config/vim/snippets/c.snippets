@@ -85,33 +85,110 @@ snippet ret "return"
 snippet print "printf"
 	printf("${0}\n");
 
+# Doxygen File
+snippet dfile
+	/**
+	 * @file ${1:File}
+	 *
+	 * @date ${3:date}
+	 * @author ${2:author}
+	 *
+	 * @defgroup Validators
+	 * @section SystemValidator
+	 *
+	 * Copyright (C) 2021 Company GmbH
+	 * @brief ${4:brief description of file}
+	 *
+	 * Details
+	 *
+	 */
+
+# Doxygen File
+snippet dmod
+	/**
+	 * @defgroup ${1:definition of group} ${2:Name of Group}
+	 *
+	 * @brief ${3:brief description of module}
+	 *
+	 * ${4:detailed description of module}
+	 *
+	 * @{
+	 */
+
 # Doxygen Function
 snippet dfun
-	/*! \brief ${1:Brief function description here}
+	/** @brief ${1:Brief function description here}
 	 *
 	 *  ${2:Detailed description of the function}
 	 *
-	 * \return ${3:Return parameter description}
+	 *  @return ${3:Return parameter description}
+	 */
+
+# Doxygen Class
+snippet dcla
+	/** @class ${1:Brief function description here}
+	 *  @brief ${2:Brief function description here}
+	 *
+	 *  ${3:Detailed description of the function}
+	 *
 	 */
 
 # Doxygen Function with Parameter
 snippet dfun1
-	/*! \brief ${1:Brief function description here}
+	/** @brief ${1:Brief function description here}
 	 *
 	 *  ${2:Detailed description of the function}
 	 *
-	 * \param $3 ${4:Parameter description}
-	 * \return ${5:Return parameter description}
+	 * @param $3 ${4:Parameter description}
+	 * @return ${5:Return parameter description}
+	 */
+
+# Doxygen Function with Parameter
+snippet dfuncode
+	/** @brief ${1:Brief function description here}
+	 *
+	 *  ${2:Detailed description of the function}
+	 *
+	 *	@code
+	 *  code();
+	 *	@endcode
+	 *
+	 *  @param $3 ${4:Parameter description}
+	 *  @return ${5:Return parameter description}
 	 */
 
 # Doxygen function with three parameters
 snippet dfun3
-	/*! \brief ${1:Brief function description here}
+	/** @brief ${1:Brief function description here}
 	 *
 	 *  ${2:Detailed description of the function}
 	 *
-	 * \param $3 ${4:Parameter description}
-	 * \param $5 ${6:Parameter description}
-	 * \param $7 ${8:Parameter description}
-	 * \return ${9:Return parameter description}
+	 *  @param $3 ${4:Parameter description}
+	 *  @param $5 ${6:Parameter description}
+	 *  @param $7 ${8:Parameter description}
+	 *  @return ${9:Return parameter description}
+	 */
+
+# Doxygen member variable documentation
+snippet dmem
+	/**< ${1:Detailed description after the member} */
+
+# Doxygen member variable documentation with details
+snippet dMem
+	/**
+	 * ${1:brief}
+	 * ${2:details}
+	 */
+
+# Doxygen method function documentation
+snippet dmet
+	/**
+	 * ${1:brief}
+	 * @param a an integer argument.
+	 * @param s a constant character pointer.
+	 * @see Javadoc_Test()
+	 * @see ~Javadoc_Test()
+	 * @see testMeToo()
+	 * @see publicVar()
+	 * @return The test results
 	 */

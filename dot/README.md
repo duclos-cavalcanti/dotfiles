@@ -233,6 +233,7 @@ intel-media-driver intel-ucode xf86-video-intel mesa mesa-demos
 
 usbutils udiskie net-tools wireless_tools blueman pulseaudio pamixer
 pulseaudio-bluetooth openssh pavucontrol tlp acpi bluez bluez-utils
+brightnessctl
 ```
 X11/Xorg related packages:
 ```
@@ -255,7 +256,7 @@ ffmpeg imagemagick
 
 virtualbox docker
 arm-none-eabi-binutils arm-none-eabi-gcc arm-none-eabi-gdb arm-none-eabi-newlib
-rust clang doxygen nano
+rust clang doxygen nano ctags
 ```
 
 Theme/Look-and-Feel Packages:

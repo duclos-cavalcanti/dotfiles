@@ -26,10 +26,10 @@ get_frame() {
     echo -n "$frame"
 }
 
-hl_frame() {
+mod_frame() {
   icon=' '
   icon=$(format_font "$icon" "$font_icons")
-  icon="$(format_colors "$icon" "$primary")"
+  icon="$(format_colors "$icon" "$icon_color")"
 
   frame="$(get_frame)"
   echo "F${frame}"

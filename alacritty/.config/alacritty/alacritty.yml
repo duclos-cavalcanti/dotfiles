@@ -6,8 +6,8 @@ env:
 
 window:
   padding:
-    x: 20
-    y: 20
+    x: 1
+    y: 1
 
   # Spread additional padding evenly around the terminal content.
   dynamic_padding: false
@@ -78,7 +78,7 @@ draw_bold_text_with_bright_colors: false
 colors:
   # Default colors
   primary:
-    background: '#2e3440'
+    background: '#1b1d1e'
     foreground: '#ffffff'
 
     #dim_foreground: '#828482'
@@ -119,23 +119,23 @@ colors:
   # Normal colors
   normal:
     black:   '#2e3440'
-    red:     '#bf616a'
-    green:   '#8fbcbb'
-    yellow:  '#ebcb8b'
-    blue:    '#88c0d0'
-    magenta: '#b48ead'
-    cyan:    '#8fbcbb'
+    red:     '#f92672'
+    green:   '#a6e22e'
+    yellow:  '#e6db74'
+    blue:    '#66d9ef'
+    magenta: '#8c54fe'
+    cyan:    '#56c2d6'
     white:   '#ffffff'
 
   # Bright colors
   bright:
-    black:   '#616E88'
-    red:     '#bf616a'
-    green:   '#a3be8c'
-    yellow:  '#ebcb8b'
-    blue:    '#88c0d0'
-    magenta: '#b48ead'
-    cyan:    '#8fbcbb'
+    black:   '#2e3440'
+    red:     '#f92672'
+    green:   '#a6e22e'
+    yellow:  '#e6db74'
+    blue:    '#66d9ef'
+    magenta: '#8c54fe'
+    cyan:    '#56c2d6'
     white:   '#ffffff'
 
   # Dim colors

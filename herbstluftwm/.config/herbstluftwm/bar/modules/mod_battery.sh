@@ -2,12 +2,12 @@
 #
 # Battery script module for lemonbar.
 
-function hl_battery {
-  . ${HLWM}/bar/utils/hl_utils.sh
+function mod_battery {
+  . ${HLWM}/bar/utils/utils.sh
 
   icon=" "
   icon=$(format_font "$icon" "$font_icons")
-  icon=$(format_colors "$icon" "$primary")
+  icon=$(format_colors "$icon" "$icon_color")
 
   while true; do
     b_perc=$(acpi -b 2>/dev/null | grep "Battery $b_num" | awk '{ print $4 }' | cut -d ',' -f1 )

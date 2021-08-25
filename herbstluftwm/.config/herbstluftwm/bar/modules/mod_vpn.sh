@@ -2,12 +2,12 @@
 #
 # VPN script module for lemonbar.
 
-function hl_vpn {
-  . ${HLWM}/bar/utils/hl_utils.sh
+function mod_vpn {
+  . ${HLWM}/bar/utils/utils.sh
 
   icon=" "
   icon=$(format_font "$icon" "$font_icons")
-  icon=$(format_colors "$icon" "$primary")
+  icon=$(format_colors "$icon" "$icon_color")
 
   while true; do
     state=$(/opt/cisco/anyconnect/bin/vpn state 2>/dev/null | grep state | head -1 | cut -d ':' -f2 | grep Dis)

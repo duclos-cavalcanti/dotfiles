@@ -3,7 +3,7 @@
 # Libraries/Globals
 . $HOME/.scripts/functions_monitors.sh
 
-wallpaper=$HOME/Documents/dotfiles/misc/wallpapers/ArchWallpaper1.png.png
+wallpaper=$HOME/Documents/dotfiles/misc/wallpapers/Minimal_4.png
 
 gap=5
 panel_height=25
@@ -15,22 +15,13 @@ lower_padding="0"
 padding_hor="3"   # horizontal "wall" paddings of windows
 padding_ver="3"   # vertical "wall" paddings of windows
 
-blue="#88c0d0"
-red="#bf616a"
-dark="#1f2531"
-medium="#3b4252"
-black="#000000"
-white="#ffffff"
+background="#232526"
+active="#232526"
+normal="#232526"
+urgent="#000000"
 
-
-background="$medium"
-active="$blue"
-normal="$dark"
-highlight="$red"
-urgent="$black"
-
-color_font="$white"
-color_font_active="$dark"
+normal_f="#ffffff"
+active_f="#ffffff"
 
 # Functions
 hc() {
@@ -140,9 +131,9 @@ hc set frame_padding                0
 # Titles
 hc attr theme.title_height        20
 hc attr theme.title_font          'UbuntuMono:pixelsize=12'
-hc attr theme.title_color         "$color_font"
-hc attr theme.normal.title_color  "$color_font"
-hc attr theme.active.title_color  "$color_font"
+hc attr theme.title_color         "$normal_f"
+hc attr theme.normal.title_color  "$normal_f"
+hc attr theme.active.title_color  "$active_f"
 hc attr theme.padding top         "$padding_ver"
 hc attr theme.padding_left        "$padding_hor"
 hc attr theme.padding_right       "$padding_hor"
@@ -150,13 +141,13 @@ hc attr theme.padding_bottom      "$padding_ver"
 
 # Window Settings
 hc attr theme.border_width          1
-hc attr theme.inner_width           1
+hc attr theme.inner_width           0
 hc attr theme.outer_width           1
 hc attr theme.floating.border_width 1
+hc attr theme.floating.inner_width  0
 hc attr theme.floating.outer_width  1
-hc attr theme.floating.inner_width  1
 
-hc attr theme.active.color        "$normal"
+hc attr theme.active.color        "$active"
 hc attr theme.normal.color        "$normal"
 hc attr theme.urgent.color        "$urgent"
 
@@ -166,7 +157,7 @@ hc attr theme.normal.inner_color  "$normal"
 hc attr theme.urgent.inner_color  "$normal"
 
 hc attr theme.outer_color         "$normal"
-hc attr theme.active.outer_color  "$active"
+hc attr theme.active.outer_color  "$normal"
 hc attr theme.normal.outer_color  "$normal"
 hc attr theme.urgent.outer_color  "$normal"
 
@@ -176,7 +167,7 @@ hc attr theme.floating.inner_color         "$normal"
 hc attr theme.floating.active.inner_color  "$normal"
 
 hc attr theme.floating.outer_color         "$normal"
-hc attr theme.floating.active.outer_color  "$white"
+hc attr theme.floating.active.outer_color  "$active"
 
 hc set window_gap 0
 hc set smart_window_surroundings off

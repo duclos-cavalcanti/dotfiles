@@ -35,12 +35,12 @@ get_instance() {
     echo -n "$instance"
 }
 
-hl_window() {
-  . ${HLWM}/bar/utils/hl_utils.sh
+mod_window() {
+  . ${HLWM}/bar/utils/utils.sh
 
   icon='类'
   icon=$(format_font "$icon" "$font_icons")
-  icon="$(format_colors "$icon" "$primary")"
+  icon="$(format_colors "$icon" "$icon_color")"
 
   class="$(get_class)"
   echo "T${icon} ${class}"

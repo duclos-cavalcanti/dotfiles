@@ -2,12 +2,12 @@
 #
 # Bluetooth script module for lemonbar.
 
-function hl_bluetooth {
-  . ${HLWM}/bar/utils/hl_utils.sh
+function mod_bluetooth {
+  . ${HLWM}/bar/utils/utils.sh
 
   icon=" "
   icon=$(format_font "$icon" "$font_icons")
-  icon="$(format_colors "$icon" "$primary")"
+  icon="$(format_colors "$icon" "$icon_color")"
 
   bluetooth=""
   while true; do

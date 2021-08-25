@@ -2,8 +2,8 @@
 #
 # Wifi script module for lemonbar.
 
-function hl_wifi {
-  . ${HLWM}/bar/utils/hl_utils.sh
+function mod_wifi {
+  . ${HLWM}/bar/utils/utils.sh
 
   while true; do
     wifi=""
@@ -15,10 +15,10 @@ function hl_wifi {
     connection_alt=$(nmcli general status | tail -1 | awk '{ print $4 }')
     
     if [[ "$connection" == "full" ]]; then
-      icon="$(format_colors "$icon" "$primary")"
+      icon="$(format_colors "$icon" "$icon_color")"
       wifi="$icon on"
     elif [[ "$connection" == "limited" || "$connection_alt" == "limited" ]]; then
-      icon="$(format_colors "$icon" "$primary")"
+      icon="$(format_colors "$icon" "$icon_color")"
       wifi="$icon on"
     else
       icon="$(format_colors "$icon" "$problem")"

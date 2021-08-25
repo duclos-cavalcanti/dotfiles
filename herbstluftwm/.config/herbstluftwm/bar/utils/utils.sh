@@ -4,27 +4,29 @@
 
 font_main='Ubuntu Mono:style=regular:size=9'           # Regular
 font_small='Ubuntu Mono:style=regular:size=8'          # Small
-font_large='Ubuntu Mono:style=regular:size=9'         # Large
+font_large='Ubuntu Mono:style=regular:size=9'          # Large
 font_icons='Ubuntu Nerd Font:style=bold:size=8'        # Icons
 font_icons_large='Ubuntu Nerd Font:style=bold:size=16' # Icons Large
 font_bold='Ubuntu Mono:style=bold:size=9'              # Bold
 
-bg="#1f2531"
-bg_alt="#434c5e"
+bg="#232526"
+bg_alt="#bcbcbc"
 
 fg="#ffffff"
-fg_alt="#7c818c"
+fg_alt="#8f8f8f"
 
-primary="#88c0d0"
-secondary="#a3be8c"
-tertiary="#d08770"
-special="#b48ead"
-problem="#bf616a"
-highlight="#000000"
+primary="#f92672"
+secondary="#82b414"
+tertiary="#fd971f"
+special="#ae81ff"
+problem="#a6e22e"
+highlight="#fd971f"
+
+icon_color="#ffffff"
 
 rectangle_background="$bg_alt"
+underline_color="$primary"
 
-underline_color="#88c0d0"
 
 source_modules() {
   modules=$HOME/.config/herbstluftwm/bar/modules

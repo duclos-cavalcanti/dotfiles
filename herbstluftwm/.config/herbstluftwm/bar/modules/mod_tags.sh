@@ -56,7 +56,7 @@ tags_symbol() {
 }
 
 
-hl_tags_gen() {
+tags_gen() {
 
   IFS=$'\t'
   while read -ra tags; do
@@ -81,7 +81,7 @@ hl_tags_gen() {
           tag="$(format_padding "$icon" "1" "c")"
           tag=$(format_font "$tag" "$font_large")
           tag="$(format_button "$tag" "1" "herbstclient use $ws")"
-          tag="$(format_colors "$tag" "$special")"
+          tag="$(format_colors "$tag" "$problem")"
           ;;
 
         '%') # Viewed on another monitor and is focused
@@ -90,7 +90,7 @@ hl_tags_gen() {
           tag="$(format_padding "$icon" "1" "c")"
           tag=$(format_font "$tag" "$font_large")
           tag="$(format_button "$tag" "1" "herbstclient use $ws")"
-          tag="$(format_colors "$tag" "$problem")"
+          tag="$(format_colors "$tag" "$highlight")"
           ;;
 
         '-') # Viewed on another monitor and is not focused (Active)
@@ -99,7 +99,7 @@ hl_tags_gen() {
           tag="$(format_padding "$icon" "1" "c")"
           tag=$(format_font "$tag" "$font_large")
           tag="$(format_button "$tag" "1" "herbstclient use $ws")"
-          tag="$(format_colors "$tag" "$special")"
+          tag="$(format_colors "$tag" "$highlight")"
           ;;
 
         '!') # Urgent
@@ -108,7 +108,7 @@ hl_tags_gen() {
           tag="$(format_padding "$icon" "1" "c")"
           tag=$(format_font "$tag" "$font_large")
           tag="$(format_button "$tag" "1" "herbstclient use $ws")"
-          tag="$(format_colors "$tag" "$highlight")"
+          tag="$(format_colors "$tag" "$problem")"
           ;;
 
         ':') # Not Empty
@@ -149,14 +149,14 @@ hl_tags_gen() {
   workspaces=""
 }
 
-hl_tags() {
-  . ${HLWM}/bar/utils/hl_utils.sh
+mod_tags() {
+  . ${HLWM}/bar/utils/utils.sh
   workspaces=""
   mon="$1"
-  hl_tags_gen
+  tags_gen
 
   hc -i "tag_*" 2>/dev/null | \
   while read -r _; do
-    hl_tags_gen
+    tags_gen
   done
 }

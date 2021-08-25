@@ -276,7 +276,7 @@ openvpn openconnect
 
 Work Packages:
 ```
-gtest lcov(AUR) dos2unix
+gtest lcov(AUR) dos2unix git-lfs
 ```
 #### 2.2 AUR Packages
 To be able to install packages from the AUR, one has to install a AUR-helper like `paru`.
@@ -309,6 +309,7 @@ pip install git+https://github.com/pytube/pytube
 #### 2.4 Enable Newly Installed Services
 ```sh
 sudo systemctl enable tlp
+sudo systemctl enable docker
 ```
 
 #### 2.5 System File structure

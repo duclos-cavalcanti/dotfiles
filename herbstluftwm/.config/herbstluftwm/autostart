@@ -16,7 +16,7 @@ padding_hor="3"   # horizontal "wall" paddings of windows
 padding_ver="3"   # vertical "wall" paddings of windows
 
 background="#232526"
-active="#232526"
+active="#33393b"
 normal="#232526"
 urgent="#000000"
 

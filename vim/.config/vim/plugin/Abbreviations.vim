@@ -1,30 +1,8 @@
-inoreabbrev nordbackdarkest #1f2531
-inoreabbrev nordbackdark #2e3440
-inoreabbrev nordbackmedium #3b4252
-inoreabbrev nordbackmediumlight #4a5469
-inoreabbrev nordbacklight #434c5e
-inoreabbrev nordbacklighter #4c556a
-inoreabbrev nordbacklightest #616E88
-
-inoreabbrev nordsnow #d8dee9
-inoreabbrev nordsnowlight #e5e9f0
-inoreabbrev nordsnowlighter #eceff4
-
-inoreabbrev nordaquagreen #8fbcbb
-inoreabbrev nordaquablue #88c0d0
-inoreabbrev nordblue #5e81ac
-inoreabbrev nordbluedark #81a1c1
-
-inoreabbrev nordred #bf616a
-inoreabbrev nordorange #d08770
-inoreabbrev nordyellow #ebcb8b
-inoreabbrev nordgreen #a3be8c
-inoreabbrev nordpurple #b48ead
-
 inoreabbrev moloback #1b1d1e
 inoreabbrev molobackalt #13354a
 inoreabbrev molobackmedium #2e3440
 inoreabbrev molobacklight #272822
+inoreabbrev molobacklightest #33393b
 inoreabbrev moloblack #080808
 inoreabbrev molored #f92672
 inoreabbrev molowine #960050

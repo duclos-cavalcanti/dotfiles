@@ -4,15 +4,16 @@
     font: "UbuntuMono 12";
 	icon-font: "UbuntuMono Nerd Font 11";
 
-    steel:                          #2e3440;
-    steeldark:                      #1f2531;
-    yellow:                         #ebcb8b;
-    orange:                         #d08770;
+    back:                          #1b1d1e;
+    backdark:                      #1b1d1e;
+    backlight:                      #33393b;
+    yellow:                         #e6db74;
+    orange:                         #ef5939;
     red:                            #bf616a;
-    magenta:                        #b48ead;
-    blue:                           #88c0d0;
-    cyan:                           #a3be8c;
-    green:                          #a3be8c;
+    magenta:                        #8c54fe;
+    blue:                           #268bd2;
+    cyan:                           #56c2d6;
+    green:                          #a6e22e;
     white:                          #ffffff;
     black:                          #000000;
 
@@ -20,9 +21,9 @@
 
     /* Main element styles */
     foreground:                     @white;
-    foreground-alt:                 @cyan;
-    background-color:               @steel;
-    background-alt:                 @steel;
+    foreground-alt:                 @black;
+    background-color:               @back;
+    background-alt:                 @back;
 
     normal-foreground:              @foreground;
     normal-background:              @background;
@@ -32,9 +33,9 @@
     urgent-background:              @background;
 
     selected-normal-foreground:     @foreground;
-    selected-normal-background:     @blue;
+    selected-normal-background:     @backlight;
     selected-active-foreground:     @magenta;
-    selected-active-background:     @blue;
+    selected-active-background:     @backlight;
     selected-urgent-foreground:     @black;
     selected-urgent-background:     @background;
 
@@ -45,9 +46,10 @@
     alternate-urgent-foreground:    @red;
     alternate-urgent-background:    @background;
 
-    border-color:                   @blue;
-    separator-color:                @blue;
-    highlight-color:                @blue;
+    border-color:                   @backlight;
+    input-border-color:             @green;
+    separator-color:                @backlight;
+    highlight-color:                @backlight;
 
     spacing:                        2;
 }

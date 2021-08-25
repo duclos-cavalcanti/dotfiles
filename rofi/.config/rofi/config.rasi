@@ -102,7 +102,7 @@ inputbar {
     border:                         0px 0px 1px dash;
 
 	background-color: 				@transparent;
-    border-color:                   @blue;
+    border-color:                   @input-border-color;
 }
 
 prompt {

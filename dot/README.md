@@ -261,7 +261,7 @@ rust clang doxygen nano ctags
 
 Theme/Look-and-Feel Packages:
 ```
-arc-icon-theme arc-gtk-theme xcursor-themes kvantum-qt5 qt5ct lxappearance
+gnome-themes-extra xcursor-themes kvantum-qt5 qt5ct lxappearance
 ```
 
 Printer Packages:

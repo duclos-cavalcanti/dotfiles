@@ -9,11 +9,13 @@ font_icons='Ubuntu Nerd Font:style=bold:size=8'        # Icons
 font_icons_large='Ubuntu Nerd Font:style=bold:size=16' # Icons Large
 font_bold='Ubuntu Mono:style=bold:size=9'              # Bold
 
-bg="#232526"
+bg="#33393b"
 bg_alt="#bcbcbc"
 
 fg="#ffffff"
 fg_alt="#8f8f8f"
+
+icon_color="#ffffff"
 
 primary="#f92672"
 secondary="#82b414"
@@ -22,7 +24,6 @@ special="#ae81ff"
 problem="#a6e22e"
 highlight="#fd971f"
 
-icon_color="#ffffff"
 
 rectangle_background="$bg_alt"
 underline_color="$primary"

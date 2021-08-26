@@ -10,7 +10,7 @@ font_icons_large='Ubuntu Nerd Font:style=bold:size=16' # Icons Large
 font_bold='Ubuntu Mono:style=bold:size=9'              # Bold
 
 bg="#33393b"
-bg_alt="#bcbcbc"
+bg_alt="#1b1d1e"
 
 fg="#ffffff"
 fg_alt="#8f8f8f"

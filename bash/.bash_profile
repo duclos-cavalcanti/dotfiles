@@ -16,9 +16,11 @@ if [ -z "$DISPLAY" ] && [ "$(tty)" = /dev/tty1 ]; then
           echo "xinitrc not found"
         fi
       elif [ "$name" == "tty" ]; then
-        echo -e "\n"
+        echo "Remaining in tty"
+        break
       else
-        echo "No Valid option was chosen, remaining in tty"
+        echo "No valid option chosen"
+        break
       fi
     done
 fi

@@ -21,7 +21,7 @@
 
     /* Main element styles */
     foreground:                     @white;
-    foreground-alt:                 @black;
+    foreground-alt:                 @white;
     background-color:               @back;
     background-alt:                 @back;
 
@@ -47,7 +47,7 @@
     alternate-urgent-background:    @background;
 
     border-color:                   @backlight;
-    input-border-color:             @green;
+    input-border-color:             @blue;
     separator-color:                @backlight;
     highlight-color:                @backlight;
 

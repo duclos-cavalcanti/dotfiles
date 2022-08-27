@@ -1,0 +1,56 @@
+local awful = require("awful")
+local fetch_colors = require("theme.colors")
+
+-- Global Variables
+modkey = "Mod4" --super
+altkey = "Mod1"
+
+terminal = "alacritty"
+terminal_class = "Alacritty"
+editor = os.getenv("EDITOR") or "vim"
+edit = terminal .. " -e " .. editor
+
+-- screens and tags
+taglist = { "1", "2", "3", "4", "5", "6", "7", "8", "9" }
+screen_width = awful.screen.focused().geometry.width
+screen_height = awful.screen.focused().geometry.height
+
+-- bar
+bar_height = 16
+
+-- theme/wallpaper
+font_family = "Iosevka" -- DejaVuSansMono
+palette = "test"
+colors = fetch_colors.setup(palette)
+
+wallpaper = "umbrella.jpg"
+vertical_wallpaper = wallpaper
+no_wallpaper = false
+
+local M = {}
+
+function M.setup()
+    local error = require("settings.error")
+    local autostart = require("settings.autostart")
+    local screens = require("settings.screens")
+    local keys = require("settings.keybindings")
+    local layouts = require("settings.layouts")
+    local rules = require("settings.rules")
+    local clients = require("settings.clients")
+    local notifications = require("settings.notifications")
+
+    -- settings/config
+    error.setup()           -- debugging rc errors through naughty
+
+    layouts.setup()         -- tiling layouts
+    screens.setup()         -- sets bar, widgets and wallpaper
+    keys.setup()            -- keybindings and sets popup menu
+    autostart.setup()       -- autostarts programs
+    rules.setup(keys)       -- sets rules for specific clients/windows
+    clients.setup()         -- sets client hooks and titlebar
+    notifications.setup()   -- sets notifications
+
+    -- bar, widgets, titlebar and menu are in interface folder
+end
+
+return M

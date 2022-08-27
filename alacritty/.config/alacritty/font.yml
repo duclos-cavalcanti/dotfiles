@@ -1,0 +1,22 @@
+font:
+  normal:
+    # Font family
+    family: Iosevka
+    style: Regular
+
+  bold:
+    family: Iosevka
+    style: Bold
+
+  italic:
+    family: Iosevka
+    style: Italic
+
+  bold_italic:
+    family: Iosevka
+    style: Bold Italic
+
+  size: 11.0
+
+# $ fc-list 
+# list installed fonts 

@@ -156,7 +156,7 @@ function M.set_keybindings()
                     end
                   end,
                   {
-                      "change to tile layout",
+                      "change to max layout",
                       "layout"
                   }),
 
@@ -308,6 +308,15 @@ function M.set_client_keybindings()
               end,
               {
                   "make client fullscreen",
+                  "client"
+              }),
+    awful.key({ M.modkey }, "s",
+              function (c)
+                c.sticky = not c.sticky
+                c:raise()
+              end,
+              {
+                  "make client sticky",
                   "client"
               }),
     awful.key({ M.modkey }, "f",

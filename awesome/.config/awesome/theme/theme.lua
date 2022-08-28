@@ -2,6 +2,7 @@
 -- Custom awesome theme --
 ---------------------------
 local dpi = require("beautiful.xresources").apply_dpi
+local theme_assets = require("beautiful.theme_assets")
 
 local utils = require("utils")
 local config_path = utils.config_path
@@ -17,9 +18,12 @@ local theme = {}
 theme.wallpaper     = wp
 theme.colors        = colors
 
-theme.font_family   = font_family .. " "
-theme.font          = theme.font_family .. "9"
-theme.font_icon     = theme.font_family .. "6"
+theme.font_family       = font_family .. " "
+theme.font              = theme.font_family .. "9"
+theme.font_icon         = theme.font_family .. "6"
+theme.font_tags         = theme.font_family .. "10"
+theme.font_prompt       = theme.font_family .. "8"
+theme.font_notification = theme.font_family .. "9"
 
 theme.bg_normal     = colors.black2
 theme.bg_focus      = colors.black2
@@ -39,7 +43,7 @@ theme.systray_icon_size = dpi(15)
 theme.systray_max_rows = 1
 
 -- Notifications
-beautiful.notification_font = theme.font_family .. "9"
+beautiful.notification_font = theme.font_notification
 beautiful.notification_bg = colors.bg
 beautiful.notification_fg = colors.blue
 beautiful.notification_border_width = 2
@@ -75,10 +79,11 @@ theme.border_width  = dpi(1)
 theme.border_normal = colors.black2
 theme.border_focus  = colors.white2
 theme.border_sticky = colors.red
+theme.border_sticky_unfocus = colors.green
 theme.border_marked = colors.blue
 
 -- taglist
-theme.taglist_font          = theme.font_family .. "10"
+theme.taglist_font          = theme.font_tags
 theme.taglist_bg_empty      = colors.bg
 theme.taglist_fg_empty      = colors.grey
 theme.taglist_bg_occupied   = colors.bg
@@ -101,10 +106,10 @@ theme.prompt_bg             = colors.bg
 theme.prompt_fg             = colors.foreground
 theme.prompt_fg_cursor      = colors.bg
 theme.prompt_bg_cursor      = colors.bg
-theme.prompt_font           = "DejaVuSansMono 10"
+theme.prompt_font           = theme.font_prompt
 
 -- menu
-theme.menu_height       = dpi(22)
+theme.menu_height       = dpi(20)
 theme.menu_width        = dpi(120)
 theme.menu_bg           = colors.bg
 theme.menu_bg_focus     = colors.black
@@ -141,7 +146,9 @@ theme.custom_icons = {
 
 theme.menu_icon     = icon_path .. "/menu_orange.png"
 theme.ghost_icon    = icon_path .. "/arch_small.png"
--- theme.awesome_icon = icon_path .. "/terminal.png"
+theme.awesome_icon = theme_assets.awesome_icon(
+    theme.menu_height, theme.bg_focus, theme.fg_focus
+)
 -- theme.icon_theme = nil
 
 return theme

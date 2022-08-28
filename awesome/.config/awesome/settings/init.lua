@@ -12,11 +12,9 @@ edit = terminal .. " -e " .. editor
 
 -- screens and tags
 taglist = { "1", "2", "3", "4", "5", "6", "7", "8", "9" }
-screen_width = awful.screen.focused().geometry.width
-screen_height = awful.screen.focused().geometry.height
 
 -- bar
-bar_height = 16
+bar_height = 19
 
 -- theme/wallpaper
 font_family = "Iosevka" -- DejaVuSansMono

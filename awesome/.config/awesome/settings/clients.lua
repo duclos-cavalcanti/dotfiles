@@ -49,7 +49,11 @@ function M.setup()
     -- unfocus client hook
     client.connect_signal("unfocus",
     function(c) -- when clients loses focus
-        c.border_color = beautiful.border_normal
+        if c.sticky then
+            c.border_color = beautiful.border_sticky_unfocus
+        else
+            c.border_color = beautiful.border_normal
+        end
     end)
 
     -- manage hook, when a new client appears and gets managed by wm

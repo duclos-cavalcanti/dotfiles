@@ -31,7 +31,7 @@ function M.setup(s)
                         id = 'clienticon',
                         widget = awful.widget.clienticon,
                     },
-                    margins = dpi(0),
+                    margins = dpi(1),
                     widget = wibox.container.margin,
                 },
                 wibox.widget.base.make_widget(),
@@ -91,7 +91,6 @@ function M.setup(s)
             {
                 {
                     {
-                        separator(),
                         spacing = dpi(20),
                         layout = wibox.layout.fixed.vertical,
                     },
@@ -113,8 +112,8 @@ function M.setup(s)
         right = dpi(5),
         bottom = dpi(10),
         widget = wibox.container.margin,
-      },
-      }
+    },
+    }
 
     s.vertical_bar = bar
 end

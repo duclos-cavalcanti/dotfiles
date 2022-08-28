@@ -39,7 +39,11 @@ function M.setup()
     -- focus client hook
     client.connect_signal("focus",
     function(c)  -- when client gains focus
-        c.border_color = beautiful.border_focus
+        if c.sticky then
+            c.border_color = beautiful.border_sticky
+        else
+            c.border_color = beautiful.border_focus
+        end
     end)
 
     -- unfocus client hook

@@ -40,7 +40,6 @@ theme.systray_max_rows = 1
 
 -- Notifications
 beautiful.notification_font = theme.font_family .. "9"
--- beautiful.notification_shape = gears.shape
 beautiful.notification_bg = colors.bg
 beautiful.notification_fg = colors.blue
 beautiful.notification_border_width = 2
@@ -75,7 +74,8 @@ theme.useless_gap   = dpi(1) -- gaps
 theme.border_width  = dpi(1)
 theme.border_normal = colors.black2
 theme.border_focus  = colors.white2
-theme.border_marked = colors.red
+theme.border_sticky = colors.red
+theme.border_marked = colors.blue
 
 -- taglist
 theme.taglist_font          = theme.font_family .. "10"
@@ -104,7 +104,6 @@ theme.prompt_bg_cursor      = colors.bg
 theme.prompt_font           = "DejaVuSansMono 10"
 
 -- menu
--- theme.menu_submenu_icon = theme_path .. "/icons" .. "/pacman.png"
 theme.menu_height       = dpi(22)
 theme.menu_width        = dpi(120)
 theme.menu_bg           = colors.bg

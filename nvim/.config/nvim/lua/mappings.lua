@@ -100,7 +100,8 @@ nnoremap("<M-P>", ":lprev<CR>")
 
 -- COMMAND MAPPINGS
 vim.cmd("command! Make !make")
-vim.cmd("command! ReloadScheme require('themes')")
+vim.cmd("command! ReloadScheme lua require('themes')")
+vim.cmd("command! ReloadSnippets lua require('plugins.luasnip').setup()")
 
 -- Remove trailing whitespaces
 vim.cmd [[autocmd BufWritePre * %s/\s\+$//e ]]

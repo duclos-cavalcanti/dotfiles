@@ -18,15 +18,12 @@ local function set_wallpaper(s)
             wallpaper = wallpaper(s)
         end
 
-        if no_wallpaper then
-            awful.spawn.with_shell(string.format("hsetroot -solid '%s'", beautiful.colors.wallpaper))
-        else
-            if w > h then   -- horizontal
-                gears.wallpaper.maximized(wallpaper, s, true)
-            else            -- vertical
-                gears.wallpaper.maximized(vertical_wallpaper, s, false)
-            end
-        end
+       -- awful.spawn.with_shell(string.format("hsetroot -solid '%s'", beautiful.colors.wallpaper))
+       if w > h then   -- horizontal
+           gears.wallpaper.maximized(wallpaper, s, true)
+       else            -- vertical
+           gears.wallpaper.maximized(vertical_wallpaper, s, false)
+       end
     end
 end
 

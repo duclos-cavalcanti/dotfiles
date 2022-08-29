@@ -278,9 +278,10 @@ function M.set_client_keybindings()
                   "client"
               }),
     awful.key({ M.modkey }, "equal",
-              function (_)
-                local s = awful.screen.focused()
-                for k, client in pairs(s.clients) do
+              function (c)
+                print("Equal")
+                local s = c.screen
+                for _, client in pairs(s.clients) do
                     if client.minimized then
                         client.minimized = not client.minimized
                         client:raise()

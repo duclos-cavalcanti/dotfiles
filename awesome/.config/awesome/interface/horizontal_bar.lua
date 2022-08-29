@@ -62,7 +62,6 @@ function M.set_bar(s)
 
         return awful.widget.launcher({
             image = beautiful.menu_icon,
-            bg = colors.white,
             menu = menu
         })
     end
@@ -99,27 +98,44 @@ function M.set_bar(s)
     end
 
     -- Tasklist
-    -- local function tasklist(scr)
-    --     return awful.widget.tasklist({
-    --         screen = scr,
-    --         filter = awful.widget.tasklist.filter.currenttags,
-    --         buttons = tasklist_buttons,
-    --         style = {
-    --             tasklist_disable_icon = true,
-    --             },
-    --         })
-    -- end
-
     local function tasklist(scr)
+        -- no icon tasklist
+        -- return awful.widget.tasklist({
+        --     screen = scr,
+        --     filter = awful.widget.tasklist.filter.currenttags,
+        --     buttons = tasklist_buttons,
+        --     style = {
+        --         tasklist_disable_icon = true,
+        --         },
+        --     })
+
         return awful.widget.tasklist {
             screen = scr,
             filter = awful.widget.tasklist.filter.currenttags,
             buttons = tasklist_buttons,
             layout = {
-              spacing = dpi(0),
+              spacing_widget = {
+                  {
+                    forced_weight = 5,
+                    forced_height = 18,
+                    thickness     = 1,
+                    color         = beautiful.colors.black2,
+                    widget        = wibox.widget.separator
+                  },
+                  valign = 'center',
+                  halign = 'center',
+                  widget = wibox.container.place
+              },
+              spacing = dpi(4),
               layout = wibox.layout.flex.horizontal
             },
             widget_template = {
+                id              = 'background_role',
+                shape           = function(cr, width, height)
+                                    gears.shape.rounded_rect(cr, width, height, 2)
+                                  end,
+                widget          = wibox.container.background,
+                forced_height   = 5,
                 {
                     {
                         id = 'clienticon',
@@ -128,11 +144,6 @@ function M.set_bar(s)
                     margins = dpi(1),
                     widget = wibox.container.margin,
                 },
-                id              = 'background_role',
-                shape           = function(cr, width, height)
-                                    gears.shape.rounded_rect(cr, width, height, 2)
-                                  end,
-                widget          = wibox.container.background,
                 create_callback = function(self, c)
                                     self:get_children_by_id('clienticon')[1].client = c
                                   end,

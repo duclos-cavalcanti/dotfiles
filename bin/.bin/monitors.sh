@@ -1,30 +1,12 @@
 #!/bin/bash
 
-WALLPAPER=$1
 USER=$(whoami)
 HOST=$(hostname)
 
 usage() {
   echo "USAGE:
-    syntax: ./monitors.sh <wallpaper>
-
-    monitors.sh has the following options:
-    * wallpaper: path to wallpaper [REQUIRED]"
-}
-
-set_wallpaper() {
-    hd="$1"
-    nitrogen --set-zoom-fill --head="$hd" $WALLPAPER
-}
-
-
-set_wallpapers() {
-  count=$1
-  i=0
-  while [ $i -lt $count ]; do
-      set_wallpaper $i
-      ((i++))
-  done
+    syntax: ./monitors.sh
+    "
 }
 
 reset_monitors() {

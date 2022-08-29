@@ -23,7 +23,6 @@ colors = fetch_colors.setup(palette)
 
 wallpaper = "umbrella.jpg"
 vertical_wallpaper = wallpaper
-no_wallpaper = false
 
 local M = {}
 

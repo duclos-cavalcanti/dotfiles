@@ -36,9 +36,9 @@ theme.wibar_bg      = colors.bg
 theme.wibar_fg      = colors.foreground
 
 -- Systray
-theme.bg_systray = colors.bg
+theme.bg_systray = colors.green
 theme.systray_popup_bg = colors.black2
-theme.systray_icon_spacing = dpi(3)
+theme.systray_icon_spacing = dpi(5)
 theme.systray_icon_size = dpi(15)
 theme.systray_max_rows = 1
 
@@ -141,7 +141,8 @@ theme.layout_floating       = icon_path .. "/layouts" .. "/floatingw.png"
 
 theme.custom_icons = {
         menu_icon = { icon = "", font = theme.font_icon },
-        memory_icon = { icon = "", font = theme.font_icon }
+        memory_icon = { icon = "", font = theme.font_icon },
+        clock_icon = { icon = "", font = theme.font_icon },
 }
 
 theme.menu_icon     = icon_path .. "/menu_orange.png"

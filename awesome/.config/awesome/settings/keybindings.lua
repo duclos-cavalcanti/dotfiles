@@ -68,13 +68,17 @@ function M.set_keybindings()
 
         -- clients/windows
         awful.key({ M.modkey }, "Tab",
-                  function() awful.client.focus.byidx(1) end,
+                      function()
+                        awful.client.focus.byidx(1)
+                    end,
                   {
                       "cycle to next client",
                       "client"
                   }),
         awful.key({ M.modkey, "Shift" }, "Tab",
-                  function() awful.client.focus.byidx(-1) end,
+                  function()
+                      awful.client.focus.byidx(-1)
+                  end,
                   {
                       "cycle to previous client",
                       "client"

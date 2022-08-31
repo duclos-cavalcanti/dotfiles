@@ -22,7 +22,7 @@ local function set_wallpaper(s)
        if w > h then   -- horizontal
            gears.wallpaper.maximized(wallpaper, s, true)
        else            -- vertical
-           gears.wallpaper.maximized(vertical_wallpaper, s, false)
+           gears.wallpaper.maximized(v_wallpaper, s, false)
        end
     end
 end

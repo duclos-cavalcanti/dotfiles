@@ -29,14 +29,13 @@ theme.bg_normal     = colors.black2
 theme.bg_focus      = colors.black2
 theme.bg_urgent     = colors.red
 theme.bg_minimize   = colors.magenta
-theme.bg_systray    = theme.bg_normal
 
 -- wibar
 theme.wibar_bg      = colors.bg
 theme.wibar_fg      = colors.foreground
 
 -- Systray
-theme.bg_systray = colors.green
+theme.bg_systray = colors.bg
 theme.systray_popup_bg = colors.black2
 theme.systray_icon_spacing = dpi(5)
 theme.systray_icon_size = dpi(15)
@@ -57,8 +56,7 @@ beautiful.notification_max_height = 50
 beautiful.notification_icon_size = 20
 
 -- Separator
-theme.separator_bg1 = colors.black
-theme.separator_bg2 = colors.black2
+theme.separator_fg = colors.black
 
 -- titlebars
 -- theme.titlebar_icon          = icon_path .. "/ghost.png"
@@ -74,8 +72,8 @@ theme.fg_urgent     = colors.red
 theme.fg_minimize   = colors.foreground
 
 -- borders and gaps
-theme.useless_gap   = dpi(1) -- gaps
-theme.border_width  = dpi(1)
+theme.useless_gap   = gaps
+theme.border_width  = 1
 theme.border_normal = colors.black2
 theme.border_focus  = colors.white2
 theme.border_sticky = colors.red
@@ -94,11 +92,13 @@ theme.taglist_bg_urgent     = colors.red
 theme.taglist_fg_urgent     = colors.foreground
 
 -- tasklist
-theme.tasklist_bg_normal     = colors.black
-theme.tasklist_fg_normal     = colors.fg
-theme.tasklist_bg_focus      = colors.black2
-theme.tasklist_fg_focus      = colors.fg
-theme.tasklist_bg_urgent     = colors.red
+theme.tasklist_plain_task_name  = true
+theme.tasklist_bg_normal        = colors.black
+theme.tasklist_bg_normal        = colors.black
+theme.tasklist_fg_normal        = colors.fg
+theme.tasklist_bg_focus         = colors.black2
+theme.tasklist_fg_focus         = colors.fg
+theme.tasklist_bg_urgent        = colors.red
 
 
 -- prompt
@@ -145,11 +145,10 @@ theme.custom_icons = {
         clock_icon = { icon = "", font = theme.font_icon },
 }
 
-theme.menu_icon     = icon_path .. "/menu_orange.png"
-theme.ghost_icon    = icon_path .. "/arch_small.png"
-theme.awesome_icon = theme_assets.awesome_icon(
-    theme.menu_height, theme.bg_focus, theme.fg_focus
-)
+theme.awesome_icon  = icon_path .. "/awesome.png"
+theme.arch_icon     = icon_path .. "/arch.png"
+theme.ghost_icon    = icon_path .. "/ghost.png"
+theme.menu_icon     = icon_path .. "/menu.png"
 -- theme.icon_theme = nil
 
 return theme

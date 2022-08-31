@@ -56,7 +56,7 @@ local tasklist_buttons = awful.util.table.join(
 
 
 function M.set_bar(s)
-    -- Keyboard indicator
+    -- menu launcher
     local function menu_launcher()
         local menu = require("interface.menu").main_menu
 
@@ -99,56 +99,41 @@ function M.set_bar(s)
 
     -- Tasklist
     local function tasklist(scr)
-        -- no icon tasklist
-        -- return awful.widget.tasklist({
-        --     screen = scr,
-        --     filter = awful.widget.tasklist.filter.currenttags,
-        --     buttons = tasklist_buttons,
-        --     style = {
-        --         tasklist_disable_icon = true,
-        --         },
-        --     })
-
         return awful.widget.tasklist {
-            screen = scr,
-            filter = awful.widget.tasklist.filter.currenttags,
+            screen  = scr,
+            filter  = awful.widget.tasklist.filter.currenttags,
             buttons = tasklist_buttons,
-            layout = {
-              spacing_widget = {
-                  {
-                    forced_weight = 5,
-                    forced_height = 18,
-                    thickness     = 1,
-                    color         = beautiful.colors.black2,
-                    widget        = wibox.widget.separator
-                  },
-                  valign = 'center',
-                  halign = 'center',
-                  widget = wibox.container.place
-              },
-              spacing = dpi(4),
-              layout = wibox.layout.flex.horizontal
+            layout  = {
+              spacing   = dpi(1),
+              layout    = wibox.layout.flex.horizontal
             },
             widget_template = {
-                id              = 'background_role',
-                shape           = function(cr, width, height)
-                                    gears.shape.rounded_rect(cr, width, height, 2)
-                                  end,
-                widget          = wibox.container.background,
-                forced_height   = 5,
-                {
                     {
-                        id = 'clienticon',
-                        widget = awful.widget.clienticon,
+                        {
+                            {
+                                id      = 'icon_role',
+                                left    = dpi(4),
+                                widget  = wibox.widget.imagebox,
+                            },
+                            margins = 1,
+                            widget  = wibox.container.margin,
+                        },
+                        {
+                            {
+                                id     = 'text_role',
+                                widget = wibox.widget.textbox,
+                            },
+                            id      = 'text_margin_role',
+                            left    = dpi(2),
+                            right   = dpi(2),
+                            widget  = wibox.container.margin,
+                        },
+                        layout  = wibox.layout.fixed.horizontal,
                     },
-                    margins = dpi(1),
-                    widget = wibox.container.margin,
-                },
-                create_callback = function(self, c)
-                                    self:get_children_by_id('clienticon')[1].client = c
-                                  end,
-            }
-          }
+                    id     = 'background_role',
+                    widget = wibox.container.background,
+            },
+        }
     end
 
     -- Systray
@@ -167,34 +152,19 @@ function M.set_bar(s)
 
     -- separator
     local function separator()
-        local style = {
-            margin = { 0, 0, 0, 0},
-		    color  = {
-                shadow1 = beautiful.separator_bg1,
-                shadow2 = beautiful.separator_bg2,
-                }
-            }
-
-        local w = wibox.widget.base.make_widget()
-
-        function w:fit(_, _, height)
-            return 2 + style.margin[1] + style.margin[2], height
-        end
-
-        function w:draw(_, cr, _, height)
-		    local h = height - style.margin[3] - style.margin[4]
-
-		    cr:translate(style.margin[1], style.margin[3])
-		    cr:set_source(gears.color(style.color.shadow1))
-		    cr:rectangle(0, 0, 1, h)
-		    cr:fill()
-
-		    cr:set_source(gears.color(style.color.shadow2))
-		    cr:rectangle(1, 0, 1, h)
-		    cr:fill()
-        end
-
-        return w
+        return wibox.widget {
+            {
+               forced_width     = 1,
+               forced_height    = bar_height - 5,
+               thickness        = 1,
+               border_width     = 2,
+               color            = beautiful.separator_fg,
+               widget           = wibox.widget.separator
+             },
+             valign = 'center',
+             halign = 'center',
+             widget = wibox.container.place
+        }
     end
 
     s.launcher = menu_launcher()
@@ -227,12 +197,13 @@ function M.set_bar(s)
             s.layoutbox,
             space(),
             s.separator,
-            s.promptbox,
+            space(),
         },
 
         -- Middle widgets
         -- s.tasklist_,
         {
+            s.promptbox,
             s.tasklist_,
             layout = wibox.layout.fixed.horizontal,
         },
@@ -241,6 +212,7 @@ function M.set_bar(s)
         {
             layout = wibox.layout.fixed.horizontal,
             s.clock,
+            space(),
             s.systray,
         },
     }

@@ -7,7 +7,7 @@ local utils = require("utils")
 local M = {
   picture = function(shape)
     return wibox.widget({
-        image      = theme.ghost_icon,
+        image      = theme.arch_icon,
         widget     = wibox.widget.imagebox,
         clip_shape = shape
     })

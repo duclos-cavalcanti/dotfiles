@@ -57,6 +57,7 @@ function M.setup(keys)
                     "Nitrogen",
                     "Nm-connection-editor",
                     "Wpg",
+                    "Eduvpn-gui",
                     "Pavucontrol"
                 },
                 name = {

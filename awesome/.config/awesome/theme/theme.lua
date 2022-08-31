@@ -22,7 +22,7 @@ theme.font_family       = font_family .. " "
 theme.font              = theme.font_family .. "9"
 theme.font_icon         = theme.font_family .. "6"
 theme.font_tags         = theme.font_family .. "10"
-theme.font_prompt       = theme.font_family .. "8"
+theme.font_prompt       = theme.font_family .. "10"
 theme.font_notification = theme.font_family .. "9"
 
 theme.bg_normal     = colors.black2

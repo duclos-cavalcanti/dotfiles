@@ -112,9 +112,9 @@ function M.set_bar(s)
                         {
                             {
                                 id      = 'icon_role',
-                                left    = dpi(4),
                                 widget  = wibox.widget.imagebox,
                             },
+                            left    = dpi(2),
                             margins = 1,
                             widget  = wibox.container.margin,
                         },
@@ -125,13 +125,22 @@ function M.set_bar(s)
                             },
                             id      = 'text_margin_role',
                             left    = dpi(2),
-                            right   = dpi(2),
+                            right   = dpi(6),
                             widget  = wibox.container.margin,
                         },
                         layout  = wibox.layout.fixed.horizontal,
                     },
                     id     = 'background_role',
                     widget = wibox.container.background,
+                    create_callback = function(self, c)
+                        local tb = self:get_children_by_id('text_role')[1]
+                        local set_markup_silently = tb.set_markup_silently
+                        tb.set_markup_silently =
+                        function(slf, text) -- self and current text
+                            local new_text = c.class
+                            return set_markup_silently(tb, new_text)
+                        end
+                    end,
             },
         }
     end

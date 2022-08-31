@@ -22,7 +22,7 @@ font_family     = "Iosevka" -- DejaVuSansMono
 palette         = "test"
 colors          = fetch_colors.setup(palette)
 
-wallpaper       = "umbrella.jpg"
+wallpaper       = "moon_mountain.png"
 v_wallpaper     = wallpaper
 
 local M = {}

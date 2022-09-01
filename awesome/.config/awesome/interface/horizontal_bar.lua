@@ -62,7 +62,7 @@ function M.set_bar(s)
 
         return awful.widget.launcher({
             image = beautiful.menu_icon,
-            menu = menu
+            menu = menu,
         })
     end
 
@@ -79,7 +79,7 @@ function M.set_bar(s)
     -- Run Prompt
     local function promptbox()
         return awful.widget.prompt({
-            prompt = " ➜ ",
+            prompt = beautiful.prompt_prefix,
         })
     end
 
@@ -176,13 +176,14 @@ function M.set_bar(s)
         }
     end
 
-    s.launcher = menu_launcher()
-    s.clock = clock()
-    s.taglist = taglist()
+    s.launcher  = menu_launcher()
+    s.keyboard  = keyboard()
+    s.clock     = clock()
+    s.taglist   = taglist()
     s.tasklist_ = tasklist(s)
     s.promptbox = promptbox()
     s.layoutbox = layoutbox(s)
-    s.systray = systray()
+    s.systray   = systray()
     s.separator = separator()
 
     -- Create the wibox/wibar
@@ -207,19 +208,22 @@ function M.set_bar(s)
             space(),
             s.separator,
             space(),
+            s.promptbox,
         },
 
         -- Middle widgets
-        -- s.tasklist_,
-        {
-            s.promptbox,
-            s.tasklist_,
-            layout = wibox.layout.fixed.horizontal,
-        },
+        s.tasklist_,
+        -- {
+        --     s.promptbox,
+        --     s.tasklist_,
+        --     layout = wibox.layout.fixed.horizontal,
+        -- },
 
         -- Right widgets
         {
             layout = wibox.layout.fixed.horizontal,
+            s.keyboard,
+            s.separator,
             s.clock,
             space(),
             s.systray,

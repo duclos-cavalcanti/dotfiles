@@ -5,11 +5,11 @@ local M = {}
 function M.setup()
     -- layouts
     awful.layout.layouts = {
+        awful.layout.suit.max,
         awful.layout.suit.tile,
         awful.layout.suit.tile.top,
         awful.layout.suit.tile.left,
         awful.layout.suit.tile.bottom,
-        -- awful.layout.suit.max,
         -- awful.layout.suit.max.fullscreen,
         -- awful.layout.suit.floating,
         -- awful.layout.suit.fair,

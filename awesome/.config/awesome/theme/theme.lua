@@ -75,9 +75,9 @@ theme.fg_minimize   = colors.foreground
 theme.useless_gap   = gaps
 theme.border_width  = 1
 theme.border_normal = colors.black2
-theme.border_focus  = colors.white2
+theme.border_focus  = colors.grey
 theme.border_sticky = colors.red
-theme.border_sticky_unfocus = colors.green
+theme.border_sticky_unfocus = colors.white
 theme.border_marked = colors.blue
 
 -- taglist
@@ -102,6 +102,7 @@ theme.tasklist_bg_urgent        = colors.red
 
 
 -- prompt
+theme.prompt_prefix         = " > "
 theme.prompt_bg             = colors.bg
 theme.prompt_fg             = colors.foreground
 theme.prompt_fg_cursor      = colors.bg

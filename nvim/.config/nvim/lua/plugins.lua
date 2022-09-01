@@ -126,6 +126,9 @@ return require('packer').startup(function(use)
           requires = { 'kyazdani42/nvim-web-devicons', opt = true }
         }
 
+    use 'rockerBOO/boo-colorscheme-nvim'
+
+    -- view colors in nvim
     use { 'norcalli/nvim-colorizer.lua',
            config  = function() require('colorizer').setup() end,
         }

@@ -6,7 +6,7 @@ vim.g.custom_cursorline = false
 vim.g.custom_columnline = false
 vim.g.custom_palette = "test"
 
-vim.cmd[[colorscheme custom]]
+vim.cmd[[colorscheme boo]]
 
 require('lualine').setup {
     options = {

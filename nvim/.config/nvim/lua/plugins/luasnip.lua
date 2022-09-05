@@ -25,6 +25,19 @@ function M.setup()
 | x        |    y     |     z    |
 | x        |    y     |     z    |
 ]]),
+            ls.parser.parse_snippet("ch",
+[[
+- [ ] ${1:todo}
+]]),
+            ls.parser.parse_snippet("drop",
+[[
+<details closed>
+<summary>
+${1:title}
+</summary>
+$0
+</details>
+]]),
             ls.parser.parse_snippet("img",
 [[
 ![${0:title}](.imgs/${1:img}.png)

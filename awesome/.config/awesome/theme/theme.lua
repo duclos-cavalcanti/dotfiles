@@ -102,7 +102,7 @@ theme.tasklist_bg_urgent        = colors.red
 
 
 -- prompt
-theme.prompt_prefix         = " > "
+theme.prompt_prefix         = "run: "
 theme.prompt_bg             = colors.bg
 theme.prompt_fg             = colors.foreground
 theme.prompt_fg_cursor      = colors.bg
@@ -110,7 +110,7 @@ theme.prompt_bg_cursor      = colors.bg
 theme.prompt_font           = theme.font_prompt
 
 -- menu
-theme.menu_height       = dpi(20)
+theme.menu_height       = dpi(28)
 theme.menu_width        = dpi(120)
 theme.menu_bg           = colors.bg
 theme.menu_bg_focus     = colors.black

@@ -18,7 +18,6 @@ fi
 # Sourcing git's prompt information
 if [ -r /usr/share/git/completion/ ]; then # arch
     . /usr/share/git/completion/git-prompt.sh
-
 elif [ -r /etc/bash_completion.d/ ]; then # ubuntu
     . /etc/bash_completion.d/git-prompt
 fi
@@ -30,6 +29,8 @@ if [ -d /usr/share/fzf ]; then
 fi
 
 bash_prompt() {
+    local __primary__="green"
+
 # Prompt info
     # Colors             Backgrounds              Attributes
     #
@@ -71,8 +72,7 @@ bash_prompt() {
     local bold_white='\[\033[01;37m\]'
 
     local clear='\[\033[0m\]'
-
-    local primary="$green"
+    local primary=$(eval "echo \$$__primary__")
 
     git_prefix() {
         local git_flag=$(git rev-parse --is-inside-work-tree 2>/dev/null | grep true)
@@ -320,19 +320,6 @@ alias gba="git branch --all"
 alias gbd="git branch -d"
 alias gbD="git push --delete origin"
 alias greset="git reset --hard"
-alias dockinfo="docker info"
-alias dockcreate="docker create -i --name <name> debian"
-alias dockimgs="docker images"
-alias dockls="docker ps -a"
-alias dockrun="docker run --name <name> -it -d <img>"
-alias dockrm="docker rm"
-alias dockexec="docker exec -it debian-docker /bin/bash"
-alias dockstart="docker start debian-docker"
-alias dockattach="docker attach"
-alias pdb="python -m pdb"
-alias ipd="ipdb3"
-alias jn="jupyter-notebook"
-alias armgdb="arm-none-eabi-gdb"
 
 if command -v lua &>/dev/null; then
     alias luamake=$HOME/.lua/lua-language-server/3rd/luamake/luamake
@@ -382,9 +369,24 @@ export WINIT_HIDPI_FACTOR=1
 export WINIT_X11_SCALE_FACTOR=1
 export _JAVA_AWT_WM_NONREPARENTING=1
 
-if command -v fd &>/dev/null && command -v fzf &>/dev/null; then
-  export FZF_DEFAULT_COMMAND="fd --follow --hidden --type f --exclude .git --exclude VMs --exclude Programs --exclude snap --exclude Music"
-  export FZF_ALT_C_COMMAND="fd --follow --hidden --type d --exclude .git --exclude VMs --exclude Programs --exclude snap --exclude Music"
+if command -v fd &>/dev/null && \
+   command -v fzf &>/dev/null; then
+  export FZF_DEFAULT_COMMAND="\
+  fd --follow --hidden --type f --exclude .git \
+                                --exclude VMs \
+                                --exclude Programs \
+                                --exclude snap \
+                                --exclude quicklisp \
+                                --exclude Music"
+
+  export FZF_ALT_C_COMMAND="\
+  fd --follow --hidden --type d --exclude .git \
+                                --exclude VMs \
+                                --exclude Programs \
+                                --exclude snap \
+                                --exclude quicklisp \
+                                --exclude Music"
+
   export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 fi
 

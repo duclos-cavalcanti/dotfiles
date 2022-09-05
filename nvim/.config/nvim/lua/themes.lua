@@ -6,6 +6,7 @@ vim.g.custom_cursorline = false
 vim.g.custom_columnline = false
 vim.g.custom_palette = "test"
 
+-- vim.g.boo_colorscheme_theme = 'radioactive_waste'
 vim.cmd[[colorscheme boo]]
 
 require('lualine').setup {

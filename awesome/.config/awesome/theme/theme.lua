@@ -140,16 +140,16 @@ theme.layout_fullscreen     = icon_path .. "/layouts" .. "/fullscreenw.png"
 theme.layout_magnifier      = icon_path .. "/layouts" .. "/magnifierw.png"
 theme.layout_floating       = icon_path .. "/layouts" .. "/floatingw.png"
 
+-- theme.icon_theme = nil
+theme.awesome_icon  = icon_path .. "/awesome.png"
+theme.arch_icon     = icon_path .. "/arch.png"
+theme.ghost_icon    = icon_path .. "/ghost.png"
+theme.menu_icon     = icon_path .. "/menu.png"
+
 theme.custom_icons = {
         menu_icon = { icon = "", font = theme.font_icon },
         memory_icon = { icon = "", font = theme.font_icon },
         clock_icon = { icon = "", font = theme.font_icon },
 }
-
-theme.awesome_icon  = icon_path .. "/awesome.png"
-theme.arch_icon     = icon_path .. "/arch.png"
-theme.ghost_icon    = icon_path .. "/ghost.png"
-theme.menu_icon     = icon_path .. "/menu.png"
--- theme.icon_theme = nil
 
 return theme

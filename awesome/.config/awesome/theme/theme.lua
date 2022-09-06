@@ -138,8 +138,7 @@ theme.layout_floating       = icon_path .. "/layouts" .. "/floatingw.png"
 theme.icon_theme = nil
 theme.awesome_icon  = icon_path .. "/awesome.png"
 theme.arch_icon     = icon_path .. "/arch.png"
-theme.ghost_icon    = icon_path .. "/ghost.png"
-theme.menu_icon     = icon_path .. "/menu.png"
+theme.menu_icon     = icon_path .. "/square.png"
 
 theme.custom_icons = {
         menu_icon = { icon = "", font = theme.font_icon },

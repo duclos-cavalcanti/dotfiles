@@ -138,6 +138,9 @@ function M.set_bar(s)
                         tb.set_markup_silently =
                         function(slf, text) -- self and current text
                             local new_text = c.class
+                            if c.sticky then
+                                new_text = new_text .. " " .. "--"
+                            end
                             return set_markup_silently(tb, new_text)
                         end
                     end,

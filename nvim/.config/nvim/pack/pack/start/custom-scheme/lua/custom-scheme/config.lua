@@ -16,14 +16,10 @@ end
 local function select_palette(key)
     local key = "custom_" .. key
     local opt = vim.g[key]
-    -- local command = string.format("echom '%s'", opt)
-    -- vim.cmd(command)
-    if opt == nil then
-        return "regular"
-    elseif  opt == "regular" or
-            opt == "dark" or
-            opt == "light" or
-            opt == "test" then
+    if opt == "regular" or
+       opt == "dark"    or
+       opt == "light"   or
+       opt == "test" then
         return opt
     else
         return "regular"
@@ -31,6 +27,7 @@ local function select_palette(key)
 end
 
 config = {
+    palette = select_palette("palette"),
     transparent = opt("transparent", false),
     transparent_sidebar = opt("transparent_sidebar", false),
     cursorline = opt("cursorline", true),
@@ -41,7 +38,6 @@ config = {
     variable_style = opt("italic_variables", false) and "italic" or "NONE",
     hide_inactive_statusline = opt("hide_inactive_statusline", false),
     lualine_bold = opt("lualine_bold", false),
-    palette = select_palette("palette"),
 }
 
 return config

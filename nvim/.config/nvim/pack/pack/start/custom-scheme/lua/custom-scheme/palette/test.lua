@@ -9,7 +9,7 @@ local M = {
     none = "NONE",
 
     bg = "#0f0f10",
-    fg = "#f0f4ef", -- #bbac9b  #97c4ba
+    fg = "#e1d9ea",
 
     black       = "#2f393b", -- #1a1e1d
     red         = "#d95490", -- #c7566f

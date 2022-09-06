@@ -72,13 +72,13 @@ theme.fg_urgent     = colors.red
 theme.fg_minimize   = colors.foreground
 
 -- borders and gaps
-theme.useless_gap   = gaps
-theme.border_width  = 1
-theme.border_normal = colors.black2
-theme.border_focus  = colors.grey
-theme.border_sticky = colors.red
-theme.border_sticky_unfocus = colors.white
-theme.border_marked = colors.blue
+theme.useless_gap           = gaps
+theme.border_width          = 1
+theme.border_normal         = colors.black2
+theme.border_focus          = colors.grey
+theme.border_sticky         = colors.green
+theme.border_sticky_unfocus = colors.green2
+theme.border_marked         = colors.blue
 
 -- taglist
 theme.taglist_font          = theme.font_tags
@@ -122,11 +122,6 @@ theme.menu_border_width = 2
 -- https://github.com/tdy/awesome/
 theme.taglist_squares_sel   = theme_path .. "/icons" .. "/tags" .. "/squaref.png"
 theme.taglist_squares_unsel = theme_path .. "/icons" .. "/tags" .. "/square.png"
-
--- theme.taglist_squares_sel = theme_assets.taglist_squares_sel(dpi(5), colors.blue)
--- theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(dpi(5), colors.white2)
-
--- https://github.com/tdy/awesome/
 theme.layout_tile           = icon_path .. "/layouts" .. "/tilew.png"
 theme.layout_tileleft       = icon_path .. "/layouts" .. "/tileleftw.png"
 theme.layout_tilebottom     = icon_path .. "/layouts" .. "/tilebottomw.png"
@@ -140,7 +135,7 @@ theme.layout_fullscreen     = icon_path .. "/layouts" .. "/fullscreenw.png"
 theme.layout_magnifier      = icon_path .. "/layouts" .. "/magnifierw.png"
 theme.layout_floating       = icon_path .. "/layouts" .. "/floatingw.png"
 
--- theme.icon_theme = nil
+theme.icon_theme = nil
 theme.awesome_icon  = icon_path .. "/awesome.png"
 theme.arch_icon     = icon_path .. "/arch.png"
 theme.ghost_icon    = icon_path .. "/ghost.png"

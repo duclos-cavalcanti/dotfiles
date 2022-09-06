@@ -1,10 +1,11 @@
-vim.g.custom_transparent = true
-vim.g.custom_transparent_sidebar = true
-vim.g.custom_italic_functions = true
-vim.g.custom_lualine_bold = true
-vim.g.custom_cursorline = false
-vim.g.custom_columnline = false
-vim.g.custom_palette = "test"
+vim.g.custom_transparent            = true
+vim.g.custom_transparent_sidebar    = true
+vim.g.custom_italic_functions       = true
+vim.g.custom_lualine_bold           = true
+vim.g.custom_cursorline             = true
+vim.g.custom_colorcolumn            = true
+vim.g.custom_columnline             = false
+vim.g.custom_palette                = "special"
 
 -- vim.g.boo_colorscheme_theme = 'radioactive_waste'
 vim.cmd[[colorscheme boo]]

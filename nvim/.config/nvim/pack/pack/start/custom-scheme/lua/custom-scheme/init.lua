@@ -10,7 +10,7 @@ function M.on_colorscheme()
     end
 end
 
-function M.autocmds(config)
+function M.autocmds()
     vim.cmd([[augroup CustomScheme]])
     vim.cmd([[  autocmd!]])
     vim.cmd([[  autocmd ColorScheme * lua require("custom-scheme").on_colorscheme()]])
@@ -23,7 +23,7 @@ function M.terminal(colors)
     vim.g.terminal_color_8 = colors.black
 
     -- light
-    vim.g.terminal_color_7 = colors.grey2
+    vim.g.terminal_color_7 = colors.grey
     vim.g.terminal_color_15 = colors.fg
 
     -- colors
@@ -47,10 +47,10 @@ function M.terminal(colors)
 end
 
 function M.highlight(group, color)
-    local style = color.style and "gui=" .. color.style or "gui=NONE"
-    local fg = color.fg and "guifg=" .. color.fg or "guifg=NONE"
-    local bg = color.bg and "guibg=" .. color.bg or "guibg=NONE"
-    local sp = color.sp and "guisp=" .. color.sp or ""
+    local style = color.style   and "gui="   .. color.style   or "gui=NONE"
+    local fg    = color.fg      and "guifg=" .. color.fg    or "guifg=NONE"
+    local bg    = color.bg      and "guibg=" .. color.bg    or "guibg=NONE"
+    local sp    = color.sp      and "guisp=" .. color.sp    or ""
 
     local hl = "highlight " .. group .. " " .. style .. " " .. fg .. " " .. bg .. " " .. sp
 
@@ -67,7 +67,7 @@ function M.syntax(syntax)
     end
 end
 
-function M.load(theme)
+function M.load(t, colors)
     -- only needed to clear when not the default colorscheme
     if vim.g.colors_name then
         vim.cmd("hi clear")
@@ -76,19 +76,63 @@ function M.load(theme)
     vim.o.termguicolors = true
     vim.g.colors_name = "custom-scheme"
 
-    -- load base theme
-    M.syntax(theme.base)
-    M.syntax(theme.plugins)
-    M.terminal(theme.colors)
-    M.autocmds(theme.config)
+    -- auto commands
+    M.autocmds()
 
-    vim.defer_fn(function()
-        M.syntax(theme.defer)
-    end, 100)
+    -- load scheme highlights
+    M.syntax(t.base)
+    M.syntax(t.plugins)
+
+    -- load terminal highlights
+    M.terminal(colors)
+end
+
+function M.config()
+    vim = vim or { g = {}, o = {} }
+    local function opt(key, default)
+        local key = "custom_" .. key
+        if vim.g[key] == nil then
+            return default
+        end
+        if vim.g[key] == 0 then
+            return false
+        end
+        return vim.g[key]
+    end
+
+    local function select_palette(key)
+        local key = "custom_" .. key
+        local opt = vim.g[key]
+        if opt == "regular" or
+           opt == "dark"    or
+           opt == "light"   or
+           opt == "test" then
+            return opt
+        else
+            return "regular"
+        end
+    end
+
+    local config = {
+        palette                     = select_palette("palette"),
+        transparent                 = opt("transparent", false),
+        transparent_sidebar         = opt("transparent_sidebar", false),
+        cursorline                  = opt("cursorline", true),
+        columnline                  = opt("columnline", true),
+        comment_style               = opt("italic_comments", true) and "italic" or "NONE",
+        keyword_style               = opt("italic_keywords", true) and "italic" or "NONE",
+        function_style              = opt("italic_functions", true) and "italic" or "NONE",
+        variable_style              = opt("italic_variables", false) and "italic" or "NONE",
+        hide_inactive_statusline    = opt("hide_inactive_statusline", false),
+        lualine_bold                = opt("lualine_bold", false),
+    }
+
+    return config
 end
 
 function M.colorscheme()
-    M.load(theme.setup())
+    local config = M.config()
+    M.load(theme.setup(config))
 end
 
 return M

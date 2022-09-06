@@ -1,25 +1,59 @@
 local M = {}
 
-function M.setup()
-    local config = require("custom-scheme.config")
-    local colors = require("custom-scheme.colors").setup(config)
-
-    local theme = {
-        config = config,
-        colors = colors,
-    }
-
-    local c = theme.colors
+function M.setup(config)
+    local theme = {}
+    local c = require("custom-scheme.colors").setup(config)
 
     theme.base = {
-        Comment = { fg = c.comment, style = config.comment_style }, -- any comment
-        ColorColumn = { bg = config.columnline and c.bg_statusline or c.none }, -- used for the columns set with 'colorcolumn'
-        Conceal = { fg = c.secondary }, -- placeholder characters substituted for concealed text (see 'conceallevel')
+        -- normal text
+        Normal = {
+            bg = (config.transparent and c.none) or c.bg,
+            fg = c.fg,
+        },
+        -- normal text in non-current windows
+        NormalNC = {
+            bg = config.transparent and c.none or c.bg,
+            fg = c.fg,
+        },
+        -- normal text in non-current windows
+        NormalSB = {
+            bg = c.bg_sidebar,
+            fg = c.fg_sidebar,
+        },
+        -- normal text in floating windows.
+        NormalFloat = {
+            bg = c.bg_float ,
+            fg = c.fg,
+        },
+        -- any comment
+        Comment = {
+            fg = c.comment,
+            style = config.comment_style
+        },
+        SpecialComment = {
+            fg = c.comment,
+            style = config.comment_style
+        },
+        -- used columns set with 'colorcolumn'
+        ColorColumn = {
+            bg = config.columnline and c.bg_statusline or c.none
+        },
+        -- screen-column at the cursor, when 'cursorcolumn' is set.
+        CursorColumn = {
+            bg = config.columnline and c.bg_statusline or c.none
+        },
+        -- screen-line at the cursor, when 'cursorline' is set.
+        CursorLine = {
+            bg = config.cursorline and c.bg_statusline or c.none
+        },
+        -- placeholder characters substituted for concealed text
+        Conceal = {
+            fg = c.secondary
+        },
+
         Cursor = { fg = c.bg, bg = c.fg }, -- character under the cursor
         lCursor = { fg = c.bg, bg = c.fg }, -- the character under the cursor when |language-mapping| is used (see 'guicursor')
         CursorIM = { fg = c.bg, bg = c.fg }, -- like Cursor, but used when in IME mode |CursorIM|
-        CursorColumn = { bg = config.columnline and c.bg_statusline or c.none }, -- Screen-column at the cursor, when 'cursorcolumn' is set.
-        CursorLine = { bg = config.cursorline and c.bg_statusline or c.none }, -- Screen-line at the cursor, when 'cursorline' is set.  Low-priority if foreground (ctermfg OR guifg) is not set.
         Directory = { fg = c.primary }, -- directory names (and other special names in listings)
         DiffAdd = { bg = c.diff.add }, -- diff mode: Added line |diff.txt|
         DiffChange = { bg = c.diff.change }, -- diff mode: Changed line |diff.txt|
@@ -40,10 +74,6 @@ function M.setup()
         MsgArea = { fg = c.fg }, -- Area for messages and cmdline
         MoreMsg = { fg = c.primary }, -- |more-prompt|
         NonText = { fg = c.grey }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
-        Normal = { fg = c.fg, bg = config.transparent and c.none or c.bg }, -- normal text
-        NormalNC = { fg = c.fg, bg = config.transparent and c.none or c.bg }, -- normal text in non-current windows
-        NormalSB = { fg = c.fg_sidebar, bg = c.bg_sidebar }, -- normal text in non-current windows
-        NormalFloat = { fg = c.fg, bg = c.bg_float }, -- Normal text in floating windows.
         FloatBorder = { fg = c.border_highlight, bg = c.bg_float },
         Pmenu = { bg = c.bg_popup, fg = c.fg }, -- Popup menu: normal item.
         PmenuSel = { bg = c.faded }, -- Popup menu: selected item.
@@ -363,8 +393,6 @@ function M.setup()
         },
     }
 
-    theme.defer = {}
-
     if config.hide_inactive_statusline then
         local inactive = { style = "underline", bg = c.bg, fg = c.bg, sp = c.border }
 
@@ -377,7 +405,7 @@ function M.setup()
         end
     end
 
-    return theme
+    return theme, colors
 end
 
 return M

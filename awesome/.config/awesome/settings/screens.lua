@@ -28,9 +28,9 @@ local function set_wallpaper(s)
 
         local step = 10
         awful.spawn.with_shell(string.format("~/.bin/wall.sh '%s' '%s' %d",
-                               step,
                                beautiful.colors.wallpaper,
-                               beautiful.colors.black))
+                               beautiful.colors.black,
+                               step))
        -- wp(s, wallpaper)
     end
 end

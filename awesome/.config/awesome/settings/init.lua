@@ -22,9 +22,6 @@ font_family     = "Iosevka" -- DejaVuSansMono
 palette         = "test"
 colors          = fetch_colors.setup(palette)
 
-wallpaper       = "horizon.jpg"
-v_wallpaper     = wallpaper
-
 local M = {}
 
 function M.setup()

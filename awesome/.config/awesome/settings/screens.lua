@@ -19,20 +19,13 @@ end
 
 -- checks if the current screen is a vertical one
 local function set_wallpaper(s)
-    if beautiful.wallpaper then
-        local wallpaper = beautiful.wallpaper
-
-        if type(wallpaper) == "function" then
-            wallpaper = wallpaper(s)
-        end
-
-        local step = 10
-        awful.spawn.with_shell(string.format("~/.bin/wall.sh '%s' '%s' %d",
-                               beautiful.colors.wallpaper,
-                               beautiful.colors.black,
-                               step))
-       -- wp(s, wallpaper)
-    end
+    local wallpaper = beautiful.wallpaper
+    local step = 6
+    awful.spawn.with_shell(string.format("~/.bin/wall.sh '%s' '%s' %d",
+                           beautiful.colors.wallpaper,
+                           beautiful.colors.black,
+                           step))
+    -- wp(s, wallpaper)
 end
 
 function M.setup()

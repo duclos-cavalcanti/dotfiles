@@ -12,7 +12,7 @@ local icon_path = theme_path .. "/icons"
 local wallpaper_path = theme_path .. "/wallpapers"
 local default_path = require("gears.filesystem").get_themes_dir()
 
-local wp = wallpaper_path .. "/" .. wallpaper
+local wp = wallpaper_path .. "/" -- .. wallpaper
 local theme = {}
 
 theme.wallpaper     = wp

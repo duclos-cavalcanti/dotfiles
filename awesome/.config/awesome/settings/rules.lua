@@ -32,6 +32,15 @@ function M.setup(keys)
 
        {
             rule = {
+                class = "Toolkit"
+            },
+            properties = {
+                sticky = true
+            }
+        },
+
+       {
+            rule = {
                 class = "Xephyr"
             },
             properties = {

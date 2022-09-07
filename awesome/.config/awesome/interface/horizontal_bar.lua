@@ -156,6 +156,12 @@ function M.set_bar(s)
         return w
     end
 
+    local function tab()
+        local sp = wibox.widget.textbox()
+        sp:set_text("    ")
+        return sp
+    end
+
     local function space()
         local sp = wibox.widget.textbox()
         sp:set_text(" ")
@@ -196,10 +202,7 @@ function M.set_bar(s)
         screen = s
     })
 
-    s.wibox:setup {
-        layout = wibox.layout.align.horizontal,
-        -- Left widgets
-        {
+    local _left = {
             layout = wibox.layout.fixed.horizontal,
             s.launcher,
             s.separator,
@@ -212,25 +215,27 @@ function M.set_bar(s)
             s.separator,
             space(),
             s.promptbox,
-        },
+        }
 
-        -- Middle widgets
-        s.tasklist_,
-        -- {
-        --     s.promptbox,
-        --     s.tasklist_,
-        --     layout = wibox.layout.fixed.horizontal,
-        -- },
+    local _middle = {
+        layout = wibox.layout.align.horizontal,
+        s.tasklist_
+    }
 
-        -- Right widgets
-        {
-            layout = wibox.layout.fixed.horizontal,
+    local _right = {
+            layout = wibox.layout.align.horizontal,
+            s.clock,
+            s.separator,
             s.keyboard,
             s.separator,
-            s.clock,
-            space(),
             s.systray,
-        },
+        }
+
+    s.wibox:setup {
+        layout = wibox.layout.align.horizontal,
+        _left,
+        _middle,
+        _right,
     }
 end
 

@@ -6,11 +6,19 @@ local v_bar               = require("interface.vertical_bar")
 
 local M = {}
 
--- checks if the current screen is a vertical one
-local function set_wallpaper(s)
+local function wp(s, wallpaper)
     local w = s.geometry.width
     local h = s.geometry.height
 
+    if w > h then   -- horizontal
+        gears.wallpaper.maximized(wallpaper, s, true)
+    else            -- vertical
+        gears.wallpaper.maximized(v_wallpaper, s, false)
+    end
+end
+
+-- checks if the current screen is a vertical one
+local function set_wallpaper(s)
     if beautiful.wallpaper then
         local wallpaper = beautiful.wallpaper
 
@@ -18,12 +26,12 @@ local function set_wallpaper(s)
             wallpaper = wallpaper(s)
         end
 
-       -- awful.spawn.with_shell(string.format("hsetroot -solid '%s'", beautiful.colors.wallpaper))
-       if w > h then   -- horizontal
-           gears.wallpaper.maximized(wallpaper, s, true)
-       else            -- vertical
-           gears.wallpaper.maximized(v_wallpaper, s, false)
-       end
+        local step = 10
+        awful.spawn.with_shell(string.format("~/.bin/wall.sh '%s' '%s' %d",
+                               step,
+                               beautiful.colors.wallpaper,
+                               beautiful.colors.black))
+       -- wp(s, wallpaper)
     end
 end
 

@@ -158,7 +158,7 @@ function M.set_bar(s)
 
     local function tab()
         local sp = wibox.widget.textbox()
-        sp:set_text("    ")
+        sp:set_text("   ")
         return sp
     end
 
@@ -217,19 +217,24 @@ function M.set_bar(s)
             s.promptbox,
         }
 
-    local _middle = {
-        layout = wibox.layout.align.horizontal,
-        s.tasklist_
-    }
+    local _middle = s.tasklist_
+    -- local _middle = {
+    --     layout = wibox.layout.align.horizontal,
+    --     s.tasklist_
+    -- }
 
     local _right = {
-            layout = wibox.layout.align.horizontal,
+            layout = wibox.layout.fixed.horizontal,
             s.clock,
             s.separator,
             s.keyboard,
             s.separator,
             s.systray,
         }
+
+    if s.index == 1 then
+       table.insert(_right, tab())
+    end
 
     s.wibox:setup {
         layout = wibox.layout.align.horizontal,

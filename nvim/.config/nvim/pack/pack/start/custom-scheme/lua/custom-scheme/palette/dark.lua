@@ -37,6 +37,8 @@ local M =  {
 M.primary = M.red
 M.secondary = M.cyan
 M.tertiary = M.green
-M.wallpaper = M.bg
+
+M.grey = M.white
+M.grey2 = M.white2
 
 return M

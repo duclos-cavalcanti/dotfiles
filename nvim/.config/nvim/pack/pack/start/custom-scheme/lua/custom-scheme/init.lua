@@ -2,8 +2,8 @@ local theme = require("custom-scheme.theme")
 
 local M = {}
 
---- Delete the autocmds when the theme changes to something else
 function M.on_colorscheme()
+    -- delete the autocommands when the theme changes
     if vim.g.colors_name ~= "custom" then
         vim.cmd([[autocmd! CustomScheme]])
         vim.cmd([[augroup! CustomScheme]])
@@ -47,7 +47,7 @@ function M.terminal(colors)
 end
 
 function M.highlight(group, color)
-    local style = color.style   and "gui="   .. color.style   or "gui=NONE"
+    local style = color.style   and "gui="   .. color.style or "gui=NONE"
     local fg    = color.fg      and "guifg=" .. color.fg    or "guifg=NONE"
     local bg    = color.bg      and "guibg=" .. color.bg    or "guibg=NONE"
     local sp    = color.sp      and "guisp=" .. color.sp    or ""
@@ -67,7 +67,7 @@ function M.syntax(syntax)
     end
 end
 
-function M.load(t, colors)
+function M.load(t, defer, colors)
     -- only needed to clear when not the default colorscheme
     if vim.g.colors_name then
         vim.cmd("hi clear")
@@ -80,11 +80,21 @@ function M.load(t, colors)
     M.autocmds()
 
     -- load scheme highlights
-    M.syntax(t.base)
-    M.syntax(t.plugins)
+    M.syntax(t)
+    vim.defer_fn(function()
+        M.syntax(defer)
+    end, 100
+    )
 
     -- load terminal highlights
     M.terminal(colors)
+end
+
+function M.colors(palette)
+    local colors = require(string.format("custom-scheme.palette.%s", palette))
+    colors.grey = colors.white
+
+    return colors
 end
 
 function M.config()
@@ -132,7 +142,8 @@ end
 
 function M.colorscheme()
     local config = M.config()
-    M.load(theme.setup(config))
+    local colors = M.colors(config.palette)
+    M.load(theme.setup(config, colors))
 end
 
 return M

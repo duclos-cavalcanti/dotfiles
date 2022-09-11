@@ -5,14 +5,14 @@ vim.g.custom_lualine_bold           = true
 vim.g.custom_cursorline             = true
 vim.g.custom_colorcolumn            = true
 vim.g.custom_columnline             = false
-vim.g.custom_palette                = "special"
+vim.g.custom_palette                = "test"
 
 -- vim.g.boo_colorscheme_theme = 'radioactive_waste'
 vim.cmd[[colorscheme boo]]
 
 require('lualine').setup {
     options = {
-        theme = 'custom',
+        theme = 'boo',
         component_separators = {left = '', right = ''},
         section_separators = {left = '', right = ''},
         disabled_filetypes = {},

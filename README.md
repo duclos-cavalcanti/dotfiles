@@ -31,6 +31,9 @@ Enjoy :)
 - [tdy](https://github.com/tdy/awesome)
 - [bytes-chaser](https://github.com/bytes-chaser/neon-dream)
 - [manas140](https://github.com/manas140/dotfiles)
+- [rklyz](https://github.com/rklyz/MyRice)
+- [nuxshed](https://github.com/nuxshed/dotfiles)
+
 
 ## License
 These dotfiles are released under the MIT license. See [LICENSE](LICENSE).

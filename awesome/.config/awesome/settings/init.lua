@@ -1,4 +1,4 @@
-local fetch_colors = require("theme.colors")
+local utils = require("utils")
 local dpi = require("beautiful.xresources").apply_dpi
 
 -- Global Variables
@@ -20,7 +20,8 @@ gaps            = dpi(0)
 -- theme/wallpaper
 font_family     = "Iosevka" -- DejaVuSansMono
 palette         = "test"
-colors          = fetch_colors.setup(palette)
+palette_file    = utils.palette_path() .. palette .. ".lua"
+colors          = utils.load_file(palette_file)
 
 local M = {}
 

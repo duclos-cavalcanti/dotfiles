@@ -41,6 +41,15 @@ function M.setup(keys)
 
        {
             rule = {
+                name = "Picture-in-Picture"
+            },
+            properties = {
+                sticky = true
+            }
+        },
+
+       {
+            rule = {
                 class = "Xephyr"
             },
             properties = {

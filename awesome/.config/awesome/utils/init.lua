@@ -23,12 +23,16 @@ function M.home_path()
     return os.getenv("HOME")
 end
 
-function M.user()
-    return os.getenv("USER")
-end
-
 function M.config_path()
     return gears.filesystem.get_configuration_dir()
+end
+
+function M.palette_path()
+    return M.home_path() .. "/.config/nvim/pack/pack/start/custom-scheme/lua/custom-scheme/palette/"
+end
+
+function M.user()
+    return os.getenv("USER")
 end
 
 function M.log(var, msg)

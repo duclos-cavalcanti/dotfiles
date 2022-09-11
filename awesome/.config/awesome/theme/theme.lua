@@ -21,7 +21,7 @@ theme.colors        = colors
 theme.font_family       = font_family .. " "
 theme.font              = theme.font_family .. "9"
 theme.font_icon         = theme.font_family .. "6"
-theme.font_tags         = theme.font_family .. "10"
+theme.font_tags         = theme.font_family .. "13"
 theme.font_prompt       = theme.font_family .. "10"
 theme.font_notification = theme.font_family .. "9"
 
@@ -32,7 +32,7 @@ theme.bg_minimize   = colors.magenta
 
 -- wibar
 theme.wibar_bg      = colors.bg
-theme.wibar_fg      = colors.foreground
+theme.wibar_fg      = colors.fg
 
 -- Systray
 theme.bg_systray = colors.bg
@@ -63,13 +63,13 @@ theme.separator_fg = colors.black
 theme.titlebar_size          = 0 -- 20
 theme.titlebar_bg_normal     = colors.black
 theme.titlebar_bg_focus      = colors.black
-theme.titlebar_fg_normal     = colors.foreground
-theme.titlebar_fg_focus      = colors.foreground
+theme.titlebar_fg_normal     = colors.fg
+theme.titlebar_fg_focus      = colors.fg
 
-theme.fg_normal     = colors.foreground
-theme.fg_focus      = colors.foreground
+theme.fg_normal     = colors.fg
+theme.fg_focus      = colors.fg
 theme.fg_urgent     = colors.red
-theme.fg_minimize   = colors.foreground
+theme.fg_minimize   = colors.fg
 
 -- borders and gaps
 theme.useless_gap           = gaps
@@ -83,13 +83,13 @@ theme.border_marked         = colors.blue
 -- taglist
 theme.taglist_font          = theme.font_tags
 theme.taglist_bg_empty      = colors.bg
-theme.taglist_fg_empty      = colors.grey
+theme.taglist_fg_empty      = colors.black
 theme.taglist_bg_occupied   = colors.bg
-theme.taglist_fg_occupied   = colors.foreground
+theme.taglist_fg_occupied   = colors.fg
 theme.taglist_bg_focus      = colors.grey
-theme.taglist_fg_focus      = colors.bg
+theme.taglist_fg_focus      = colors.fg
 theme.taglist_bg_urgent     = colors.red
-theme.taglist_fg_urgent     = colors.foreground
+theme.taglist_fg_urgent     = colors.fg
 
 -- tasklist
 theme.tasklist_plain_task_name  = true
@@ -104,7 +104,7 @@ theme.tasklist_bg_urgent        = colors.red
 -- prompt
 theme.prompt_prefix         = "run: "
 theme.prompt_bg             = colors.bg
-theme.prompt_fg             = colors.foreground
+theme.prompt_fg             = colors.fg
 theme.prompt_fg_cursor      = colors.bg
 theme.prompt_bg_cursor      = colors.bg
 theme.prompt_font           = theme.font_prompt

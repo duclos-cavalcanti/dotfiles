@@ -90,10 +90,39 @@ function M.set_bar(s)
 
     -- Taglist
     local function taglist()
+        local function update_tag(item, tag, index)
+            if tag.selected then
+		        item:get_children_by_id("tag")[1].markup = "<span foreground='"..beautiful.taglist_fg_focus.."'>◆</span>"
+	        elseif #tag:clients() > 0 then
+		        item:get_children_by_id("tag")[1].markup = "<span foreground='"..beautiful.taglist_fg_occupied.."'>◇</span>"
+	        else
+		        item:get_children_by_id("tag")[1].markup = "<span foreground='"..beautiful.taglist_fg_empty.."'>◇</span>"
+	        end
+        end
+
         return awful.widget.taglist {
             screen  = s,
             filter  = awful.widget.taglist.filter.all,
-            buttons = taglist_buttons
+            buttons = taglist_buttons,
+            layout   = {
+			    spacing = dpi(10),
+			    layout = wibox.layout.fixed.horizontal,
+		    },
+            style = {
+                spacing = dpi(5)
+            },
+            widget_template = {
+			    id = "tag",
+			    font = beautiful.font_tags,
+			    widget = wibox.widget.textbox,
+			    create_callback = function(self, c3, index, object)
+			    	update_tag(self, c3, index)
+			    end,
+
+			    update_callback = function(self, c3, index, object)
+			    	update_tag(self, c3, index)
+			    end
+		    },
         }
     end
 

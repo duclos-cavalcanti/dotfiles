@@ -94,7 +94,6 @@ theme.taglist_fg_urgent     = colors.fg
 -- tasklist
 theme.tasklist_plain_task_name  = true
 theme.tasklist_bg_normal        = colors.black
-theme.tasklist_bg_normal        = colors.black
 theme.tasklist_fg_normal        = colors.fg
 theme.tasklist_bg_focus         = colors.black2
 theme.tasklist_fg_focus         = colors.fg

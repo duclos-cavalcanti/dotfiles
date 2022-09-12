@@ -11,27 +11,27 @@ local M = {
     bg = "#0f0f10",
     fg = "#e1d9ea",
 
-    black       = "#222827", -- #222827
-    red         = "#d95490", -- #d8a2ea
-    green       = "#41b193",
+    black       = "#120f12", -- #485559
+    red         = "#3f3442",
+    green       = "#222827",
     yellow      = "#a8c278",
-    blue        = "#97c4ba", -- #b6a6d4 #654a96
-    magenta     = "#9c75dd", -- #9c75dd
-    cyan        = "#7ed2c8",
-    white       = "#495151", -- #495151
+    blue        = "#97c4ba",
+    magenta     = "#654a96",
+    cyan        = "#a9d1df",
+    white       = "#495151",
 
-    black2      = "#5d6f74", -- #5d6f74
-    red2        = "#cd749c", -- #cd749c
-    green2      = "#63b0b0", -- #63b0b0
+    black2      = "#19171c",
+    red2        = "#cd749c",
+    green2      = "#63b0b0",
     yellow2     = "#a8c278",
-    blue2       = "#5786bc", -- #233b57
-    magenta2    = "#654a96",
-    cyan2       = "#89d9d0", -- #66919a
+    blue2       = "#5786bc",
+    magenta2    = "#9c75dd",
+    cyan2       = "#89d9d0",
     white2      = "#9898ae",
 }
 
-M.primary = M.green
-M.secondary = M.red
+M.primary = M.green2
+M.secondary = M.magenta
 M.tertiary = M.cyan
 
 M.grey = M.white

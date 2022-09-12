@@ -126,14 +126,14 @@ function M.config()
     local config = {
         palette                     = select_palette("palette"),
         transparent                 = opt("transparent", false),
-        transparent_sidebar         = opt("transparent_sidebar", false),
         cursorline                  = opt("cursorline", true),
-        columnline                  = opt("columnline", true),
+        colorcolumn                 = opt("colorcolumn", true),
+        columnline                  = opt("columnline", false),
         comment_style               = opt("italic_comments", true) and "italic" or "NONE",
         keyword_style               = opt("italic_keywords", true) and "italic" or "NONE",
         function_style              = opt("italic_functions", true) and "italic" or "NONE",
         variable_style              = opt("italic_variables", false) and "italic" or "NONE",
-        hide_inactive_statusline    = opt("hide_inactive_statusline", false),
+        inactive_statusline         = opt("inactive_statusline", false),
         lualine_bold                = opt("lualine_bold", false),
     }
 

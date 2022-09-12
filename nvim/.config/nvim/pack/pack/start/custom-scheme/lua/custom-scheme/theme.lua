@@ -8,36 +8,47 @@ local function extend(tb, ext)
     return tb
 end
 
+g_custom_lualine={}
+function M.get_lualine()
+    return g_custom_lualine
+end
+
 function M.lualine(config, c)
     local tb = {}
-    _l_ = {
+    local l = {
         normal = {
           a = { bg = c.primary, fg = c.black2 },
           b = { bg = c.black, fg = c.fg },
-          c = { bg = c.bg_statusline, fg = c.fg },
+          c = { bg = c.alias.ui.statusline.bg, fg = c.fg },
         },
         insert = {
           a = { bg = c.tertiary, fg = c.black2 },
-          b = { bg = c.bg_statusline, fg = c.fg },
+          b = { bg = c.alias.ui.statusline.bg, fg = c.fg },
         },
         command = {
           a = { bg = c.yellow, fg = c.black2 },
-          b = { bg = c.bg_statusline, fg = c.fg },
+          b = { bg = c.alias.ui.statusline.bg, fg = c.fg },
         },
         visual = {
           a = { bg = c.magenta, fg = c.black2 },
-          b = { bg = c.bg_statusline, fg = c.fg },
+          b = { bg = c.alias.ui.statusline.bg, fg = c.fg },
         },
         replace = {
           a = { bg = c.secondary, fg = c.black2 },
-          b = { bg = c.bg_statusline, fg = c.fg },
+          b = { bg = c.alias.ui.statusline.bg, fg = c.fg },
         },
         inactive = {
-          a = { bg = c.bg_statusline, fg = c.faded },
-          b = { bg = c.bg_statusline, fg = c.faded, gui = "bold" },
-          c = { bg = c.bg_statusline, fg = c.faded },
+          a = { bg = c.alias.ui.statusline.bg, fg = c.white2 },
+          b = { bg = c.alias.ui.statusline.bg, fg = c.white2, gui = "bold" },
+          c = { bg = c.alias.ui.statusline.bg, fg = c.white2 },
         },
     }
+
+    if config.lualine_bold then
+        for _, mode in pairs(l) do
+            mode.a.gui = "bold"
+        end
+    end
 
     if config.hide_inactive_statusline then
         local inactive = {
@@ -51,7 +62,8 @@ function M.lualine(config, c)
         end
     end
 
-    return tb, _l_
+    g_custom_lualine = l
+    return tb
 end
 
 function M.debug(config, c)
@@ -232,24 +244,24 @@ end
 function M.spell(config, c)
     local tb = {}
     tb = {
-        -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
+        -- Word that is not recognized by the spellchecker.
         SpellBad = {
-            sp = c.error,
+            sp = c.alias.error.fg,
             style = "undercurl"
         },
-        -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
+        -- Word that should start with a capital.
         SpellCap = {
-            sp = c.warning,
+            sp = c.alias.warning.fg,
             style = "undercurl"
         },
-        -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
+        -- Word that is used in another region.
         SpellLocal = {
-            sp = c.info,
+            sp = c.fg,
             style = "undercurl"
         },
-        -- Word that is recognized by the spellchecker as one that is hardly ever used.  |spell| Combined with the highlighting used otherwise.
+        -- Word that is hardly ever used.
         SpellRare = {
-            sp = c.hint,
+            sp = c.blue2,
             style = "undercurl"
         },
     }
@@ -263,19 +275,19 @@ function M.diff(config, c)
         -- diff mode:
         -- Added line
         DiffAdd = {
-            bg = c.diff.add
+            bg = c.alias.diff.add
         },
         -- Changed line
         DiffChange = {
-            bg = c.diff.change
+            bg = c.alias.diff.change
         },
         -- Deleted line
         DiffDelete = {
-            bg = c.diff.delete
+            bg = c.alias.diff.delete
         },
         -- Changed text within a line
         DiffText = {
-            bg = c.diff.text
+            bg = c.alias.diff.text
         },
     }
 
@@ -301,75 +313,196 @@ function M.base(config, c)
         NormalFloat = {
             link = "Normal"
         },
+        FloatBorder = {
+            fg = c.green2,
+            bg = c.black2,
+        },
         -- placeholder characters substituted for concealed text
         Conceal = {
             fg = c.white2
         },
         -- the column separating vertically split windows
         VertSplit = {
-            fg = c.border
+            fg = c.alias.ui.border
         },
         -- function name, also methods for classes
         Function = {
-            fg = c.black2,
+            fg = c.cyan2,
             style = config.function_style
         },
         -- (preferred) any erroneous construct
         Error = {
-            fg = c.error
+            fg = c.alias.error.fg
         },
         -- error messages on the command line
         ErrorMsg = {
-            fg = c.error
+            bg = c.alias.error.bg,
+            fg = c.alias.error.fg
         },
         -- warning messages
         WarningMsg = {
-            fg = c.white,
-            bg = c.blue2
+            fg = c.alias.warning.fg,
+            bg = c.alias.warning.bg,
         },
         Exception = {
             fg = c.error
         },
         -- Boolean
         Boolean = {
-            fg = c.magenta,
+            fg = c.magenta2,
             style = config.comment_style
         },
         --  a character constant: 'c', '\n'
         Character = {
-            fg = c.tertiary
+            fg = c.white2
         },
         -- Comments
         Comment = {
             fg = c.alias.comment,
             style = config.comment_style
         },
-        SpecialComment = {
-            link = "Comment"
-        },
         Conditional = {
             fg = c.green2,
         },
         -- (preferred) any constant
         Constant = {
-            fg = c.magenta2
+            fg = c.magenta
         },
         Float = {
-            fg = c.magenta2
+            fg = c.magenta
         },
-        -- used columns set with 'colorcolumn'
-        ColorColumn = {
-            bg = config.columnline and c.bg_statusline
-            or c.none
+        -- Last search pattern highlighting (see 'hlsearch').  Also used for similar items that need to stand out.
+        Search = {
+            bg = c.black,
+            fg = c.cyan
+        },
+        -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
+        IncSearch = {
+            bg = c.black,
+            fg = c.cyan
+        },
+        -- |:substitute| replacement text highlighting
+        Substitute = {
+            bg = c.red2,
+            fg = c.black
+        },
+        Number = {
+            fg = c.cyan
+        },
+        Define = {
+            fg = c.green2
+        },
+        Delimiter = {
+            fg = c.green2
+        },
+        -- directory names
+        Directory = {
+            fg = c.magenta
+        },
+        -- line used for closed folds
+        Folded = {
+            fg = c.grey,
+        },
+        -- 'foldcolumn'
+        FoldColumn = {
+            fg = c.grey,
+        },
+        -- any variable name
+        Identifier = {
+            fg = c.magenta2,
+            style = config.variable_style
+        },
+        Include = {
+            fg = c.green2,
+        };
+        --  any other keyword
+        Keyword = {
+            fg = c.magenta,
+            style = config.keyword_style
+        },
+        Label = {
+            fg = c.green2,
+            style = config.keyword_style
+        },
+        -- "sizeof", "+", "*", etc.
+        Operator = {
+            fg = c.blue2
+        },
+        -- (preferred) generic Preprocessor
+        PreProc = {
+            fg = c.green2
+        },
+        Repeat = {
+            fg = c.blue2
+        };
+        -- (preferred) any statement
+        Statement = {
+            fg = c.green2
+        },
+        -- Keywords that affect how a variable is stored: `static`, `comptime`, `extern`,
+        StorageClass = {
+            fg = c.green2
+        },
+        --   a string constant: "this is a string"
+        String = {
+            fg = c.white2
+        },
+        Structure = {
+            fg = c.green2
+        },
+        Tag = {
+            fg = c.magenta
+        },
+        -- titles for output from ":set all", ":autocmd" etc.
+        Title = {
+            fg = c.magenta,
+            style = "bold"
+        },
+        -- (preferred) anything that needs extra attention; mostly the keywords TODO FIXME and XXX
+        Todo = {
+            fg = c.black2
+        },
+        -- (preferred) int, long, char, etc.
+        Type = {
+            fg = c.green2
+        },
+        -- (preferred) int, long, char, etc.
+        Typedef = {
+            fg = c.green2
         },
         -- screen-column at the cursor, when 'cursorcolumn' is set.
         CursorColumn = {
-            bg = config.columnline and c.bg_statusline
+            fg = (config.columnline and c.white)
                  or c.none
+        },
+        -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
+        LineNr = {
+            fg = c.grey
+        },
+        -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
+        CursorLineNr = {
+            fg = c.red
+        },
+        Line = {
+            fg = c.blue2
+        },
+        -- column where |signs| are displayed
+        SignColumn = {
+            bg = config.transparent and c.none
+                 or c.bg,
+        },
+        -- column where |signs| are displayed
+        SignColumnSB = {
+            link = "SignColumn"
+        },
+        -- used columns set with 'colorcolumn'
+        ColorColumn = {
+            bg = config.colorcolumn and c.alias.ui.colorcolumn
+            or c.none
         },
         -- screen-line at the cursor, when 'cursorline' is set.
         CursorLine = {
-            bg = config.cursorline and c.bg_statusline
+            bg = config.cursorline and c.alias.ui.cursorline
                  or c.none
         },
         -- character under the cursor
@@ -387,52 +520,102 @@ function M.base(config, c)
             fg = c.bg,
             bg = c.fg
         },
-        -- directory names
-        Directory = {
-            fg = c.primary
-        },
         -- filler lines (~) after the end of the buffer
         EndOfBuffer = {
-            fg = c.bg
-        },
-        -- line used for closed folds
-        Folded = {
-            fg = c.primary,
-            bg = c.faded
-        },
-        -- 'foldcolumn'
-        FoldColumn = {
-            bg = c.bg,
-            fg = c.comment
-        },
-        -- column where |signs| are displayed
-        SignColumn = {
-            bg = config.transparent and c.none
-                 or c.bg,
-            fg = c.faded
-        },
-        -- column where |signs| are displayed
-        SignColumnSB = {
-            bg = c.bg_sidebar,
-            fg = c.faded
-        },
-        -- |:substitute| replacement text highlighting
-        Substitute = {
-            bg = c.secondary,
-            fg = c.black
-        },
-        -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
-        LineNr = {
-            fg = c.grey
-        },
-        -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
-        CursorLineNr = {
-            fg = c.fg
+            fg = c.white2
         },
         -- The character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
         MatchParen = {
-            fg = c.yellow2,
+            fg = c.red,
             style = "bold"
+        },
+        -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
+        NonText = {
+            fg = c.black2
+        },
+        -- "nbsp", "space", "tab" and "trail" in 'listchars'
+        Whitespace = {
+            fg = c.black2
+        },
+        -- Popup menu: normal item.
+        Pmenu = {
+            bg = c.alias.ui.popmenu.bg,
+            fg = c.alias.ui.popmenu.fg,
+        },
+        -- Popup menu: selected item.
+        PmenuSel = {
+            bg = c.alias.ui.popmenu.sel,
+        },
+        -- Popup menu: scrollbar.
+        PmenuSbar = {
+            bg = c.alias.ui.popmenu.sbar.bg,
+            fg = c.alias.ui.popmenu.sbar.fg,
+        },
+        -- Popup menu: Thumb of the scrollbar.
+        PmenuThumb = {
+            bg = c.alias.ui.popmenu.thumb.bg,
+            fg = c.alias.ui.popmenu.thumb.fg,
+        },
+        -- current match in 'wildmenu' completion
+        WildMenu = {
+            bg = c.red2
+        },
+        -- (preferred) any special symbol
+        Special = {
+            fg = c.magenta
+        },
+        -- Unprintable characters: text displayed differently from what it really is.  But not 'listchars' whitespace. |hl-Whitespace|
+        SpecialKey = {
+            fg = c.red
+        },
+        SpecialChar = {
+            fg = c.red
+        },
+        SpecialComment = {
+            link = "Comment"
+        },
+        -- status line of current window
+        StatusLine = {
+            fg = c.alias.ui.statusline.fg,
+            bg = c.alias.ui.statusline.bg,
+        },
+        -- status lines of not-current windows
+        -- Note: if this is equal to "StatusLine"
+        -- Vim will use "^^^" in the status line of the current window.
+        StatusLineNC = {
+            style   = (config.inactive_statusline and "italic") or nil,
+            fg      = (config.inactive_statusline and c.bg) or c.alias.ui.statusline.nc.fg,
+            bg      = (config.inactive_statusline and c.bg) or c.alias.ui.statusline.nc.bg,
+            sp      = (config.inactive_statusline and nil) or nil,
+        },
+        -- tab pages line, not active tab page label
+        TabLine = {
+            bg = c.alias.ui.tabline.bg,
+            fg = c.alias.ui.tabline.fg,
+        },
+        -- tab pages line, where there are no labels
+        TabLineFill = {
+            bg = c.alias.ui.tabline.bg,
+            fg = c.alias.ui.tabline.fg,
+        },
+        -- tab pages line, active tab page label
+        TabLineSel = {
+            bg = c.alias.ui.tabline.sel.bg,
+            fg = c.alias.ui.tabline.sel.fg,
+        },
+        -- |hit-enter| prompt and yes/no questions
+        Question = {
+            fg = c.green2
+        },
+        -- Visual mode selection
+        Visual = {
+            fg = c.green2,
+            bg = c.black2
+        },
+        -- Visual mode selection when vim is "Not Owning the Selection".
+        VisualNOS = {
+            fg = c.black2,
+            bg = c.green2,
         },
         -- 'showmode' message (e.g., "-- INSERT -- ")
         ModeMsg = {
@@ -445,150 +628,19 @@ function M.base(config, c)
         },
         -- |more-prompt|
         MoreMsg = {
-            fg = c.primary
-        },
-        -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
-        NonText = {
-            fg = c.grey
-        },
-        FloatBorder = {
-            fg = c.border_highlight,
-            bg = c.bg_float
-        },
-        -- Popup menu: normal item.
-        Pmenu = {
-            bg = c.bg_popup,
             fg = c.fg
-        },
-        -- Popup menu: selected item.
-        PmenuSel = {
-            bg = c.faded
-        },
-        -- Popup menu: scrollbar.
-        PmenuSbar = {
-            bg = c.bg_popup
-        },
-        -- Popup menu: Thumb of the scrollbar.
-        PmenuThumb = {
-            bg = c.faded
-        },
-        -- |hit-enter| prompt and yes/no questions
-        Question = {
-            fg = c.primary
         },
         -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
         QuickFixLine = {
-            bg = c.bg_visual,
+            bg = c.bg,
             style = "bold"
         },
         -- quickfixLine
         qfLineNr = {
-            fg = c.grey
+            fg = c.yellow
         },
         qfFileName = {
             fg = c.blue
-        },
-        -- Last search pattern highlighting (see 'hlsearch').  Also used for similar items that need to stand out.
-        Search = {
-            bg = c.bg_search,
-            fg = c.fg
-        },
-        -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
-        IncSearch = {
-            bg = c.yellow2,
-            fg = c.black
-        },
-        -- Unprintable characters: text displayed differently from what it really is.  But not 'listchars' whitespace. |hl-Whitespace|
-        SpecialKey = {
-            fg = c.grey
-        },
-        -- status line of current window
-        StatusLine = {
-            fg = c.fg_statusline,
-            bg = c.bg_statusline
-        },
-        -- status lines of not-current windows
-        -- Note: if this is equal to "StatusLine"
-        -- Vim will use "^^^" in the status line of the current window.
-        StatusLineNC = {
-            style   = (config.hide_inactive_statusline and c.border) or nil,
-            fg      = (config.hide_inactive_statusline and c.bg) or c.faded,
-            bg      = (config.hide_inactive_statusline and c.bg) or c.bg_statusline,
-            sp      = (config.hide_inactive_statusline and c.border) or nil,
-        },
-        -- tab pages line, not active tab page label
-        TabLine = {
-            bg = c.tabline.bg,
-            fg = c.tabline.fg
-        },
-        -- tab pages line, where there are no labels
-        TabLineFill = {
-            bg = c.tabline.bg_fill
-        },
-        -- tab pages line, active tab page label
-        TabLineSel = {
-            fg = c.tabline.fg_sel,
-            bg = c.tabline.bg_sel
-        },
-        -- titles for output from ":set all", ":autocmd" etc.
-        Title = {
-            fg = c.primary,
-            style = "bold"
-        },
-        -- (preferred) anything that needs extra attention; mostly the keywords TODO FIXME and XXX
-        Todo = {
-            bg = c.yellow,
-            fg = c.bg
-        },
-        -- Visual mode selection
-        Visual = {
-            bg = c.bg_visual
-        },
-        -- Visual mode selection when vim is "Not Owning the Selection".
-        VisualNOS = {
-            bg = c.bg_visual
-        },
-        -- "nbsp", "space", "tab" and "trail" in 'listchars'
-        Whitespace = {
-            fg = c.faded
-        },
-        -- current match in 'wildmenu' completion
-        WildMenu = {
-            bg = c.bg_visual
-        },
-        --   a string constant: "this is a string"
-        String = {
-            fg = c.tertiary
-        },
-        -- any variable name
-        Identifier = {
-            fg = c.magenta,
-            style = config.variable_style
-        },
-        -- (preferred) any statement
-        Statement = {
-            fg = c.magenta
-        },
-        -- "sizeof", "+", "*", etc.
-        Operator = {
-            fg = c.secondary
-        },
-        --  any other keyword
-        Keyword = {
-            fg = c.cyan,
-            style = config.keyword_style
-        },
-        -- (preferred) generic Preprocessor
-        PreProc = {
-            fg = c.cyan
-        },
-        -- (preferred) int, long, char, etc.
-        Type = {
-            fg = c.tertiary
-        },
-        -- (preferred) any special symbol
-        Special = {
-            fg = c.secondary
         },
         -- (preferred) text that stands out, HTML links
         Underlined = {
@@ -698,9 +750,9 @@ function M.plugins(config, c)
             -- TSNamespace         = { };
             -- TODO: docs
             -- TSNone              = { };
-            TSNumber = {
-                fg = c.cyan
-            },
+            -- TSNumber = {
+            --     fg = c.cyan
+            -- },
             -- For any operator: `+`, but also `->` and `*` in C.
             TSOperator = {
                 fg = c.secondary
@@ -996,24 +1048,24 @@ function M.plugins(config, c)
                 fg = c.magenta2
             },
             NeogitHunkHeader = {
-                bg = c.bg_highlight,
-                fg = c.fg
+                fg = c.fg,
+                bg = c.bg,
             },
             NeogitHunkHeaderHighlight = {
-                bg = c.faded,
-                fg = c.blue
+                fg = c.blue,
+                bg = c.grey,
             },
             NeogitDiffContextHighlight = {
-                bg = c.faded,
-                fg = c.none
+                fg = c.none,
+                bg = c.grey,
             },
             NeogitDiffDeleteHighlight = {
-                fg = c.git.delete,
-                bg = c.diff.delete
+                fg = c.fg,
+                bg = c.alias.diff.delete
             },
             NeogitDiffAddHighlight = {
-                fg = c.git.add,
-                bg = c.diff.add
+                fg = c.fg,
+                bg = c.alias.diff.add
             },
         }
         return t
@@ -1023,35 +1075,35 @@ function M.plugins(config, c)
         t = {
             -- NvimTree
             NvimTreeNormal = {
-                fg = c.fg_sidebar,
-                bg = c.bg_sidebar
+                fg = c.alias.ui.sidebar.fg,
+                bg = c.alias.ui.sidebar.bg,
             },
             NvimTreeNormalNC = {
-                fg = c.fg_sidebar,
-                bg = c.bg_sidebar
+                fg = c.alias.ui.sidebar.fg,
+                bg = c.alias.ui.sidebar.bg,
             },
             NvimTreeRootFolder = {
                 fg = c.primary,
                 style = "bold"
             },
             NvimTreeGitDirty = {
-                fg = c.git.change
+                fg = c.alias.diff.change
             },
             NvimTreeGitNew = {
-                fg = c.git.add
+                fg = c.alias.diff.add
             },
             NvimTreeGitDeleted = {
-                fg = c.git.delete
+                fg = c.alias.diff.delete
             },
             NvimTreeSpecialFile = {
                 fg = c.magenta2,
                 style = "underline"
             },
             NvimTreeIndentMarker = {
-                fg = c.faded
+                fg = c.grey
             },
             NvimTreeImageFile = {
-                fg = c.fg_sidebar
+                fg = c.alias.ui.sidebar.fg,
             },
             NvimTreeSymlink = {
                 fg = c.primary
@@ -1067,13 +1119,13 @@ function M.plugins(config, c)
         t = {
             -- diff
             diffAdded = {
-                fg = c.git.add
+                fg = c.alias.diff.add
             },
             diffRemoved = {
-                fg = c.git.delete
+                fg = c.alias.diff.delete
             },
             diffChanged = {
-                fg = c.git.change
+                fg = c.alias.diff.change
             },
             diffOldFile = {
                 fg = c.yellow
@@ -1085,7 +1137,7 @@ function M.plugins(config, c)
                 fg = c.blue
             },
             diffLine = {
-                fg = c.comment
+                fg = c.grey
             },
             diffIndexLine = {
                 fg = c.magenta
@@ -1111,15 +1163,15 @@ function M.plugins(config, c)
             -- GitSigns
             -- diff mode: Added line |diff.txt|
             GitSignsAdd = {
-                fg = c.gitSigns.add
+                fg = c.alias.diff.add
             },
             -- diff mode: Changed line |diff.txt|
             GitSignsChange = {
-                fg = c.gitSigns.change
+                fg = c.alias.diff.change
             },
             -- diff mode: Deleted line |diff.txt|
             GitSignsDelete = {
-                fg = c.gitSigns.delete
+                fg = c.alias.diff.delete
             },
         }
         return t
@@ -1161,9 +1213,63 @@ function M.setup(config, colors)
     local c = colors
 
     c.alias = {
-        comment = c.cyan2,
-        border  = c.black, -- split, vertsplit
-        error   = c.red2,
+        comment     = c.cyan2,
+        error       = {
+            bg = c.black,
+            fg = c.red2,
+        },
+        warning     = {
+            fg = c.white,
+            bg = c.blue2
+        },
+        ui          = {
+            border      = c.green, -- split, vertsplit
+            colorcolumn = c.black2,
+            cursorline  = c.green,
+            statusline  = {
+                bg = c.black2,
+                fg = c.green2,
+                nc = {
+                    bg = c.black2,
+                    fg = c.white2,
+                }
+            },
+            tabline  = {
+                bg = c.green,
+                fg = c.green2,
+                sel = {
+                    bg = c.red,
+                    fg = c.green2,
+                }
+            },
+            popmenu     = {
+                bg = c.black,
+                fg = c.magenta2,
+                sel = c.green,
+                sbar = {
+                    bg = c.green,
+                    c.magenta
+                },
+                thumb = {
+                    bg = c.white2,
+                    fg = c.blue2
+                }
+            },
+            sidebar  = {
+                bg = c.black2,
+                fg = c.green2,
+                nc = {
+                    bg = c.black2,
+                    fg = c.white2,
+                }
+            },
+        },
+        diff    = {
+            add     = c.green2,
+            change  = c.blue2,
+            delete  = c.red2,
+            text    = c.white2,
+        }
     }
 
     -- neovim base
@@ -1181,7 +1287,6 @@ function M.setup(config, colors)
     -- lualine and other hl's that should be highlighted later
     defer = extend(defer, M.lualine(config, c))
 
-    G = theme
     return theme, defer, colors
 end
 

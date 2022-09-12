@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ICON_PATH=""
+ICON_PATH="/home/duclos/.config/awesome/theme/icons/clock.png"
 
 while [ 1 ]; do
     notify-send -i ${ICON_PATH} \

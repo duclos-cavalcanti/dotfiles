@@ -321,6 +321,10 @@ alias gbd="git branch -d"
 alias gbD="git push --delete origin"
 alias greset="git reset --hard"
 
+if command -v xclip &>/dev/null; then
+    alias clip="xclip -i -sel clip"
+fi
+
 if command -v lua &>/dev/null; then
     alias luamake=$HOME/.lua/lua-language-server/3rd/luamake/luamake
 fi

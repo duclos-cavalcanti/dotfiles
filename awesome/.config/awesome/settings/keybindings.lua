@@ -2,8 +2,6 @@ local awful = require("awful")
 local gears = require("gears")
 local hotkeys_popup = require("awful.hotkeys_popup")
 
-local menu = require("interface.menu")
-
 local M = {}
 
 M.globalkeys = {}

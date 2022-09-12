@@ -140,56 +140,56 @@ function M.diagnostics(config, c)
         -- Base highlight groups
         -- Diagnostic highlights link to this by default
         DiagnosticError = {
-            fg = c.error
+            fg = c.alias.error.fg
         },
         DiagnosticWarn = {
-            fg = c.warning
+            fg = c.alias.warning.fg
         },
         DiagnosticInfo = {
-            fg = c.info
+            fg = c.alias.info.fg
         },
         DiagnosticHint = {
-            fg = c.hint
+            fg = c.alias.hint.fg
         },
         -- Used for "Error" diagnostic virtual text
         DiagnosticVirtualTextError = {
             bg = c.none,
-            fg = c.error
+            fg = c.alias.error.fg
         },
         -- Used for "Warning" diagnostic virtual text
         DiagnosticVirtualTextWarn = {
             bg = c.none,
-            fg = c.warning
+            fg = c.alias.warning.fg
         },
         -- Used for "Information" diagnostic virtual text
         DiagnosticVirtualTextInfo = {
             bg = c.none,
-            fg = c.info
+            fg = c.alias.info.fg
         },
         -- Used for "Hint" diagnostic virtual text
         DiagnosticVirtualTextHint = {
             bg = c.none,
-            fg = c.hint
+            fg = c.alias.hint.fg
         },
         -- Used to underline "Error" diagnostics
         DiagnosticUnderlineError = {
             style = "undercurl",
-            sp = c.error
+            sp = c.alias.error.fg
         },
         -- Used to underline "Warning" diagnostics
         DiagnosticUnderlineWarn = {
             style = "undercurl",
-            sp = c.warning
+            sp = c.alias.error.fg
         },
         -- Used to underline "Information" diagnostics
         DiagnosticUnderlineInfo = {
             style = "undercurl",
-            sp = c.info
+            sp = c.alias.info.fg
         },
         -- Used to underline "Hint" diagnostics
         DiagnosticUnderlineHint = {
             style = "undercurl",
-            sp = c.hint
+            sp = c.alias.hint.fg
         },
 
     }
@@ -1219,8 +1219,14 @@ function M.setup(config, colors)
             fg = c.red2,
         },
         warning     = {
+            bg = c.blue2,
             fg = c.white,
-            bg = c.blue2
+        },
+        hint     = {
+            fg = c.white2,
+        },
+        info     = {
+            fg = c.fg,
         },
         ui          = {
             border      = c.green, -- split, vertsplit

@@ -1,8 +1,10 @@
 local awful = require("awful")
 local hotkeys_popup = require("awful.hotkeys_popup")
 
-return {
-      main_menu = awful.menu({
+local M = {}
+
+local menu =  {
+      w = awful.menu({
           items = {
                     {
                         "awesome",
@@ -17,3 +19,12 @@ return {
         }
     })
 }
+
+function M.default()
+    return awful.widget.launcher({
+        image = beautiful.menu_icon,
+        menu = menu.w,
+    })
+end
+
+return M

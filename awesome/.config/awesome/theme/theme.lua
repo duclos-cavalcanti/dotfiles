@@ -83,7 +83,7 @@ theme.border_marked         = colors.blue
 -- taglist
 theme.taglist_font          = theme.font_tags
 theme.taglist_bg_empty      = colors.bg
-theme.taglist_fg_empty      = colors.black
+theme.taglist_fg_empty      = colors.grey
 theme.taglist_bg_occupied   = colors.bg
 theme.taglist_fg_occupied   = colors.fg
 theme.taglist_bg_focus      = colors.grey

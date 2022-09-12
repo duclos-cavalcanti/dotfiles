@@ -11,11 +11,11 @@ local M = {
     bg = "#0f0f10",
     fg = "#e1d9ea",
 
-    black       = "#120f12", -- #485559
+    black       = "#120f12",
     red         = "#3f3442",
     green       = "#222827",
     yellow      = "#a8c278",
-    blue        = "#97c4ba",
+    blue        = "#485559",
     magenta     = "#654a96",
     cyan        = "#a9d1df",
     white       = "#495151",

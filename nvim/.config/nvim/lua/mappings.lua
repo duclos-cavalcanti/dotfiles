@@ -21,7 +21,9 @@ local function tnoremap(lhs, rhs) noremap('t', lhs, rhs) end
 local function exprnnoremap(lhs, rhs) exprnoremap('n', lhs, rhs) end
 local function exprinoremap(lhs, rhs) exprnoremap('i', lhs, rhs) end
 
+-------------------
 -- KEY MAPPINGS
+-------------------
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
@@ -91,14 +93,16 @@ nnoremap("<M-w>", ":bd<CR>")
 nnoremap("<C-s>", "<C-^>")
 
 -- Quickfix list
-nnoremap("<C-n>", ":cnext<CR>")
-nnoremap("<C-p>", ":cprev<CR>")
+nnoremap("<leader>2", ":cnext<CR>")
+nnoremap("<leader>1", ":cprev<CR>")
 
 -- Local list
-nnoremap("<M-N>", ":lnext<CR>")
-nnoremap("<M-P>", ":lprev<CR>")
+nnoremap("<leader>3", ":lnext<CR>")
+nnoremap("<leader>4", ":lprev<CR>")
 
+-------------------
 -- COMMAND MAPPINGS
+-------------------
 vim.cmd("command! Make !make")
 vim.cmd("command! ReloadScheme lua require('themes')")
 vim.cmd("command! ReloadSnippets lua require('plugins.luasnip').setup()")

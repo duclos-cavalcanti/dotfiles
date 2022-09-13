@@ -87,16 +87,16 @@ theme.border_marked         = colors.blue
 -- clock
 theme.clock = {}
 theme.clock.bg = colors.bg
-theme.clock.fg = colors.cyan2
+theme.clock.fg = colors.fg
 
 -- taglist
 theme.taglist_font          = theme.font_tags
 theme.taglist_bg_empty      = colors.bg
 theme.taglist_fg_empty      = colors.grey
 theme.taglist_bg_occupied   = colors.bg
-theme.taglist_fg_occupied   = colors.fg
+theme.taglist_fg_occupied   = colors.grey2
 theme.taglist_bg_focus      = colors.bg
-theme.taglist_fg_focus      = colors.cyan2
+theme.taglist_fg_focus      = colors.fg
 theme.taglist_bg_urgent     = colors.red
 theme.taglist_fg_urgent     = colors.fg
 

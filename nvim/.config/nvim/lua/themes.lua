@@ -6,7 +6,7 @@ vim.g.custom_columnline             = false
 vim.g.custom_colorcolumn            = true
 vim.g.custom_inactive_statusline    = false
 vim.g.custom_palette                = "test"
-local scheme = "custom"
+local scheme = "boo"
 
 vim.cmd("colorscheme" .. " " .. scheme)
 require('lualine').setup {

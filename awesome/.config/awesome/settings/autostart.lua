@@ -23,7 +23,7 @@ end
 
 local function spawn_always()
     local auto = {
-        "~/.bin/monitors.sh",
+        -- "~/.bin/monitors.sh",
         "~/.bin/launcher.sh dotfiles",
         "~/.bin/launcher.sh duclos",
         "~/.bin/launcher.sh templates",

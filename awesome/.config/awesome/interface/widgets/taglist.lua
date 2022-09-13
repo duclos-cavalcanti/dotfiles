@@ -33,17 +33,17 @@ function M.default(s)
     }
 end
 
-function M.circular(s, radius)
+function M.rounded(s, radius)
     local function create_callback(self, c3, index, objects)
     end
 
-    return awful.widget.taglist {
+    local tl = awful.widget.taglist {
         screen  = s,
         filter  = awful.widget.taglist.filter.all,
         buttons = taglist_buttons,
         style = {
             shape = function(cr, width, height)
-                gears.shape.circle(cr, width, height, radius, 0)
+                gears.shape.circle(cr, width, height, radius*2)
             end,
         },
         widget_template = {
@@ -52,13 +52,33 @@ function M.circular(s, radius)
                   id = "text_role",
                   widget = wibox.widget.textbox,
                 },
-                left = 4,
-                right = 4,
+                left = 5,
+                right = 5,
                 widget = wibox.container.margin,
             },
-                id = "background_role",
-                widget = wibox.container.background,
-                create_callback = create_callback,
+            id = "background_role",
+            widget = wibox.container.background,
+            create_callback = create_callback,
+        },
+    }
+
+    return wibox.widget {
+        bg = beautiful.colors.bg,
+        fg = beautiful.colors.cyan,
+        shape = function(cr, width, height)
+          gears.shape.rounded_rect(cr, width, height, radius)
+        end,
+        widget = wibox.container.background,
+        {
+            {
+                {
+                    widget = tl,
+                },
+                left = 5,
+                right = 5,
+                widget = wibox.container.margin,
+            },
+    	layout = wibox.layout.fixed.horizontal,
         },
     }
 end

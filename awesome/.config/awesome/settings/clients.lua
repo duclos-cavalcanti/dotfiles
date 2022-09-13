@@ -68,6 +68,7 @@ function M.setup()
 
         if c.floating then
             awful.placement.centered(c)
+            c.ontop = true
         end
     end)
 

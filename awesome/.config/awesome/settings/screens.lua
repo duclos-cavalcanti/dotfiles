@@ -1,31 +1,44 @@
 local awful = require("awful")
 local gears = require("gears")
 
-local h_bar               = require("interface.horizontal_bar")
-local v_bar               = require("interface.vertical_bar")
+local utils = require("utils")
+local config_path = utils.config_path
+local theme_path = config_path() .. "theme"
+local wallpaper_path = theme_path .. "/wallpapers"
 
 local M = {}
 
-local function wp(s, wallpaper)
+local simple_wallpaper=false
+local wallpaper=""
+
+if simple_wallpaper then
+    wallpaper = ""
+else
+    wallpaper = wallpaper_path .. "/" .. "horizon.jpg"
+end
+
+local function wp(s, hwp, vwp)
     local w = s.geometry.width
     local h = s.geometry.height
 
     if w > h then   -- horizontal
-        gears.wallpaper.maximized(wallpaper, s, true)
+        gears.wallpaper.maximized(hwp, s, true)
     else            -- vertical
-        gears.wallpaper.maximized(v_wallpaper, s, false)
+        gears.wallpaper.maximized(vwp, s, false)
     end
 end
 
 -- checks if the current screen is a vertical one
 local function set_wallpaper(s)
-    local wallpaper = beautiful.wallpaper
     local step = 6
-    awful.spawn.with_shell(string.format("~/.bin/wall.sh '%s' '%s' %d",
-                           beautiful.colors.black,
-                           beautiful.colors.grey,
-                           step))
-    -- wp(s, wallpaper)
+    if simple_wallpaper then
+        awful.spawn.with_shell(string.format("~/.bin/wall.sh '%s' '%s' %d",
+                               beautiful.colors.black,
+                               beautiful.colors.grey,
+                               step))
+    else
+        wp(s, wallpaper, wallpaper)
+    end
 end
 
 function M.setup()
@@ -38,8 +51,7 @@ function M.setup()
     awful.screen.connect_for_each_screen(function(s)
         set_wallpaper(s)                                -- setting wallpaper
         awful.tag(taglist, s, awful.layout.layouts[1])  -- setting taglist per screen
-        h_bar.setup(s)                                  -- setting up bar
-        -- v_bar.setup(s)                                  -- setting up vertical bar
+        require("interface.horizontal_bar").setup(s)    -- setting up bar
     end)
 end
 

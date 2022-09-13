@@ -9,19 +9,23 @@ local config_path = utils.config_path
 
 local theme_path = config_path() .. "theme"
 local icon_path = theme_path .. "/icons"
-local wallpaper_path = theme_path .. "/wallpapers"
 local default_path = require("gears.filesystem").get_themes_dir()
 
-local wp = wallpaper_path .. "/" -- .. wallpaper
+local font_family     = "Iosevka" -- DejaVuSansMono
+local palette         = "test"
+local palette_file    = utils.palette_path() .. palette .. ".lua"
+local colors          = utils.load_file(palette_file)
+
 local theme = {}
 
-theme.wallpaper     = wp
 theme.colors        = colors
+theme.none          = "#0000000" -- transperency
 
 theme.font_family       = font_family .. " "
 theme.font              = theme.font_family .. "9"
 theme.font_icon         = theme.font_family .. "6"
-theme.font_tags         = theme.font_family .. "10"
+theme.font_tags         = theme.font_family .. "9"
+theme.font_clock        = theme.font_family .. "8"
 theme.font_prompt       = theme.font_family .. "10"
 theme.font_notification = theme.font_family .. "9"
 
@@ -37,8 +41,8 @@ theme.wibar_fg      = colors.fg
 -- Systray
 theme.bg_systray = colors.bg
 theme.systray_popup_bg = colors.black2
-theme.systray_icon_spacing = dpi(5)
-theme.systray_icon_size = dpi(15)
+theme.systray_icon_spacing = dpi(3)
+theme.systray_icon_size = dpi(20)
 theme.systray_max_rows = 1
 
 -- Notifications
@@ -53,10 +57,10 @@ beautiful.notification_width = 100
 beautiful.notification_height = 50
 beautiful.notification_max_width = 100
 beautiful.notification_max_height = 50
-beautiful.notification_icon_size = 20
+beautiful.notification_icon_size = 5
 
 -- Separator
-theme.separator_fg = colors.black
+theme.separator_fg = colors.black2
 
 -- titlebars
 -- theme.titlebar_icon          = icon_path .. "/ghost.png"
@@ -80,14 +84,19 @@ theme.border_sticky         = colors.green
 theme.border_sticky_unfocus = colors.green2
 theme.border_marked         = colors.blue
 
+-- clock
+theme.clock = {}
+theme.clock.bg = colors.bg
+theme.clock.fg = colors.cyan2
+
 -- taglist
 theme.taglist_font          = theme.font_tags
 theme.taglist_bg_empty      = colors.bg
 theme.taglist_fg_empty      = colors.grey
 theme.taglist_bg_occupied   = colors.bg
 theme.taglist_fg_occupied   = colors.fg
-theme.taglist_bg_focus      = colors.grey
-theme.taglist_fg_focus      = colors.fg
+theme.taglist_bg_focus      = colors.bg
+theme.taglist_fg_focus      = colors.cyan2
 theme.taglist_bg_urgent     = colors.red
 theme.taglist_fg_urgent     = colors.fg
 
@@ -109,16 +118,18 @@ theme.prompt_bg_cursor      = colors.bg
 theme.prompt_font           = theme.font_prompt
 
 -- menu
-theme.menu_height       = dpi(28)
+theme.menu_height       = dpi(35)
 theme.menu_width        = dpi(120)
 theme.menu_bg           = colors.bg
 theme.menu_bg_focus     = colors.black
 theme.menu_fg_focus     = colors.blue
 theme.menu_border_color = colors.white
-theme.menu_border_width = 2
+theme.menu_border_width = 5
 
 -- icons
 -- https://github.com/tdy/awesome/
+-- theme.taglist_squares_sel   = nil
+-- theme.taglist_squares_unsel = nil
 theme.taglist_squares_sel   = theme_path .. "/icons" .. "/tags" .. "/squaref.png"
 theme.taglist_squares_unsel = theme_path .. "/icons" .. "/tags" .. "/square.png"
 theme.layout_tile           = icon_path .. "/layouts" .. "/tilew.png"

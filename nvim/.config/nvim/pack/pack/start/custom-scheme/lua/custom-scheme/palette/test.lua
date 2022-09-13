@@ -12,7 +12,7 @@ local M = {
     fg = "#e1d9ea",
 
     black       = "#120f12",
-    red         = "#3f3442",
+    red         = "#3f3442", --#7d6c82
     green       = "#222827",
     yellow      = "#a8c278",
     blue        = "#485559",
@@ -20,7 +20,7 @@ local M = {
     cyan        = "#a9d1df",
     white       = "#495151",
 
-    black2      = "#19171c",
+    black2      = "#485559", -- #19171c
     red2        = "#cd749c",
     green2      = "#63b0b0",
     yellow2     = "#a8c278",
@@ -30,11 +30,17 @@ local M = {
     white2      = "#9898ae",
 }
 
-M.primary = M.green2
-M.secondary = M.magenta
-M.tertiary = M.cyan
-
 M.grey = M.white
 M.grey2 = M.white2
+
+M.editor = {
+    primary = M.green2,
+    secondary = M.magenta,
+    tertiary = M.cyan,
+}
+
+M.wm = {
+
+}
 
 return M

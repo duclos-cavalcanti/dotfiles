@@ -25,22 +25,21 @@ local tasklist_buttons = awful.util.table.join(
   awful.button({ }, 3, nil)
 )
 
-
-local function create_callback(self, c)
-    local tb = self:get_children_by_id('text_role')[1]
-    local set_markup_silently = tb.set_markup_silently
-
-    -- self and current text
-    tb.set_markup_silently = function(slf, text)
-        local new_text = c.class
-        if c.sticky then
-            new_text = new_text .. " -- Sticky"
-        end
-        return set_markup_silently(tb, new_text)
-    end
-end
-
 function M.default(s)
+    local function create_callback(self, c)
+        local tb = self:get_children_by_id('text_role')[1]
+        local set_markup_silently = tb.set_markup_silently
+
+        -- self and current text
+        tb.set_markup_silently = function(slf, text)
+            local new_text = c.class
+            if c.sticky then
+                new_text = new_text .. " -- Sticky"
+            end
+            return set_markup_silently(tb, new_text)
+        end
+    end
+
     return awful.widget.tasklist {
         screen  = s,
         filter  = awful.widget.tasklist.filter.currenttags,
@@ -77,6 +76,44 @@ function M.default(s)
                 create_callback = create_callback,
         },
     }
+end
+
+function M.rounded(s, radius)
+    local function create_callback(self, c)
+    end
+
+    local tl = awful.widget.tasklist {
+        screen  = s,
+        filter  = awful.widget.tasklist.filter.currenttags,
+        buttons = tasklist_buttons,
+        style = {
+            shape = function(cr, width, height)
+              gears.shape.rounded_rect(cr, width, height, radius)
+            end,
+        },
+        layout  = {
+          spacing   = dpi(4),
+          layout    = wibox.layout.grid.horizontal
+        },
+        widget_template = {
+            {
+                {
+                    {
+                        id      = 'icon_role',
+                        widget  = wibox.widget.imagebox,
+                    },
+                    margins = 3,
+                    widget = wibox.container.margin,
+                },
+                layout    = wibox.layout.fixed.horizontal
+            },
+            id = "background_role",
+            widget = wibox.container.background,
+            create_callback = create_callback,
+        },
+    }
+
+    return tl
 end
 
 return M

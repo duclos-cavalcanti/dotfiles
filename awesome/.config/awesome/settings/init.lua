@@ -7,21 +7,11 @@ altkey          = "Mod1"
 
 terminal        = "alacritty"
 terminal_class  = "Alacritty"
-editor          = os.getenv("EDITOR") or "vim"
-edit            = terminal .. " -e " .. editor
 
--- screens and tags
-taglist         = { "1", "2", "3", "4", "5", "6", "7", "8", "9" }
+taglist = { "1", "2", "3", "4", "5", "6", "7", "8", "9" }
+bar_height = dpi(18)
+gaps = dpi(0)
 
--- bar
-bar_height      = dpi(20) -- 20
-gaps            = dpi(0)
-
--- theme/wallpaper
-font_family     = "Iosevka" -- DejaVuSansMono
-palette         = "test"
-palette_file    = utils.palette_path() .. palette .. ".lua"
-colors          = utils.load_file(palette_file)
 
 local M = {}
 

@@ -2,12 +2,16 @@ local awful = require("awful")
 local gears = require("gears")
 local wibox = require("wibox")
 
+local dpi = require("beautiful.xresources").apply_dpi
+
 local M = {}
 
 function M.set_bar(s)
+    local radius = 4
+
     -- Menu Launcher
     local function menu_launcher()
-        return require("interface.widgets.menu").default()
+        return require("interface.widgets.menu").rounded(radius)
     end
 
     -- Keyboard indicator
@@ -17,7 +21,7 @@ function M.set_bar(s)
 
     -- Clock
     local function clock()
-        return require("interface.widgets.clock").default()
+        return require("interface.widgets.clock").rect(radius)
     end
 
     -- Run Prompt
@@ -32,7 +36,7 @@ function M.set_bar(s)
 
     -- Taglist
     local function taglist(scr)
-        return require("interface.widgets.taglist").circular(scr, 8)
+        return require("interface.widgets.taglist").default(scr)
     end
 
     -- Tasklist
@@ -62,57 +66,55 @@ function M.set_bar(s)
         return require("interface.widgets.separator").default(bar_height)
     end
 
-    s.launcher  = menu_launcher()
-    s.keyboard  = keyboard()
-    s.clock     = clock()
-    s.taglist   = taglist(s)
-    s.tasklist_ = tasklist(s)
     s.promptbox = promptbox()
-    s.layoutbox = layoutbox(s)
-    s.systray   = systray()
-    s.separator = separator()
+
+    local _left = {
+            layout = wibox.layout.fixed.horizontal,
+            menu_launcher(),
+            space(),
+            separator(),
+            space(),
+            taglist(s),
+            space(),
+            separator(),
+            space(),
+            s.promptbox,
+        }
+
+    -- local _middle = {
+    --     layout = wibox.layout.fixed.horizontal,
+    --     halign = "center",
+    --     tasklist(s)
+    -- }
+
+    local _middle = tasklist(s)
+
+    local _right = {
+            layout = wibox.layout.fixed.horizontal,
+            space(),
+            layoutbox(s),
+            space(),
+            separator(),
+            space(),
+            clock(),
+        }
+
+    if s.index == 1 then -- primary
+       table.insert(_right,space())
+       table.insert(_right,separator())
+       table.insert(_right,space())
+       table.insert(_right, systray())
+    end
 
     -- Create the wibox/wibar
     s.wibox = awful.wibar({
         position = "top",
         height = bar_height,
-        screen = s
+        screen = s,
+        bg = beautiful.wibar_bg,
     })
 
-    local _left = {
-            layout = wibox.layout.fixed.horizontal,
-            s.launcher,
-            s.separator,
-            s.taglist,
-            space(),
-            s.separator,
-            space(),
-            s.layoutbox,
-            space(),
-            s.separator,
-            space(),
-            s.promptbox,
-        }
-
-    local _middle = s.tasklist_
-    -- local _middle = {
-    --     layout = wibox.layout.align.horizontal,
-    --     s.tasklist_
-    -- }
-
-    local _right = {
-            layout = wibox.layout.fixed.horizontal,
-            s.clock,
-            s.separator,
-            s.keyboard,
-        }
-
-    if s.index == 1 then
-       table.insert(_right, s.separator)
-       table.insert(_right, s.systray)
-       table.insert(_right, tab())
-    end
-
+    -- https://awesomewm.org/doc/api/documentation/03-declarative-layout.md.html
     s.wibox:setup {
         layout = wibox.layout.align.horizontal,
         _left,

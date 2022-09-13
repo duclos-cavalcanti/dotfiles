@@ -37,7 +37,7 @@ function M.rounded(radius)
 
     return wibox.widget {
       bg = beautiful.colors.bg,
-      fg = beautiful.colors.cyan,
+      fg = beautiful.colors.fg,
       shape = function(cr, width, height)
         gears.shape.rounded_rect(cr, width, height, radius)
       end,

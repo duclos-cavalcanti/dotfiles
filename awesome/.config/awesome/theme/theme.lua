@@ -120,11 +120,11 @@ theme.prompt_font           = theme.font_prompt
 -- menu
 theme.menu_height       = dpi(35)
 theme.menu_width        = dpi(120)
-theme.menu_bg           = colors.red2
-theme.menu_bg_focus     = colors.black
-theme.menu_fg_focus     = colors.blue
+theme.menu_bg_normal    = colors.bg
+theme.menu_bg_focus     = colors.black2
+theme.menu_fg_focus     = colors.fg
 theme.menu_border_color = colors.white
-theme.menu_border_width = 5
+theme.menu_border_width = 3
 
 -- icons
 -- https://github.com/tdy/awesome/

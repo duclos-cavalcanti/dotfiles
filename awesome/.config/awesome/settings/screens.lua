@@ -51,7 +51,7 @@ function M.setup()
     awful.screen.connect_for_each_screen(function(s)
         set_wallpaper(s)                                -- setting wallpaper
         awful.tag(taglist, s, awful.layout.layouts[1])  -- setting taglist per screen
-        require("interface.horizontal_bar").setup(s)    -- setting up bar
+        require("interface.bar").setup(s)               -- setting up bar
     end)
 end
 

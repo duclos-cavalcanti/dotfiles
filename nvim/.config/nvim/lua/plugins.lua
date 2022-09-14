@@ -121,6 +121,12 @@ return require('packer').startup(function(use)
         config  = function() require('plugins.markdown') end,
     }
 
+    -- common lisp
+    use {
+        'jpalardy/vim-slime',
+        config  = function() require('plugins.slime') end,
+    }
+
     -- themes/ui
     use { 'nvim-lualine/lualine.nvim',
           requires = { 'kyazdani42/nvim-web-devicons', opt = true }

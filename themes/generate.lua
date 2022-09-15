@@ -36,7 +36,7 @@ end
 
 local function main(palette)
     print("Theme: ", palette)
-    local colors = dofile(string.format("%s.lua", palette))
+    local colors = dofile(string.format("palette/%s.lua", palette))
 
     if colors == nil then
         print(string.format("Loaded palette file at: palette/%s.lua is faulty!", palette))

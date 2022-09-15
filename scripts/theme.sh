@@ -4,6 +4,7 @@
 
 theme=$1
 
+DOTFILES="$HOME/.dotfiles"
 AWESOME_DIR="$HOME/.config/awesome"
 ALACRITTY_DIR="$HOME/.config/alacritty/"
 NVIM_DIR="$HOME/.config/nvim"
@@ -45,8 +46,9 @@ fi
 
 generate_yml() {
   local theme=$1
-  pushd $NVIM_DIR
-  pushd "pack/pack/start/custom-scheme/lua/custom-scheme/palette"
+  step "Generate ${theme} colorscheme in yaml!"
+  pushd $DOTFILES
+  pushd "themes"
     ./generate.lua $theme
     if [ $? -eq 0 ]; then
       local colors=${theme}.yml
@@ -105,10 +107,11 @@ switch_wm() {
   local theme=$1
   step "Window Manager theming!"
   pushd $AWESOME_DIR
-    pushd settings
-      local output=$(grep -n "^palette" init.lua)
-      local line=$(grep --color=never -n "^palette" init.lua | cut -d ":" -f1)
-      local current=$(grep -n "^palette" init.lua | cut -d "=" -f2 | sed s/\"//g | sed -e 's/^[ \t]*//')
+    pushd theme
+      local patt="^local palette "
+      local output=$(grep -n "${patt}" theme.lua)
+      local line=$(grep --color=never -n "${patt}" theme.lua | cut -d ":" -f1)
+      local current=$(grep -n "${patt}" theme.lua | cut -d "=" -f2 | sed s/\"//g | sed -e 's/^[ \t]*//')
       local subst="${line}s/${current}/${theme}/g"
 
       if [ -z "$output" ]; then

@@ -90,11 +90,8 @@ function M.load(t, defer, colors)
     M.terminal(colors)
 end
 
-function M.colors(palette)
-    local colors = require(string.format("custom-scheme.palette.%s", palette))
-    colors.grey = colors.white
-
-    return colors
+function M.colors(palette_dir, palette)
+    return dofile(string.format("%s/%s.lua", palette_dir, palette))
 end
 
 function M.config()
@@ -110,8 +107,8 @@ function M.config()
         return vim.g[key]
     end
 
-    local function select_palette(key)
-        local key = "custom_" .. key
+    local function select_palette()
+        local key = "custom_palette"
         local opt = vim.g[key]
         if opt == "regular" or
            opt == "dark"    or
@@ -123,8 +120,14 @@ function M.config()
         end
     end
 
+    local function get_palette_dir()
+        local dir = vim.g["custom_palette_dir"]
+        return dir
+    end
+
     local config = {
-        palette                     = select_palette("palette"),
+        palette_dir                 = get_palette_dir(),
+        palette                     = select_palette(),
         transparent                 = opt("transparent", false),
         cursorline                  = opt("cursorline", true),
         colorcolumn                 = opt("colorcolumn", true),
@@ -142,7 +145,7 @@ end
 
 function M.colorscheme()
     local config = M.config()
-    local colors = M.colors(config.palette)
+    local colors = M.colors(config.palette_dir, config.palette)
     M.load(theme.setup(config, colors))
 end
 

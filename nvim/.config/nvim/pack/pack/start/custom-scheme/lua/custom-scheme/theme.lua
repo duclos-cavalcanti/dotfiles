@@ -8,7 +8,495 @@ local function extend(tb, ext)
     return tb
 end
 
+local function group(tb, g, hi)
+	for _, k in ipairs(g) do
+        tb[k] = hi
+	end
+
+    return tb
+end
+
+function M.plugins(config, c)
+    local tb = {}
+    local function telescope(config, c)
+        local t = {}
+        t = {
+            -- Telescope
+            TelescopeBorder = {
+                fg = c.black2,
+            },
+            TelescopeNormal = {
+                fg = c.green2,
+            },
+            TelescopePromptPrefix = {
+                fg = c.blue,
+            },
+            TelescopeSelection = {
+                fg = c.cyan,
+                bg = c.green2,
+            },
+            TelescopeMatching = {
+                fg = c.magenta,
+            },
+        }
+        return t
+    end
+    local function treesitter(config, c)
+        local t = {}
+
+        local error = {
+            "TSError"           -- For syntax/parser errors.
+        }
+
+	    local punctuation = {
+            "TSPunctDelimiter", -- For delimiters ie: `.`
+            "TSPunctBracket",   -- For brackets and parens.
+            "TSPunctSpecial"    -- For special punctutations
+        }
+
+	    local constants = {
+            "TSConstant",       -- For constants
+            "TsConstBuiltin",   -- For constant that are built in the language: `nil` in Lua.
+            "TSConstMacro"      -- For constants that are defined by macros: `NULL` in C.
+        }
+
+
+	    local constructors = {
+            "TSConstructor"     -- For constructor calls and definitions: `= { }` in Lua
+        }
+
+	    local boolean = {
+            "TSBoolean"
+        }
+
+	    local functions = {
+            "TSFunction",       -- For function (calls and definitions).
+            "TSFuncBuiltin",    -- For builtin functions: `table.insert` in Lua.
+            "TSFuncMacro"       -- For macro defined fuctions (calls and definitions): each `macro_rules` in Rust.
+        }
+
+	    local methods = {
+            "TSMethod"          -- For method calls and definitions.
+        }
+
+	    local fields = {
+            "TSField",          -- For fields.
+            "TSProperty"        -- Same as `TSField`.
+        }
+
+	    local number = {
+            "TSNumber",
+            "TSFloat"
+        }
+
+	    local parameters = {
+            "TSParameter",          -- For parameters of a function.
+            "TSParameterReference"  -- For references to parameters of a function.
+        }
+
+	    local operators = {
+            "TSOperator"            -- For any operator: `+`, but also `->` and `*` in C.
+        }
+
+	    local forwords = {
+            "TSConditional",        -- For keywords related to conditionnals.
+            "TSRepeat"              -- For keywords related to loops.
+        }
+
+	    local keyword = {
+            "TSKeyword",            -- For keywords that don't fall in previous categories.
+            "TSKeywordFunction",    -- For keywords used to define a fuction.
+            "TSKeywordOperator"     -- For keywords used to define a fuction.
+        }
+
+	    local types = {
+            "TSType",               -- For types.
+            "TSTypeBuiltin"         -- For builtin types.
+        }
+
+	    local labels = {
+            "TSLabel"               -- For labels: `label:` in C and `:label:` in Lua.
+        }
+
+	    local namespaces = {
+            "TSNamespace"           -- For identifiers referring to modules and namespaces.
+        }
+
+	    local includes = {
+            "TSInclude"             -- For macro defined fuctions (calls and definitions): each `macro_rules` in Rust.
+        }
+
+	    local variables = {
+            "TSVariable",           -- Any variable name that does not have another highlight.
+            "TSVariableBuiltin"     -- Variable names that are defined by the languages, like `this` or `self`.
+        }
+
+	    local tags = {
+            "TSTag",                -- Tags like html tag names.
+            "TSTagDelimiter"        -- Tag delimiter like `<` `>` `/`
+        }
+
+	    local title = {
+            "TSTitle"               -- Text that is part of a title.
+        }
+
+	    local text = {
+            "TSText",               -- For strings considered text in a markup language.
+            "TSTextReference",
+            "TSStrong",
+            "TSEmphasis",           -- For text to be represented with emphasis.
+            "TSUnderline",          -- For text to be represented with an underline.
+            "TSLiteral",            -- Literal text.
+            "TSURI"                 -- Any URI like a link or email.
+        }
+
+        t = group(t, error, {
+                bg = c.black2,
+                fg = c.fg,
+        })
+        t = group(t, punctuation, {
+            fg = c.grey2
+        })
+        t = group(t, constructors, {
+            fg = c.green
+        })
+        t = group(t, boolean, {
+            fg = c.red
+        })
+        t = group(t, functions, {
+            fg = c.green,
+            style = config.function_style
+        })
+        t = group(t, methods, {
+            fg = c.green2,
+            style = "italic"
+        })
+        t = group(t, fields, {
+            fg = c.blue,
+        })
+        t = group(t, number, {
+            fg = c.yellow,
+        })
+        t = group(t, parameters, {
+            fg = c.cyan,
+        })
+        t = group(t, operators, {
+            fg = c.grey,
+        })
+        t = group(t, forwords, {
+            fg = c.blue,
+        })
+        t = group(t, keyword, {
+            fg = c.magenta,
+            style = config.keyword_style
+        })
+        t = group(t, labels, {
+            fg = c.magenta2,
+        })
+        t = group(t, types, {
+            fg = c.green,
+        })
+        t = group(t, namespaces, {
+            fg = c.grey,
+        })
+        t = group(t, includes, {
+            fg = c.magenta,
+        })
+        t = group(t, variables, {
+            fg = c.fg,
+            style = config.variable_style
+        })
+        t = group(t, tags, {
+            fg = c.cyan2,
+        })
+        t = group(t, title, {
+            fg = c.green2,
+        })
+        t = group(t, text, {
+            fg = c.fg,
+        })
+        t = group(t, constants, {
+            fg = c.red2
+        })
+
+        t["TSConstBuiltin"] = {
+            fg = c.blue
+        }
+
+        return t
+    end
+    local function lsp(config, c)
+        local t = {}
+        t = {
+            -- LspTrouble
+            LspTroubleText = {
+                fg = c.editor.error.fg
+            },
+            LspTroubleCount = {
+                fg = c.magenta,
+                bg = c.grey
+            },
+            LspTroubleNormal = {
+                fg = c.editor.ui.sidebar.fg,
+                bg = c.editor.ui.sidebar.bg
+            },
+            -- LspSaga
+            DiagnosticWarning = {
+                link = "DiagnosticWarn"
+            },
+            DiagnosticInformation = {
+                link = "DiagnosticInfo"
+            },
+            LspFloatWinNormal = {
+                bg = c.black
+            },
+            LspFloatWinBorder = {
+                fg = c.black2
+            },
+            LspSagaBorderTitle = {
+                fg = c.cyan
+            },
+            LspSagaHoverBorder = {
+                fg = c.blue
+            },
+            LspSagaRenameBorder = {
+                fg = c.magenta
+            },
+            LspSagaDefPreviewBorder = {
+                fg = c.magenta
+            },
+            LspSagaCodeActionBorder = {
+                fg = c.blue
+            },
+            LspSagaFinderSelection = {
+                fg = c.editor.visual.bg
+            },
+            LspSagaCodeActionTitle = {
+                fg = c.cyan2
+            },
+            LspSagaCodeActionContent = {
+                fg = c.magenta2
+            },
+            LspSagaSignatureHelpBorder = {
+                fg = c.red
+            },
+            ReferencesCount = {
+                fg = c.magenta2
+            },
+            DefinitionCount = {
+                fg = c.magenta2
+            },
+            DefinitionIcon = {
+                fg = c.blue
+            },
+            ReferencesIcon = {
+                fg = c.blue
+            },
+            TargetWord = {
+                fg = c.cyan
+            },
+        }
+        return t
+    end
+    local function cmp(config, c)
+        local t = {}
+        t = {
+            -- Cmp
+            CmpItemMenu = {
+                fg = c.black,
+            },
+            CmpItemAbbr = {
+                fg = c.magenta,
+            },
+            CmpItemAbbrMatch = {
+                fg = c.magenta2,
+            },
+            CmpItemAbbrMatchFuzzy = {
+                fg = c.magenta2,
+            },
+            CmpItemKind = {
+                fg = c.black2,
+            },
+        }
+        return t
+    end
+    local function neogit(config, c)
+        local t = {}
+        t = {
+            -- Neogit
+            NeogitBranch = {
+                fg = c.magenta
+            },
+            NeogitRemote = {
+                fg = c.magenta2
+            },
+            NeogitHunkHeader = {
+                fg = c.fg,
+                bg = c.bg,
+            },
+            NeogitHunkHeaderHighlight = {
+                fg = c.blue,
+                bg = c.grey,
+            },
+            NeogitDiffContextHighlight = {
+                fg = c.none,
+                bg = c.grey,
+            },
+            NeogitDiffDeleteHighlight = {
+                fg = c.fg,
+                bg = c.editor.diff.delete
+            },
+            NeogitDiffAddHighlight = {
+                fg = c.fg,
+                bg = c.editor.diff.add
+            },
+        }
+        return t
+    end
+    local function nvimtree(config, c)
+        local t = {}
+        t = {
+            -- NvimTree
+            NvimTreeNormal = {
+                fg = c.editor.ui.sidebar.fg,
+                bg = c.editor.ui.sidebar.bg,
+            },
+            NvimTreeNormalNC = {
+                fg = c.editor.ui.sidebar.fg,
+                bg = c.editor.ui.sidebar.bg,
+            },
+            NvimTreeRootFolder = {
+                fg = c.blue,
+                style = "bold"
+            },
+            NvimTreeGitDirty = {
+                fg = c.editor.diff.change
+            },
+            NvimTreeGitNew = {
+                fg = c.editor.diff.add
+            },
+            NvimTreeGitDeleted = {
+                fg = c.editor.diff.delete
+            },
+            NvimTreeSpecialFile = {
+                fg = c.magenta2,
+                style = "underline"
+            },
+            NvimTreeIndentMarker = {
+                fg = c.grey
+            },
+            NvimTreeImageFile = {
+                fg = c.editor.ui.sidebar.fg,
+            },
+            NvimTreeSymlink = {
+                fg = c.blue
+            },
+            -- NvimTreeFolderName= {
+            --     fg = c.fg_float
+            -- },
+        }
+        return t
+    end
+    local function diff(config, c)
+        local t = {}
+        t = {
+            -- diff
+            diffAdded = {
+                fg = c.editor.diff.add
+            },
+            diffRemoved = {
+                fg = c.editor.diff.delete
+            },
+            diffChanged = {
+                fg = c.editor.diff.change
+            },
+            diffOldFile = {
+                fg = c.yellow
+            },
+            diffNewFile = {
+                fg = c.yellow2
+            },
+            diffFile = {
+                fg = c.blue
+            },
+            diffLine = {
+                fg = c.grey
+            },
+            diffIndexLine = {
+                fg = c.magenta
+            },
+        }
+        return t
+    end
+    local function ale(config, c)
+        local t = {}
+        t = {
+            ALEErrorSign = {
+                fg = c.editor.error.fg
+            },
+            ALEWarningSign = {
+                fg = c.editor.warning.fg
+            },
+        }
+        return t
+    end
+    local function gitsigns(config, c)
+        local t = {}
+        t = {
+            -- GitSigns
+            -- diff mode: Added line |diff.txt|
+            GitSignsAdd = {
+                fg = c.editor.diff.add
+            },
+            -- diff mode: Changed line |diff.txt|
+            GitSignsChange = {
+                fg = c.editor.diff.change
+            },
+            -- diff mode: Deleted line |diff.txt|
+            GitSignsDelete = {
+                fg = c.editor.diff.delete
+            },
+        }
+        return t
+    end
+    local function neovim(config, c)
+        local t = {}
+        t = {
+            -- NeoVim
+            healthError = {
+                fg = c.editor.error.fg
+            },
+            healthSuccess = {
+                fg = c.green
+            },
+            healthWarning = {
+                fg = c.editor.warning.fg
+            },
+        }
+        return t
+    end
+    local function nvim_dap_ui(config, c)
+        local t = {}
+
+        return t
+    end
+
+    tb = extend(tb, treesitter(config, c))
+    tb = extend(tb, telescope(config, c))
+    tb = extend(tb, lsp(config, c))
+    tb = extend(tb, cmp(config, c))
+    tb = extend(tb, neogit(config, c))
+    tb = extend(tb, nvimtree(config, c))
+    tb = extend(tb, diff(config, c))
+    tb = extend(tb, ale(config, c))
+    tb = extend(tb, gitsigns(config, c))
+    tb = extend(tb, neovim(config, c))
+
+    return tb
+end
+
 g_custom_lualine={}
+
 function M.get_lualine()
     return g_custom_lualine
 end
@@ -17,30 +505,54 @@ function M.lualine(config, c)
     local tb = {}
     local l = {
         normal = {
-          a = { bg = c.primary, fg = c.black2 },
-          b = { bg = c.black, fg = c.fg },
-          c = { bg = c.alias.ui.statusline.bg, fg = c.fg },
+          a = { bg = c.editor.ui.statusline.line.a.normal.bg,
+                fg = c.editor.ui.statusline.line.a.normal.fg
+            },
+          b = { bg = c.editor.ui.statusline.line.b.bg,
+                fg = c.editor.ui.statusline.line.b.fg,
+                gui = "bold"
+            },
+          c = { bg = c.editor.ui.statusline.bg, fg = c.fg },
         },
         insert = {
-          a = { bg = c.tertiary, fg = c.black2 },
-          b = { bg = c.alias.ui.statusline.bg, fg = c.fg },
+          a = { bg = c.editor.ui.statusline.line.a.insert.bg,
+                fg = c.editor.ui.statusline.line.a.insert.fg
+            },
+          b = { bg = c.editor.ui.statusline.line.b.bg,
+                fg = c.editor.ui.statusline.line.b.fg,
+                gui = "bold"
+            },
         },
         command = {
           a = { bg = c.yellow, fg = c.black2 },
-          b = { bg = c.alias.ui.statusline.bg, fg = c.fg },
+          b = { bg = c.editor.ui.statusline.line.b.bg,
+                fg = c.editor.ui.statusline.line.b.fg,
+                gui = "bold"
+            },
         },
         visual = {
-          a = { bg = c.magenta, fg = c.black2 },
-          b = { bg = c.alias.ui.statusline.bg, fg = c.fg },
+          a = { bg = c.editor.ui.statusline.line.a.visual.bg,
+                fg = c.editor.ui.statusline.line.a.visual.fg
+            },
+          b = { bg = c.editor.ui.statusline.line.b.bg,
+                fg = c.editor.ui.statusline.line.b.fg,
+                gui = "bold"
+            },
         },
         replace = {
-          a = { bg = c.secondary, fg = c.black2 },
-          b = { bg = c.alias.ui.statusline.bg, fg = c.fg },
+          a = { bg = c.red2, fg = c.black2 },
+          b = { bg = c.editor.ui.statusline.line.b.bg,
+                fg = c.editor.ui.statusline.line.b.fg,
+                gui = "bold"
+            },
         },
         inactive = {
-          a = { bg = c.alias.ui.statusline.bg, fg = c.white2 },
-          b = { bg = c.alias.ui.statusline.bg, fg = c.white2, gui = "bold" },
-          c = { bg = c.alias.ui.statusline.bg, fg = c.white2 },
+          a = { bg = c.editor.ui.statusline.bg, fg = c.white2 },
+          b = { bg = c.editor.ui.statusline.line.b.bg,
+                fg = c.editor.ui.statusline.line.b.fg,
+                gui = "bold"
+            },
+          c = { bg = c.editor.ui.statusline.bg, fg = c.white2 },
         },
     }
 
@@ -55,7 +567,7 @@ function M.lualine(config, c)
             style = "underline",
             bg = c.bg,
             fg = c.bg,
-            sp = c.border
+            sp = c.editor.ui.border
         }
         for _, section in ipairs({ "a", "b", "c" }) do
             tb["lualine_" .. section .. "_inactive"] = inactive
@@ -71,12 +583,12 @@ function M.debug(config, c)
     tb = {
         -- used for highlighting the current line in terminal-debug
         debugPC = {
-            bg = c.bg_sidebar
+            bg = c.black
         },
         -- used for breakpoint colors in terminal-debug
         debugBreakpoint = {
-            bg = c.info,
-            fg = c.info
+            bg = c.none,
+            fg = c.red
         },
     }
 
@@ -87,50 +599,87 @@ function M.markup(config, c)
     local tb = {}
     tb = {
         htmlH1 = {
-            fg = c.magenta,
+            fg = c.fg,
+            bg = c.black2,
             style = "bold"
         },
         htmlH2 = {
-            fg = c.blue,
+            fg = c.fg,
+            bg = c.black2,
             style = "bold"
         },
-
-        mkdCodeDelimiter = {
-            bg = c.terminal_black,
-            fg = c.fg
-        },
-        mkdCodeStart = {
-            fg = c.grey,
+        markdownh1 = {
+            fg = c.fg,
+            bg = c.black2,
             style = "bold"
         },
-        mkdCodeEnd = {
-            fg = c.grey,
+        markdownh2 = {
+            fg = c.fg,
+            bg = c.black2,
             style = "bold"
         },
-
-        markdownHeadingDelimiter = {
-            fg = c.yellow2,
+        markdownh3 = {
+            fg = c.fg,
+            bg = c.black2,
             style = "bold"
         },
-        markdownCode = {
-            fg = c.grey
+        markdownh4 = {
+            fg = c.fg,
+            bg = c.black2,
+            style = "bold"
+        },
+        markdownh5 = {
+            fg = c.fg,
+            bg = c.black2,
+            style = "bold"
+        },
+        markdownCodeDelimiter = {
+            bg = c.grey2,
+            fg = c.green
         },
         markdownCodeBlock = {
             fg = c.grey
         },
-        markdownH1 = {
-            fg = c.primary,
+        markdownCode = {
+            fg = c.grey
+        },
+        markdownCodeStart = {
+            fg = c.grey,
             style = "bold"
         },
-        markdownH2 = {
-            fg = c.primary,
+        markdownCodeEnd = {
+            fg = c.grey,
             style = "bold"
         },
         markdownLinkText = {
-            fg = c.blue,
+            fg = c.cyan,
+            style = "underline"
+        },
+        markdownLinkTextDelimiter = {
+            fg = c.grey,
+            style = "underline"
+        },
+        markdownLinkDelimiter = {
+            fg = c.grey,
             style = "underline"
         },
     }
+
+	local delimiters = {
+        "markdownH1Delimiter",
+		"markdownH2Delimiter",
+		"markdownH3Delimiter",
+		"markdownH4Delimiter",
+		"markdownH5Delimiter",
+		"markdownH6Delimiter",
+	}
+
+    tb = group(tb, delimiters, {
+            fg = c.magenta,
+            bg = c.red2,
+            style = "bold"
+    })
+
     return tb
 end
 
@@ -140,56 +689,56 @@ function M.diagnostics(config, c)
         -- Base highlight groups
         -- Diagnostic highlights link to this by default
         DiagnosticError = {
-            fg = c.alias.error.fg
+            fg = c.editor.error.fg
         },
         DiagnosticWarn = {
-            fg = c.alias.warning.fg
+            fg = c.editor.warning.fg
         },
         DiagnosticInfo = {
-            fg = c.alias.info.fg
+            fg = c.editor.info.fg
         },
         DiagnosticHint = {
-            fg = c.alias.hint.fg
+            fg = c.editor.hint.fg
         },
         -- Used for "Error" diagnostic virtual text
         DiagnosticVirtualTextError = {
             bg = c.none,
-            fg = c.alias.error.fg
+            fg = c.editor.error.fg
         },
         -- Used for "Warning" diagnostic virtual text
         DiagnosticVirtualTextWarn = {
             bg = c.none,
-            fg = c.alias.warning.fg
+            fg = c.editor.warning.fg
         },
         -- Used for "Information" diagnostic virtual text
         DiagnosticVirtualTextInfo = {
             bg = c.none,
-            fg = c.alias.info.fg
+            fg = c.editor.info.fg
         },
         -- Used for "Hint" diagnostic virtual text
         DiagnosticVirtualTextHint = {
             bg = c.none,
-            fg = c.alias.hint.fg
+            fg = c.editor.hint.fg
         },
         -- Used to underline "Error" diagnostics
         DiagnosticUnderlineError = {
             style = "undercurl",
-            sp = c.alias.error.fg
+            sp = c.editor.error.fg
         },
         -- Used to underline "Warning" diagnostics
         DiagnosticUnderlineWarn = {
             style = "undercurl",
-            sp = c.alias.error.fg
+            sp = c.editor.error.fg
         },
         -- Used to underline "Information" diagnostics
         DiagnosticUnderlineInfo = {
             style = "undercurl",
-            sp = c.alias.info.fg
+            sp = c.editor.info.fg
         },
         -- Used to underline "Hint" diagnostics
         DiagnosticUnderlineHint = {
             style = "undercurl",
-            sp = c.alias.hint.fg
+            sp = c.editor.hint.fg
         },
 
     }
@@ -219,21 +768,21 @@ function M.lsp(config, c)
     tb = {
         -- used for highlighting "text" references
         LspReferenceText = {
-            bg = c.faded
+            bg = c.grey
         },
         -- used for highlighting "read" references
         LspReferenceRead = {
-            bg = c.faded
+            bg = c.grey
         },
         -- used for highlighting "write" references
         LspReferenceWrite = {
-            bg = c.faded
+            bg = c.grey
         },
         LspSignatureActiveParameter = {
             fg = c.yellow2
         },
         LspCodeLens = {
-            fg = c.comment
+            fg = c.grey
         },
     }
 
@@ -246,12 +795,12 @@ function M.spell(config, c)
     tb = {
         -- Word that is not recognized by the spellchecker.
         SpellBad = {
-            sp = c.alias.error.fg,
+            sp = c.editor.error.fg,
             style = "undercurl"
         },
         -- Word that should start with a capital.
         SpellCap = {
-            sp = c.alias.warning.fg,
+            sp = c.editor.warning.fg,
             style = "undercurl"
         },
         -- Word that is used in another region.
@@ -275,19 +824,19 @@ function M.diff(config, c)
         -- diff mode:
         -- Added line
         DiffAdd = {
-            bg = c.alias.diff.add
+            bg = c.editor.diff.add
         },
         -- Changed line
         DiffChange = {
-            bg = c.alias.diff.change
+            bg = c.editor.diff.change
         },
         -- Deleted line
         DiffDelete = {
-            bg = c.alias.diff.delete
+            bg = c.editor.diff.delete
         },
         -- Changed text within a line
         DiffText = {
-            bg = c.alias.diff.text
+            bg = c.editor.diff.text
         },
     }
 
@@ -314,7 +863,7 @@ function M.base(config, c)
             link = "Normal"
         },
         FloatBorder = {
-            fg = c.green2,
+            fg = c.green,
             bg = c.black2,
         },
         -- placeholder characters substituted for concealed text
@@ -323,7 +872,7 @@ function M.base(config, c)
         },
         -- the column separating vertically split windows
         VertSplit = {
-            fg = c.alias.ui.border
+            fg = c.editor.ui.border
         },
         -- function name, also methods for classes
         Function = {
@@ -332,17 +881,17 @@ function M.base(config, c)
         },
         -- (preferred) any erroneous construct
         Error = {
-            fg = c.alias.error.fg
+            fg = c.editor.error.fg
         },
         -- error messages on the command line
         ErrorMsg = {
-            bg = c.alias.error.bg,
-            fg = c.alias.error.fg
+            bg = c.editor.error.bg,
+            fg = c.editor.error.fg
         },
         -- warning messages
         WarningMsg = {
-            fg = c.alias.warning.fg,
-            bg = c.alias.warning.bg,
+            fg = c.editor.warning.fg,
+            bg = c.editor.warning.bg,
         },
         Exception = {
             fg = c.error
@@ -358,11 +907,11 @@ function M.base(config, c)
         },
         -- Comments
         Comment = {
-            fg = c.alias.comment,
+            fg = c.editor.comment,
             style = config.comment_style
         },
         Conditional = {
-            fg = c.green2,
+            fg = c.green,
         },
         -- (preferred) any constant
         Constant = {
@@ -383,17 +932,17 @@ function M.base(config, c)
         },
         -- |:substitute| replacement text highlighting
         Substitute = {
-            bg = c.red2,
+            bg = c.red,
             fg = c.black
         },
         Number = {
             fg = c.cyan
         },
         Define = {
-            fg = c.green2
+            fg = c.green
         },
         Delimiter = {
-            fg = c.green2
+            fg = c.green
         },
         -- directory names
         Directory = {
@@ -413,7 +962,7 @@ function M.base(config, c)
             style = config.variable_style
         },
         Include = {
-            fg = c.green2,
+            fg = c.green,
         };
         --  any other keyword
         Keyword = {
@@ -421,7 +970,7 @@ function M.base(config, c)
             style = config.keyword_style
         },
         Label = {
-            fg = c.green2,
+            fg = c.green,
             style = config.keyword_style
         },
         -- "sizeof", "+", "*", etc.
@@ -430,25 +979,25 @@ function M.base(config, c)
         },
         -- (preferred) generic Preprocessor
         PreProc = {
-            fg = c.green2
+            fg = c.green
         },
         Repeat = {
             fg = c.blue2
         };
         -- (preferred) any statement
         Statement = {
-            fg = c.green2
+            fg = c.green
         },
         -- Keywords that affect how a variable is stored: `static`, `comptime`, `extern`,
         StorageClass = {
-            fg = c.green2
+            fg = c.green
         },
         --   a string constant: "this is a string"
         String = {
             fg = c.white2
         },
         Structure = {
-            fg = c.green2
+            fg = c.green
         },
         Tag = {
             fg = c.magenta
@@ -464,11 +1013,11 @@ function M.base(config, c)
         },
         -- (preferred) int, long, char, etc.
         Type = {
-            fg = c.green2
+            fg = c.green
         },
         -- (preferred) int, long, char, etc.
         Typedef = {
-            fg = c.green2
+            fg = c.green
         },
         -- screen-column at the cursor, when 'cursorcolumn' is set.
         CursorColumn = {
@@ -481,7 +1030,7 @@ function M.base(config, c)
         },
         -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
         CursorLineNr = {
-            fg = c.red
+            fg = c.red2
         },
         Line = {
             fg = c.blue2
@@ -497,12 +1046,12 @@ function M.base(config, c)
         },
         -- used columns set with 'colorcolumn'
         ColorColumn = {
-            bg = config.colorcolumn and c.alias.ui.colorcolumn
+            bg = config.colorcolumn and c.editor.ui.colorcolumn
             or c.none
         },
         -- screen-line at the cursor, when 'cursorline' is set.
         CursorLine = {
-            bg = config.cursorline and c.alias.ui.cursorline
+            bg = config.cursorline and c.editor.ui.cursorline
                  or c.none
         },
         -- character under the cursor
@@ -526,7 +1075,7 @@ function M.base(config, c)
         },
         -- The character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
         MatchParen = {
-            fg = c.red,
+            fg = c.red2,
             style = "bold"
         },
         -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
@@ -539,26 +1088,26 @@ function M.base(config, c)
         },
         -- Popup menu: normal item.
         Pmenu = {
-            bg = c.alias.ui.popmenu.bg,
-            fg = c.alias.ui.popmenu.fg,
+            bg = c.editor.ui.popmenu.bg,
+            fg = c.editor.ui.popmenu.fg,
         },
         -- Popup menu: selected item.
         PmenuSel = {
-            bg = c.alias.ui.popmenu.sel,
+            bg = c.editor.ui.popmenu.sel,
         },
         -- Popup menu: scrollbar.
         PmenuSbar = {
-            bg = c.alias.ui.popmenu.sbar.bg,
-            fg = c.alias.ui.popmenu.sbar.fg,
+            bg = c.editor.ui.popmenu.sbar.bg,
+            fg = c.editor.ui.popmenu.sbar.fg,
         },
         -- Popup menu: Thumb of the scrollbar.
         PmenuThumb = {
-            bg = c.alias.ui.popmenu.thumb.bg,
-            fg = c.alias.ui.popmenu.thumb.fg,
+            bg = c.editor.ui.popmenu.thumb.bg,
+            fg = c.editor.ui.popmenu.thumb.fg,
         },
         -- current match in 'wildmenu' completion
         WildMenu = {
-            bg = c.red2
+            bg = c.red
         },
         -- (preferred) any special symbol
         Special = {
@@ -566,56 +1115,56 @@ function M.base(config, c)
         },
         -- Unprintable characters: text displayed differently from what it really is.  But not 'listchars' whitespace. |hl-Whitespace|
         SpecialKey = {
-            fg = c.red
+            fg = c.red2
         },
         SpecialChar = {
-            fg = c.red
+            fg = c.red2
         },
         SpecialComment = {
             link = "Comment"
         },
         -- status line of current window
         StatusLine = {
-            fg = c.alias.ui.statusline.fg,
-            bg = c.alias.ui.statusline.bg,
+            fg = c.editor.ui.statusline.fg,
+            bg = c.editor.ui.statusline.bg,
         },
         -- status lines of not-current windows
         -- Note: if this is equal to "StatusLine"
         -- Vim will use "^^^" in the status line of the current window.
         StatusLineNC = {
             style   = (config.inactive_statusline and "italic") or nil,
-            fg      = (config.inactive_statusline and c.bg) or c.alias.ui.statusline.nc.fg,
-            bg      = (config.inactive_statusline and c.bg) or c.alias.ui.statusline.nc.bg,
+            fg      = (config.inactive_statusline and c.bg) or c.editor.ui.statusline.nc.fg,
+            bg      = (config.inactive_statusline and c.bg) or c.editor.ui.statusline.nc.bg,
             sp      = (config.inactive_statusline and nil) or nil,
         },
         -- tab pages line, not active tab page label
         TabLine = {
-            bg = c.alias.ui.tabline.bg,
-            fg = c.alias.ui.tabline.fg,
+            bg = c.editor.ui.tabline.bg,
+            fg = c.editor.ui.tabline.fg,
         },
         -- tab pages line, where there are no labels
         TabLineFill = {
-            bg = c.alias.ui.tabline.bg,
-            fg = c.alias.ui.tabline.fg,
+            bg = c.editor.ui.tabline.bg,
+            fg = c.editor.ui.tabline.fg,
         },
         -- tab pages line, active tab page label
         TabLineSel = {
-            bg = c.alias.ui.tabline.sel.bg,
-            fg = c.alias.ui.tabline.sel.fg,
+            bg = c.editor.ui.tabline.sel.bg,
+            fg = c.editor.ui.tabline.sel.fg,
         },
         -- |hit-enter| prompt and yes/no questions
         Question = {
-            fg = c.green2
+            fg = c.green
         },
         -- Visual mode selection
         Visual = {
-            fg = c.green2,
-            bg = c.black2
+            fg = c.editor.visual.fg,
+            bg = c.editor.visual.bg
         },
         -- Visual mode selection when vim is "Not Owning the Selection".
         VisualNOS = {
-            fg = c.black2,
-            bg = c.green2,
+            fg = c.editor.visual.fg,
+            bg = c.editor.visual.bg
         },
         -- 'showmode' message (e.g., "-- INSERT -- ")
         ModeMsg = {
@@ -637,7 +1186,7 @@ function M.base(config, c)
         },
         -- quickfixLine
         qfLineNr = {
-            fg = c.yellow
+            fg = c.red
         },
         qfFileName = {
             fg = c.blue
@@ -656,627 +1205,10 @@ function M.base(config, c)
     return tb
 end
 
-function M.plugins(config, c)
-    local tb = {}
-    local function telescope(config, c)
-        local t = {}
-        t = {
-            -- Telescope
-            TelescopeBorder = {
-                fg = c.border_highlight,
-                bg = c.bg_float
-            },
-            TelescopeNormal = {
-                fg = c.fg,
-                bg = c.bg_float
-            },
-        }
-        return t
-    end
-    local function treesitter(config, c)
-        local t = {}
-        t = {
-            -- For C++/Dart attributes, annotations that can be attached to the code to denote some kind of meta information.
-            -- TSAnnotation        = { };
-            -- (unstable) TODO: docs
-            -- TSAttribute         = { };
-            -- For booleans.
-            -- TSBoolean           = { };
-            -- For characters.
-            -- TSCharacter         = { };
-            -- For comment blocks.
-            -- TSComment           = { };
-            TSNote = {
-                fg = c.bg,
-                bg = c.info
-            },
-            TSWarning = {
-                fg = c.bg,
-                bg = c.warning
-            },
-            TSDanger = {
-                fg = c.bg,
-                bg = c.error
-            },
-            -- For constructor calls and definitions: `= { }` in Lua, and Java constructors.
-            TSConstructor = {
-                fg = c.magenta
-            },
-            -- For keywords related to conditionnals.
-            -- TSConditional       = { };
-            -- For constants
-            -- TSConstant          = { };
-            -- For constant that are built in the language: `nil` in Lua.
-            -- TSConstBuiltin      = { };
-            -- For constants that are defined by macros: `NULL` in C.
-            -- TSConstMacro        = { };
-            -- For syntax/parser errors.
-            -- TSError             = { };
-            -- For exception related keywords.
-            -- TSException         = { };
-            -- For fields.
-            TSField = {
-                fg = c.yellow
-            },
-            -- For floats.
-            -- TSFloat             = { };
-            -- For function (calls and definitions).
-            TSFunction = {
-                fg = c.primary
-            },
-            -- For builtin functions: `table.insert` in Lua.
-            -- TSFuncBuiltin       = { };
-            -- For macro defined fuctions (calls and definitions): each `macro_rules` in Rust.
-            -- TSFuncMacro         = { };
-            -- For includes: `#include` in C, `use` or `extern crate` in Rust, or `require` in Lua.
-            -- TSInclude           = { };
-            -- For keywords that don't fall in previous categories.
-            TSKeyword = {
-                fg = c.magenta,
-                style = config.keyword_style
-            },
-            -- For keywords used to define a fuction.
-            TSKeywordFunction = {
-                fg = c.magenta,
-                style = config.functionStyle
-            },
-            -- For labels: `label:` in C and `:label:` in Lua.
-            TSLabel = {
-                fg = c.tertiary
-            },
-            -- For method calls and definitions.
-            -- TSMethod            = { };
-            -- For identifiers referring to modules and namespaces.
-            -- TSNamespace         = { };
-            -- TODO: docs
-            -- TSNone              = { };
-            -- TSNumber = {
-            --     fg = c.cyan
-            -- },
-            -- For any operator: `+`, but also `->` and `*` in C.
-            TSOperator = {
-                fg = c.secondary
-            },
-            -- For parameters of a function.
-            TSParameter = {
-                fg = c.fg
-            },
-            -- For references to parameters of a function.
-            -- TSParameterReference= { };
-            -- Same as `TSField`.
-            TSProperty = {
-                fg = c.magenta2
-            },
-            -- Same as `TSField`.
-            luaTSProperty = {
-                fg = c.secondary
-            },
-            -- For delimiters ie: `.`
-            TSPunctDelimiter = {
-                fg = c.cyan2
-            },
-            -- For brackets and parens.
-            TSPunctBracket = {
-                fg = c.cyan2
-            },
-            -- For special punctutation that does not fall in the catagories before.
-            TSPunctSpecial = {
-                fg = c.cyan2
-            },
-            -- For keywords related to loops.
-            -- TSRepeat            = { };
-            -- For strings.
-            -- TSString            = { };
-            -- For regexes.
-            TSStringRegex = {
-                fg = c.primary
-            },
-            -- For escape characters within a string.
-            TSStringEscape = {
-                fg = c.magenta
-            },
-            -- For identifiers referring to symbols or atoms.
-            -- TSSymbol            = { };
-            -- For types.
-            -- TSType              = { };
-            -- For builtin types.
-            -- TSTypeBuiltin       = { };
-            -- Any variable name that does not have another highlight.
-            TSVariable = {
-                style = config.variableStyle
-            },
-            -- Variable names that are defined by the languages, like `this` or `self`.
-            TSVariableBuiltin = {
-                fg = c.secondary
-            },
-            -- Tags like html tag names.
-            -- TSTag               = { };
-            -- Tag delimiter like `<` `>` `/`
-            -- TSTagDelimiter      = { };
-            -- For strings considered text in a markup language.
-            -- TSText              = { };
-            TSTextReference = {
-                fg = c.grey
-            },
-            -- For text to be represented with emphasis.
-            -- TSEmphasis          = { };
-            -- For text to be represented with an underline.
-            -- TSUnderline         = { };
-            -- For strikethrough text.
-            -- TSStrike            = { };
-            -- Text that is part of a title.
-            -- TSTitle             = { };
-            -- Literal text.
-            -- TSLiteral           = { };
-            -- Any URI like a link or email.
-            -- TSURI               = { };
-        }
-        return t
-    end
-    local function lsp(config, c)
-        local t = {}
-        t = {
-            -- LspTrouble
-            LspTroubleText = {
-                fg = c.error
-            },
-            LspTroubleCount = {
-                fg = c.magenta,
-                bg = c.faded
-            },
-            LspTroubleNormal = {
-                fg = c.fg_sidebar,
-                bg = c.bg_sidebar
-            },
-            -- LspSaga
-            DiagnosticWarning = {
-                link = "DiagnosticWarn"
-            },
-            DiagnosticInformation = {
-                link = "DiagnosticInfo"
-            },
-            LspFloatWinNormal = {
-                bg = c.bg_float
-            },
-            LspFloatWinBorder = {
-                fg = c.border_highlight
-            },
-            LspSagaBorderTitle = {
-                fg = c.cyan
-            },
-            LspSagaHoverBorder = {
-                fg = c.primary
-            },
-            LspSagaRenameBorder = {
-                fg = c.tertiary
-            },
-            LspSagaDefPreviewBorder = {
-                fg = c.tertiary
-            },
-            LspSagaCodeActionBorder = {
-                fg = c.primary
-            },
-            LspSagaFinderSelection = {
-                fg = c.bg_visual
-            },
-            LspSagaCodeActionTitle = {
-                fg = c.cyan2
-            },
-            LspSagaCodeActionContent = {
-                fg = c.magenta2
-            },
-            LspSagaSignatureHelpBorder = {
-                fg = c.secondary
-            },
-            ReferencesCount = {
-                fg = c.magenta2
-            },
-            DefinitionCount = {
-                fg = c.magenta2
-            },
-            DefinitionIcon = {
-                fg = c.blue
-            },
-            ReferencesIcon = {
-                fg = c.blue
-            },
-            TargetWord = {
-                fg = c.cyan
-            },
-        }
-        return t
-    end
-    local function cmp(config, c)
-        local t = {}
-        t = {
-            -- Cmp
-            CmpDocumentation = {
-                fg = c.fg,
-                bg = c.bg_float
-            },
-            CmpDocumentationBorder = {
-                fg = c.border_highlight,
-                bg = c.bg_float
-            },
-
-            CmpItemAbbr = {
-                fg = c.fg,
-                bg = c.none
-            },
-            CmpItemAbbrDeprecated = {
-                bg = c.none,
-                fg = c.faded,
-                style = "strikethrough" },
-            CmpItemAbbrMatch = {
-                fg = c.cyan2,
-                bg = c.none
-            },
-            CmpItemAbbrMatchFuzzy = {
-                fg = c.cyan2,
-                bg = c.none
-            },
-
-            CmpItemKindDefault = {
-                fg = c.grey,
-                bg = c.none
-            },
-            CmpItemMenu = {
-                fg = c.comment,
-                bg = c.none
-            },
-
-            CmpItemKindKeyword = {
-                fg = c.cyan,
-                bg = c.none
-            },
-
-            CmpItemKindVariable = {
-                fg = c.magenta,
-                bg = c.none
-            },
-            CmpItemKindConstant = {
-                fg = c.magenta,
-                bg = c.none
-            },
-            CmpItemKindReference = {
-                fg = c.magenta,
-                bg = c.none
-            },
-            CmpItemKindValue = {
-                fg = c.magenta,
-                bg = c.none
-            },
-
-            CmpItemKindFunction = {
-                fg = c.primary,
-                bg = c.none
-            },
-            CmpItemKindMethod = {
-                fg = c.primary,
-                bg = c.none
-            },
-            CmpItemKindConstructor = {
-                fg = c.primary,
-                bg = c.none
-            },
-
-            CmpItemKindClass = {
-                fg = c.yellow2,
-                bg = c.none
-            },
-            CmpItemKindInterface = {
-                fg = c.yellow2,
-                bg = c.none
-            },
-            CmpItemKindStruct = {
-                fg = c.yellow2,
-                bg = c.none
-            },
-            CmpItemKindEvent = {
-                fg = c.yellow2,
-                bg = c.none
-            },
-            CmpItemKindEnum = {
-                fg = c.yellow2,
-                bg = c.none
-            },
-            CmpItemKindUnit = {
-                fg = c.yellow2,
-                bg = c.none
-            },
-
-            CmpItemKindModule = {
-                fg = c.yellow,
-                bg = c.none
-            },
-
-            CmpItemKindProperty = {
-                fg = c.tertiary,
-                bg = c.none
-            },
-            CmpItemKindField = {
-                fg = c.tertiary,
-                bg = c.none
-            },
-            CmpItemKindTypeParameter = {
-                fg = c.tertiary,
-                bg = c.none
-            },
-            CmpItemKindEnumMember = {
-                fg = c.tertiary,
-                bg = c.none
-            },
-            CmpItemKindOperator = {
-                fg = c.tertiary,
-                bg = c.none
-            },
-            CmpItemKindSnippet = {
-                fg = c.cyan2,
-                bg = c.none
-            },
-        }
-        return t
-    end
-    local function neogit(config, c)
-        local t = {}
-        t = {
-            -- Neogit
-            NeogitBranch = {
-                fg = c.magenta
-            },
-            NeogitRemote = {
-                fg = c.magenta2
-            },
-            NeogitHunkHeader = {
-                fg = c.fg,
-                bg = c.bg,
-            },
-            NeogitHunkHeaderHighlight = {
-                fg = c.blue,
-                bg = c.grey,
-            },
-            NeogitDiffContextHighlight = {
-                fg = c.none,
-                bg = c.grey,
-            },
-            NeogitDiffDeleteHighlight = {
-                fg = c.fg,
-                bg = c.alias.diff.delete
-            },
-            NeogitDiffAddHighlight = {
-                fg = c.fg,
-                bg = c.alias.diff.add
-            },
-        }
-        return t
-    end
-    local function nvimtree(config, c)
-        local t = {}
-        t = {
-            -- NvimTree
-            NvimTreeNormal = {
-                fg = c.alias.ui.sidebar.fg,
-                bg = c.alias.ui.sidebar.bg,
-            },
-            NvimTreeNormalNC = {
-                fg = c.alias.ui.sidebar.fg,
-                bg = c.alias.ui.sidebar.bg,
-            },
-            NvimTreeRootFolder = {
-                fg = c.primary,
-                style = "bold"
-            },
-            NvimTreeGitDirty = {
-                fg = c.alias.diff.change
-            },
-            NvimTreeGitNew = {
-                fg = c.alias.diff.add
-            },
-            NvimTreeGitDeleted = {
-                fg = c.alias.diff.delete
-            },
-            NvimTreeSpecialFile = {
-                fg = c.magenta2,
-                style = "underline"
-            },
-            NvimTreeIndentMarker = {
-                fg = c.grey
-            },
-            NvimTreeImageFile = {
-                fg = c.alias.ui.sidebar.fg,
-            },
-            NvimTreeSymlink = {
-                fg = c.primary
-            },
-            -- NvimTreeFolderName= {
-            --     fg = c.fg_float
-            -- },
-        }
-        return t
-    end
-    local function diff(config, c)
-        local t = {}
-        t = {
-            -- diff
-            diffAdded = {
-                fg = c.alias.diff.add
-            },
-            diffRemoved = {
-                fg = c.alias.diff.delete
-            },
-            diffChanged = {
-                fg = c.alias.diff.change
-            },
-            diffOldFile = {
-                fg = c.yellow
-            },
-            diffNewFile = {
-                fg = c.yellow2
-            },
-            diffFile = {
-                fg = c.blue
-            },
-            diffLine = {
-                fg = c.grey
-            },
-            diffIndexLine = {
-                fg = c.magenta
-            },
-        }
-        return t
-    end
-    local function ale(config, c)
-        local t = {}
-        t = {
-            ALEErrorSign = {
-                fg = c.error
-            },
-            ALEWarningSign = {
-                fg = c.warning
-            },
-        }
-        return t
-    end
-    local function gitsigns(config, c)
-        local t = {}
-        t = {
-            -- GitSigns
-            -- diff mode: Added line |diff.txt|
-            GitSignsAdd = {
-                fg = c.alias.diff.add
-            },
-            -- diff mode: Changed line |diff.txt|
-            GitSignsChange = {
-                fg = c.alias.diff.change
-            },
-            -- diff mode: Deleted line |diff.txt|
-            GitSignsDelete = {
-                fg = c.alias.diff.delete
-            },
-        }
-        return t
-    end
-    local function neovim(config, c)
-        local t = {}
-        t = {
-            -- NeoVim
-            healthError = {
-                fg = c.error
-            },
-            healthSuccess = {
-                fg = c.green2
-            },
-            healthWarning = {
-                fg = c.warning
-            },
-        }
-        return t
-    end
-
-    tb = extend(tb, treesitter(config, c))
-    tb = extend(tb, telescope(config, c))
-    tb = extend(tb, lsp(config, c))
-    tb = extend(tb, cmp(config, c))
-    tb = extend(tb, neogit(config, c))
-    tb = extend(tb, nvimtree(config, c))
-    tb = extend(tb, diff(config, c))
-    tb = extend(tb, ale(config, c))
-    tb = extend(tb, gitsigns(config, c))
-    tb = extend(tb, neovim(config, c))
-
-    return tb
-end
-
 function M.setup(config, colors)
     local theme = {}
     local defer = {}
     local c = colors
-
-    c.alias = {
-        comment     = c.cyan2,
-        error       = {
-            bg = c.black,
-            fg = c.red2,
-        },
-        warning     = {
-            bg = c.blue2,
-            fg = c.white,
-        },
-        hint     = {
-            fg = c.white2,
-        },
-        info     = {
-            fg = c.fg,
-        },
-        ui          = {
-            border      = c.green, -- split, vertsplit
-            colorcolumn = c.black2,
-            cursorline  = c.green,
-            statusline  = {
-                bg = c.black2,
-                fg = c.green2,
-                nc = {
-                    bg = c.black2,
-                    fg = c.white2,
-                }
-            },
-            tabline  = {
-                bg = c.green,
-                fg = c.green2,
-                sel = {
-                    bg = c.red,
-                    fg = c.green2,
-                }
-            },
-            popmenu     = {
-                bg = c.black,
-                fg = c.magenta2,
-                sel = c.green,
-                sbar = {
-                    bg = c.green,
-                    c.magenta
-                },
-                thumb = {
-                    bg = c.white2,
-                    fg = c.blue2
-                }
-            },
-            sidebar  = {
-                bg = c.black2,
-                fg = c.green2,
-                nc = {
-                    bg = c.black2,
-                    fg = c.white2,
-                }
-            },
-        },
-        diff    = {
-            add     = c.green2,
-            change  = c.blue2,
-            delete  = c.red2,
-            text    = c.white2,
-        }
-    }
 
     -- neovim base
     theme = extend(theme, M.base(config, c))

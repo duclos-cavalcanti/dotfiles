@@ -12,7 +12,7 @@ local icon_path = theme_path .. "/icons"
 local default_path = require("gears.filesystem").get_themes_dir()
 
 local font_family     = "Iosevka" -- DejaVuSansMono
-local palette         = "test"
+local palette         = "dark"
 local palette_file    = utils.palette_path() .. palette .. ".lua"
 local colors          = utils.load_file(palette_file)
 
@@ -34,9 +34,14 @@ theme.bg_focus      = colors.black2
 theme.bg_urgent     = colors.red
 theme.bg_minimize   = colors.magenta
 
+theme.fg_normal     = colors.fg
+theme.fg_focus      = colors.fg
+theme.fg_urgent     = colors.red2
+theme.fg_minimize   = colors.fg
+
 -- wibar
-theme.wibar_bg      = colors.bg
-theme.wibar_fg      = colors.fg
+theme.wibar_bg      = colors.wm.bar.bg
+theme.wibar_fg      = colors.wm.bar.fg
 
 -- Systray
 theme.bg_systray = colors.bg
@@ -47,10 +52,10 @@ theme.systray_max_rows = 1
 
 -- Notifications
 beautiful.notification_font = theme.font_notification
-beautiful.notification_bg = colors.bg
-beautiful.notification_fg = colors.blue
+beautiful.notification_bg = colors.wm.notification.bg
+beautiful.notification_fg = colors.wm.notification.fg
 beautiful.notification_border_width = 2
-beautiful.notification_border_color = colors.red
+beautiful.notification_border_color = colors.wm.notification.border
 beautiful.notification_opacity = 90
 beautiful.notification_margin = 10
 beautiful.notification_width = 100
@@ -60,20 +65,14 @@ beautiful.notification_max_height = 50
 beautiful.notification_icon_size = 5
 
 -- Separator
-theme.separator_fg = colors.black2
+theme.separator_fg = colors.wm.separator
 
 -- titlebars
--- theme.titlebar_icon          = icon_path .. "/ghost.png"
 theme.titlebar_size          = 0 -- 20
-theme.titlebar_bg_normal     = colors.black
-theme.titlebar_bg_focus      = colors.black
+theme.titlebar_bg_normal     = colors.wm.titlebar.normal
+theme.titlebar_bg_focus      = colors.wm.titlebar.focus
 theme.titlebar_fg_normal     = colors.fg
 theme.titlebar_fg_focus      = colors.fg
-
-theme.fg_normal     = colors.fg
-theme.fg_focus      = colors.fg
-theme.fg_urgent     = colors.red
-theme.fg_minimize   = colors.fg
 
 -- borders and gaps
 theme.useless_gap           = gaps

@@ -153,7 +153,7 @@ bash_prompt() {
     # git
     PROMPT+="${primary}"
     PROMPT+='$(git_prefix)'
-    PROMPT+="${bold_green}"
+    PROMPT+="${bold_red}"
     PROMPT+='$(git_prompt)'
     PROMPT+="${primary}"
     PROMPT+='$(git_suffix)'
@@ -174,9 +174,6 @@ bash_prompt() {
 
     # GUI environment
     else
-        # PROMPT+=''
-        # PROMPT+=' '
-
         # PROMPT+=''
         # PROMPT+=' '
 

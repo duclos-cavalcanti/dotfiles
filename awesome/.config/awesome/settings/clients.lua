@@ -77,16 +77,9 @@ function M.setup()
     function (s)
         for _, c in pairs(s.clients) do -- loop through clients
             -- terminal windows have titlebars only on floating
-            -- iff size is greater than 1
-            if titlebar_size > 1 then
-                if c.class == terminal_class  then
-                    if c.floating then
-                        awful.titlebar.show(c)
-                    else
-                        awful.titlebar.hide(c)
-                    end
-                end
-            end
+            -- c.class == terminal_class
+            -- awful.titlebar.show(c)
+            awful.titlebar.hide(c)
         end
     end)
 end

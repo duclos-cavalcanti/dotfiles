@@ -13,7 +13,7 @@ local default_path = require("gears.filesystem").get_themes_dir()
 
 local font_family     = "Iosevka" -- DejaVuSansMono
 local palette         = "dark"
-local palette_file    = utils.palette_path() .. palette .. ".lua"
+local palette_file    = utils.palette_path() .. "/" .. palette .. ".lua"
 local colors          = utils.load_file(palette_file)
 
 local theme = {}
@@ -29,23 +29,23 @@ theme.font_clock        = theme.font_family .. "8"
 theme.font_prompt       = theme.font_family .. "10"
 theme.font_notification = theme.font_family .. "9"
 
-theme.bg_normal     = colors.black2
-theme.bg_focus      = colors.black2
-theme.bg_urgent     = colors.red
-theme.bg_minimize   = colors.magenta
+theme.bg_normal     = colors.wm.generic.normal.bg
+theme.bg_focus      = colors.wm.generic.focus.bg
+theme.bg_urgent     = colors.wm.generic.urgent.bg
+theme.bg_minimize   = colors.wm.generic.min.bg
 
-theme.fg_normal     = colors.fg
-theme.fg_focus      = colors.fg
-theme.fg_urgent     = colors.red2
-theme.fg_minimize   = colors.fg
+theme.fg_normal     = colors.wm.generic.normal.fg
+theme.fg_focus      = colors.wm.generic.focus.fg
+theme.fg_urgent     = colors.wm.generic.urgent.fg
+theme.fg_minimize   = colors.wm.generic.min.fg
 
 -- wibar
 theme.wibar_bg      = colors.wm.bar.bg
 theme.wibar_fg      = colors.wm.bar.fg
 
 -- Systray
-theme.bg_systray = colors.bg
-theme.systray_popup_bg = colors.black2
+theme.bg_systray = colors.wm.tray.bg
+theme.systray_popup_bg = colors.wm.tray.popup
 theme.systray_icon_spacing = dpi(3)
 theme.systray_icon_size = dpi(20)
 theme.systray_max_rows = 1
@@ -68,7 +68,6 @@ beautiful.notification_icon_size = 5
 theme.separator_fg = colors.wm.separator
 
 -- titlebars
-theme.titlebar_size          = 0 -- 20
 theme.titlebar_bg_normal     = colors.wm.titlebar.normal
 theme.titlebar_bg_focus      = colors.wm.titlebar.focus
 theme.titlebar_fg_normal     = colors.fg
@@ -77,11 +76,11 @@ theme.titlebar_fg_focus      = colors.fg
 -- borders and gaps
 theme.useless_gap           = gaps
 theme.border_width          = 1
-theme.border_normal         = colors.black2
-theme.border_focus          = colors.fg
-theme.border_sticky         = colors.green
-theme.border_sticky_unfocus = colors.green2
-theme.border_marked         = colors.blue
+theme.border_normal         = colors.wm.border.normal
+theme.border_focus          = colors.wm.border.focus
+theme.border_sticky         = colors.wm.border.sticky
+theme.border_sticky_unfocus = colors.wm.border.sticky_unfocus
+theme.border_marked         = colors.wm.border.marked
 
 -- clock
 theme.clock = {}
@@ -90,39 +89,39 @@ theme.clock.fg = colors.fg
 
 -- taglist
 theme.taglist_font          = theme.font_tags
-theme.taglist_bg_empty      = colors.bg
-theme.taglist_fg_empty      = colors.grey
-theme.taglist_bg_occupied   = colors.bg
-theme.taglist_fg_occupied   = colors.grey2
-theme.taglist_bg_focus      = colors.grey
-theme.taglist_fg_focus      = colors.fg
-theme.taglist_bg_urgent     = colors.red
-theme.taglist_fg_urgent     = colors.fg
+theme.taglist_bg_empty      = colors.wm.tag.empty.bg
+theme.taglist_fg_empty      = colors.wm.tag.empty.fg
+theme.taglist_bg_occupied   = colors.wm.tag.occ.bg
+theme.taglist_fg_occupied   = colors.wm.tag.occ.fg
+theme.taglist_bg_focus      = colors.wm.tag.focus.bg
+theme.taglist_fg_focus      = colors.wm.tag.focus.fg
+theme.taglist_bg_urgent     = colors.wm.tag.urgent.bg
+theme.taglist_fg_urgent     = colors.wm.tag.urgent.fg
 
 -- tasklist
 theme.tasklist_plain_task_name  = true
-theme.tasklist_bg_normal        = colors.black
+theme.tasklist_bg_normal        = colors.wm.tasklist.normal
 theme.tasklist_fg_normal        = colors.fg
-theme.tasklist_bg_focus         = colors.black2
+theme.tasklist_bg_focus         = colors.wm.tasklist.focus
 theme.tasklist_fg_focus         = colors.fg
-theme.tasklist_bg_urgent        = colors.red
+theme.tasklist_bg_urgent        = colors.wm.tasklist.urgent
 
 
 -- prompt
 theme.prompt_prefix         = "run: "
-theme.prompt_bg             = colors.bg
-theme.prompt_fg             = colors.fg
-theme.prompt_fg_cursor      = colors.bg
-theme.prompt_bg_cursor      = colors.bg
+theme.prompt_bg             = colors.wm.prompt.bg
+theme.prompt_fg             = colors.wm.prompt.fg
+theme.prompt_fg_cursor      = colors.wm.prompt.bg
+theme.prompt_bg_cursor      = colors.wm.prompt.fg
 theme.prompt_font           = theme.font_prompt
 
 -- menu
 theme.menu_height       = dpi(35)
 theme.menu_width        = dpi(120)
-theme.menu_bg_normal    = colors.bg
-theme.menu_bg_focus     = colors.black2
-theme.menu_fg_focus     = colors.fg
-theme.menu_border_color = colors.white
+theme.menu_bg_normal    = colors.wm.menu.normal
+theme.menu_bg_focus     = colors.wm.menu.focus.bg
+theme.menu_fg_focus     = colors.wm.menu.focus.fg
+theme.menu_border_color = colors.wm.menu.focus.border
 theme.menu_border_width = 3
 
 -- icons

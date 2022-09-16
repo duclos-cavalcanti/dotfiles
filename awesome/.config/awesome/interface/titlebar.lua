@@ -6,19 +6,19 @@ local config_path = utils.config_path
 local M = {}
 
 function M.setup(c)
-    local titlebar_size = require("theme").titlebar_size
-    if titlebar_size <= 1 then
+    local h = titlebar_height
+    if h <= 1 then
         return
     end
 
     local titlebar = awful.titlebar(c, {
-        size = beautiful.titlebar_size,
+        size = h,
     })
 
     local buttons = {}
-    local icon = {}
+    local icon = nil
 
-    if beautiful.titlebar_icon == nil then
+    if beautiful.titlebar_icon ~= nil then
         icon =  beautiful.titlebar_icon
     else
         icon =  beautiful.awesome_icon

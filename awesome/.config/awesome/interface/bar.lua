@@ -1,4 +1,5 @@
 local awful = require("awful")
+local vicious = require("vicious")
 local gears = require("gears")
 local wibox = require("wibox")
 
@@ -8,6 +9,7 @@ local M = {}
 
 function M.set_bar(s)
     local radius = 4
+    local margin = 2
 
     -- Menu Launcher
     local function menu_launcher()
@@ -21,7 +23,7 @@ function M.set_bar(s)
 
     -- Clock
     local function clock()
-        return require("interface.widgets.clock").rect(radius)
+        return require("interface.widgets.clock").default()
     end
 
     -- Run Prompt
@@ -61,15 +63,33 @@ function M.set_bar(s)
         return sp
     end
 
-    -- separator
+    local function cpu()
+        return require("interface.widgets.cpu"){
+            background_color = beautiful.colors.wm.bar.bg,
+            color = beautiful.colors.fg,
+        }
+    end
+
+    local function ram()
+        return require("interface.widgets.ram"){
+            color_used = beautiful.colors.green2,
+            color_free = beautiful.colors.green,
+            color_buf = beautiful.colors.yellow,
+            widget_show_buf = true,
+            widget_height = bar_height + 1
+        }
+    end
+
     local function separator()
         return require("interface.widgets.separator").default(bar_height)
     end
+
 
     s.promptbox = promptbox()
 
     local _left = {
             layout = wibox.layout.fixed.horizontal,
+            space(),
             menu_launcher(),
             space(),
             separator(),
@@ -91,6 +111,8 @@ function M.set_bar(s)
 
     local _right = {
             layout = wibox.layout.fixed.horizontal,
+            space(),
+            separator(),
             space(),
             layoutbox(s),
             space(),

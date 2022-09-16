@@ -4,10 +4,6 @@ local wibox = require("wibox")
 
 local M = {}
 
-function M.default()
-    return wibox.widget.textclock()
-end
-
 function M.rounded(radius)
     return wibox.widget {
       bg = beautiful.clock.bg,
@@ -22,7 +18,7 @@ function M.rounded(radius)
     }
 end
 
-function M.rect()
+function M.default()
     return wibox.widget {
       bg = beautiful.clock.bg,
       fg = beautiful.clock.fg,

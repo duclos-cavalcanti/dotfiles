@@ -86,8 +86,9 @@ switch_editor() {
   step "Editor theming!"
   pushd $NVIM_DIR
     pushd lua
-      local output=$(grep -n "vim.g.custom_palette" themes.lua)
-      local line=$(grep --color=never -n "vim.g.custom_palette" themes.lua | cut -d ":" -f1)
+      local patt="vim.g.custom_palette "
+      local output=$(grep -n "${patt}" themes.lua)
+      local line=$(grep --color=never -n "${patt}" themes.lua | cut -d ":" -f1)
       local current=$(echo $output | cut -d "=" -f2 | sed s/\"//g | sed -e 's/^[ \t]*//')
       local subst="${line}s/${current}/${theme}/g"
 

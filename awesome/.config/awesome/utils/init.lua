@@ -28,7 +28,7 @@ function M.config_path()
 end
 
 function M.palette_path()
-    return M.home_path() .. ".dotfiles/themes/palette"
+    return M.home_path() .. "/.dotfiles/themes/palette"
 end
 
 function M.user()

@@ -23,11 +23,11 @@ local M = {
     black2      = "#222827",
     red2        = "#75657a", -- #3f3442
     green2      = "#485559",
-    yellow2     = "#99450f",
+    yellow2     = "#ab9295",
     blue2       = "#5786bc",
     magenta2    = "#9c75dd",
     cyan2       = "#89d9d0", -- #539191
-    white2      = "#9898ae",
+    white2      = "#e1d9ea",
 }
 
 M.grey = M.white
@@ -54,7 +54,7 @@ M.editor = {
         colorcolumn = M.black,
         cursorline  = M.black2,
         statusline  = {
-            bg = M.black2,
+            bg = M.black,
             fg = M.green2,
             nc = {
                 bg = M.black2,
@@ -76,7 +76,7 @@ M.editor = {
                     },
                 },
                 b = {
-                    bg = M.black,
+                    bg = M.black2,
                     fg = M.fg,
                 },
             }
@@ -92,7 +92,7 @@ M.editor = {
         popmenu     = {
             bg = M.black,
             fg = M.magenta2,
-            sel = M.green,
+            sel = M.black2,
             sbar = {
                 bg = M.black2,
                 fg = M.magenta
@@ -119,20 +119,82 @@ M.editor = {
     },
     visual = {
         bg = M.black,
+        fg = M.cyan,
     },
 }
 
 M.wm = {
+    generic = {
+        normal = {
+            bg = M.black2,
+            fg = M.fg,
+        },
+        focus  = {
+            bg = M.green2,
+            fg = M.fg,
+        },
+        urgent = {
+            bg = M.red,
+            fg = M.fg,
+        },
+        min = {
+            bg = M.magenta,
+            fg = M.fg,
+        },
+    },
     bar = {
         bg = M.bg,
         fg = M.fg
     },
     titlebar = {
         normal = M.black,
-        focus = M.black,
+        focus = M.black2,
     },
     border = {
-
+        normal          = M.black,
+        focus           = M.fg,
+        sticky          = M.cyan,
+        sticky_unfocus  = M.green2,
+        marked          = M.blue
+    },
+    tasklist = {
+        normal = M.black,
+        focus  = M.green2,
+        urgent = M.red,
+    },
+    tray = {
+        bg = M.bg,
+        popup = M.black2,
+    },
+    prompt = {
+        bg = M.bg,
+        fg = M.fg,
+    },
+    menu = {
+        normal  = M.bg,
+        focus   = {
+            bg = M.black2,
+            fg = M.fg,
+        },
+        border  = M.black2,
+    },
+    tag = {
+        empty = {
+            bg = M.bg,
+            fg = M.grey,
+        },
+        occ = {
+            bg = M.bg,
+            fg = M.fg,
+        },
+        focus = {
+            bg = M.green2,
+            fg = M.fg,
+        },
+        urgent = {
+            bg = M.red,
+            fg = M.fg,
+        },
     },
     separator = M.black2,
     notification = {

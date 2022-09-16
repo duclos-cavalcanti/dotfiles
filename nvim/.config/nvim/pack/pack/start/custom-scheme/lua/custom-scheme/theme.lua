@@ -155,7 +155,7 @@ function M.plugins(config, c)
                 fg = c.fg,
         })
         t = group(t, punctuation, {
-            fg = c.grey2
+            fg = c.red2
         })
         t = group(t, constructors, {
             fg = c.green
@@ -634,7 +634,7 @@ function M.markup(config, c)
             style = "bold"
         },
         markdownCodeDelimiter = {
-            bg = c.grey2,
+            bg = c.red2,
             fg = c.green
         },
         markdownCodeBlock = {
@@ -868,7 +868,7 @@ function M.base(config, c)
         },
         -- placeholder characters substituted for concealed text
         Conceal = {
-            fg = c.white2
+            fg = c.grey,
         },
         -- the column separating vertically split windows
         VertSplit = {
@@ -899,11 +899,10 @@ function M.base(config, c)
         -- Boolean
         Boolean = {
             fg = c.magenta2,
-            style = config.comment_style
         },
         --  a character constant: 'c', '\n'
         Character = {
-            fg = c.white2
+            fg = c.yellow2
         },
         -- Comments
         Comment = {
@@ -994,7 +993,7 @@ function M.base(config, c)
         },
         --   a string constant: "this is a string"
         String = {
-            fg = c.white2
+            fg = c.yellow2
         },
         Structure = {
             fg = c.green
@@ -1071,7 +1070,7 @@ function M.base(config, c)
         },
         -- filler lines (~) after the end of the buffer
         EndOfBuffer = {
-            fg = c.white2
+            fg = c.grey
         },
         -- The character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
         MatchParen = {

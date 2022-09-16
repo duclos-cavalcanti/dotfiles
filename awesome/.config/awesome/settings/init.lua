@@ -11,7 +11,7 @@ terminal_class  = "Alacritty"
 taglist = { "1", "2", "3", "4", "5", "6", "7", "8", "9" }
 bar_height = dpi(17)
 titlebar_height = dpi(0)
-gaps = dpi(4)
+gaps = dpi(0)
 
 
 local M = {}

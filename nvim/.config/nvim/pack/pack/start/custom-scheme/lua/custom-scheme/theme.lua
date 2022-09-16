@@ -36,7 +36,7 @@ function M.plugins(config, c)
                 bg = c.green2,
             },
             TelescopeMatching = {
-                fg = c.magenta,
+                fg = c.red,
             },
         }
         return t

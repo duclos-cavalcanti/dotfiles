@@ -14,7 +14,7 @@ local wallpaper=""
 if simple_wallpaper then
     wallpaper = ""
 else
-    wallpaper = wallpaper_path .. "/" .. "default.jpg"
+    wallpaper = wallpaper_path .. "/" .. "default.png"
 end
 
 local function wp(s, hwp, vwp)

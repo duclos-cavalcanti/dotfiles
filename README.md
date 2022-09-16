@@ -7,7 +7,7 @@
 - Feel free to look around.
 - Files are managed across the system through [GNU stow](https://www.gnu.org/software/stow/).
 
-![Example](.github/assets/example_screen.png)
+![Example](.github/assets/screen.png)
 
 - **OS:** [Arch Linux](https://archlinux.org)
 - **WM:** [awesome](https://github.com/awesomeWM/awesome)

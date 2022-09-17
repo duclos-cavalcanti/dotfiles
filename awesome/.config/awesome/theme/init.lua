@@ -150,7 +150,7 @@ theme.menu_icon     = icon_path .. "/square.png"
 
 theme.custom_icons = {
         menu_icon = { icon = "", font = theme.font_icon },
-        memory_icon = { icon = "", font = theme.font_icon },
+        cpu_icon = { icon = "", font = theme.font_icon },
         clock_icon = { icon = "", font = theme.font_icon },
 }
 

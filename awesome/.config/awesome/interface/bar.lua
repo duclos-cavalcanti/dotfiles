@@ -51,6 +51,12 @@ function M.set_bar(s)
         return require("interface.widgets.tray").default()
     end
 
+    local function cpu()
+        local m = ("interface.widgets.cpu")
+
+        return m
+    end
+
     local function tab()
         local sp = wibox.widget.textbox()
         sp:set_text("   ")
@@ -63,29 +69,13 @@ function M.set_bar(s)
         return sp
     end
 
-    local function cpu()
-        return require("interface.widgets.cpu"){
-            background_color = beautiful.colors.wm.bar.bg,
-            color = beautiful.colors.fg,
-        }
-    end
-
-    local function ram()
-        return require("interface.widgets.ram"){
-            color_used = beautiful.colors.green2,
-            color_free = beautiful.colors.green,
-            color_buf = beautiful.colors.yellow,
-            widget_show_buf = true,
-            widget_height = bar_height + 1
-        }
-    end
-
     local function separator()
         return require("interface.widgets.separator").default(bar_height)
     end
 
 
     s.promptbox = promptbox()
+    s.cpu = cpu()
 
     local _left = {
             layout = wibox.layout.fixed.horizontal,
@@ -100,12 +90,6 @@ function M.set_bar(s)
             space(),
             s.promptbox,
         }
-
-    -- local _middle = {
-    --     layout = wibox.layout.fixed.horizontal,
-    --     halign = "center",
-    --     tasklist(s)
-    -- }
 
     local _middle = tasklist(s)
 

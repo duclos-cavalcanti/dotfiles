@@ -9,14 +9,15 @@ local M = {}
 
 function M.new()
     local ok = false
-    M.w = wibox.widget.textbox
+    M.w = wibox.widget.textbox()
+    M.w:set_text("cpu")
 
     local function callback()
-        awful.spawn.easy_async( {
-                "bash", "-c","mpstat | tail -n 1",
+        awful.spawn.easy_async({
+                "bash", "-c","'mpstat | tail -n 1'",
                 function(out)
-                    local sep = " "
                     local arr = {}
+                    local sep = " "
                     -- splits string by separator, similar to split in Python
                     for str in string.gmatch(out, "([^" .. sep .. "]+)") do
                        table.insert(arr, str)
@@ -32,6 +33,7 @@ function M.new()
                                             beautiful.colors.green2,
                                             output)
 
+                    print(text)
                     M.w:set_text(text)
                 end
             })
@@ -48,5 +50,4 @@ function M.widget()
     return M.w
 end
 
-print("M")
 return M

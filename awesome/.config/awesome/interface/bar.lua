@@ -52,7 +52,8 @@ function M.set_bar(s)
     end
 
     local function cpu()
-        local m = ("interface.widgets.cpu")
+        local m = require("interface.widgets.cpu")
+        m.new()
 
         return m
     end
@@ -95,6 +96,7 @@ function M.set_bar(s)
 
     local _right = {
             layout = wibox.layout.fixed.horizontal,
+            s.cpu.widget(),
             space(),
             separator(),
             space(),

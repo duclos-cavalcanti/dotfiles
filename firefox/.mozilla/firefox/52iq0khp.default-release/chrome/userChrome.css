@@ -19,8 +19,8 @@ https://github.com/migueravila/SimpleFox
 
 */
 :root {
-  --sfwindow: #19171c;
-  --sfsecondary: #222827;
+  --sfwindow: #0f0f10;    /* colors all other tabs and fills*/
+  --sfsecondary: #19171c; /* colors the current tab and url bar*/
 }
 
 /* Urlbar View */

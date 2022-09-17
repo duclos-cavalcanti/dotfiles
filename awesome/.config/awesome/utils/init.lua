@@ -24,6 +24,14 @@ function M.color_text(c, text)
     return prefix .. c .. "'>" .. text .. suffix
 end
 
+function M.merge_tables(tb, new)
+    for _,v in ipairs(new) do
+        table.insert(tb, v)
+    end
+
+    return tb
+end
+
 function M.load_file(file)
     return dofile(file)
 end
@@ -55,7 +63,7 @@ function M.palette_path()
     return M.home_path() .. "/.dotfiles/themes/palette"
 end
 
-function M.log(var, msg)
+function M.log( msg)
     local file = M.config_path() .. "awesome.log"
     local operator = ""
     local command = ""
@@ -67,7 +75,7 @@ function M.log(var, msg)
         operator = ">>"
     end
 
-    command = string.format("echo '%s: %s' %s %s", var, msg, operator, file)
+    command = string.format("echo '%s' %s %s", msg, operator, file)
     os.execute(command)
 end
 

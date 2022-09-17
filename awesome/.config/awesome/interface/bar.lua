@@ -2,6 +2,7 @@ local awful = require("awful")
 local vicious = require("vicious")
 local gears = require("gears")
 local wibox = require("wibox")
+local utils = require("utils")
 
 local dpi = require("beautiful.xresources").apply_dpi
 
@@ -76,7 +77,6 @@ function M.set_bar(s)
 
 
     s.promptbox = promptbox()
-    s.cpu = cpu()
 
     local _left = {
             layout = wibox.layout.fixed.horizontal,
@@ -96,23 +96,28 @@ function M.set_bar(s)
 
     local _right = {
             layout = wibox.layout.fixed.horizontal,
-            space(),
-            s.cpu.widget(),
-            space(),
-            separator(),
-            space(),
             layoutbox(s),
-            space(),
-            separator(),
-            space(),
-            clock(),
         }
 
     if s.index == 1 then -- primary
-       table.insert(_right,space())
-       table.insert(_right,separator())
-       table.insert(_right,space())
-       table.insert(_right, systray())
+        s.cpu = cpu()
+        _right = {
+                layout = wibox.layout.fixed.horizontal,
+                space(),
+                layoutbox(s),
+                space(),
+                separator(),
+                space(),
+                s.cpu.widget(),
+                space(),
+                separator(),
+                space(),
+                clock(),
+                space(),
+                separator(),
+                space(),
+                systray()
+            }
     end
 
     -- Create the wibox/wibar

@@ -9,7 +9,7 @@ local M = {}
 
 function M.new()
     local ok = false
-    M.w = wibox.widget.textbox("", false)
+    M.w = wibox.widget.textbox()
 
     local function callback()
         awful.spawn.easy_async(
@@ -35,7 +35,6 @@ function M.new()
                     M.w.markup = text
                 end
             )
-
     end
 
     M.timer, ok = utils.set_timer({

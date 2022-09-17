@@ -138,7 +138,7 @@ M.wm = {
             fg = M.fg,
         },
         min = {
-            bg = M.magenta,
+            bg = M.magenta2,
             fg = M.fg,
         },
     },

@@ -32,15 +32,6 @@ function M.setup(keys)
 
        {
             rule = {
-                class = "Toolkit"
-            },
-            properties = {
-                sticky = true
-            }
-        },
-
-       {
-            rule = {
                 name = "Picture-in-Picture"
             },
             properties = {
@@ -53,7 +44,7 @@ function M.setup(keys)
                 class = "Xephyr"
             },
             properties = {
-               floating = false
+               floating = true
             }
         },
 

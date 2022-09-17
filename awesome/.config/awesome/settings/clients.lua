@@ -28,7 +28,6 @@ end
 
 function M.setup()
     local titlebar = require("interface.titlebar")
-    local titlebar_size = theme.titlebar_size
 
     -- titlebar hook
     client.connect_signal("request::titlebars",
@@ -39,18 +38,14 @@ function M.setup()
     -- focus client hook
     client.connect_signal("focus",
     function(c)  -- when client gains focus
-        if c.sticky then
-            c.border_color = beautiful.border_sticky
-        else
-            c.border_color = beautiful.border_focus
-        end
+        c.border_color = beautiful.border_focus
     end)
 
     -- unfocus client hook
     client.connect_signal("unfocus",
     function(c) -- when clients loses focus
         if c.sticky then
-            c.border_color = beautiful.border_sticky_unfocus
+            c.border_color = beautiful.border_sticky
         else
             c.border_color = beautiful.border_normal
         end
@@ -67,7 +62,7 @@ function M.setup()
         end
 
         if c.floating then
-            awful.placement.centered(c)
+            c.placement = awful.placement.centered
             c.ontop = true
         end
     end)

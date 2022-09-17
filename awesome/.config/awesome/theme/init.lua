@@ -79,7 +79,7 @@ theme.border_width          = 1
 theme.border_normal         = colors.wm.border.normal
 theme.border_focus          = colors.wm.border.focus
 theme.border_sticky         = colors.wm.border.sticky
-theme.border_sticky_unfocus = colors.wm.border.sticky_unfocus
+-- theme.border_sticky_unfocus = colors.wm.border.sticky_unfocus
 theme.border_marked         = colors.wm.border.marked
 
 -- clock

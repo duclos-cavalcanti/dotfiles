@@ -96,6 +96,7 @@ function M.set_bar(s)
 
     local _right = {
             layout = wibox.layout.fixed.horizontal,
+            space(),
             s.cpu.widget(),
             space(),
             separator(),

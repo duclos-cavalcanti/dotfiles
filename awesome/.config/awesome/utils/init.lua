@@ -14,9 +14,6 @@ function M.set_timer(args)
     })
 
     t:start()
-    t:connect_signal("timeout", args.callback)
-    t:emit_signal("timeout")
-
     return t, true
 end
 

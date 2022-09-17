@@ -10,7 +10,6 @@ local M = {}
 function M.new()
     local ok = false
     M.w = wibox.widget.textbox()
-    M.w:set_text("cpu")
 
     local function callback()
         awful.spawn.easy_async({
@@ -33,7 +32,6 @@ function M.new()
                                             beautiful.colors.green2,
                                             output)
 
-                    print(text)
                     M.w:set_text(text)
                 end
             })

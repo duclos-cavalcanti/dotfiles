@@ -59,6 +59,13 @@ function M.set_bar(s)
         return m
     end
 
+    local function ram()
+        local m = require("interface.widgets.ram")
+        m.new()
+
+        return m
+    end
+
     local function tab()
         local sp = wibox.widget.textbox()
         sp:set_text("   ")
@@ -101,10 +108,15 @@ function M.set_bar(s)
 
     if s.index == 1 then -- primary
         s.cpu = cpu()
+        s.ram = ram()
         _right = {
                 layout = wibox.layout.fixed.horizontal,
                 space(),
                 layoutbox(s),
+                space(),
+                separator(),
+                space(),
+                s.ram.widget(),
                 space(),
                 separator(),
                 space(),

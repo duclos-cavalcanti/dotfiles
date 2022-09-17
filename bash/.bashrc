@@ -286,6 +286,10 @@ if command -v curl &>/dev/null; then
     alias pfetch="curl -s https://raw.githubusercontent.com/dylanaraps/pfetch/master/pfetch | sh"
 fi
 
+if command -v maim &>/dev/null; then
+    alias screenshot="maim -u -g 1920x1080+1080+0 ~/Downloads/screen.png"
+fi
+
 alias ..="cd .."
 alias ...="cd ../.."
 alias l="ls --color=auto --group-directories-first"

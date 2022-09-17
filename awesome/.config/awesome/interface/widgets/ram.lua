@@ -12,7 +12,7 @@ function M.new()
 
     local function callback()
         awful.spawn.easy_async(
-                "bash -c 'mpstat | tail -n 1'",
+                "bash -c 'free | grep -z Mem.*Swap.* | head -n 2 | tail -n 1'",
                 function(out, err, exitreason, exitcode)
                     local arr = {}
                     local sep = " "
@@ -22,11 +22,12 @@ function M.new()
                        table.insert(arr, str)
                     end
 
-                    local user = arr[4]
-                    local sys = arr[6]
-                    local output = string.format("user %s%% / sys %s%%",
-                                                       user, sys)
-                    local text = "cpu: "
+                    local total = tonumber(arr[2])
+                    local used  = tonumber(arr[3])
+                    local free  = tonumber(arr[4])
+
+                    local output = string.format("%.2f%%", ((used/total) * 100))
+                    local text = "ram: "
                                  .. utils.color_text(
                                             beautiful.colors.cyan,
                                             output)
@@ -47,3 +48,4 @@ function M.widget()
 end
 
 return M
+

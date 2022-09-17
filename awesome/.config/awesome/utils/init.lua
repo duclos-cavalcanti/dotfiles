@@ -10,10 +10,11 @@ function M.set_timer(args)
 
     local t = timer({
         timeout = args.timeout or 10,
+        call_now = true,
+        autostart = true,
         callback = args.callback
     })
 
-    t:start()
     return t, true
 end
 

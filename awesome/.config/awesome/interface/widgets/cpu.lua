@@ -9,14 +9,15 @@ local M = {}
 
 function M.new()
     local ok = false
-    M.w = wibox.widget.textbox()
+    M.w = wibox.widget.textbox("", false)
 
     local function callback()
-        awful.spawn.easy_async({
-                "bash", "-c","'mpstat | tail -n 1'",
-                function(out)
+        awful.spawn.easy_async(
+                "bash -c 'mpstat | tail -n 1'",
+                function(out, err, exitreason, exitcode)
                     local arr = {}
                     local sep = " "
+
                     -- splits string by separator, similar to split in Python
                     for str in string.gmatch(out, "([^" .. sep .. "]+)") do
                        table.insert(arr, str)
@@ -24,17 +25,16 @@ function M.new()
 
                     local user = arr[4]
                     local sys = arr[6]
-                    local output = string.format("user: %s% / sys: %s%",
+                    local output = string.format("user %s%% / sys %s%%",
                                                        user, sys)
-                    local text = icon.icon
-                                 .. " "
+                    local text = "cpu: "
                                  .. utils.color_text(
-                                            beautiful.colors.green2,
+                                            beautiful.colors.cyan,
                                             output)
 
-                    M.w:set_text(text)
+                    M.w.markup = text
                 end
-            })
+            )
 
     end
 

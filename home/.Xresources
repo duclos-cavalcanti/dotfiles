@@ -1,0 +1,60 @@
+!
+! Colors
+#define bg          #262626
+#define fg          #eeeeee
+#define black       #565656
+#define red         #B3314B
+#define green       #008081
+#define yellow      #ffc43d
+#define blue        #22cccc
+#define magenta     #ff55ff
+#define cyan        #22cccc
+#define white       #cccccc
+#define black2      #5B5B5B
+#define red2        #B3314B
+#define green2      #008081
+#define yello2      #ffc43d
+#define blue2       #22cccc
+#define magenta2    #7777ff
+#define cyan2       #22cccc
+#define white2      #eeeeee
+!
+!
+*.cursorColor:      red
+*.cursorColor2:     green
+!
+*.background:       bg
+*.foreground:       fg
+!
+*.color0:           black
+*.color1:           red
+*.color2:           green
+*.color3:           yellow
+*.color4:           blue
+*.color5:           magenta
+*.color6:           cyan
+*.color7:           white
+*.color8:           black2
+*.color9:           red2
+*.color10:          green2
+*.color11:          yellow2
+*.color12:          blue2
+*.color13:          magenta2
+*.color14:          cyan2
+*.color15:          white2
+!
+!
+*.boldMode:         false
+*.cursorUnderline:  true
+*.cursorBlink:      true
+
+! xterm
+xterm*faceName:                 LiberationMono:size=11:antialias=false
+xterm*dynamiccolors:            true
+xterm*utf8:                     2
+xterm*visualBell:               off
+xterm*highlightSelection:       true
+xterm*metaSendsEscape:          true
+XTerm*VT100.Translations: #override \n\
+    Ctrl Shift <KeyPress> C: copy-selection(CLIPBOARD) \n\
+    Ctrl Shift <KeyPress> V: insert-selection(CLIPBOARD) \n

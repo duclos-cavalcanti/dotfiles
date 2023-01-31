@@ -1,0 +1,38 @@
+snippet content
+	1. [Introduction](#intro)
+	    1. [sub](#sub1)
+	    2. [sub2](#sub2)
+	    3. [sub3](#sub3)
+
+	<a name="intro"/>
+snippet foot 
+	[^${1:note}]
+	[${1}]: ${0:Reference}
+snippet cite 
+	[@${1:citation}]
+snippet tb
+	Item | Price | # In stock
+	---|---|---
+	Juicy Apples | 1.99 | 739
+	Bananas | 1.89 | 6
+snippet ch
+	- [ ] ${1:todo}
+snippet drop
+	<details closed>
+	<summary>
+	${1:title}
+	</summary>
+	<p>
+	${0:content}
+	</p>
+	</details>
+snippet img
+	![${0:title}](.imgs/${1:img}.png)
+snippet link
+	[${0:word}](${1:url})
+snippet : Definition list
+	$1
+	: $0
+snippet :: Alternate definition list
+	$1
+	  - $0

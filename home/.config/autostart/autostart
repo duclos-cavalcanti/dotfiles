@@ -1,0 +1,13 @@
+#!/bin/bash
+
+start() {
+    [ -n $(pgrep -x ${1}) ] && killall -9 ${1} 
+    ${1} > /dev/null &
+}
+
+xrdb -merge ~/.Xresources &
+xmodmap     ~/.Xmodmap &
+
+~/.bin/launch.sh dotfiles
+~/.bin/launch.sh web
+~/.bin/launch.sh work

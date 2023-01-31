@@ -1,0 +1,22 @@
+snippet doc
+	@document.meta
+		title: ${1:title}
+		description:
+		authors: daniel
+		categories:
+		created:
+		version:
+	@end
+
+snippet code
+	@code ${1:type}
+		${0:code}
+	@end
+
+snippet url
+	{${0:url}}[${1:name}]
+
+snippet do
+	- [ ] ${1:todo}
+
+

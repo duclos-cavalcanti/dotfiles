@@ -1,0 +1,39 @@
+snippet lib
+	library ${1}
+	use $1.${2}
+snippet libs
+	library IEEE;
+	use IEEE.std_logic_1164.ALL;
+	use IEEE.numeric_std.ALL;
+snippet ent
+	entity ${1:`vim_snippets#Filename()`} is
+		generic (
+			${2}
+		);
+		port (
+			${3}
+		);
+	end entity $1;
+snippet arc
+	architecture ${1:behav} of ${2:`vim_snippets#Filename()`} is
+
+		${3}
+
+	begin
+
+	end $1;
+snippet pr
+	process (${1})
+	begin
+		${2}
+	end process;
+snippet if
+	if ${1} then
+		${2}
+	end if;
+snippet ife
+	if ${1} then
+		${2}
+	else
+		${3}
+	end if;

@@ -1,0 +1,9 @@
+session_name: leetcode
+start_directory: "/home/duclos/Documents/projects/dsa/leetcode/"
+windows:
+  - window_name: readme
+    panes:
+      - nvim README.md
+  - window_name: bash
+    panes:
+      - clear && ls -l

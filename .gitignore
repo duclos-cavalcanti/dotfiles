@@ -1,0 +1,22 @@
+# Bash
+history
+
+# Vim
+viminfo
+extern/*
+info/*
+
+
+# Mutt
+headers
+certificates
+bodies
+bodies/
+bodies/*
+
+# offlineimap
+roots.pem
+*.pyc
+
+# ipython
+*sqlite*

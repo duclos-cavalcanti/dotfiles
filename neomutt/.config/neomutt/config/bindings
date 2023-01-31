@@ -1,0 +1,18 @@
+bind attach,index,pager \CD next-page
+bind attach,index,pager \CU previous-page
+bind pager g top
+bind pager G bottom
+bind attach,index g first-entry
+bind attach,index G last-entry
+
+# Sidebar binds
+bind index,pager \CP sidebar-prev                 # Ctrl-n to select next folder
+bind index,pager \CN sidebar-next                 # Ctrl-p to select previous folder
+bind index,pager \CI sidebar-open                 # Ctrl-o to open selected folder
+bind index,pager \CB sidebar-toggle-visible       # Ctrl-b to toggle visibility of the sidebar
+
+# Macros for switching accounts
+macro index <f2> '<sync-mailbox><enter-command>source ~/.config/neomutt/username1.rc<enter><change-folder>!<enter>'
+macro index <f3> '<sync-mailbox><enter-command>source ~/.config/neomutt/username2.rc<enter><change-folder>!<enter>'
+
+# vim ft=conf

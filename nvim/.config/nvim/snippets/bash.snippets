@@ -1,0 +1,35 @@
+snippet #!
+	#!/bin/bash
+snippet if
+	if [[ $1 ]]; then
+		${0:${VISUAL}}
+	fi
+snippet elif
+	elif [[ $1 ]]; then
+		${0:${VISUAL}}
+snippet wh
+	while [[ $1 ]]; do
+		${0:${VISUAL}}
+	done
+snippet dpd
+	if ! command -v ${1:program} &>/dev/null; then
+	    echo "${1} is not installed"
+	    exit 1
+	fi
+snippet usage
+	usage() {
+	  echo "
+	    NAME: shmenu - bash-based menu tui
+
+	    USAGE: shmenu.sh [ARGS]
+
+	    ARGS:
+	    "
+	}
+snippet source
+	if [ -n "${BASH_SOURCE-}" ] && [ "${BASH_SOURCE[0]}" = "\${0}" ]
+	then
+	    echo "This script should be sourced, not executed:"
+	    echo ". ${BASH_SOURCE[0]}"
+	    exit 1
+	fi

@@ -1,0 +1,28 @@
+session_name: dotfiles
+start_directory: "/home/duclos/.dotfiles"
+windows:
+  - window_name: readme
+    panes:
+      - nvim README.md
+  - window_name: awesome
+    start_directory: "~/.config/awesome"
+    panes:
+      - nvim rc.lua
+  - window_name: nvim
+    start_directory: "~/.config/nvim"
+    panes:
+      - nvim init.lua
+  - window_name: bash
+    layout: even-horizontal
+    start_directory: "~/.dotfiles"
+    panes:
+      - clear && ls -l
+      - nvim TODO.md
+  - window_name: rc
+    start_directory: "~"
+    panes:
+      - nvim .bashrc
+  - window_name: tmux
+    start_directory: "~"
+    panes:
+      - nvim ~/.tmux.conf

@@ -1,0 +1,12 @@
+session_name: manager
+start_directory: "/home/duclos/.dotfiles-mgr/"
+windows:
+  - window_name: readme
+    panes:
+      - nvim README.md
+  - window_name: install
+    panes:
+      - nvim arch/install.sh
+  - window_name: bash
+    panes:
+      - clear && ls -l

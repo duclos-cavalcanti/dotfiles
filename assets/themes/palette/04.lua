@@ -223,7 +223,7 @@ M.wm = {
     bar = {
         bg          = M.bg,
         fg          = M.fg,
-        highlight   = M.red,
+        highlight   = M.green,
     },
     border = {
         normal          = M.grey,

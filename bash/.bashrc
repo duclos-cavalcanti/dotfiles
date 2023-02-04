@@ -347,7 +347,8 @@ fi
 
 # fetch
 if command -v pfetch &>/dev/null; then
-    pfetch
+    :
+    # pfetch
 else
     if command -v curl &>/dev/null; then
         alias pfetch="curl -s https://raw.githubusercontent.com/dylanaraps/pfetch/master/pfetch | sh"
@@ -557,16 +558,16 @@ inspect(){
     popd
 }
 
-# tmux project launcher
-__projects__() {
-    if command -v serve &>/dev/null; then
-        local p=$(tmux list-sessions -F '#S' | serve)
-        tmux attach -t $p
-    else
-        echo "Conditions not met!"
-    fi
-}
+# project launcher
+# __projects__() {
+#     if command -v shmenu &>/dev/null; then
+#         local sessions=$(tmux list-sessions -F '#S')
+#         shmenu -o $sessions | echo $@
+#     else
+#         printf "Conditions not met!\n"
+#     fi
+# }
 
 # ALT-G: "\eg"
 # CTL-G: "\C-g"
-bind -m emacs-standard -x '"\C-g": __projects__'
+# bind -m emacs-standard -x '"\C-g": __projects__'

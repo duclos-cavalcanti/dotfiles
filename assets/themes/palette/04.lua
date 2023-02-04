@@ -191,7 +191,7 @@ M.editor = {
 }
 
 M.wm = {
-    wp = "04.png",
+    wp = "02.png",
     generic = { -- default and tasklist
         normal = {
             bg = M.bg,

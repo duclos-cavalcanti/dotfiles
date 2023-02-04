@@ -11,7 +11,7 @@ local function spawn_once()
         "nm-applet",
         "blueman-applet",
         "pasystray",
-        "cbatticon",
+        "xfce4-power-manager",
         "unclutter",
     }
 

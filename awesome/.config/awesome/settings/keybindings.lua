@@ -31,18 +31,6 @@ end
 function M.set_keybindings()
         -- tags
         M.globalkeys = gears.table.join(M.globalkeys,
-        awful.key({ M.modkey }, "F5",
-                  function() awful.spawn("brightnessctl s -100") end,
-                  {
-                      "brightness minus",
-                      "system"
-                  }),
-        awful.key({ M.modkey }, "F6",
-                  function() awful.spawn("brightnessctl s +100") end,
-                  {
-                      "brightness plus",
-                      "system"
-                  }),
         awful.key({ M.modkey }, "b",
                   awful.tag.viewprev,
                   {

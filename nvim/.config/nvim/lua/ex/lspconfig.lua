@@ -60,12 +60,12 @@ local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
-require('lspconfig').clangd.setup({
-    on_attach = _on_attach,
-    capabilities = _capabilities,
-    cmd = { "clangd" },
-    filetypes = { "c", "cpp" },
-})
+-- require('lspconfig').clangd.setup({
+--     on_attach = _on_attach,
+--     capabilities = _capabilities,
+--     cmd = { "clangd" },
+--     filetypes = { "c", "cpp" },
+-- })
 
 require('lspconfig').gopls.setup({
     on_attach = _on_attach,

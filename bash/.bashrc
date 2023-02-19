@@ -337,8 +337,9 @@ shopt -s dotglob        # includes file names beginning with a '.' in the
                         # results of path name globbing.
 
 # Aliases
-alias e="vi"
+alias e="vim"
 alias v="nvim"
+alias o="shmenu -o $(tmux list-sessions -F '#S') | tmux attach"
 
 # bat
 if command -v bat &>/dev/null; then
@@ -548,7 +549,7 @@ extract () {
   fi
 }
 
-inspect(){
+inspect() {
     local f=$1
     local d=${f}__
     mkdir ${d}
@@ -558,16 +559,6 @@ inspect(){
     popd
 }
 
-# project launcher
-# __projects__() {
-#     if command -v shmenu &>/dev/null; then
-#         local sessions=$(tmux list-sessions -F '#S')
-#         shmenu -o $sessions | echo $@
-#     else
-#         printf "Conditions not met!\n"
-#     fi
-# }
-
 # ALT-G: "\eg"
 # CTL-G: "\C-g"
-# bind -m emacs-standard -x '"\C-g": __projects__'
+bind -m emacs-standard -x '"\C-g": fff'

@@ -10,9 +10,11 @@ windows:
       - clear && ls -l
       - nvim Makefile
   - window_name: www
+    start_directory: "/home/duclos/Documents/projects/personal/duclos-cavalcanti.github.io/"
     panes:
       - nvim .
   - window_name: www-bash
+    start_directory: "/home/duclos/Documents/projects/personal/duclos-cavalcanti.github.io/"
     layout: even-horizontal
     panes:
       - clear && ls -l

@@ -46,7 +46,7 @@ main() {
                 pushd $DOTFILES
                 for f in ${FOLDERS[@]}; do
                   if [ -d $f ]; then
-                    $install $f
+                    $install --adopt $f
                   fi
                 done
                 popd

@@ -17,7 +17,7 @@ windows:
     start_directory: "~/.dotfiles"
     panes:
       - clear && ls -l
-      - nvim TODO.md
+      - nvim install.sh
   - window_name: rc
     start_directory: "~"
     panes:

@@ -66,9 +66,7 @@ main() {
                 shift
                 target="${1}"
                 if [ -d $target ]; then
-                    $uninstall $target
-                    sleep 1s
-                    $install $target
+                    $install --restow $target
                 fi
                 shift
                 ;;

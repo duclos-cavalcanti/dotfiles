@@ -559,6 +559,20 @@ inspect() {
     popd
 }
 
-# ALT-G: "\eg"
-# CTL-G: "\C-g"
-bind -m emacs-standard -x '"\C-g": fff'
+if command -v fzf &>/dev/null; then
+    ptmux(){
+        local name=$(tmux list-sessions -F '#S' | fzf)
+        [ -n "$name" ] && tmux attach-session -t $name
+    }
+
+    pgit() {
+        local repo=$(curl -s "https://api.github.com/users/duclos-cavalcanti/repos" | grep -o --color=never 'git@[^"]*' | fzf)
+        [ -n "$repo" ] && git clone $repo
+    }
+
+    # ALT-G: "\eg"
+    # CTL-G: "\C-g"
+    bind -m emacs-standard -x '"\C-g": pgit'
+    bind -m emacs-standard -x '"\C-t": ptmux'
+fi
+

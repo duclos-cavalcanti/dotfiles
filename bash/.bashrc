@@ -281,13 +281,11 @@ fi
 
 # lua
 if command -v lua &>/dev/null; then
+    export LUA_PATH=";;$HOME/Documents/programs/debugger.lua/?.lua"
     PATH=$PATH:${HOME}/.luarocks/bin/
-    export LUA_PATH=";;$HOME/Documents/projects/langs/lua/debugger.lua/?.lua"
-    # git clone https://github.com/slembcke/debugger.lua.git
-    # mkdir .lua && git clone https://github.com/sumneko/lua-language-server.git
-    # on arch the language server is available as a package!
-
-    alias luamake=$HOME/.lua/lua-language-server/3rd/luamake/luamake
+    if [ -d ${HOME}/Documents/programs/lua-language-server ]; then
+        PATH=$PATH:${HOME}/Documents/programs/lua-language-server/bin
+    fi
 fi
 
 # java
@@ -352,7 +350,6 @@ if command -v pfetch &>/dev/null; then
 else
     if command -v curl &>/dev/null; then
         alias pfetch="curl -s https://raw.githubusercontent.com/dylanaraps/pfetch/master/pfetch | sh"
-        curl -s https://raw.githubusercontent.com/dylanaraps/pfetch/master/pfetch | sh
     fi
 fi
 

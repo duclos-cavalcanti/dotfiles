@@ -1,10 +1,13 @@
 session_name: manager
-start_directory: "/home/duclos/.dotfiles-mgr/"
+start_directory: "/home/duclos/.deploy/"
 windows:
   - window_name: readme
     panes:
       - nvim README.md
-  - window_name: install
+  - window_name: ubuntu
+    panes:
+      - nvim ubuntu/install.sh
+  - window_name: arch
     panes:
       - nvim arch/install.sh
   - window_name: bash

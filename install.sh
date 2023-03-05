@@ -11,6 +11,7 @@ FOLDERS=(bash
          neomutt
          picom
          bin
+         git
          X11)
 
 usage() {

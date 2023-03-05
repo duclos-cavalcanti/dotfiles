@@ -1,36 +1,17 @@
 --[[
 Servers:
-sudo pacman -S rustup
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 rustup update stable
 rustup component add rls rust-analysis rust-src
-RLS is slow, use rust analyzer on nightly!
-
-rust-analyzer
-cd .local/bin
-curl -L https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz | gunzip -c - > ~/.local/bin/rust-analyzer
-
 nightly with rustfmt
 rustup toolchain install nightly
 rustup component add rls rust-analysis rust-src --toolchain nightly
 rustup override set nightly
-
-sudo pacman -S npm
 sudo npm i -g bash-language-server
-
-sudo pacman -S go
+sudo apt install -S golang
 go install golang.org/x/tools/gopls@latest
-
-sudo pacman -S clang
-
-sudo pacman -S haskell-language-server
-
+sudo apt install clangd
 pip install pyright
-
-sudo pacman -S lua-language-server
-
-sudo pacman -S gradle jdk-openjdk
-paru -S jdtls
-
 --]]
 
 local function _on_attach(client, bufnr)
@@ -116,7 +97,7 @@ require('lspconfig').bashls.setup({
     single_file_support = true,
 })
 
-require('lspconfig').sumneko_lua.setup({
+require('lspconfig').lua_ls.setup({
     on_attach = _on_attach,
     capabilities = _capabilities,
     cmd = { "lua-language-server" },

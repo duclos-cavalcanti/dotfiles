@@ -1,22 +1,22 @@
 font:
   normal:
     # Font family
-    family: Iosevka Nerd Font
+    family: NotoSansMono
     style: Regular
 
   bold:
-    family: Iosevka Nerd Font
+    family: NotoSansMono
     style: Bold
 
   italic:
-    family: Iosevka Nerd Font
+    family: NotoSansMono
     style: Italic
 
   bold_italic:
-    family: Iosevka Nerd Font
+    family: NotoSansMono
     style: Bold Italic
 
-  size: 10.0
+  size: 6.0
 
 # $ fc-list
 # list installed fonts

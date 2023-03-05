@@ -10,15 +10,15 @@ end
 function M.on_colorscheme()
     -- delete the autocommands when the theme changes
     if vim.g.colors_name ~= "custom" then
-        vim.cmd([[autocmd! CustomScheme]])
-        vim.cmd([[augroup! CustomScheme]])
+        vim.cmd([[autocmd! Scheme]])
+        vim.cmd([[augroup! Scheme]])
     end
 end
 
 function M.autocmds()
-    vim.cmd([[augroup CustomScheme]])
-    vim.cmd([[  autocmd!]])
-    vim.cmd([[  autocmd ColorScheme * lua require("schemer").on_colorscheme()]])
+    vim.cmd([[augroup Scheme]])
+    vim.cmd([[autocmd!]])
+    vim.cmd([[autocmd ColorScheme * lua require("schemer").on_colorscheme()]])
     vim.cmd([[augroup end]])
 end
 

@@ -12,7 +12,7 @@ local wallpaper_path = theme_path .. "/wallpapers"
 local icon_path = theme_path .. "/icons"
 local default_path = require("gears.filesystem").get_themes_dir()
 
-local font_family     = "Iosevka Nerd Font" -- DejaVuSansMono
+local font_family     = "NotoSansMono" -- DejaVuSansMono
 local palette         = "04"
 
 local palette_file    = utils.palette_path() .. "/" .. palette .. ".lua"

@@ -10,6 +10,7 @@ local function spawn_once()
         "picom",
         "nm-applet",
         "blueman-applet",
+        "pasystray",
         "unclutter",
     }
 

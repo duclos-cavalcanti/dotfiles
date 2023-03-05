@@ -31,6 +31,7 @@ function M.setup(keys)
                     "Nitrogen",
                     "Gcolor3",
                     "Galculator",
+                    "Pavucontrol",
                     "Sxiv",
                     "Mpv",
                 },

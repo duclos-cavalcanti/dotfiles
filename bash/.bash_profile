@@ -12,7 +12,7 @@ if [ -z "$DISPLAY" ] && [ "$(tty)" = /dev/tty1 ]; then
         echo -n "Login Desktop [y/n]:"
         read answer
         if [ "$answer" = 'y' ]; then
-            startx -config ~/.config/X11/xinitrc
+            startx ~/.config/X11/xinitrc
         elif [ "$answer" = 'n' ]; then
             echo "Remaining in tty..."
             break

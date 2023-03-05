@@ -346,12 +346,13 @@ alias e="vim"
 alias v="nvim"
 
 # bat
-if command -v bat &>/dev/null; then
+if command -v bat &>/dev/null || command -v batcat &>/dev/null; then
+    alias bat="batcat"
     alias cat="bat -p"
 fi
 
 # fd
-if command -v fdfind &>/dev/null; then
+if command -v fd &>/dev/null || command -v fdfind &>/dev/null; then
     alias fd="fdfind"
 fi
 

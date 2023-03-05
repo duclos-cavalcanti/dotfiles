@@ -10,8 +10,6 @@ local function spawn_once()
         "picom",
         "nm-applet",
         "blueman-applet",
-        "pasystray",
-        "xfce4-power-manager",
         "unclutter",
     }
 

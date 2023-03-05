@@ -27,19 +27,12 @@ function M.setup(keys)
                 },
                 class = {
                     "Arandr",
-                    "Blueman-manager",
-                    "Gcolor3",
-                    "Galculator",
-                    "Places", -- Firefox Library, Downloads
-                    "Library",
-                    "Sxiv",
-                    "Lxappearance",
                     "Pcmanfm",
                     "Nitrogen",
-                    "Nm-connection-editor",
-                    "Wpg",
-                    "Eduvpn-gui",
-                    "Pavucontrol"
+                    "Gcolor3",
+                    "Galculator",
+                    "Sxiv",
+                    "Mpv",
                 },
                 name = {
                     "Event Tester",  -- xev.

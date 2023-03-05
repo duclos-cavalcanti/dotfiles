@@ -22,10 +22,17 @@ elif [ -r /etc/bash_completion.d/ ]; then # ubuntu
     . /etc/bash_completion.d/git-prompt
 fi
 
-# Sourcing fzf keybindings
-if [ -d /usr/share/fzf ]; then
-  . /usr/share/fzf/key-bindings.bash
-  . /usr/share/fzf/completion.bash
+# fzf
+if command -v fzf &>/dev/null; then
+    fzf_dirs=(
+    /usr/share/fzf/key-bindings.bash
+    /usr/share/fzf/completion.bash
+    /usr/share/bash-completion/completions/fzf
+    /usr/share/doc/fzf/examples/key-bindings.bash
+    )
+    for d in ${fzf_dirs[@]}; do
+        [ -e ${d} ] && . ${d}
+    done
 fi
 
 bash_prompt() {
@@ -343,10 +350,14 @@ if command -v bat &>/dev/null; then
     alias cat="bat -p"
 fi
 
+# fd
+if command -v fdfind &>/dev/null; then
+    alias fd="fdfind"
+fi
+
 # fetch
 if command -v pfetch &>/dev/null; then
     :
-    # pfetch
 else
     if command -v curl &>/dev/null; then
         alias pfetch="curl -s https://raw.githubusercontent.com/dylanaraps/pfetch/master/pfetch | sh"

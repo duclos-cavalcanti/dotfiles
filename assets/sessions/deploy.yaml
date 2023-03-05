@@ -1,4 +1,4 @@
-session_name: manager
+session_name: deploy
 start_directory: "/home/duclos/.deploy/"
 windows:
   - window_name: readme

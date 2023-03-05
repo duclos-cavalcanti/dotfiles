@@ -16,7 +16,7 @@ font:
     family: NotoSansMono
     style: Bold Italic
 
-  size: 6.0
+  size: 9.0
 
 # $ fc-list
 # list installed fonts

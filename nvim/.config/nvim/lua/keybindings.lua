@@ -77,7 +77,7 @@ nnoremap("<C-Space>", ":SymbolsOutline<CR>")
 -------------------
 -- COMMAND MAPPINGS
 -------------------
-vim.cmd("command! GUpdate !git add -A && git commit -m 'Update' && git push") -- reload colorscheme
+vim.cmd("command! Update !git add -A && git commit -m 'Update' && git push") -- reload colorscheme
 vim.cmd("command! Scheme so ~/.config/nvim/lua/themes.lua") -- reload colorscheme
 vim.cmd("command! W w")
 

@@ -65,9 +65,6 @@ nnoremap("<leader>sm", "<cmd>lua require('telescope.builtin').man_pages({section
 nnoremap("<leader>e", ":Telescope file_browser path=%:p:h<CR>")
 nnoremap("<leader>E", ":Telescope file_browser<CR>")
 
--- Color Scheme Reload
-nnoremap("<leader>r", ":so ~/.config/nvim/lua/themes.lua<CR>")
-
 -- Neogit/Git
 nnoremap("<leader>g", ":lua require('neogit').open()<CR>")
 
@@ -80,6 +77,7 @@ nnoremap("<C-Space>", ":SymbolsOutline<CR>")
 -------------------
 -- COMMAND MAPPINGS
 -------------------
+vim.cmd("command! GUpdate !git add -A && git commit -m 'Update' && git push") -- reload colorscheme
 vim.cmd("command! Scheme so ~/.config/nvim/lua/themes.lua") -- reload colorscheme
 vim.cmd("command! W w")
 

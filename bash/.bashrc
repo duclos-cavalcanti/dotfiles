@@ -339,7 +339,6 @@ shopt -s dotglob        # includes file names beginning with a '.' in the
 # Aliases
 alias e="vim"
 alias v="nvim"
-alias o="shmenu -o $(tmux list-sessions -F '#S') | tmux attach"
 
 # bat
 if command -v bat &>/dev/null; then

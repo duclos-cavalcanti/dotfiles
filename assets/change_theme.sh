@@ -8,7 +8,6 @@ DOTFILES="$HOME/.dotfiles"
 AWESOME_DIR="$HOME/.config/awesome"
 ALACRITTY_DIR="$HOME/.config/alacritty/"
 NVIM_DIR="$HOME/.config/nvim"
-FIREFOX_DIR="$HOME/.dotfiles/firefox/.mozilla/firefox/52iq0khp.default-release/chrome/"
 
 usage() {
   echo "USAGE:
@@ -16,17 +15,9 @@ usage() {
 
     change.sh has:
     1) the following themes:
-      * dark
-      * light
-      * regular
-      * test
+      * 01, 02, ...
       "
 }
-
-if ! command -v xdotool&>/dev/null; then
-    echo "xdotool is not installed!"
-    exit 1
-fi
 
 if ! command -v yq&>/dev/null; then
     echo "yq is not installed!"

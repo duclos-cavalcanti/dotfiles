@@ -15,8 +15,9 @@ local function wp(s, hwp, vwp)
 end
 
 local function set_wallpaper(s)
-    local wallpaper = beautiful.wp
-    wp(s, wallpaper, wallpaper)
+    local hwp   = beautiful.wp
+    local vwp   = beautiful.wp2
+    wp(s, hwp, vwp)
 end
 
 function M.setup()

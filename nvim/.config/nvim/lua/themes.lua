@@ -5,7 +5,7 @@ vim.g.custom_cursorline             = true
 vim.g.custom_columnline             = false
 vim.g.custom_colorcolumn            = true
 vim.g.custom_inactive_statusline    = true
-vim.g.custom_palette                = "04"
+vim.g.custom_palette                = "03"
 vim.g.custom_palette_dir            = "/home/duclos/.dotfiles/assets/themes/palette"
 local scheme = "custom"
 

@@ -38,15 +38,12 @@ function M.custom(s)
         local tagicon = self:get_children_by_id('icon_role')[1]
         tagicon.markup = string.format("<span font_desc='%s'>%d</span>", beautiful.font_icon, index)
         if c3.selected then
-        	-- tagicon.text = ""
         	self.bg = beautiful.taglist_bg_focus
         	self.fg = beautiful.taglist_fg_focus
         elseif #c3:clients() == 0 then
-        	-- tagicon.text = ""
         	self.bg = beautiful.taglist_bg_empty
         	self.fg = beautiful.taglist_fg_empty
         else
-        	-- tagicon.text = ""
         	self.bg = beautiful.taglist_bg_occupied
         	self.fg = beautiful.taglist_fg_occupied
         end

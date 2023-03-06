@@ -13,7 +13,7 @@ local icon_path = theme_path .. "/icons"
 local default_path = require("gears.filesystem").get_themes_dir()
 
 local font_family     = "NotoSansMono" -- DejaVuSansMono
-local palette         = "04"
+local palette         = "03"
 
 local palette_file    = utils.palette_path() .. "/" .. palette .. ".lua"
 local colors          = utils.load_file(palette_file)
@@ -22,6 +22,7 @@ local theme = {}
 
 theme.colors        = colors
 theme.wp            = wallpaper_path .. "/" .. colors.wm.wp
+theme.wp2           = wallpaper_path .. "/" .. (colors.wm.wp2 or colors.wm.wp)
 theme.none          = "#0000000" -- transparency
 
 theme.font_family       = font_family .. " "

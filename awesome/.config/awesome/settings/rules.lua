@@ -27,11 +27,13 @@ function M.setup(keys)
                 },
                 class = {
                     "Arandr",
+                    "Blueman-manager",
                     "Pcmanfm",
                     "Nitrogen",
                     "Gcolor3",
                     "Galculator",
                     "Pavucontrol",
+                    "Baobab",
                     "Sxiv",
                     "Mpv",
                 },

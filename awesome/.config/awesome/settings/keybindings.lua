@@ -144,7 +144,7 @@ function M.set_keybindings()
                       "layout"
                   }),
         awful.key({ M.modkey }, "t",
-                  function() awful.layout.set(awful.layout.suit.tile) end,
+                  function() awful.layout.set(awful.layout.suit.tile.left) end,
                   {
                       "change to tile layout",
                       "layout"

@@ -32,6 +32,7 @@ function M.setup(keys)
                     "Nitrogen",
                     "Gcolor3",
                     "Galculator",
+                    "Gpick",
                     "Pavucontrol",
                     "Baobab",
                     "Sxiv",
@@ -56,9 +57,6 @@ function M.setup(keys)
       {
           rule = {
               floating = true,
-          },
-          except_any = {
-              name = "Picture-in-Picture"
           },
           properties = {
               placement = awful.placement.centered,

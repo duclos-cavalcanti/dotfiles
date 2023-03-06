@@ -5,6 +5,7 @@ local M = {
     fg = "#FAFAFA",
     -- based on
     -- https://ubuntu-mate.org/
+    -- #4E9A05, #05989A, #2E3436, #EF2929, #C4A000
     black       = "#272727", -- #2C2C2C
     red         = "#DD4813",
     green       = "#87a556",

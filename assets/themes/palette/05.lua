@@ -1,27 +1,27 @@
 local M = {
     none = "NONE",
 
-    bg = "#060804", --#080B05, #070E06, #0a0e06
-    fg = "#fefae0",
+    bg = "#272727",
+    fg = "#d2d2d2",
     -- based on
-    -- https://design.ubuntu.com/brand/colour-palette/
-    black       = "#341a08", --#080B05
+    -- mate colors
+    black       = "#cccebc",
     red         = "#dca3a3",
-    green       = "#88b090",
+    green       = "#87a556",
     yellow      = "#ffd7a7", --#EED8BD
     blue        = "#71c4d1",
     magenta     = "#e89393", --#9e6862
     cyan        = "#71d3b4",
     white       = "#5d6262",
 
-    black2      = "#151c0D",
+    black2      = "#151515",
     red2        = "#dc8c6c",
-    green2      = "#070E06",
+    green2      = "#a9be61",
     yellow2     = "#ffd7a7",
     blue2       = "#c8e7ec",
     magenta2    = "#f18c96",
     cyan2       = "#ccd990",
-    white2      = "#ffffff",
+    white2      = "#d2d2d2",
 }
 
 M.grey = M.white

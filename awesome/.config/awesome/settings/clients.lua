@@ -12,6 +12,9 @@ local function disable_shadow(c)
     awful.spawn("xprop -id " .. c .. " -f _COMPTON_SHADOW 32c -set _COMPTON_SHADOW 0", false)
 end
 
+-- only implement shadowing for floating and not maximized windows
+-- this prevents shadowing over the bars when bars on the bottom
+-- of screen
 local function special_shadowing(c)
     local s = c.screen
     local layout = s.selected_tag.layout.name
@@ -60,11 +63,6 @@ function M.setup()
             -- Prevent clients from being unreachable after screen count changes.
             awful.placement.no_offscreen(c)
         end
-
-        -- only implement shadowing for floating and not maximized windows
-        -- this prevents shadowing over the bars when bars on the bottom
-        -- of screen
-        special_shadowing(c)
 
         -- Some applications do not respect ICCCM rules correctly
         -- and redefine the window class property.

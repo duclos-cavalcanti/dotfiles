@@ -36,8 +36,9 @@ function M.setup(keys)
                     "Weather",
                     "Pavucontrol",
                     "Baobab",
-                    "Sxiv",
-                    "Mpv",
+                    "Pidgin",
+                    "Eog",
+                    "Totem",
                 },
                 name = {
                     "Event Tester",  -- xev.

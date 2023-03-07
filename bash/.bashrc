@@ -320,9 +320,7 @@ if command -v ghc &>/dev/null; then
 fi
 
 # rust
-if command -v rustc &>/dev/null; then
-    PATH=$PATH:${HOME}/.cargo/bin
-fi
+PATH=$PATH:${HOME}/.cargo/bin
 
 export PATH
 

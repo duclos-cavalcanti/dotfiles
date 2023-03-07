@@ -6,10 +6,11 @@
 
 - Feel free to look around.
 - Files are managed across the system through [GNU stow](https://www.gnu.org/software/stow/).
+- Wallpapers are not mine and most of them are taken from [mate/ubuntu-mate](https://github.com/ubuntu-mate/ubuntu-mate-artwork)!
 
 ![Screenshot](.github/assets/screenshot.png?)
 
-- **OS:** [Arch Linux/Ubuntu](https://archlinux.org)
+- **OS:** [Arch Linux](https://archlinux.org)[/Ubuntu](https://ubuntu.com/)
 - **WM:** [awesome](https://github.com/awesomeWM/awesome)
 - **Terminal:** [alacritty](https://github.com/alacritty/alacritty)
 - **Shell:** [bash](https://www.gnu.org/software/bash/)
@@ -17,12 +18,11 @@
 - **Compositor:** [picom](https://github.com/yshui/picom)
 
 ## Installation
-Make sure that GNU stow and the necessary software mentioned above are installed in one's system.
-
-### Steps
+The Arch installation is still somewhat manual and untested. The ubuntu variation is already stable and can be
+seen [here](https://github.com/duclos-cavalcanti/deploy). Simply install the ubuntu-server ISO and run:
 ```sh
-# still has to be debugged and explained properly
-./install.sh
+curl \
+https://raw.githubusercontent.com/duclos-cavalcanti/deploy/main/ubuntu/install.sh | bash
 ```
 Enjoy :)
 

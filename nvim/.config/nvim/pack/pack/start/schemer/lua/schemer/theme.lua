@@ -885,26 +885,28 @@ function M.base(config, c)
         Typedef = {
             fg = c.editor.type
         },
+        Line = {
+            fg = c.editor.ui.line,
+        },
+        -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
+        LineNr = {
+            fg = c.editor.linenr,
+            bg = c.editor.column
+        },
+        -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
+        CursorLineNr = {
+            fg = c.editor.cur_linenr,
+            bg = c.editor.column
+        },
         -- screen-column at the cursor, when 'cursorcolumn' is set.
         CursorColumn = {
             fg = (config.columnline and c.white)
                  or c.none
         },
-        -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
-        LineNr = {
-            fg = c.editor.linenr
-        },
-        -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
-        CursorLineNr = {
-            fg = c.editor.cur_linenr
-        },
-        Line = {
-            fg = c.editor.ui.line
-        },
         -- column where |signs| are displayed
         SignColumn = {
             bg = config.transparent and c.none
-                 or c.bg,
+                 or c.editor.column
         },
         -- column where |signs| are displayed
         SignColumnSB = {

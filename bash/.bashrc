@@ -183,7 +183,7 @@ bash_prompt() {
 	PROMPT+="${primary}"
     PROMPT+="━"
 	PROMPT+='['
-	PROMPT+="${bold_red}"
+	PROMPT+="${bold_purple}"
     PROMPT+='\H'
 	PROMPT+="${primary}"
 	PROMPT+=']'
@@ -191,7 +191,7 @@ bash_prompt() {
     # directory
     PROMPT+="━"
 	PROMPT+='['
-	PROMPT+="${bold_blue}"
+	PROMPT+="${bold_red}"
     PROMPT+='\W'
 	PROMPT+="${primary}"
 	PROMPT+=']'

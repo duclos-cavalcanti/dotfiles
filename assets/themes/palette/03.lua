@@ -53,6 +53,7 @@ M.editor = {
     comment         = M.grey,
     linenr          = M.grey,
     cur_linenr      = M.yellow,
+    column          = M.black2,
     punctuation     = M.magenta,
     special         = M.green,
     icons           = M.blue2,
@@ -115,19 +116,19 @@ M.editor = {
             line = {
                 a = {
                     normal = {
-                        bg = M.bg,
+                        bg = M.black2,
                         fg = M.fg,
                     },
                     insert = {
-                        bg = M.bg,
+                        bg = M.black2,
                         fg = M.green,
                     },
                     command = {
-                        bg = M.bg,
+                        bg = M.black2,
                         fg = M.yellow,
                     },
                     visual = {
-                        bg = M.bg,
+                        bg = M.black2,
                         fg = M.magenta,
                     },
                 },
@@ -136,8 +137,8 @@ M.editor = {
                     fg = M.fg,
                 },
                 c = {
-                    bg = M.black2,
-                    fg = M.grey,
+                    bg = M.bg,
+                    fg = M.yellow2,
                 },
             }
         },

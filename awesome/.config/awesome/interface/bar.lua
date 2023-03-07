@@ -32,7 +32,7 @@ function M.set_bar(s)
 
     -- Taglist
     local function taglist(scr)
-        return require("interface.widgets.taglist").custom(scr)
+        return require("interface.widgets.taglist").default(scr)
     end
 
     -- Tasklist

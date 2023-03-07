@@ -21,33 +21,24 @@ local taglist_buttons = gears.table.join(
                                               end
                                           end),
                     awful.button({ }, 4, function(t) awful.tag.viewnext(t.screen) end),
-                    awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end)
-                )
+                    awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end))
 
-
-function M.default(s)
-    return awful.widget.taglist {
-            screen  = s,
-            filter  = awful.widget.taglist.filter.all,
-            buttons = taglist_buttons,
-    }
+local update_tags = function(self, c3, index)
+    local tagicon = self:get_children_by_id('icon_role')[1]
+    tagicon.markup = string.format("<span font_desc='%s'>%d</span>", beautiful.font_icon, index)
+    if c3.selected then
+    	self.bg = beautiful.taglist_bg_focus
+    	self.fg = beautiful.taglist_fg_focus
+    elseif #c3:clients() == 0 then
+    	self.bg = beautiful.taglist_bg_empty
+    	self.fg = beautiful.taglist_fg_empty
+    else
+    	self.bg = beautiful.taglist_bg_occupied
+    	self.fg = beautiful.taglist_fg_occupied
+    end
 end
 
-function M.custom(s)
-    local update_tags = function(self, c3, index)
-        local tagicon = self:get_children_by_id('icon_role')[1]
-        tagicon.markup = string.format("<span font_desc='%s'>%d</span>", beautiful.font_icon, index)
-        if c3.selected then
-        	self.bg = beautiful.taglist_bg_focus
-        	self.fg = beautiful.taglist_fg_focus
-        elseif #c3:clients() == 0 then
-        	self.bg = beautiful.taglist_bg_empty
-        	self.fg = beautiful.taglist_fg_empty
-        else
-        	self.bg = beautiful.taglist_bg_occupied
-        	self.fg = beautiful.taglist_fg_occupied
-        end
-    end
+function M.default(s)
     return awful.widget.taglist {
             screen  = s,
             filter  = awful.widget.taglist.filter.all,
@@ -67,10 +58,10 @@ function M.custom(s)
 			    },
 			    id = 'background_role',
 			    widget = wibox.container.background,
-			    create_callback = function(self, c3, index, objects)
+			    create_callback = function(self, c3, index, _)
 			    	update_tags(self, c3, index)
 			    end,
-			    update_callback = function(self, c3, index, objects)
+			    update_callback = function(self, c3, index, _)
 			    	update_tags(self, c3, index)
 			    end
 		    },

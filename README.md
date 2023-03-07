@@ -20,10 +20,9 @@
 ## Installation
 * The Arch installation is still somewhat manual and untested.
 * The Ubuntu variation is already stable and can be followed through [here](https://github.com/duclos-cavalcanti/deploy).
-* Simply install the ubuntu-server ISO and run:
+* To simply stow the dotfiles run:
   ```sh
-  curl \
-  https://raw.githubusercontent.com/duclos-cavalcanti/deploy/main/ubuntu/install.sh | bash
+  ./install.sh -s
   ```
 
 ## Thanks

@@ -5,23 +5,22 @@ local M = {
     fg = "#FAFAFA",
     -- based on
     -- https://ubuntu-mate.org/
-    -- #4E9A05, #05989A, #2E3436, #EF2929, #C4A000
     black       = "#272727", -- #2C2C2C
-    red         = "#DD4813",
+    red         = "#e01a4f",
     green       = "#87a556",
-    yellow      = "#A48E56",
-    blue        = "#5A56A4",
+    yellow      = "#f9c22e",
+    blue        = "#84a752",
     magenta     = "#8E56A4",
-    cyan        = "#56A474",
+    cyan        = "#84dcc6",
     white       = "#616161",
 
     black2      = "#151515", -- #3C3B37
-    red2        = "#DD4813",
+    red2        = "#f15946",
     green2      = "#a9be61",
-    yellow2     = "#3C3B37",
-    blue2       = "#5686A4",
+    yellow2     = "#cdcebf",
+    blue2       = "#43acc7",
     magenta2    = "#A45686",
-    cyan2       = "#56A49B",
+    cyan2       = "#84dcc6",
     white2      = "#FAFAFA",
 }
 
@@ -37,15 +36,15 @@ M.editor = {
     namespace       = M.grey,
     var             = M.fg,
     field           = M.cyan,
-    type            = M.blue2,
+    type            = M.blue,
     structure       = M.cyan2,
     bool            = M.red,
-    storage         = M.blue,
-    string          = M.yellow,
+    storage         = M.blue2,
+    string          = M.yellow2,
     char            = M.red,
-    number          = M.blue,
-    constant        = M.blue,
-    preproc         = M.magenta2,
+    number          = M.blue2,
+    constant        = M.blue2,
+    preproc         = M.red2,
     statement       = M.yellow,
     keyword         = M.magenta2,
     forwords        = M.green,    -- conditionals, loops
@@ -54,9 +53,9 @@ M.editor = {
     comment         = M.grey,
     linenr          = M.grey,
     cur_linenr      = M.yellow,
-    punctuation     = M.fg,
+    punctuation     = M.magenta,
     special         = M.green,
-    icons           = M.blue,
+    icons           = M.blue2,
     text            = {
         todo = M.cyan2,
         title = M.red,        -- titles for output and tabline number of buffers
@@ -116,19 +115,19 @@ M.editor = {
             line = {
                 a = {
                     normal = {
-                        bg = M.yellow2,
+                        bg = M.bg,
                         fg = M.fg,
                     },
                     insert = {
-                        bg = M.yellow2,
+                        bg = M.bg,
                         fg = M.green,
                     },
                     command = {
-                        bg = M.yellow2,
+                        bg = M.bg,
                         fg = M.yellow,
                     },
                     visual = {
-                        bg = M.yellow2,
+                        bg = M.bg,
                         fg = M.magenta,
                     },
                 },
@@ -218,7 +217,7 @@ M.wm = {
             fg = M.fg,
         },
         focus = {
-            bg = M.green,
+            bg = M.black,
             fg = M.fg,
         }
     },
@@ -231,7 +230,7 @@ M.wm = {
         normal          = M.grey,
         focus           = M.green,
         sticky          = M.red,
-        marked          = M.blue
+        marked          = M.blue2
     },
     tray = {
         bg = M.black2,

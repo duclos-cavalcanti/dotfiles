@@ -3,8 +3,13 @@ require('nvim-treesitter.configs').setup({
         enable = true,
         additional_vim_regex_highlighting = false
     },
+    autotag = { -- html auto-tagging
+        enable = true,
+        filetypes = {"html", "xml", "markdown"},
+    },
 	ensure_installed = {
     "bash",
+    "html",
     "c",
     "cpp",
     "cmake",

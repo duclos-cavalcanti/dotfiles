@@ -94,7 +94,8 @@ return require('packer').startup(function(use)
 
     -- utils
     use {
-        "windwp/nvim-autopairs", -- autopairs
+        "windwp/nvim-autopairs", -- autopairs, html autotagging
+        requires = { "windwp/nvim-ts-autotag" },
         config = function() require('ex.pair') end,
     }
 

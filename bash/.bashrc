@@ -183,7 +183,7 @@ bash_prompt() {
 	PROMPT+="${primary}"
     PROMPT+="━"
 	PROMPT+='['
-	PROMPT+="${bold_purple}"
+	PROMPT+="${light_blue}"
     PROMPT+='\H'
 	PROMPT+="${primary}"
 	PROMPT+=']'

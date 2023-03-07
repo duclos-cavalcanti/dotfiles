@@ -64,17 +64,19 @@ M.editor = {
         rare = M.blue2,
     },
     error           = {
-        bg = M.black,
+        bg = M.black2, --column color should match
         fg = M.red2,
     },
     warning     = {
-        bg = M.black,
+        bg = M.black2, --column color should match
         fg = M.grey,
     },
     hint     = {
+        bg = M.black2, --column color should match
         fg = M.white2,
     },
     info     = {
+        bg = M.black2, --column color should match
         fg = M.fg,
     },
     success  = {

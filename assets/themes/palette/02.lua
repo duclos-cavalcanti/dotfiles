@@ -53,6 +53,7 @@ M.editor = {
     comment         = M.grey,
     linenr          = M.grey,
     cur_linenr      = M.yellow,
+    column          = M.bg,
     punctuation     = M.red,
     special         = M.green,
     icons           = M.blue,
@@ -63,17 +64,19 @@ M.editor = {
         rare = M.blue2,
     },
     error           = {
-        bg = M.black,
+        bg = M.bg,
         fg = M.red2,
     },
     warning     = {
-        bg = M.black,
+        bg = M.bg,
         fg = M.grey,
     },
     hint     = {
+        bg = M.bg,
         fg = M.white2,
     },
     info     = {
+        bg = M.bg,
         fg = M.fg,
     },
     success  = {

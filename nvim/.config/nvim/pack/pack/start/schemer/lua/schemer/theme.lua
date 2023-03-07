@@ -552,15 +552,19 @@ function M.diagnostics(config, c)
         -- Base highlight groups
         -- Diagnostic highlights link to this by default
         DiagnosticError = {
+            bg = c.editor.error.bg,
             fg = c.editor.error.fg
         },
         DiagnosticWarn = {
+            bg = c.editor.warning.bg,
             fg = c.editor.warning.fg
         },
         DiagnosticInfo = {
+            bg = c.editor.info.bg,
             fg = c.editor.info.fg
         },
         DiagnosticHint = {
+            bg = c.editor.hint.bg,
             fg = c.editor.hint.fg
         },
         -- Used for "Error" diagnostic virtual text

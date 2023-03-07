@@ -9,7 +9,7 @@
 
 ![Screenshot](.github/assets/screenshot.png?)
 
-- **OS:** [Arch Linux](https://archlinux.org)
+- **OS:** [Arch Linux/Ubuntu](https://archlinux.org)
 - **WM:** [awesome](https://github.com/awesomeWM/awesome)
 - **Terminal:** [alacritty](https://github.com/alacritty/alacritty)
 - **Shell:** [bash](https://www.gnu.org/software/bash/)

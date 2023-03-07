@@ -19,13 +19,12 @@
 
 ## Installation
 * The Arch installation is still somewhat manual and untested.
-* The ubuntu variation is already stable and can be seen [here](https://github.com/duclos-cavalcanti/deploy).
-  Simply install the ubuntu-server ISO and run:
+* The Ubuntu variation is already stable and can be followed through [here](https://github.com/duclos-cavalcanti/deploy).
+* Simply install the ubuntu-server ISO and run:
   ```sh
   curl \
   https://raw.githubusercontent.com/duclos-cavalcanti/deploy/main/ubuntu/install.sh | bash
   ```
-  Enjoy :)
 
 ## Thanks
 - [Barbaross93](https://github.com/Barbaross93/Muspelheim)

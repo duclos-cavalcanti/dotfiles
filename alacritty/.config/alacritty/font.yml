@@ -1,22 +1,22 @@
 font:
   normal:
     # Font family
-    family: NotoSansMono
+    family: UbuntuMono
     style: Regular
 
   bold:
-    family: NotoSansMono
+    family: UbuntuMono
     style: Bold
 
   italic:
-    family: NotoSansMono
+    family: UbuntuMono
     style: Italic
 
   bold_italic:
-    family: NotoSansMono
+    family: UbuntuMono
     style: Bold Italic
 
-  size: 9.0
+  size: 11.0
 
 # $ fc-list
 # list installed fonts

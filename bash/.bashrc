@@ -22,7 +22,7 @@ elif [ -r /etc/bash_completion.d/ ]; then # ubuntu
     . /etc/bash_completion.d/git-prompt
 fi
 
-# fzf
+# fzf for arch and ubuntu
 if command -v fzf &>/dev/null; then
     fzf_dirs=(
     /usr/share/fzf/key-bindings.bash
@@ -281,11 +281,6 @@ PATH=$PATH:${HOME}/.local/bin/
 # personal binaries and scripts
 PATH=$PATH:${HOME}/.bin
 
-# vivado/xilinx
-if [ -d "${HOME}/Programs/Xilinx" ]; then
-    PATH=$PATH:${HOME}/Programs/Xilinx/Vivado/2022.1/bin
-fi
-
 # lua
 if command -v lua &>/dev/null; then
     export LUA_PATH=";;$HOME/Documents/programs/debugger.lua/?.lua"
@@ -355,12 +350,8 @@ if command -v fd &>/dev/null || command -v fdfind &>/dev/null; then
 fi
 
 # fetch
-if command -v pfetch &>/dev/null; then
-    :
-else
-    if command -v curl &>/dev/null; then
-        alias pfetch="curl -s https://raw.githubusercontent.com/dylanaraps/pfetch/master/pfetch | sh"
-    fi
+if command -v curl &>/dev/null; then
+    alias pfetch="curl -s https://raw.githubusercontent.com/dylanaraps/pfetch/master/pfetch | sh"
 fi
 
 # xclip
@@ -414,8 +405,8 @@ alias gbD="git push --delete origin"
 alias greset="git reset --hard"
 
 # Exports
-if command -v zathura &>/dev/null; then
-    export READER='zathura'
+if command -v evince &>/dev/null; then
+    export READER='evince'
 else
     unset READER
 fi
@@ -442,14 +433,14 @@ export XDG_CACHE_HOME="$HOME/.cache/"
 export XDG_CONFIG_HOME="$HOME/.config/"
 
 export TERM='xterm-256color'
+export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
+export GNUPGHOME="$HOME/.gnupg"
 export BAT_THEME='ansi'
 export PYLINTHOME="${XDG_DATA_HOME}/pylint"
-export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 export QT_QPA_PLATFORMTHEME='qt5ct'
 export QT_STYLE_OVERRIDE='kvantum-dark'
 export IPYTHONDIR="$HOME/.config/ipython/"
 export CARGO_HOME="$HOME/.cache/cargo/"
-export GNUPGHOME="$HOME/.gnupg"
 export INPUTRC="$HOME/.inputrc"
 export XINITRC="$HOME/.config/X11/xinitrc"
 export LESSHISTFILE=-
@@ -502,16 +493,6 @@ if command -v exa &>/dev/null; then
 
     alias tree="exa --tree"
 fi
-
-# man pages
-# MANPATH=$MANPATH:/usr/share/man/man2
-# MANPATH=$MANPATH:/usr/share/man/man3
-# MANPATH=$MANPATH:/usr/share/man/man3p
-# export MANPATH
-
-# updates the man page database
-# mandb -u
-# unset MANPATH
 
 man() {
     # colored man pages

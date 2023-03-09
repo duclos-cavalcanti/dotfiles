@@ -45,16 +45,22 @@ return require('packer').startup(function(use)
         config = function() require('ex.completion') end,
       }
 
-    -- finder, file browser and debugger menu
+    -- fuzzy finder and picker
     use {'nvim-telescope/telescope.nvim',
           config = function() require('ex.telescope') end,
           requires = {
               {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'},
-              'nvim-telescope/telescope-file-browser.nvim',
               'nvim-telescope/telescope-dap.nvim',
               'nvim-lua/plenary.nvim',
           },
       }
+
+    -- file browser
+    use {
+      'nvim-tree/nvim-tree.lua',
+       config = function() require('ex.file-browser') end,
+      requires = { 'nvim-tree/nvim-web-devicons'},
+    }
 
     -- treesitter
     use { "nvim-treesitter/nvim-treesitter",
@@ -92,15 +98,16 @@ return require('packer').startup(function(use)
         end
     }
 
-    -- utils
+    -- autopairs, html autotagging
     use {
-        "windwp/nvim-autopairs", -- autopairs, html autotagging
+        "windwp/nvim-autopairs",
         requires = { "windwp/nvim-ts-autotag" },
         config = function() require('ex.pair') end,
     }
 
+    -- comment utility
     use {
-        "numToStr/Comment.nvim", -- comment lines of code
+        "numToStr/Comment.nvim",
         config = function() require('ex.comment') end,
     }
 

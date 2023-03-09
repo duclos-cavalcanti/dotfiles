@@ -62,8 +62,7 @@ nnoremap("<leader>sh", "<cmd>lua require('telescope.builtin').help_tags()<CR>")
 nnoremap("<leader>sm", "<cmd>lua require('telescope.builtin').man_pages({sections={'ALL'}})<CR>")
 
 -- File explorer
-nnoremap("<leader>e", ":Telescope file_browser path=%:p:h<CR>")
-nnoremap("<leader>E", ":Telescope file_browser<CR>")
+nnoremap("<leader>e", ":NvimTreeToggle<CR>")
 
 -- Neogit/Git
 nnoremap("<leader>g", ":lua require('neogit').open()<CR>")
@@ -77,15 +76,22 @@ nnoremap("<C-Space>", ":SymbolsOutline<CR>")
 -------------------
 -- COMMAND MAPPINGS
 -------------------
-vim.cmd("command! Update !git add -A && git commit -m 'Update' && git push") -- reload colorscheme
-vim.cmd("command! Scheme so ~/.config/nvim/lua/themes.lua") -- reload colorscheme
-vim.cmd("command! W w")
+
+-- update git repo with 'Update' as commit message
+vim.cmd("command! Update !git add -A && git commit -m 'Update' && git push")
+
+-- reload colorscheme
+vim.cmd("command! Scheme so ~/.config/nvim/lua/themes.lua")
 
 -------------------
 -- AUTOCOMMANDS
 -------------------
-vim.cmd [[ autocmd BufWritePre * %s/\s\+$//e ]] -- Remove trailing whitespaces
-vim.cmd [[ autocmd BufWrite *.snippets lua require('ex.luasnip').setup() ]] -- Auto reload snippets
+
+-- Remove trailing whitespaces
+vim.cmd [[ autocmd BufWritePre * %s/\s\+$//e ]]
+
+-- Auto reload snippets
+vim.cmd [[ autocmd BufWrite *.snippets lua require('ex.luasnip').setup() ]]
 
 -- Deleting terminals when being closed
 vim.cmd [[ autocmd TermEnter term://* setlocal nohidden ]]

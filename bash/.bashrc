@@ -317,6 +317,12 @@ fi
 # rust
 PATH=$PATH:${HOME}/.cargo/bin
 
+# js/node/npm
+if command -v npm &>/dev/null; then
+    export NPM_CONFIG_PREFIX="${HOME}/.node_modules"
+    PATH=$PATH:"${HOME}/.node_modules"
+fi
+
 export PATH
 
 # History
@@ -491,7 +497,9 @@ if command -v exa &>/dev/null; then
         exa "$@"
     }
 
-    alias tree="exa --tree"
+    if ! command -v exa &>/dev/null; then
+        alias tree="exa --tree"
+    fi
 fi
 
 man() {

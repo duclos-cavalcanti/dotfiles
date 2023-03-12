@@ -105,6 +105,11 @@ return require('packer').startup(function(use)
         config = function() require('ex.pair') end,
     }
 
+    use {
+        'mhartington/formatter.nvim',
+        config = function() require('ex.format') end,
+    }
+
     -- comment utility
     use {
         "numToStr/Comment.nvim",

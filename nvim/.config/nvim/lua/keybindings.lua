@@ -67,6 +67,10 @@ nnoremap("<leader>e", ":NvimTreeToggle<CR>")
 -- Neogit/Git
 nnoremap("<leader>g", ":lua require('neogit').open()<CR>")
 
+-- Formatter
+nnoremap("<leader>f", ":Format<CR>")
+nnoremap("<leader>F", "<silent>:FormatWRite<CR>")
+
 -- Debugger
 nnoremap("<leader>d", ":lua require('telescope').extensions.dap.commands{}<CR>")
 
@@ -74,21 +78,8 @@ nnoremap("<leader>d", ":lua require('telescope').extensions.dap.commands{}<CR>")
 nnoremap("<C-Space>", ":SymbolsOutline<CR>")
 
 -------------------
--- COMMAND MAPPINGS
--------------------
-
--- update git repo with 'Update' as commit message
-vim.cmd("command! Update !git add -A && git commit -m 'Update' && git push")
-
--- reload colorscheme
-vim.cmd("command! Scheme so ~/.config/nvim/lua/themes.lua")
-
--------------------
 -- AUTOCOMMANDS
 -------------------
-
--- Remove trailing whitespaces
-vim.cmd [[ autocmd BufWritePre * %s/\s\+$//e ]]
 
 -- Auto reload snippets
 vim.cmd [[ autocmd BufWrite *.snippets lua require('ex.luasnip').setup() ]]

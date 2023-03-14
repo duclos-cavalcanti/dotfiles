@@ -382,7 +382,7 @@ alias ll="ls -l --color=auto --group-directories-first"
 alias mv="mv -i"
 alias cp="cp -i"
 
-alias less='less -r'
+alias less='less -R'
 alias diff="diff --color=auto"
 
 alias grep='grep --colour=always'

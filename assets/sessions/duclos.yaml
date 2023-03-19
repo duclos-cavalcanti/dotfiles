@@ -1,20 +1,16 @@
-session_name: me
-start_directory: "/home/duclos/Documents/projects/personal/curriculum-vitae/"
+session_name: web
+start_directory: "~/Documents/topics/personal/duclos-cavalcanti.github.io/"
 windows:
-  - window_name: cv
+  - window_name: readme
     panes:
-      - nvim latex/main.tex
-  - window_name: cv-bash
-    layout: even-horizontal
+      - nvim README.md
+  - window_name: toolchain
     panes:
-      - clear && ls -l
-      - nvim Makefile
-  - window_name: www
-    start_directory: "/home/duclos/Documents/projects/personal/duclos-cavalcanti.github.io/"
+      - nvim build.sh
+  - window_name: web
     panes:
-      - nvim .
-  - window_name: www-bash
-    start_directory: "/home/duclos/Documents/projects/personal/duclos-cavalcanti.github.io/"
+      - nvim pages/index.md
+  - window_name: bash
     layout: even-horizontal
     panes:
       - clear && ls -l

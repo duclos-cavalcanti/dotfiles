@@ -78,6 +78,11 @@ nnoremap("<leader>d", ":lua require('telescope').extensions.dap.commands{}<CR>")
 nnoremap("<C-Space>", ":SymbolsOutline<CR>")
 
 -------------------
+-- COMMANDS
+-------------------
+vim.cmd [[ command! Make :!make ]]
+
+-------------------
 -- AUTOCOMMANDS
 -------------------
 

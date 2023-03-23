@@ -5,13 +5,26 @@ snippet content
 	    3. [sub3](#sub3)
 
 	<a name="intro"/>
-
+snippet foot 
+	[^${1:note}]
+	[${1}]: ${0:Reference}
+snippet cite 
+	[@${1:citation}]
 snippet tb
-	|  ${0:factors} |    ${1:a}     |  ${2:b} |
-	| ------------- |-------------  | ------- |
-	|    ${3:f1}    |    Y          | N       |
-	|    ${4:f2}    |    Y          | N       |
-
+	<table>
+	<tr>
+	  <th>Projects</th>
+	  <th>Certificates</th>
+	</tr>
+	<tr>
+	  <td>This</td>
+	  <td>That</td>
+	</tr>
+	<tr>
+	  <td>This</td>
+	  <td>That</td>
+	</tr>
+	</table> 
 snippet ch
 	- [ ] ${1:todo}
 snippet drop
@@ -20,50 +33,16 @@ snippet drop
 	${1:title}
 	</summary>
 	<p>
-
 	$0
-
 	</p>
 	</details>
 snippet img
 	![${0:title}](.imgs/${1:img}.png)
-
 snippet link
 	[${0:word}](${1:url})
-
 snippet : Definition list
 	$1
 	: $0
-
 snippet :: Alternate definition list
 	$1
 	  - $0
-snippet contrib
-	# How to Contribute
-	1. Fork the project.
-	1. Clone your fork (`git clone https://github.com/your_username/shmenu && cd shmenu`)
-	1. Create your feature branch (`git checkout -b my-new-feature`)
-	1. Make changes
-	1. Commit changes
-	1. Push to the branch (`git push origin my-new-feature`)
-	1. Create new pull request
-
-	## Contributor License Agreement
-
-	Contributions to this project must be accompanied by a Contributor License
-	Agreement (CLA). You (or your employer) retain the copyright to your
-	contribution; this simply gives us permission to use and redistribute your
-	contributions as part of the project. Head over to
-	<https://cla.developers.google.com/> to see your current agreements on file or
-	to sign a new one.
-
-	You generally only need to submit a CLA once, so if you've already submitted one
-	(even if it was for a different project), you probably don't need to do it
-	again.
-
-	## Code reviews
-
-	All submissions, including submissions by project members, require review. We
-	use GitHub pull requests for this purpose. Consult
-	[GitHub Help](https://help.github.com/articles/about-pull-requests/) for more
-	information on using pull requests.

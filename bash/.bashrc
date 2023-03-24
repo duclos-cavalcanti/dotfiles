@@ -367,7 +367,7 @@ fi
 
 # screenshots
 if command -v maim &>/dev/null; then
-    alias screenshot="maim -u -g 1920x1080+1080+0 ~/Downloads/screen.png"
+    alias screenshot="maim -u -g 1920x1080+0+0 ~/Downloads/screen.png"
 fi
 
 alias ..="cd .."

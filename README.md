@@ -8,7 +8,7 @@
 - Files are managed across the system through [GNU stow](https://www.gnu.org/software/stow/).
 - Wallpapers are not mine and most of them are taken from [mate/ubuntu-mate](https://github.com/ubuntu-mate/ubuntu-mate-artwork)!
 
-![Screenshot](.github/assets/screenshot.png?)
+![Screenshot](.github/assets/screen.png?)
 
 - **OS:** [Arch Linux](https://archlinux.org)[/Ubuntu](https://ubuntu.com/)
 - **WM:** [awesome](https://github.com/awesomeWM/awesome)

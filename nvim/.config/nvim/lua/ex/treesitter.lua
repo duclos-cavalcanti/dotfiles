@@ -5,7 +5,7 @@ require('nvim-treesitter.configs').setup({
     },
     autotag = { -- html auto-tagging
         enable = true,
-        filetypes = {"html", "xml", "markdown"},
+        filetypes = {"html", "xml", "markdown", "md"},
     },
 	ensure_installed = {
     "bash",

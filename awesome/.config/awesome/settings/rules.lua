@@ -27,6 +27,17 @@ function M.setup(keys)
               titlebars_enabled = true
           }
         },
+        { -- force these clients maximized property to false
+           rule = {
+               class = {
+                "Firefox",
+                "Spotify"
+               }
+           },
+           properties = {
+               maximized = false
+           }
+        },
         { -- make these floating
             rule_any = {
                 instance = {
@@ -62,17 +73,6 @@ function M.setup(keys)
                 placement = awful.placement.centered,
                 ontop = true,
             }
-        },
-        { -- force maximized to false
-           rule = {
-               class = {
-                "Firefox",
-                "Spotify"
-               }
-           },
-           properties = {
-               maximized = false
-           }
         },
         { -- force all floating to be centered and ontop!
             rule = {

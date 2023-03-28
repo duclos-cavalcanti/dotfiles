@@ -6,7 +6,7 @@ local M = {}
 function M.setup(keys)
     -- Rules
     awful.rules.rules = {
-        { -- All clients
+        { -- base properties to all clients
             rule = { },
             properties = {
                 border_width = beautiful.border_width,
@@ -19,7 +19,15 @@ function M.setup(keys)
                 placement = awful.placement.no_overlap+awful.placement.no_offscreen
             }
         },
-        { -- Floating clients.
+        { -- add titlebars to normal clients and dialogs
+          rule_any = {
+              type = { "normal", "dialog" }
+          },
+          properties = {
+              titlebars_enabled = true
+          }
+        },
+        { -- make these floating
             rule_any = {
                 instance = {
                     "scratch",
@@ -33,12 +41,14 @@ function M.setup(keys)
                     "Gcolor3",
                     "Galculator",
                     "Gpick",
+                    "Gedit",
                     "Weather",
                     "Pavucontrol",
                     "Baobab",
                     "Pidgin",
                     "Eog",
                     "Totem",
+                    "Xephyr"
                 },
                 name = {
                     "Event Tester",  -- xev.
@@ -52,55 +62,26 @@ function M.setup(keys)
                 placement = awful.placement.centered,
                 ontop = true,
             }
-      },
-      -- force all floating windows to be centered and ontop!
-      -- finally was able to do this, since floating windows
-      -- were popping up in random locations
-      {
-          rule = {
-              floating = true,
-          },
-          properties = {
-              placement = awful.placement.centered,
-              ontop = true,
-          }
-      },
-
-      { -- browser
+        },
+        { -- force maximized to false
            rule = {
-               class = "Firefox"
+               class = {
+                "Firefox",
+                "Spotify"
+               }
            },
            properties = {
                maximized = false
            }
-       },
-
-       { -- popup videos from browser
+        },
+        { -- force all floating to be centered and ontop!
             rule = {
-                name = "Picture-in-Picture"
+                floating = true,
             },
             properties = {
-                sticky = true,
-                skip_taskbar = true,
+                placement = awful.placement.centered,
                 ontop = true,
-                placement = awful.placement.bottom_right
             }
-        },
-        { -- xorg server emulator
-            rule = {
-                class = "Xephyr"
-            },
-            properties = {
-               floating = true
-            }
-        },
-        { -- Add titlebars to normal clients and dialogs
-          rule_any = {
-              type = { "normal", "dialog" }
-          },
-          properties = {
-              titlebars_enabled = true
-          }
         },
     }
 end

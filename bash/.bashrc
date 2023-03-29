@@ -561,7 +561,10 @@ if command -v fzf &>/dev/null; then
     }
 
     pgit() {
-        local repo=$(curl -s "https://api.github.com/users/duclos-cavalcanti/repos" | grep -o --color=never 'git@[^"]*' | fzf)
+        local repo=$(curl -s "https://api.github.com/users/duclos-cavalcanti/repos" | 
+                     grep -o --color=never 'git@[^"]*' | 
+                     cut -d '/' -f2 | 
+                     fzf)
         [ -n "$repo" ] && git clone $repo
     }
 

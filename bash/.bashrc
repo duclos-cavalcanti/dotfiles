@@ -564,8 +564,9 @@ if command -v fzf &>/dev/null; then
         local repo=$(curl -s "https://api.github.com/users/duclos-cavalcanti/repos" | 
                      grep -o --color=never 'git@[^"]*' | 
                      cut -d '/' -f2 | 
+                     cut -d '.' -f1 | 
                      fzf)
-        [ -n "$repo" ] && git clone $repo
+        [ -n "$repo" ] && git clone https://github.com/duclos-cavalcanti/${repo}
     }
 
     # ALT-G: "\eg"

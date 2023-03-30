@@ -80,7 +80,7 @@ nnoremap("<C-Space>", ":SymbolsOutline<CR>")
 -------------------
 -- COMMANDS
 -------------------
-vim.cmd [[ command! Make :!make ]]
+vim.cmd [[ command! Print :print("Hello World") ]]
 
 -------------------
 -- AUTOCOMMANDS

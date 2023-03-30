@@ -80,7 +80,7 @@ nnoremap("<C-Space>", ":SymbolsOutline<CR>")
 -------------------
 -- COMMANDS
 -------------------
-vim.cmd [[ command! Print :print("Hello World") ]]
+vim.cmd [[ command! Update :!git add --all && git commit -m 'Update' && git push ]]
 
 -------------------
 -- AUTOCOMMANDS

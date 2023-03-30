@@ -18,3 +18,7 @@ windows:
     panes:
       - clear && ls -l
       - nvim Makefile
+  - window_name: github
+    start_directory: "~/Documents/topics/personal/duclos-cavalcanti/"
+    panes:
+      - nvim README.md

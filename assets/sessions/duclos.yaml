@@ -10,6 +10,9 @@ windows:
   - window_name: web
     panes:
       - nvim pages/index.md
+  - window_name: css
+    panes:
+      - nvim assets/css/base.css
   - window_name: bash
     layout: even-horizontal
     panes:

@@ -19,25 +19,6 @@ function M.setup(keys)
                 placement = awful.placement.no_overlap+awful.placement.no_offscreen
             }
         },
-        { -- add titlebars to normal clients and dialogs
-          rule_any = {
-              type = { "normal", "dialog" }
-          },
-          properties = {
-              titlebars_enabled = true
-          }
-        },
-        { -- force these clients maximized property to false
-           rule = {
-               class = {
-                "Firefox",
-                "Spotify"
-               }
-           },
-           properties = {
-               maximized = false
-           }
-        },
         { -- make these floating
             rule_any = {
                 instance = {
@@ -59,6 +40,7 @@ function M.setup(keys)
                     "Pidgin",
                     "Eog",
                     "Totem",
+                    "Eduvpn-gui",
                     "Xephyr"
                 },
                 name = {
@@ -82,6 +64,22 @@ function M.setup(keys)
                 placement = awful.placement.centered,
                 ontop = true,
             }
+        },
+        { -- add titlebars to normal clients and dialogs
+          rule_any = {
+              type = { "normal", "dialog" }
+          },
+          properties = {
+              titlebars_enabled = true
+          }
+        },
+        { -- force these clients maximized property to false
+           rule = {
+                "Firefox",
+           },
+           properties = {
+               maximized = false
+           }
         },
     }
 end

@@ -423,7 +423,7 @@ export EDITOR="nvim"
 export GIT_EDITOR='nvim'
 export DIFFPROG='nvim'
 export PAGER='less'
-export BROWSER='brave'
+export BROWSER='firefox'
 export TERMINAL='alacritty'
 
 export XDG_DESKTOP_DIR="$HOME/Desktop"
@@ -439,8 +439,6 @@ export XDG_CACHE_HOME="$HOME/.cache/"
 export XDG_CONFIG_HOME="$HOME/.config/"
 
 export TERM='xterm-256color'
-export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
-export GNUPGHOME="$HOME/.gnupg"
 export BAT_THEME='ansi'
 export PYLINTHOME="${XDG_DATA_HOME}/pylint"
 export QT_QPA_PLATFORMTHEME='qt5ct'

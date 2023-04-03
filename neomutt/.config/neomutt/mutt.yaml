@@ -10,4 +10,3 @@ windows:
   - window_name: bash
     panes:
       - clear && ls -l
-# nhibqbpraefqzezu

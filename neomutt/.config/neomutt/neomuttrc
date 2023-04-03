@@ -10,7 +10,24 @@ set smtp_url="smtps://daniel.duclos.cavalcanti@gmail.com@smtp.gmail.com:465/"
 set smtp_pass = `pass show mutt`
 set smtp_authenticators='gssapi:login'
 
+# emsure tls
+set ssl_starttls = yes
+set ssl_force_tls = yes
+
 # -- MAILBOXES AND FOLDERS --
+set folder=imaps://imap.gmail.com:993
+set spoolfile = "+INBOX"
+set postponed = "+Drafts"   # drafts
+set record = "+Sent Mail"   # outgoing messages
+set trash = "+Trash"        # trash
+
+# The mailboxes  specifies  folders which can receive mail and which will
+# be checked for new messages. When changing folders, pressing space will
+# cycle through folders with new mail.
+unmailboxes *
+mailboxes =INBOX =Starred =Drafts =Sent =Spam =Trash
+# mailboxes =INBOX =[Gmail]/Sent\ Mail =[Gmail]/Drafts =[Gmail]/Spam =[Gmail]/Trash
+
 set sort=reverse-date
 set sort_aux=last-date-received
 
@@ -22,22 +39,6 @@ set tmpdir=/tmp
 # set nm_default_uri = "notmuch:///home/user/.mail"
 # set nm_record = yes
 
-# mailbox type and location
-# set mbox_type=Mail
-
-set folder=imaps://imap.gmail.com:993
-set spoolfile = "+INBOX"
-set postponed = "+Drafts"   # drafts
-set record = "+Sent"        # outgoing messages
-set trash = "+Trash"        # trash
-
-# The mailboxes  specifies  folders which can receive mail and which will
-# be checked for new messages. When changing folders, pressing space will
-# cycle through folders with new mail.
-unmailboxes *
-mailboxes =INBOX =[Gmail]/Sent\ Mail =[Gmail]/Drafts =[Gmail]/Spam =[Gmail]/Trash
-# mailboxes +Drafts +Sent +Spam
-
 # Using my_hdr, you can define headers which will be added to the messages
 # composed
 # unmy_hdr *
@@ -45,7 +46,7 @@ mailboxes =INBOX =[Gmail]/Sent\ Mail =[Gmail]/Drafts =[Gmail]/Spam =[Gmail]/Tras
 
 set editor = "nvim -c set wrap"
 set mailcap_path = ~/.config/neomutt/config/mailcap
-auto_view text/html
+auto_view text/html text/calendar application/ics
 alternative_order text/plain text/enriched text/html
 
 # When  set  along  with  $edit_headers, NeoMutt will skip the initial

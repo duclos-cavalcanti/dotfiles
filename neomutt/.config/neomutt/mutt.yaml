@@ -1,0 +1,13 @@
+session_name: mutt
+start_directory: "~/.config/neomutt/"
+windows:
+  - window_name: mail
+    panes:
+      - clear && ls -l
+  - window_name: rc
+    panes:
+      - nvim neomuttrc
+  - window_name: bash
+    panes:
+      - clear && ls -l
+# nhibqbpraefqzezu

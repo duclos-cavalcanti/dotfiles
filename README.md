@@ -23,7 +23,7 @@ a great little tool to deploy/remove symbolic links. Also, wallpapers are not mi
 * The Ubuntu variation is already stable and can be followed through [here](https://github.com/duclos-cavalcanti/deploy).
 * To simply stow the dotfiles run:
   ```sh
-  ./install.sh -s
+  ./dots.sh -s
   ```
 
 ## Thanks

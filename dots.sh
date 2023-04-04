@@ -15,7 +15,7 @@ FOLDERS=(bash
          X11)
 
 usage() {
-  printf "USAGE: syntax: ./install.sh <options>
+  printf "USAGE: syntax: ./dots.sh <options>
   OPTIONS:
     -i | --install:
     -u | --uninstall:

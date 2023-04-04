@@ -1,5 +1,0 @@
-unalias *
-alias Lastname.Firstname Full Name <mailbox@domain.tld>
-alias -group Groupname Lastname.Firstname Full Name <mailbox@domain.tld>
-
-# vim ft=conf

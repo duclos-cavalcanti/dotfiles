@@ -1,2 +1,0 @@
-require("ex.nvim-jdtls")
-

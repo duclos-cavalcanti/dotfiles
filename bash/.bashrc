@@ -370,6 +370,12 @@ if command -v maim &>/dev/null; then
     alias screenshot="maim -u -g 1920x1080+0+0 ~/Downloads/screen.png"
 fi
 
+# flatpak
+if command -v flatpak &>/dev/null; then
+    alias spotify="flatpak run com.spotify.Client"
+    alias wezterm="flatpak run org.wezfurlong.wezterm"
+fi
+
 alias ..="cd .."
 alias ...="cd ../.."
 

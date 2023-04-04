@@ -64,7 +64,4 @@ I have a ko-fi and a buy-me-a-coffee account, so if you found this repo useful a
 <a>
   <img src="https://img.shields.io/github/commit-activity/m/duclos-cavalcanti/dotfiles.svg" />
 </a>
-
-<!-- <a href="https://www.buymeacoffee.com/famiuhaque" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-blue.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a> -->
-
 </p>

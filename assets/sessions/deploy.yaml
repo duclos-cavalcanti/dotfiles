@@ -4,14 +4,8 @@ windows:
   - window_name: readme
     panes:
       - nvim README.md
-  - window_name: ubuntu
+  - window_name: src-bash
     layout: even-horizontal
     panes:
       - nvim ubuntu/install.sh
       - cd ubuntu && ls -l
-  - window_name: bash
-    panes:
-      - clear && ls -l
-  - window_name: arch
-    panes:
-      - nvim arch/install.sh

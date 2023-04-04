@@ -17,22 +17,26 @@ set ssl_force_tls = yes
 # -- MAILBOXES AND FOLDERS --
 set folder=imaps://imap.gmail.com:993
 set spoolfile = "+INBOX"
-set postponed = "+Drafts"   # drafts
-set record = "+Sent Mail"   # outgoing messages
-set trash = "+Trash"        # trash
+set postponed = "+[Gmail]/Drafts"
+set record = "+[Gmail/Sent Mail]"
+set trash = "+[Gmail/Trash]"
 
-# The mailboxes  specifies  folders which can receive mail and which will
-# be checked for new messages. When changing folders, pressing space will
-# cycle through folders with new mail.
 unmailboxes *
-mailboxes =INBOX =Starred =Drafts =Sent =Spam =Trash
-# mailboxes =INBOX =[Gmail]/Sent\ Mail =[Gmail]/Drafts =[Gmail]/Spam =[Gmail]/Trash
+mailboxes =INBOX =Uni =Jobs =[Gmail]/Sent\ Mail =[Gmail]/Drafts =[Gmail]/Spam =[Gmail]/Trash
+# pressing space will cycle through folders with new mail
 
 set sort=reverse-date
 set sort_aux=last-date-received
 
+set header_cache = "$XDG_CACHE_HOME/neomutt/cache/headers"
+set message_cachedir = "$XDG_CACHE_HOME/neomutt/cache/bodies"
+set certificate_file = "$XDG_CACHE_HOME/neomutt/cache/certificates"
+
 # temporary files
 set tmpdir=/tmp
+
+# disable the recording of sent emails, fmail already does it
+unset record
 
 # in case notmuch is being used
 # notmuch://<absolute path>.
@@ -65,11 +69,6 @@ set sleep_time=0
 
 # This variable controls the default subject when forwarding a message.
 # set forward_format = "[%a: %s]"
-
-# set signature = "~/.config/neomutt/signature"
-
-# This variable specifies the subject to be used when replying to an email
-# with an empty subject.
 set empty_subject = "Re: your mail"
 set index_format="%4C %Z %{%b %d} %-15.15L (%?l?%4l&%4c?) %s"
 set status_format = "-%r-NeoMutt: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]---(%s/%S)-"
@@ -78,7 +77,7 @@ set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
 
 # -- SIDEBAR --
 set sidebar_visible = yes
-set sidebar_width = 50
+set sidebar_width = 30
 set sidebar_delim_chars='/'
 set sidebar_component_depth=2
 set sidebar_divider_char='|'
@@ -97,16 +96,10 @@ source "~/.config/neomutt/config/bindings"
 source "~/.config/neomutt/config/colors"
 
 # -- ENCRYPTION --
-# use gpgme code for S/MIME and PGP encryption
-set crypt_use_gpgme
+source "~/.config/neomutt/config/crypt"
 
-# This is the default key-pair to use for PGP operations.  It will be used
-# for encryption.
-# set pgp_default_key = "0x12345678"
-set crypt_autoencrypt = no
-set crypt_autosign = no
-set crypt_use_gpgme = yes
-# set crypt_replyencrypt = yes, encrypt replies to PGP emails by default
+# -- SIGNATURE --
+set signature = "~/.config/neomutt/signature"
 
 # -- QUERY --
 # neomutt will use this command to make external address queries
@@ -120,6 +113,3 @@ set crypt_use_gpgme = yes
 # send-hook
 # send-hook
 # crypt-hook
-
-# for questions go to
-# https://github.com/neomutt/samples/blob/main/config/neomuttrc-example

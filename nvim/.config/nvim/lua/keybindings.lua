@@ -87,6 +87,7 @@ vim.cmd [[ command! Update :!git add --all && git commit -m 'Update' && git push
 -------------------
 
 -- Auto reload snippets
+vim.cmd [[ autocmd BufWritePre * "%s/\s\+$//e" ]]
 vim.cmd [[ autocmd BufWrite *.snippets lua require('ex.luasnip').setup() ]]
 
 -- Deleting terminals when being closed

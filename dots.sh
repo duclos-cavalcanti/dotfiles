@@ -31,6 +31,38 @@ check() {
     fi
 }
 
+test() {
+    check Xephyr
+    check awesome
+
+    local D=1
+    local SIZE="1024x640"
+    local RC_FILE="$XDG_CONFIG_HOME"/awesome/rc.lua
+    local XEPHYR_OPTIONS="-ac -br -noreset -screen ${SIZE}"
+
+   # check for free DISPLAYS
+    for ((i=0;;i++)); do
+        if [[ ! -f "/tmp/.X${i}-lock" ]]; then
+            D=$i
+            break
+        fi
+    done
+
+    Xephyr :$D -name xephyr_${D} ${XEPHYR_OPTIONS} >/dev/null 2>&1 &
+    sleep 1s
+    export XTEST=1
+    sleep 1s
+    DISPLAY=:${D}.0 awesome -c "$RC_FILE" &
+    sleep 1s
+
+    echo "
+    XTEST: $XTEST,
+    Display: $D,
+    Awesome PID: $(pgrep -n 'awesome'),
+    Xephyr PID: $(pgrep -f xephyr_${D})
+    "
+}
+
 main() {
     local target=
     local uninstall="stow -Dvt $HOME"
@@ -79,6 +111,11 @@ main() {
                     $uninstall $target
                 fi
                 shift
+                ;;
+
+            -t|--test)
+                test
+                exit 0
                 ;;
 
             -h|--help)

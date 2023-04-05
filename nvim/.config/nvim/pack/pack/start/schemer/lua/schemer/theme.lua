@@ -370,7 +370,7 @@ function M.lualine(config, c)
             },
           b = { bg = c.editor.ui.statusline.line.b.bg,
                 fg = c.editor.ui.statusline.line.b.fg,
-                gui = "bold"
+                gui = "italic"
             },
           c = { bg = c.editor.ui.statusline.line.c.bg,
                 fg = c.editor.ui.statusline.line.c.fg  },

@@ -373,7 +373,6 @@ fi
 # flatpak
 if command -v flatpak &>/dev/null; then
     alias spotify="flatpak run com.spotify.Client"
-    alias wezterm="flatpak run org.wezfurlong.wezterm"
 fi
 
 alias ..="cd .."

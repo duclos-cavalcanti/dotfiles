@@ -10,13 +10,9 @@ local config_path = utils.config_path
 local theme_path = config_path() .. "theme"
 local wallpaper_path = theme_path .. "/wallpapers"
 local icon_path = theme_path .. "/icons"
-local default_path = require("gears.filesystem").get_themes_dir()
 
 local font_family     = "UbuntuMono"
-local palette         = "03"
-
-local palette_file    = utils.palette_path() .. "/" .. palette .. ".lua"
-local colors          = utils.load_file(palette_file)
+local colors          = dofile(utils.home_path() .. "/.dotfiles/assets/system.lua").palette
 
 local theme = {}
 

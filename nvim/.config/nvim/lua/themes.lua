@@ -1,5 +1,5 @@
-local palette = os.getenv("HOME") .. "/" .. ".dotfiles/assets/system.lua"
-local config = {
+local config = os.getenv("HOME") .. "/" .. ".dotfiles/assets/system.lua"
+local opts = {
     transparent            = false,
     cursorline             = true,
     colorcolumn            = true,
@@ -15,7 +15,7 @@ local config = {
     lualine_bold           = false,
 }
 
-require("schemer").setup(config, palette)
+require("schemer").setup(opts, config)
 require('lualine').setup {
     options = {
         theme = "schemer",

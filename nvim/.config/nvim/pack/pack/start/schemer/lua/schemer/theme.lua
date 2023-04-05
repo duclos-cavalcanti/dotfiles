@@ -18,7 +18,7 @@ end
 
 function M.plugins(cfg, cl)
     local tb = {}
-    local function telescope(config, c)
+    local function telescope(opts, c)
         local t = {}
         t = {
             -- Telescope
@@ -42,7 +42,7 @@ function M.plugins(cfg, cl)
         }
         return t
     end
-    local function treesitter(config, c)
+    local function treesitter(opts, c)
         local t = {}
 
 	    local punctuation = {
@@ -155,7 +155,7 @@ function M.plugins(cfg, cl)
         })
         t = group(t, functions, {
             fg = c.editor.functions,
-            style = config.function_style
+            style = opts.function_style
         })
         t = group(t, functions_builtin, {
             fg = c.editor.fbuiltin,
@@ -181,7 +181,7 @@ function M.plugins(cfg, cl)
         })
         t = group(t, keyword, {
             fg = c.editor.keyword,
-            style = config.keyword_style
+            style = opts.keyword_style
         })
         t = group(t, labels, {
             fg = c.editor.label,
@@ -197,7 +197,7 @@ function M.plugins(cfg, cl)
         })
         t = group(t, variables, {
             fg = c.editor.var,
-            style = config.variable_style
+            style = opts.variable_style
         })
         t = group(t, tags, {
             fg = c.editor.text.tag,
@@ -217,7 +217,7 @@ function M.plugins(cfg, cl)
 
         return t
     end
-    local function lsp(config, c)
+    local function lsp(opts, c)
         local t = {}
         t = {
             DiagnosticWarning = {
@@ -250,7 +250,7 @@ function M.plugins(cfg, cl)
         }
         return t
     end
-    local function cmp(config, c)
+    local function cmp(opts, c)
         local t = {}
         t = {
             -- Cmp
@@ -272,7 +272,7 @@ function M.plugins(cfg, cl)
         }
         return t
     end
-    local function neogit(config, c)
+    local function neogit(opts, c)
         local t = {}
         t = {
             -- Neogit
@@ -291,7 +291,7 @@ function M.plugins(cfg, cl)
         }
         return t
     end
-    local function diff(config, c)
+    local function diff(opts, c)
         local t = {}
         t = {
             -- diff
@@ -322,7 +322,7 @@ function M.plugins(cfg, cl)
         }
         return t
     end
-    local function neovim(config, c)
+    local function neovim(opts, c)
         local t = {}
         t = {
             -- NeoVim
@@ -338,7 +338,7 @@ function M.plugins(cfg, cl)
         }
         return t
     end
-    local function nvim_dap_ui(config, c)
+    local function nvim_dap_ui(opts, c)
         local t = {}
 
         return t
@@ -361,7 +361,7 @@ function M.get_lualine()
     return g_custom_lualine
 end
 
-function M.lualine(config, c)
+function M.lualine(opts, c)
     local tb = {}
     local l = {
         normal = {
@@ -419,13 +419,13 @@ function M.lualine(config, c)
         },
     }
 
-    if config.lualine_bold then
+    if opts.lualine_bold then
         for _, mode in pairs(l) do
             mode.a.gui = "bold"
         end
     end
 
-    if config.inactive_statusline then
+    if opts.inactive_statusline then
         local inactive = {
             style = "underline",
             bg = c.editor.ui.statusline.nc.bg,
@@ -441,7 +441,7 @@ function M.lualine(config, c)
     return tb
 end
 
-function M.debug(config, c)
+function M.debug(opts, c)
     local tb = {}
     tb = {
         -- used for highlighting the current line in terminal-debug
@@ -458,7 +458,7 @@ function M.debug(config, c)
     return tb
 end
 
-function M.markup(config, c)
+function M.markup(opts, c)
     local tb = {}
     tb = {
         htmlH1 = {
@@ -546,7 +546,7 @@ function M.markup(config, c)
     return tb
 end
 
-function M.diagnostics(config, c)
+function M.diagnostics(opts, c)
     local tb = {}
     tb = {
         -- Base highlight groups
@@ -630,7 +630,7 @@ function M.diagnostics(config, c)
     return tb
 end
 
-function M.lsp(config, c)
+function M.lsp(opts, c)
     local tb = {}
     tb = {
         -- used for highlighting "text" references
@@ -657,7 +657,7 @@ function M.lsp(config, c)
 end
 
 
-function M.spell(config, c)
+function M.spell(opts, c)
     local tb = {}
     tb = {
         -- Word that is not recognized by the spellchecker.
@@ -685,7 +685,7 @@ function M.spell(config, c)
     return tb
 end
 
-function M.diff(config, c)
+function M.diff(opts, c)
     local tb = {}
     tb = {
         -- diff mode:
@@ -714,11 +714,11 @@ function M.diff(config, c)
     return tb
 end
 
-function M.base(config, c)
+function M.base(opts, c)
     local tb = {
         -- normal text
         Normal = {
-            bg = (config.transparent and c.none) or c.bg,
+            bg = (opts.transparent and c.none) or c.bg,
             fg = c.fg,
         },
         -- normal text in non-current windows
@@ -748,7 +748,7 @@ function M.base(config, c)
         -- function name, also methods for classes
         Function = {
             fg = c.editor.functions,
-            style = config.function_style
+            style = opts.function_style
         },
         -- (preferred) any erroneous construct
         Error = {
@@ -778,7 +778,7 @@ function M.base(config, c)
         -- Comments
         Comment = {
             fg = c.editor.comment,
-            style = config.comment_style
+            style = opts.comment_style
         },
         Conditional = {
             fg = c.editor.forwords,
@@ -829,7 +829,7 @@ function M.base(config, c)
         -- any variable name
         Identifier = {
             fg = c.editor.var,
-            style = config.variable_style
+            style = opts.variable_style
         },
         Include = {
             fg = c.editor.preproc,
@@ -837,11 +837,11 @@ function M.base(config, c)
         --  any other keyword
         Keyword = {
             fg = c.editor.keyword,
-            style = config.keyword_style
+            style = opts.keyword_style
         },
         Label = {
             fg = c.editor.label,
-            style = config.keyword_style
+            style = opts.keyword_style
         },
         -- "sizeof", "+", "*", etc.
         Operator = {
@@ -904,12 +904,12 @@ function M.base(config, c)
         },
         -- screen-column at the cursor, when 'cursorcolumn' is set.
         CursorColumn = {
-            fg = (config.columnline and c.white)
+            fg = (opts.columnline and c.white)
                  or c.none
         },
         -- column where |signs| are displayed
         SignColumn = {
-            bg = config.transparent and c.none
+            bg = opts.transparent and c.none
                  or c.editor.column
         },
         -- column where |signs| are displayed
@@ -918,12 +918,12 @@ function M.base(config, c)
         },
         -- used columns set with 'colorcolumn'
         ColorColumn = {
-            bg = config.colorcolumn and c.editor.ui.colorcolumn
+            bg = opts.colorcolumn and c.editor.ui.colorcolumn
             or c.none
         },
         -- screen-line at the cursor, when 'cursorline' is set.
         CursorLine = {
-            bg = config.cursorline and c.editor.ui.cursorline
+            bg = opts.cursorline and c.editor.ui.cursorline
                  or c.none
         },
         -- character under the cursor
@@ -1005,10 +1005,10 @@ function M.base(config, c)
         -- Note: if this is equal to "StatusLine"
         -- Vim will use "^^^" in the status line of the current window.
         StatusLineNC = {
-            style   = (config.inactive_statusline and "italic") or nil,
-            fg      = (config.inactive_statusline and c.bg) or c.editor.ui.statusline.nc.fg,
-            bg      = (config.inactive_statusline and c.bg) or c.editor.ui.statusline.nc.bg,
-            sp      = (config.inactive_statusline and nil) or nil,
+            style   = (opts.inactive_statusline and "italic") or nil,
+            fg      = (opts.inactive_statusline and c.bg) or c.editor.ui.statusline.nc.fg,
+            bg      = (opts.inactive_statusline and c.bg) or c.editor.ui.statusline.nc.bg,
+            sp      = (opts.inactive_statusline and nil) or nil,
         },
         -- tab pages line, not active tab page label
         TabLine = {
@@ -1078,25 +1078,25 @@ function M.base(config, c)
     return tb
 end
 
-function M.setup(config, colors)
+function M.colorscheme(opts, colors)
     local theme = {}
     local defer = {}
     local c = colors
 
     -- neovim base
-    theme = extend(theme, M.base(config, c))
-    theme = extend(theme, M.diff(config, c))
-    theme = extend(theme, M.spell(config, c))
-    theme = extend(theme, M.lsp(config, c))
-    theme = extend(theme, M.diagnostics(config, c))
-    theme = extend(theme, M.markup(config, c))
-    theme = extend(theme, M.debug(config, c))
+    theme = extend(theme, M.base(opts, c))
+    theme = extend(theme, M.diff(opts, c))
+    theme = extend(theme, M.spell(opts, c))
+    theme = extend(theme, M.lsp(opts, c))
+    theme = extend(theme, M.diagnostics(opts, c))
+    theme = extend(theme, M.markup(opts, c))
+    theme = extend(theme, M.debug(opts, c))
 
     -- neovim plugins
-    theme = extend(theme, M.plugins(config, c))
+    theme = extend(theme, M.plugins(opts, c))
 
     -- lualine and other hl's that should be highlighted later
-    defer = extend(defer, M.lualine(config, c))
+    defer = extend(defer, M.lualine(opts, c))
 
     return theme, defer, colors
 end

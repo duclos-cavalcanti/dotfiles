@@ -1,13 +1,13 @@
 local wezterm = require 'wezterm'
-local config = {}
 
--- In newer versions of wezterm, use the config_builder which will
--- help provide clearer error messages
+local c = {}
+local config = dofile(os.getenv("HOME") .. "/.dotfiles/assets/")
+
 if wezterm.config_builder then
-  config = wezterm.config_builder()
+  c = wezterm.config_builder()
 end
 
-config.color_scheme = 'Batman'
-config.enable_wayland = false
+c.color_scheme = 'Batman'
+c.enable_wayland = false
 
-return config
+return c

@@ -2,11 +2,6 @@ local theme = require("schemer.theme")
 
 local M = {}
 
-local function file_exists(name)
-   local f=io.open(name,"r")
-   if f~=nil then io.close(f) return true else return false end
-end
-
 function M.terminal(colors)
     -- dark
     vim.g.terminal_color_0 = colors.bg
@@ -77,10 +72,10 @@ function M.load(t, defer, colors)
     M.terminal(colors)
 end
 
-function M.setup(config, palette)
-    local rc = dofile(palette)
-    if rc ~= nil then
-        M.load(theme.setup(config, rc.palette))
+function M.setup(opts, config)
+    local c = dofile(config)
+    if c ~= nil then
+        M.load(theme.colorscheme(opts, c.palette))
     end
 end
 

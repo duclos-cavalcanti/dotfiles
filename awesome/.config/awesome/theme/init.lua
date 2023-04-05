@@ -12,7 +12,8 @@ local wallpaper_path = theme_path .. "/wallpapers"
 local icon_path = theme_path .. "/icons"
 
 local font_family     = "UbuntuMono"
-local colors          = dofile(utils.home_path() .. "/.dotfiles/assets/system.lua").palette
+local config          = dofile(utils.home_path() .. "/.dotfiles/assets/system.lua")
+local colors          = config.palette
 
 local theme = {}
 

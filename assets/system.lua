@@ -1,26 +1,17 @@
-local function file_exists(name)
-    if io.open(name,"r") ~= nil then
-        return true
-    else
-        return false
-    end
-end
+local theme = "03"
+local theme_path = os.getenv("HOME") ..
+                   "/.dotfiles/assets/themes/" ..
+                   theme ..
+                   ".lua"
 
-local function system_path()
-    return string.format("%s/.dotfiles", os.getenv("HOME"))
-end
-
-local colorscheme = "03"
-local path = string.format("%s/assets/themes/%s.lua", system_path(), colorscheme)
-
-if not file_exists(path) then
-    print(string.format("ERROR: The file %s doesn't exist!", path))
+if io.open(theme_path,"r") == nil then
+    print(string.format("ERROR: The file %s doesn't exist!", theme_path))
     return nil
 end
 
 local M = {
-    name = colorscheme,
-    palette = dofile(path)
+    name = theme,
+    palette = dofile(theme_path)
 }
 
 return M

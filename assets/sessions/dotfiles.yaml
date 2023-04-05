@@ -26,3 +26,9 @@ windows:
     start_directory: "~"
     panes:
       - nvim ~/.tmux.conf
+  - window_name: sys-lua
+    layout: even-horizontal
+    start_directory: "~/.dotfiles"
+    panes:
+      - nvim assets/system.lua
+      - nvim ~/.config/wezterm/wezterm.lua

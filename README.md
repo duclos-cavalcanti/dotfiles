@@ -13,11 +13,12 @@ a great little tool to deploy symbolic links. Also, wallpapers are not mine, mos
 
 - **OS:** [Arch Linux](https://archlinux.org)[/Ubuntu](https://ubuntu.com/)
 - **WM:** [awesome](https://github.com/awesomeWM/awesome)
-<!-- - **Terminal:** [alacritty](https://github.com/alacritty/alacritty) -->
 - **Terminal:** [wezterm](https://github.com/wez/wezterm)
 - **Shell:** [bash](https://www.gnu.org/software/bash/)
 - **Editor:** [neovim](https://github.com/neovim/neovim)
 - **Compositor:** [picom](https://github.com/yshui/picom)
+
+<!-- - **Terminal:** [alacritty](https://github.com/alacritty/alacritty) -->
 
 ## Installation
 * The Arch installation is still somewhat manual and untested.

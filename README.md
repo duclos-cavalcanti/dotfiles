@@ -12,11 +12,11 @@ a great little tool to deploy symbolic links. Also, wallpapers are not mine, mos
 ![Screenshot](.github/assets/screen.png?)
 
 - **OS:** [Arch Linux](https://archlinux.org) | [Ubuntu](https://ubuntu.com/)
-- **WM:** [awesome](https://github.com/awesomeWM/awesome)
 - **Terminal:** [wezterm](https://github.com/wez/wezterm)
-- **Shell:** [bash](https://www.gnu.org/software/bash/)
 - **Editor:** [neovim](https://github.com/neovim/neovim)
+- **WM:** [awesome](https://github.com/awesomeWM/awesome)
 - **Compositor:** [picom](https://github.com/yshui/picom)
+- **Shell:** [bash](https://www.gnu.org/software/bash/)
 
 <!-- - **Terminal:** [alacritty](https://github.com/alacritty/alacritty) -->
 

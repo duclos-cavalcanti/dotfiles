@@ -2,17 +2,6 @@ local wezterm = require("wezterm")
 
 local M = {}
 
-function M.set_tab_title(title)
-    local gui_window = _G.window
-    local window = wezterm.mux.get_window(gui_window:window_id())
-    for _, tab_info in ipairs(window:tabs_with_info()) do
-        if tab_info.is_active then
-            tab_info.tab:set_title(title)
-            break
-        end
-    end
-end
-
 M.base = {
 	{ key = "c", mods = "CTRL|SHIFT", action = wezterm.action({ CopyTo = "Clipboard" }) },
 	{ key = "v", mods = "CTRL|SHIFT", action = wezterm.action({ PasteFrom = "Clipboard" }) },
@@ -30,6 +19,8 @@ M.base = {
 
     { key = 'n', mods = 'ALT', action = wezterm.action.SpawnWindow },
 	{ key = "Enter", mods = "ALT", action = wezterm.action({ SpawnTab = "CurrentPaneDomain" }) },
+	{ key = "j", mods = "ALT|SHIFT", action = wezterm.action({ ActivateTabRelative=-1 }) },
+	{ key = "k", mods = "ALT|SHIFT", action = wezterm.action({ ActivateTabRelative=1 }) },
 
 	{ key = "w", mods = "ALT", action = wezterm.action({ CloseCurrentPane = { confirm = true } }) },
 	{ key = "w", mods = "ALT|SHIFT", action = wezterm.action({ CloseCurrentTab = { confirm = true } }) },
@@ -43,7 +34,7 @@ M.base = {
 	{ key = "a", mods = "ALT", action = wezterm.action.ShowLauncher },
 	{ key = " ", mods = "ALT", action = wezterm.action.ShowTabNavigator },
 
-    {
+    { -- rename tab
       key = ',',
       mods = 'ALT',
       action = wezterm.action.PromptInputLine {

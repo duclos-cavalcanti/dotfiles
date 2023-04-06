@@ -30,13 +30,7 @@ a great little tool to deploy symbolic links. Also, wallpapers are not mine, mos
 
 ## Thanks
 - [Barbaross93](https://github.com/Barbaross93/Muspelheim)
-- [rxyhn](https://github.com/rxyhn/dotfiles)
 - [tdy](https://github.com/tdy/awesome)
-- [bytes-chaser](https://github.com/bytes-chaser/neon-dream)
-- [manas140](https://github.com/manas140/dotfiles)
-- [rklyz](https://github.com/rklyz/MyRice)
-- [nuxshed](https://github.com/nuxshed/dotfiles)
-
 
 ## License
 These dotfiles are released under the MIT license. See [LICENSE](LICENSE).

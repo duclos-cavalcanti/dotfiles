@@ -75,11 +75,11 @@ nnoremap("<C-Space>", ":SymbolsOutline<CR>")
 -------------------
 -- COMMANDS
 -------------------
-vim.cmd [[ command! Update :!git add --all && git commit -m 'Update' && git push ]]
+vim.cmd [[ command! GitUpdate :!git add --all && git commit -m 'Update' && git push ]]
 
 -------------------
 -- AUTOCOMMANDS
 -------------------
-vim.cmd [[ autocmd BufWrite *.snippets lua require('ex.luasnip').setup() ]]
+vim.cmd [[ autocmd Signal SIGWINCH wincmd = ]]
 vim.cmd [[ autocmd TermEnter term://* setlocal nohidden ]]
 vim.cmd [[ autocmd BufHidden term://* q! ]]

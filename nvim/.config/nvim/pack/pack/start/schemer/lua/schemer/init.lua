@@ -72,11 +72,8 @@ function M.load(t, defer, colors)
     M.terminal(colors)
 end
 
-function M.setup(opts, config)
-    local c = dofile(config)
-    if c ~= nil then
-        M.load(theme.colorscheme(opts, c.palette))
-    end
+function M.setup(opts, palette)
+    M.load(theme.colorscheme(opts, palette))
 end
 
 return M

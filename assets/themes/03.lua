@@ -194,7 +194,79 @@ M.editor = {
 }
 
 M.terminal = {
+    window_frame = {
+        active_titlebar_bg = M.bg,
+        inactive_titlebar_bg = M.black2,
+    },
+    window_padding = {
+        left =  5,
+        right = 0,
+        top = 10,
+        bottom = 2,
+    },
+    colors = {
+        background = M.bg,
+        foreground = M.fg,
 
+        compose_cursor = M.yellow,
+        cursor_bg = M.red,
+        cursor_fg = M.yellow,
+        cursor_border = M.red,
+
+        split = M.green,
+        scrollbar_thumb = M.grey,
+
+        selection_bg = M.fg,
+        selection_fg = M.bg,
+
+        quick_select_label_bg = { Color = M.fg },
+        quick_select_label_fg = { Color = M.bg },
+        quick_select_match_bg = { Color = M.red },
+        quick_select_match_fg = { Color = M.fg },
+
+        copy_mode_active_highlight_bg = { Color = M.fg },
+        copy_mode_active_highlight_fg = { Color = M.bg },
+        copy_mode_inactive_highlight_bg = { Color = M.red },
+        copy_mode_inactive_highlight_fg = { Color = M.fg },
+
+        tab_bar = {
+            active_tab = {
+                bg_color = M.green,
+                fg_color = M.fg,
+            },
+            inactive_tab = {
+                bg_color = M.bg,
+                fg_color = M.fg,
+            },
+            new_tab = {
+                bg_color = M.bg,
+                fg_color = M.bg,
+            },
+            inactive_tab_edge = M.bg,
+        },
+
+        ansi = {
+          M.black,
+          M.red,
+          M.green,
+          M.yellow,
+          M.blue,
+          M.magenta,
+          M.cyan,
+          M.white,
+        },
+
+        brights = {
+          M.black2,
+          M.red2,
+          M.green2,
+          M.yellow2,
+          M.blue2,
+          M.magenta2,
+          M.cyan2,
+          M.white2,
+        },
+    }
 }
 
 M.wm = {

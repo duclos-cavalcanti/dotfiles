@@ -1,13 +1,30 @@
-local wezterm = require 'wezterm'
+local wezterm = require("wezterm")
+local colors = require("colors")
+local keys = require("keys")
 
-local c = {}
-local config = dofile(os.getenv("HOME") .. "/.dotfiles/assets/")
+return {
+    -- basics
+    font = wezterm.font 'UbuntuMono',
+    font_size = 11.4,
+    cell_width = 0.8,
 
-if wezterm.config_builder then
-  c = wezterm.config_builder()
-end
+    color_scheme = 'Batman',
 
-c.color_scheme = 'Batman'
-c.enable_wayland = false
+    -- keybindings
+    keys = keys.base,
+    key_tables = keys.tables,
+    mouse_bindings = keys.mouse,
 
-return c
+    -- ui
+    window_padding = {
+        left =  5,
+        right = 0,
+        top = 5,
+        bottom = 2,
+    },
+
+    -- settings
+    scrollback_lines = 3500,
+    hide_tab_bar_if_only_one_tab = false,
+    window_close_confirmation = "NeverPrompt",
+}

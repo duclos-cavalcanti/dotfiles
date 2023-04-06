@@ -193,6 +193,10 @@ M.editor = {
     },
 }
 
+M.terminal = {
+
+}
+
 M.wm = {
     wp  = "02.png",
     wp2 = "04.png",

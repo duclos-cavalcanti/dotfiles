@@ -5,8 +5,8 @@ local dpi = require("beautiful.xresources").apply_dpi
 modkey          = "Mod4" --super
 altkey          = "Mod1"
 
-terminal        = "alacritty"
-terminal_class  = "Alacritty"
+terminal        = "wezterm"
+terminal_class  = "Wezterm"
 
 taglist = { "1", "2", "3", "4", "5", "6", "7", "8", "9" }
 bar_height = dpi(20)

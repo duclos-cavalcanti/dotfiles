@@ -82,12 +82,6 @@ return require('packer').startup(function(use)
           config = function() require('ex.tagsbar') end
         }
 
-    -- git
-    use { 'TimUntersberger/neogit',
-          requires = { 'nvim-lua/plenary.nvim', },
-          config = function() require('ex.neogit') end
-        }
-
     -- snippets
     use {
         "L3MON4D3/LuaSnip",

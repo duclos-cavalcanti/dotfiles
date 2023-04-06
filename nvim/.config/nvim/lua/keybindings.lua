@@ -39,10 +39,8 @@ tnoremap("<C-w>", "<C-\\><C-N><C-w>")
 nnoremap("<leader><space>", ":split <BAR> :resize 20 <BAR> term<CR>i")
 
 -- Tabs
-nnoremap("<M-j>", ":tabp<CR>")
-nnoremap("<M-k>", ":tabn<CR>")
-nnoremap("<M-J>", ":tabmove -1<CR>")
-nnoremap("<M-K>", ":tabmove +1<CR>")
+nnoremap("Gt", ":tabmove +1<CR>")
+nnoremap("GT", ":tabmove -1<CR>")
 
 -- Splits resizing
 nnoremap("<C-w>>", "5<C-w>>")
@@ -64,9 +62,6 @@ nnoremap("<leader>sm", "<cmd>lua require('telescope.builtin').man_pages({section
 -- File explorer
 nnoremap("<leader>e", ":NvimTreeToggle<CR>")
 
--- Neogit/Git
-nnoremap("<leader>g", ":lua require('neogit').open()<CR>")
-
 -- Formatter
 nnoremap("<leader>f", ":Format<CR>")
 nnoremap("<leader>F", "<silent>:FormatWRite<CR>")
@@ -85,11 +80,6 @@ vim.cmd [[ command! Update :!git add --all && git commit -m 'Update' && git push
 -------------------
 -- AUTOCOMMANDS
 -------------------
-
--- Auto reload snippets
-vim.cmd [[ autocmd BufWritePre * "%s/\s\+$//e" ]]
 vim.cmd [[ autocmd BufWrite *.snippets lua require('ex.luasnip').setup() ]]
-
--- Deleting terminals when being closed
 vim.cmd [[ autocmd TermEnter term://* setlocal nohidden ]]
 vim.cmd [[ autocmd BufHidden term://* q! ]]

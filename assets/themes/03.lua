@@ -219,15 +219,10 @@ M.terminal = {
         selection_bg = M.fg,
         selection_fg = M.bg,
 
-        quick_select_label_bg = { Color = M.fg },
-        quick_select_label_fg = { Color = M.bg },
+        quick_select_label_bg = { Color = M.black },
+        quick_select_label_fg = { Color = M.fg },
         quick_select_match_bg = { Color = M.red },
         quick_select_match_fg = { Color = M.fg },
-
-        copy_mode_active_highlight_bg = { Color = M.fg },
-        copy_mode_active_highlight_fg = { Color = M.bg },
-        copy_mode_inactive_highlight_bg = { Color = M.red },
-        copy_mode_inactive_highlight_fg = { Color = M.fg },
 
         tab_bar = {
             active_tab = {

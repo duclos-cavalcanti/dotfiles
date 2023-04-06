@@ -6,13 +6,20 @@ M.base = {
 	{ key = "c", mods = "CTRL|SHIFT", action = wezterm.action({ CopyTo = "Clipboard" }) },
 	{ key = "v", mods = "CTRL|SHIFT", action = wezterm.action({ PasteFrom = "Clipboard" }) },
 
-    { key = 'u', mods = 'ALT', action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' }, },
-    { key = 'o', mods = 'ALT', action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' }, },
+    { key = 's', mods = 'ALT', action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' }, },
+    { key = 'v', mods = 'ALT', action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' }, },
 
 	{ key = "j", mods = "ALT", action = wezterm.action({ ActivatePaneDirection = "Down" }) },
 	{ key = "k", mods = "ALT", action = wezterm.action({ ActivatePaneDirection = "Up" }) },
 	{ key = "h", mods = "ALT", action = wezterm.action({ ActivatePaneDirection = "Left" }) },
 	{ key = "l", mods = "ALT", action = wezterm.action({ ActivatePaneDirection = "Right" }) },
+
+	{ key = "t", 
+      mods = "ALT", 
+      action = wezterm.action_callback(function(win, pane)
+                        local tab, window = pane:move_to_new_tab()
+                        end)
+    },
 
 	{ key = "h", mods = "ALT|SHIFT", action = wezterm.action({ MoveTabRelative = -1 }) },
 	{ key = "l", mods = "ALT|SHIFT", action = wezterm.action({ MoveTabRelative = 1 }) },
@@ -31,8 +38,10 @@ M.base = {
 	{ key = "+", mods = "CTRL", action = "IncreaseFontSize" },
 	{ key = "-", mods = "CTRL", action = "DecreaseFontSize" },
 
-	{ key = "a", mods = "ALT", action = wezterm.action.ShowLauncher },
-	{ key = " ", mods = "ALT", action = wezterm.action.ShowTabNavigator },
+	{ key = " ", mods = "ALT", action = wezterm.action.ShowLauncherArgs{ flags = 'WORKSPACES' } },
+	{ key = "t", mods = "ALT|SHIFT", action = wezterm.action.ShowTabNavigator },
+	{ key = "c", mods = "ALT|SHIFT", action = wezterm.action.ActivateCommandPalette },
+	{ key = "d", mods = "ALT|SHIFT", action = wezterm.action.ShowDebugOverlay },
 
     { -- rename tab
       key = ',',
@@ -44,10 +53,27 @@ M.base = {
           window:active_tab():set_title(line)
         end
       end),
-    },
+      },
     },
 
-    {
+    { -- rename workspace
+      key = '4',
+      mods = 'ALT',
+      action = wezterm.action.PromptInputLine {
+        description = 'Enter new name for workspace',
+        action = wezterm.action_callback(function(window, pane, line)
+        if line then
+            wezterm.mux.rename_workspace(
+                wezterm.mux.get_active_workspace(),
+                line
+            )
+        end
+      end),
+      },
+    },
+    -- search
+    { key = "f", mods = "ALT", action = wezterm.action.Search("CurrentSelectionOrEmptyString") },
+    { -- activate resize mode
       key = 'r',
       mods = "ALT",
       action = wezterm.action.ActivateKeyTable {

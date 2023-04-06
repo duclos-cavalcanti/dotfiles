@@ -17,6 +17,8 @@ local config = {
     hide_tab_bar_if_only_one_tab = false,
 
     -- keybindings
+	disable_default_key_bindings = true,
+
     keys = keys.base,
     key_tables = keys.tables,
     mouse_bindings = keys.mouse,

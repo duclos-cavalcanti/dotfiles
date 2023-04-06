@@ -5,9 +5,6 @@
 <br>
 
 These are the configuration files used on my day-to-day linux machine, please feel free to look around.
-The configs are managed across the system through [stow](https://www.gnu.org/software/stow/), which is 
-a great little tool to deploy symbolic links. Also, wallpapers are not mine, most of them 
-(if not all) are taken from [mate/ubuntu-mate](https://github.com/ubuntu-mate/ubuntu-mate-artwork)!
 
 ![Screenshot](.github/assets/screen.png?)
 
@@ -20,11 +17,16 @@ a great little tool to deploy symbolic links. Also, wallpapers are not mine, mos
 
 <!-- - **Terminal:** [alacritty](https://github.com/alacritty/alacritty) -->
 
+The configs are managed across the system through [stow](https://www.gnu.org/software/stow/), which is 
+a great little tool to deploy symbolic links. Also, wallpapers are not mine, most of them 
+(if not all) are taken from [mate/ubuntu-mate](https://github.com/ubuntu-mate/ubuntu-mate-artwork)!
+
 ## Installation
-* The Arch installation is still somewhat manual and untested.
-* The Ubuntu variation is already stable and can be followed through [here](https://github.com/duclos-cavalcanti/deploy).
+* The Arch installation is still manual and untested.
+* The Ubuntu variation however can surely be followed through [here](https://github.com/duclos-cavalcanti/deploy).
 * To simply stow the dotfiles run:
   ```sh
+  # provided GNU stow is installed
   ./dots.sh -s
   ```
 

@@ -4,8 +4,6 @@
 </p>
 <br>
 
-These are the configuration files used on my day-to-day linux machine, please feel free to look around.
-
 ![Screenshot](.github/assets/screen.png?)
 
 - **OS:** [Arch Linux](https://archlinux.org) | [Ubuntu](https://ubuntu.com/)
@@ -15,11 +13,7 @@ These are the configuration files used on my day-to-day linux machine, please fe
 - **Compositor:** [picom](https://github.com/yshui/picom)
 - **Shell:** [bash](https://www.gnu.org/software/bash/)
 
-<!-- - **Terminal:** [alacritty](https://github.com/alacritty/alacritty) -->
-
-The configs are managed across the system through [stow](https://www.gnu.org/software/stow/), which is 
-a great little tool to deploy symbolic links. Also, wallpapers are not mine, most of them 
-(if not all) are taken from [mate/ubuntu-mate](https://github.com/ubuntu-mate/ubuntu-mate-artwork)!
+The configuration files used on my linux daily-driver, managed across the system via [stow](https://www.gnu.org/software/stow/).
 
 ## Installation
 * The Arch installation is still manual and untested.
@@ -30,9 +24,8 @@ a great little tool to deploy symbolic links. Also, wallpapers are not mine, mos
   ./dots.sh -s
   ```
 
-## Thanks
-- [Barbaross93](https://github.com/Barbaross93/Muspelheim)
-- [tdy](https://github.com/tdy/awesome)
+## References
+- [mate/ubuntu-mate](https://github.com/ubuntu-mate/ubuntu-mate-artwork)!
 
 ## License
 These dotfiles are released under the MIT license. See [LICENSE](LICENSE).

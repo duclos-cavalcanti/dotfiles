@@ -2,50 +2,51 @@ local wezterm = require("wezterm")
 
 local M = {}
 
+M.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
+
 M.base = {
+    { -- Send "CTRL-A" to the terminal when pressing CTRL-A, CTRL-A
+      key = "a",
+      mods = "LEADER|CTRL",
+      action = wezterm.action.SendString("\x01"),
+    },
+
 	{ key = "c", mods = "CTRL|SHIFT", action = wezterm.action({ CopyTo = "Clipboard" }) },
 	{ key = "v", mods = "CTRL|SHIFT", action = wezterm.action({ PasteFrom = "Clipboard" }) },
 
-    { key = 's', mods = 'ALT', action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' }, },
-    { key = 'v', mods = 'ALT', action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' }, },
+    { key = 's', mods = 'LEADER', action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' }, },
+    { key = 'v', mods = 'LEADER', action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' }, },
 
-	{ key = "j", mods = "ALT", action = wezterm.action({ ActivatePaneDirection = "Down" }) },
-	{ key = "k", mods = "ALT", action = wezterm.action({ ActivatePaneDirection = "Up" }) },
-	{ key = "h", mods = "ALT", action = wezterm.action({ ActivatePaneDirection = "Left" }) },
-	{ key = "l", mods = "ALT", action = wezterm.action({ ActivatePaneDirection = "Right" }) },
+	{ key = "j", mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Down" }) },
+	{ key = "k", mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Up" }) },
+	{ key = "h", mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Left" }) },
+	{ key = "l", mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Right" }) },
 
-	{ key = "t", 
-      mods = "ALT", 
-      action = wezterm.action_callback(function(win, pane)
-                        local tab, window = pane:move_to_new_tab()
-                        end)
-    },
+	{ key = "x", mods = "LEADER", action = wezterm.action({ CloseCurrentPane = { confirm = true } }) },
+	{ key = "z", mods = "LEADER", action = wezterm.action.TogglePaneZoomState },
+	{ key = "t", mods = "LEADER", action = wezterm.action_callback(function(win, pane) local tab, window = pane:move_to_new_tab() end) },
 
-	{ key = "h", mods = "ALT|SHIFT", action = wezterm.action({ MoveTabRelative = -1 }) },
-	{ key = "l", mods = "ALT|SHIFT", action = wezterm.action({ MoveTabRelative = 1 }) },
+	{ key = "W", mods = "LEADER", action = wezterm.action({ CloseCurrentTab = { confirm = true } }) },
+	{ key = "c", mods = "LEADER", action = wezterm.action({ SpawnTab = "CurrentPaneDomain" }) },
+    { key = 'n', mods = 'LEADER', action = wezterm.action.SpawnWindow },
 
-    { key = 'n', mods = 'ALT', action = wezterm.action.SpawnWindow },
-	{ key = "Enter", mods = "ALT", action = wezterm.action({ SpawnTab = "CurrentPaneDomain" }) },
-	{ key = "j", mods = "ALT|SHIFT", action = wezterm.action({ ActivateTabRelative=-1 }) },
-	{ key = "k", mods = "ALT|SHIFT", action = wezterm.action({ ActivateTabRelative=1 }) },
+	{ key = "j", mods = "ALT", action = wezterm.action({ ActivateTabRelative=-1 }) },
+	{ key = "k", mods = "ALT", action = wezterm.action({ ActivateTabRelative=1 }) },
+	{ key = "h", mods = "ALT", action = wezterm.action({ MoveTabRelative = -1 }) },
+	{ key = "l", mods = "ALT", action = wezterm.action({ MoveTabRelative = 1 }) },
 
-	{ key = "w", mods = "ALT", action = wezterm.action({ CloseCurrentPane = { confirm = true } }) },
-	{ key = "w", mods = "ALT|SHIFT", action = wezterm.action({ CloseCurrentTab = { confirm = true } }) },
-
-	{ key = "z", mods = "ALT", action = wezterm.action.TogglePaneZoomState },
 
 	{ key = "=", mods = "CTRL", action = "ResetFontSize" },
 	{ key = "+", mods = "CTRL", action = "IncreaseFontSize" },
 	{ key = "-", mods = "CTRL", action = "DecreaseFontSize" },
 
-	{ key = " ", mods = "ALT", action = wezterm.action.ShowLauncherArgs{ flags = 'WORKSPACES' } },
-	{ key = "t", mods = "ALT|SHIFT", action = wezterm.action.ShowTabNavigator },
-	{ key = "c", mods = "ALT|SHIFT", action = wezterm.action.ActivateCommandPalette },
-	{ key = "d", mods = "ALT|SHIFT", action = wezterm.action.ShowDebugOverlay },
+	{ key = "w", mods = "LEADER", action = wezterm.action.ShowLauncherArgs{ flags = 'WORKSPACES' } },
+	{ key = "d", mods = "LEADER", action = wezterm.action.ShowDebugOverlay },
 
+    { key = "/", mods = "LEADER", action = wezterm.action.Search("CurrentSelectionOrEmptyString") },
     { -- rename tab
       key = ',',
-      mods = 'ALT',
+      mods = 'LEADER',
       action = wezterm.action.PromptInputLine {
         description = 'Enter new name for tab',
         action = wezterm.action_callback(function(window, pane, line)
@@ -55,10 +56,9 @@ M.base = {
       end),
       },
     },
-
     { -- rename workspace
       key = '4',
-      mods = 'ALT',
+      mods = 'LEADER|SHIFT',
       action = wezterm.action.PromptInputLine {
         description = 'Enter new name for workspace',
         action = wezterm.action_callback(function(window, pane, line)
@@ -71,11 +71,9 @@ M.base = {
       end),
       },
     },
-    -- search
-    { key = "f", mods = "ALT", action = wezterm.action.Search("CurrentSelectionOrEmptyString") },
     { -- activate resize mode
       key = 'r',
-      mods = "ALT",
+      mods = "LEADER",
       action = wezterm.action.ActivateKeyTable {
         name = 'resize_pane',
         one_shot = false,
@@ -91,7 +89,7 @@ M.tables = {
     { key = 'j', action = wezterm.action.AdjustPaneSize { 'Down', 1 } },
 
     -- Cancel the mode by pressing escape
-    { key = 'Escape', action = 'PopKeyTable' },
+    { key = 'Enter', action = 'PopKeyTable' },
   },
 
 }

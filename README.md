@@ -1,6 +1,6 @@
 <h1 align="center">(dot)files</h1>
 <p align="center">
-  Personal config files
+  Personal config files used on my linux daily-driver
 </p>
 <br>
 
@@ -13,11 +13,8 @@
 - **Compositor:** [picom](https://github.com/yshui/picom)
 - **Shell:** [bash](https://www.gnu.org/software/bash/)
 
-The configuration files used on my linux daily-driver, managed across the system via [stow](https://www.gnu.org/software/stow/).
-
 ## Installation
-* The Arch installation is still manual and untested.
-* The Ubuntu variation however can surely be followed through [here](https://github.com/duclos-cavalcanti/deploy).
+* For full installation, follow instructions [here](https://github.com/duclos-cavalcanti/deploy).
 * To simply stow the dotfiles run:
   ```sh
   # provided GNU stow is installed
@@ -25,7 +22,7 @@ The configuration files used on my linux daily-driver, managed across the system
   ```
 
 ## References
-- [mate/ubuntu-mate](https://github.com/ubuntu-mate/ubuntu-mate-artwork)!
+- [wallpapers](https://github.com/ubuntu-mate/ubuntu-mate-artwork)
 
 ## License
 These dotfiles are released under the MIT license. See [LICENSE](LICENSE).

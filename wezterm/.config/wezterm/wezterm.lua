@@ -47,6 +47,10 @@ local config = {
     -- settings
     scrollback_lines = 3500,
     window_close_confirmation = "NeverPrompt",
+
+    unix_domains = {
+       { name="unix" }
+     },
 }
 
 return config

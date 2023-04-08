@@ -1,7 +1,7 @@
 local wezterm = require("wezterm")
-local format = require("format")
 local keys = require("keys")
 local ui = require("ui")
+local _ = require("format")
 
 local config = {
     -- basics

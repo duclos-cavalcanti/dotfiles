@@ -35,6 +35,8 @@ M.base = {
 	{ key = "h", mods = "ALT", action = wezterm.action({ MoveTabRelative = -1 }) },
 	{ key = "l", mods = "ALT", action = wezterm.action({ MoveTabRelative = 1 }) },
 
+	{ key = ")", mods = "LEADER", action = wezterm.action({ SwitchToWorkspaceRelative = -1 }) },
+	{ key = "(", mods = "LEADER", action = wezterm.action({ SwitchToWorkspaceRelative = 1 }) },
 
 	{ key = "=", mods = "CTRL", action = "ResetFontSize" },
 	{ key = "+", mods = "CTRL", action = "IncreaseFontSize" },
@@ -57,16 +59,13 @@ M.base = {
       },
     },
     { -- rename workspace
-      key = '4',
-      mods = 'LEADER|SHIFT',
+      key = '.',
+      mods = 'LEADER',
       action = wezterm.action.PromptInputLine {
         description = 'Enter new name for workspace',
         action = wezterm.action_callback(function(window, pane, line)
         if line then
-            wezterm.mux.rename_workspace(
-                wezterm.mux.get_active_workspace(),
-                line
-            )
+            wezterm.mux.rename_workspace(wezterm.mux.get_active_workspace(), line)
         end
       end),
       },

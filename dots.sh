@@ -4,12 +4,10 @@
 
 DOTFILES=$(dirname "$0")
 FOLDERS=(bash
-         tmux
-         alacritty
          awesome
-         nvim
-         neomutt
          picom
+         wezterm
+         nvim
          bin
          git
          X11)

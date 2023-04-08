@@ -6,18 +6,18 @@
 
 ![Screenshot](.github/assets/screen.png?)
 
-- **OS:** [Arch Linux](https://archlinux.org) | [Ubuntu](https://ubuntu.com/)
-- **Terminal:** [wezterm](https://github.com/wez/wezterm)
-- **Editor:** [neovim](https://github.com/neovim/neovim)
-- **WM:** [awesome](https://github.com/awesomeWM/awesome)
-- **Compositor:** [picom](https://github.com/yshui/picom)
-- **Shell:** [bash](https://www.gnu.org/software/bash/)
+<center>
+
+OS | WM | Terminal | Editor | Shell
+---|---|---|---|---
+[ubuntu](https://ubuntu.com/) | [awesome](https://github.com/awesomeWM/awesome) + [picom](https://github.com/yshui/picom) | [wezterm](https://github.com/wez/wezterm) | [neovim](https://github.com/neovim/neovim) | [bash](https://www.gnu.org/software/bash/)
+
+</center>
 
 ## Installation
 * For full installation, follow instructions [here](https://github.com/duclos-cavalcanti/deploy).
-* To simply stow the dotfiles run:
+* To simply stow the dotfiles, first install `stow` and run:
   ```sh
-  # provided GNU stow is installed
   ./dots.sh -s
   ```
 

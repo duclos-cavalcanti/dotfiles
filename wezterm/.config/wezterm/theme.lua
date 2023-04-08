@@ -1,4 +1,4 @@
 local config = dofile(os.getenv("HOME") .. "/.dotfiles/assets/system.lua")
-local ui = config.palette.terminal
+local M = config.palette.terminal
 
-return ui
+return M

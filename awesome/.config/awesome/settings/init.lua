@@ -5,7 +5,7 @@ local dpi = require("beautiful.xresources").apply_dpi
 modkey          = "Mod4" --super
 altkey          = "Mod1"
 
-terminal        = "wezterm"
+terminal        = "wezterm start"
 terminal_class  = "Wezterm"
 
 taglist = { "1", "2", "3", "4", "5", "6", "7", "8", "9" }
@@ -23,7 +23,7 @@ function M.setup()
     local error = require("settings.error")
     local autostart = require("settings.autostart")
     local screens = require("settings.screens")
-    local keys = require("settings.keybindings")
+    local keys = require("settings.keys")
     local layouts = require("settings.layouts")
     local rules = require("settings.rules")
     local clients = require("settings.clients")

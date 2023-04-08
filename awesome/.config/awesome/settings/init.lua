@@ -5,7 +5,7 @@ local dpi = require("beautiful.xresources").apply_dpi
 modkey          = "Mod4" --super
 altkey          = "Mod1"
 
-terminal        = "wezterm start"
+terminal        = "wezterm start --class Wezterm"
 terminal_class  = "Wezterm"
 
 taglist = { "1", "2", "3", "4", "5", "6", "7", "8", "9" }

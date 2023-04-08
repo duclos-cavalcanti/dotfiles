@@ -4,8 +4,6 @@
 </p>
 <br>
 
-![Screenshot](.github/assets/screen.png?)
-
 <div align="center">
 
 OS | WM | Terminal | Editor | Shell
@@ -13,6 +11,8 @@ OS | WM | Terminal | Editor | Shell
 [ubuntu](https://ubuntu.com/) | [awesome](https://github.com/awesomeWM/awesome) + [picom](https://github.com/yshui/picom) | [wezterm](https://github.com/wez/wezterm) | [neovim](https://github.com/neovim/neovim) | [bash](https://www.gnu.org/software/bash/)
 
 </div>
+
+![Screenshot](.github/assets/screen.png?)
 
 ## Installation
 * For full installation, follow instructions [here](https://github.com/duclos-cavalcanti/deploy).

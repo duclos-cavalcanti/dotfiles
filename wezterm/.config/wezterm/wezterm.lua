@@ -1,7 +1,7 @@
 local wezterm = require("wezterm")
 local keys = require("keys")
-local ui = require("ui")
-local _ = require("format")
+local theme = require("theme")
+local _ = require("signals")
 
 local config = {
     -- basics
@@ -9,9 +9,9 @@ local config = {
     font_size = 11.4,
     cell_width = 0.8,
 
-    -- ui
-    colors = ui.colors,
-    background = ui.background,
+    -- theme / ui
+    colors = theme.colors,
+    background = theme.background,
 
     window_padding = {
         left =  5,

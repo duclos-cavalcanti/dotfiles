@@ -1,7 +1,8 @@
 -- loads all configs
 
 require("globals")
-require("options")
-require("keybindings")
+require("settings")
+require("keys")
+require("commands")
 require("plugins")
-require("themes")
+require("theme")

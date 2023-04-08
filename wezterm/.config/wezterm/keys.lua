@@ -35,8 +35,8 @@ M.base = {
 	{ key = "h", mods = "ALT", action = wezterm.action({ MoveTabRelative = -1 }) },
 	{ key = "l", mods = "ALT", action = wezterm.action({ MoveTabRelative = 1 }) },
 
-	{ key = ")", mods = "LEADER", action = wezterm.action({ SwitchToWorkspaceRelative = -1 }) },
-	{ key = "(", mods = "LEADER", action = wezterm.action({ SwitchToWorkspaceRelative = 1 }) },
+	{ key = ")", mods = "LEADER", action = wezterm.action({ SwitchWorkspaceRelative = -1 }) },
+	{ key = "(", mods = "LEADER", action = wezterm.action({ SwitchWorkspaceRelative = 1 }) },
 
 	{ key = "=", mods = "CTRL", action = "ResetFontSize" },
 	{ key = "+", mods = "CTRL", action = "IncreaseFontSize" },

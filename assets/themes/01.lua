@@ -228,9 +228,10 @@ M.terminal = {
         },
 
         compose_cursor = M.yellow,
+
         cursor_bg = M.red,
-        cursor_fg = M.yellow,
         cursor_border = M.red,
+        cursor_fg = M.fg,
 
         split = M.green,
         scrollbar_thumb = M.grey,

@@ -185,7 +185,7 @@ function M.set_keybindings()
                       "applications"
                   }),
         awful.key({ M.modkey, "Shift" }, "Return",
-                  function() awful.spawn(terminal .. " --class scratch", {placement = awful.placement.center}) end,
+                  function() awful.spawn(terminal_scratch, {placement = awful.placement.center}) end,
                   {
                       "spawn floating terminal",
                       "applications"

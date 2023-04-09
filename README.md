@@ -4,11 +4,11 @@
 </p>
 <br>
 
-<div align="center">
+<div align="center" width="100%">
 
 OS | WM | Terminal | Editor | Shell
 ---|---|---|---|---
-[ubuntu](https://ubuntu.com/) \| [arch](https://wiki.archlinux.org/) | [awesome](https://github.com/awesomeWM/awesome) + [picom](https://github.com/yshui/picom) + [wallpapers](https://github.com/ubuntu-mate/ubuntu-mate-artwork) | [wezterm](https://github.com/wez/wezterm) | [neovim](https://github.com/neovim/neovim) | [bash](https://www.gnu.org/software/bash/)
+[ubuntu](https://ubuntu.com/) | [awesome](https://github.com/awesomeWM/awesome) + [picom](https://github.com/yshui/picom) + [wallpapers](https://github.com/ubuntu-mate/ubuntu-mate-artwork) | [wezterm](https://github.com/wez/wezterm) | [neovim](https://github.com/neovim/neovim) | [bash](https://www.gnu.org/software/bash/)
 
 </div>
 
@@ -46,7 +46,7 @@ simply create the `/etc/cloud/cloud-init.disabled` file afterwards.
   ```
 
 <div align="center">
-  <img src=".github/assets/deploy.png" width="75%" align="center"/>
+  <img src=".github/assets/deploy.png" width="80%" align="center"/>
 </div>
 
 

@@ -1017,7 +1017,7 @@ function M.base(opts, c)
         },
         -- tab pages line, where there are no labels
         TabLineFill = {
-            bg = c.editor.ui.tabline.fill,
+            bg = opts.transparent or c.editor.ui.tabline.fill,
             fg = c.editor.ui.tabline.fg,
         },
         -- tab pages line, active tab page label

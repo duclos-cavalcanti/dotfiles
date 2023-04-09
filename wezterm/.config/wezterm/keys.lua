@@ -35,8 +35,8 @@ M.base = {
 	{ key = "h", mods = "ALT", action = wezterm.action({ MoveTabRelative = -1 }) },
 	{ key = "l", mods = "ALT", action = wezterm.action({ MoveTabRelative = 1 }) },
 
-	{ key = "raw:19", mods = "LEADER", action = wezterm.action({ SwitchWorkspaceRelative = -1 }) },
-	{ key = "(", mods = "LEADER", action = wezterm.action({ SwitchWorkspaceRelative = 1 }) },
+	{ key = "0", mods = "LEADER", action = wezterm.action({ SwitchWorkspaceRelative = -1 }) },
+	{ key = "9", mods = "LEADER", action = wezterm.action({ SwitchWorkspaceRelative = 1 }) },
 
 	{ key = "=", mods = "CTRL", action = "ResetFontSize" },
 	{ key = "+", mods = "CTRL", action = "IncreaseFontSize" },
@@ -59,7 +59,7 @@ M.base = {
       },
     },
     { -- rename workspace
-      key = 'raw:13', -- shift + 4 = $
+      key = '4',
       mods = 'LEADER',
       action = wezterm.action.PromptInputLine {
         description = 'Enter new name for workspace',

@@ -37,5 +37,11 @@ return {
                 "nvim ~/.bashrc"
             },
         },
+        {
+            name = "deploy",
+            cmds = {
+                "nvim install.sh"
+            },
+        },
     }
 }

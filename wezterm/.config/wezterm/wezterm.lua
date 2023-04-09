@@ -47,6 +47,7 @@ local config = {
     -- settings
     scrollback_lines = 3500,
     window_close_confirmation = "NeverPrompt",
+    debug_key_events = true,
 }
 
 return config

@@ -194,7 +194,7 @@ M.editor = {
 }
 
 M.terminal = {
-    background = {{ source = { File = os.getenv("HOME") .. "/Downloads/space.jpg" } }},
+    background = {{ source = { File = os.getenv("HOME") .. "/Downloads/example.png" } }},
     status = {
         background = M.bg,
         foreground = M.grey,

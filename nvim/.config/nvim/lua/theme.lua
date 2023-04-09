@@ -2,7 +2,7 @@ local config = dofile(os.getenv("HOME") .. "/" .. ".dotfiles/assets/system.lua")
 local palette = config.palette
 
 local opts = {
-    transparent            = false,
+    transparent            = true,
     cursorline             = true,
     colorcolumn            = true,
     columnline             = false,

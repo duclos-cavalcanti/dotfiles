@@ -17,37 +17,66 @@ function(window, pane)
     })
 end)
 
--- allow `wezterm start -- something` to affect what we spawn
 wezterm.on('gui-startup',
 function(arg)
-    if not arg then return end
+    if not arg then
+        wezterm.mux.spawn_window({})
+        return
+    end
+
+    local function exists(dir)
+        local f = io.open(dir,"r")
+        if f ~= nil then io.close(f) return true else return false end
+    end
+
+    local function spawn_window_err(txt)
+        wezterm.mux.spawn_window({
+            args = txt,
+        })
+    end
+
     for _, session in pairs(require("sessions")) do
-        if session.name == arg then
-            local pane,window = nil, nil
-            _, pane, window = wezterm.mux.spawn_window({
+        if session.name == arg.args[1] then
+            local initial_pane = nil
+            local tab, pane, window = nil, nil, nil
+
+            if not exists(session.dir) then
+                spawn_window_err(string.format("echo ERROR: %s is not a valid directory", session.dir))
+                return
+            end
+
+            tab, pane, window = wezterm.mux.spawn_window({
                 workspace = session.name,
                 cwd = session.dir,
             })
 
-            for i,tab in ipairs(session.tabs) do
-                window:set_title(tab.name)
-
-                for j,cmd in ipairs(tab.cmds) do
+            initial_pane = pane
+            for i,t in ipairs(session.tabs) do
+                if i > 1 then
+                    tab, pane, window = window:spawn_tab {}
+                else
+                end
+                for j,cmd in ipairs(t.cmds) do
+                    if t.dir ~= nil then
+                        pane:send_text(string.format("cd %s\n", t.dir))
+                    end
                     pane:send_text(string.format("%s\n", cmd))
-                    if j < #panes then
+                    if j < #t.cmds then
                         pane = pane:split({
-                            direction = tab.direction or "Right",
+                            direction = t.direction or "Right",
                             size = 0.5
                         })
                     end
                 end
-
-                if i < #session.tabs then
-                    _, pane, window = window:spawn_tab {}
-                end
+                window:active_tab():set_title(t.name)
             end
+
+            initial_pane:activate()
+            return
         end
     end
+
+    spawn_window_err(string.format("Could not find predetermined session: %s", arg.args[1]))
 end)
 
 return {}

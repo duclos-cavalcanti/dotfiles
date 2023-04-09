@@ -6,8 +6,8 @@ local _ = require("signals")
 local config = {
     -- basics
     font = wezterm.font 'UbuntuMono',
-    font_size = 11.4,
-    cell_width = 0.8,
+    font_size = 10.5,
+    cell_width = 1.0,
 
     -- theme / ui
     colors = theme.colors,
@@ -32,7 +32,7 @@ local config = {
 
     enable_scroll_bar = true,
     use_fancy_tab_bar = false,
-    tab_bar_at_bottom  = false,
+    tab_bar_at_bottom  = true,
 
     hide_tab_bar_if_only_one_tab = false,
 
@@ -47,10 +47,6 @@ local config = {
     -- settings
     scrollback_lines = 3500,
     window_close_confirmation = "NeverPrompt",
-
-    unix_domains = {
-       { name="unix" }
-     },
 }
 
 return config

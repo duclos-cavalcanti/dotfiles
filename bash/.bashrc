@@ -575,6 +575,5 @@ if command -v fzf &>/dev/null; then
     # ALT-G: "\eg"
     # CTL-G: "\C-g"
     bind -m emacs-standard -x '"\C-g": pgit'
-    bind -m emacs-standard -x '"\C-t": ptmux'
 fi
 

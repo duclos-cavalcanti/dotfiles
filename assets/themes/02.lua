@@ -194,7 +194,13 @@ M.editor = {
 }
 
 M.terminal = {
-    background = nil, -- background = {{ source = { File = os.getenv("HOME") .. "/.config/awesome/theme/wallpapers/05.png" } }},
+    background = {{ source = { File = os.getenv("HOME") .. "/Downloads/space.jpg" } }},
+    status = {
+        background = M.bg,
+        foreground = M.grey,
+        mode = M.yellow,
+        ws = M.red,
+    },
     colors = {
         background = M.bg,
         foreground = M.fg,
@@ -222,9 +228,10 @@ M.terminal = {
         },
 
         compose_cursor = M.yellow,
+
         cursor_bg = M.red,
-        cursor_fg = M.yellow,
         cursor_border = M.red,
+        cursor_fg = M.fg,
 
         split = M.green,
         scrollbar_thumb = M.grey,

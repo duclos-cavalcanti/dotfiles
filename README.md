@@ -1,6 +1,6 @@
 <h1 align="center">(dot)files</h1>
 <p align="center">
-  Personal config files used on my linux daily-driver
+  Personal config files used on my linux daily-driver 
 </p>
 <br>
 
@@ -8,21 +8,47 @@
 
 OS | WM | Terminal | Editor | Shell
 ---|---|---|---|---
-[ubuntu](https://ubuntu.com/) | [awesome](https://github.com/awesomeWM/awesome) + [picom](https://github.com/yshui/picom) | [wezterm](https://github.com/wez/wezterm) | [neovim](https://github.com/neovim/neovim) | [bash](https://www.gnu.org/software/bash/)
+[ubuntu](https://ubuntu.com/) \| [arch](https://wiki.archlinux.org/) | [awesome](https://github.com/awesomeWM/awesome) + [picom](https://github.com/yshui/picom) + [wallpapers](https://github.com/ubuntu-mate/ubuntu-mate-artwork) | [wezterm](https://github.com/wez/wezterm) | [neovim](https://github.com/neovim/neovim) | [bash](https://www.gnu.org/software/bash/)
 
 </div>
 
-![Screenshot](.github/assets/screen.png?)
+<div align="center">
+  <img src=".github/assets/screen.png?" width="85%" align="center"/>
+</div>
 
-## Installation
-* For full installation, follow instructions [here](https://github.com/duclos-cavalcanti/deploy).
+
+## Deployment
+* For full installation, go [here](#install).
 * To simply stow the dotfiles, first install `stow` and run:
   ```sh
   ./dots.sh -s
   ```
 
-## References
-- [wallpapers](https://github.com/ubuntu-mate/ubuntu-mate-artwork)
+<a name="install"/>
+
+## Installation
+<p>
+  <img alt="Arch Linux" src="https://img.shields.io/badge/arch linux-blue.svg" />
+  <img alt="Ubuntu" src="https://img.shields.io/badge/ubuntu-red.svg" />
+</p>
+
+The arch installation still heavily relies on an inital base installation as per the [wiki](https://wiki.archlinux.org/title/Installation_guide) and 
+the script is not yet ready to be published. 
+However, the ubuntu variation is well-tested and working. To avoid the annoying cloud-init output pollution as per this 
+[issue](https://askubuntu.com/questions/1333240/ubuntu-20-04-server-blocks-at-boot-cloud-init-and-login),
+simply create the `/etc/cloud/cloud-init.disabled` file afterwards.
+
+- Install the [ubuntu-server](https://www.releases.ubuntu.com/jammy/) image
+- Run: 
+  ```bash
+  curl \
+  https://raw.githubusercontent.com/duclos-cavalcanti/dotfiles/main/install.sh | bash
+  ```
+
+<div align="center">
+  <img src=".github/assets/deploy.png" width="75%" align="center"/>
+</div>
+
 
 ## License
 These dotfiles are released under the MIT license. See [LICENSE](LICENSE).

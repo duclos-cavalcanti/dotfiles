@@ -22,9 +22,6 @@ end
 
 local function spawn_always()
     local auto = {
-        "[ $(tmux has-session -t dotfiles) ] || tmuxp load ~/.dotfiles/assets/sessions/dotfiles.yaml",
-        "[ $(tmux has-session -t duclos) ]   || tmuxp load ~/.dotfiles/assets/sessions/duclos.yaml",
-        "[ $(tmux has-session -t deploy) ]  || tmuxp load ~/.dotfiles/assets/sessions/deploy.yaml",
         "xmodmap ~/.config/X11/Xmodmap",
     }
 

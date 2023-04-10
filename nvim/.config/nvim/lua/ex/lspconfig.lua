@@ -4,13 +4,14 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 rustup update stable
 rustup component add rls rust-analysis rust-src
 nightly with rustfmt
-rustup toolchain install nightly
-rustup component add rls rust-analysis rust-src --toolchain nightly
-rustup override set nightly
+
 sudo npm i -g bash-language-server
+
 sudo apt install -S golang
 go install golang.org/x/tools/gopls@latest
+
 sudo apt install clangd
+
 pip install pyright
 --]]
 
@@ -55,15 +56,16 @@ require('lspconfig').gopls.setup({
     filetypes = { "go", "gomod", "gotmpl" },
 })
 
-require('lspconfig').rls.setup {
+require'lspconfig'.rust_analyzer.setup{
   settings = {
-    rust = {
-      unstable_features = true,
-      build_on_save = false,
-      all_features = true,
-    },
-  },
+    ['rust-analyzer'] = {
+      diagnostics = {
+        enable = false;
+      }
+    }
+  }
 }
+
 require('lspconfig').pyright.setup({
     on_attach = _on_attach,
     capabilities = _capabilities,

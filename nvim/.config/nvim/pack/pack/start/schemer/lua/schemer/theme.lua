@@ -909,8 +909,8 @@ function M.base(opts, c)
         },
         -- column where |signs| are displayed
         SignColumn = {
-            bg = opts.transparent and c.none
-                 or c.editor.column
+            -- bg = (opts.transparent and c.none) or c.editor.column
+            bg = c.editor.column,
         },
         -- column where |signs| are displayed
         SignColumnSB = {
@@ -1017,7 +1017,7 @@ function M.base(opts, c)
         },
         -- tab pages line, where there are no labels
         TabLineFill = {
-            bg = opts.transparent or c.editor.ui.tabline.fill,
+            bg = (opts.transparent and c.none) or c.editor.ui.tabline.fill,
             fg = c.editor.ui.tabline.fg,
         },
         -- tab pages line, active tab page label

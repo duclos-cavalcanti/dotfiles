@@ -11,7 +11,8 @@ local config = {
 
     -- theme / ui
     colors = theme.colors,
-    background = theme.background,
+    window_background_image = theme.window_background_image,
+    window_background_image_hsb = theme.window_background_image_hsb,
 
     window_padding = {
         left =  5,
@@ -47,7 +48,7 @@ local config = {
     -- settings
     scrollback_lines = 3500,
     window_close_confirmation = "NeverPrompt",
-    debug_key_events = true,
+    check_for_updates = false,
 }
 
 return config

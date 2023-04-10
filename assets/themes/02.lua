@@ -1,26 +1,26 @@
 local M = {
     none = "NONE",
 
-    bg = "#222222",
+    bg = "#000000",
     fg = "#FAFAFA",
     -- based on
-    -- https://ubuntu-mate.org/
-    black       = "#272727", -- #2C2C2C
+    -- https://wezfurlong.org/wezterm/index.html
+    black       = "#262626",
     red         = "#e01a4f",
-    green       = "#87a556",
-    yellow      = "#f9c22e",
-    blue        = "#43acc7", -- #84a752
-    magenta     = "#8E56A4",
-    cyan        = "#84dcc6",
-    white       = "#616161",
+    green       = "#00B519",
+    yellow      = "#FFFF00",
+    blue        = "#8A85FF",
+    magenta     = "#CE2BCB",
+    cyan        = "#00D0D0",
+    white       = "#DCDCDC",
 
-    black2      = "#151515", -- #3C3B37
-    red2        = "#f15946",
-    green2      = "#a9be61",
-    yellow2     = "#cdcebf",
-    blue2       = "#43acc7",
+    black2      = "#151515",
+    red2        = "#EF9500",
+    green2      = "#018F15",
+    yellow2     = "#FFFF00",
+    blue2       = "#5F58E6",
     magenta2    = "#A45686",
-    cyan2       = "#84dcc6",
+    cyan2       = "#00D0D0",
     white2      = "#FAFAFA",
 }
 
@@ -28,33 +28,33 @@ M.grey = M.white
 M.grey2 = M.white2
 
 M.editor = {
-    functions       = M.green,
-    fbuiltin        = M.red,
+    functions       = M.cyan,
+    fbuiltin        = M.yellow2,
     fparameters     = M.fg,
-    method          = M.green,
+    method          = M.red,
     constructor     = M.green,
-    namespace       = M.grey,
+    namespace       = M.blue,
     var             = M.fg,
-    field           = M.green2,
-    type            = M.blue,
+    field           = M.grey,
+    type            = M.magenta,
     structure       = M.cyan2,
     bool            = M.red,
-    storage         = M.blue2,
-    string          = M.yellow2,
+    storage         = M.blue,
+    string          = M.grey,
     char            = M.red,
-    number          = M.blue2,
-    constant        = M.blue2,
-    preproc         = M.red2,
+    number          = M.green,
+    constant        = M.red,
+    preproc         = M.blue,
     statement       = M.yellow,
-    keyword         = M.magenta2,
-    forwords        = M.green,    -- conditionals, loops
+    keyword         = M.yellow,
+    forwords        = M.yellow,    -- conditionals, loops
     label           = M.red,      -- goto's, names
-    operator        = M.magenta,
+    operator        = M.red2,
     comment         = M.grey,
     linenr          = M.grey,
     cur_linenr      = M.yellow,
     column          = M.black2,
-    punctuation     = M.magenta,
+    punctuation     = M.red2,
     special         = M.green,
     icons           = M.blue2,
     text            = {
@@ -140,7 +140,7 @@ M.editor = {
                 },
                 c = {
                     bg = M.bg,
-                    fg = M.yellow2,
+                    fg = M.grey,
                 },
             }
         },
@@ -194,7 +194,13 @@ M.editor = {
 }
 
 M.terminal = {
-    background = {{ source = { File = os.getenv("HOME") .. "/Downloads/example.png" } }},
+    -- window_background_image = os.getenv("HOME") .. "/.config/awesome/theme/wallpapers/05.png",
+    window_background_image = nil,
+    window_background_image_hsb = {
+        brightness = 0.1,
+        hue = 1.0,
+        saturation = 0.1
+    },
     status = {
         background = M.bg,
         foreground = M.grey,
@@ -234,7 +240,7 @@ M.terminal = {
         cursor_fg = M.fg,
 
         split = M.green,
-        scrollbar_thumb = M.grey,
+        scrollbar_thumb = M.black2,
 
         selection_bg = M.fg,
         selection_fg = M.bg,
@@ -247,7 +253,7 @@ M.terminal = {
         tab_bar = {
             background = M.bg,
             active_tab = {
-                bg_color = M.green,
+                bg_color = M.green2,
                 fg_color = M.fg,
             },
             inactive_tab = {
@@ -267,8 +273,8 @@ M.terminal = {
 }
 
 M.wm = {
-    wp  = "02.png",
-    wp2 = "04.png",
+    wp  = "ubuntu_mate_grey.png",
+    wp2  = "ubuntu_mate_grey_no_logo.png",
     generic = { -- default and tasklist
         normal = {
             bg = M.bg,

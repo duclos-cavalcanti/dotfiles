@@ -23,12 +23,12 @@ end
 function M.setup()
     -- screen property hook
     screen.connect_signal("property::geometry", function(s)
-        set_wallpaper(s)                                -- setting wallpaper
+        set_wallpaper(s)
     end)
 
     -- screen hook for each screen
     awful.screen.connect_for_each_screen(function(s)
-        set_wallpaper(s)                                -- setting wallpaper
+        set_wallpaper(s)
         awful.tag(taglist, s, awful.layout.layouts[1])  -- setting taglist per screen
         require("interface.bar").setup(s)               -- setting up bar
     end)

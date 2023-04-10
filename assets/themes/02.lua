@@ -338,7 +338,7 @@ M.wm = {
     tag = {
         empty = {
             bg = M.black2,
-            fg = M.grey,
+            fg = M.black,
         },
         occ = {
             bg = M.black2,

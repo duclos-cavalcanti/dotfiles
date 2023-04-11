@@ -78,8 +78,8 @@ bash_prompt() {
 
     local clear='\[\033[0m\]'
     local primary=${black}
-    local dir_color=${bold_red}
-    local user_color=${bold_green}
+    local dir_color=${red}
+    local user_color=${green}
     local git_color=${bold_yellow}
     local pyenv_color=${bold_green}
 

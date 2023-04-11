@@ -28,14 +28,14 @@ local config = {
 
     inactive_pane_hsb = {
       saturation = 1.0,
-      brightness = 1.0,
+      brightness = 0.8,
     },
 
     enable_scroll_bar = true,
     use_fancy_tab_bar = false,
     tab_bar_at_bottom  = false,
 
-    hide_tab_bar_if_only_one_tab = false,
+    hide_tab_bar_if_only_one_tab = true,
 
     -- keybindings
 	disable_default_key_bindings = true,

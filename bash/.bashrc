@@ -36,10 +36,6 @@ if command -v fzf &>/dev/null; then
 fi
 
 bash_prompt() {
-    local __primary__="white"
-    local __git_color__="bold_yellow"
-    local __pyenv_color__="bold_green"
-
 # Prompt info
     # Colors             Backgrounds              Attributes
     #
@@ -81,9 +77,11 @@ bash_prompt() {
     local bold_white='\[\033[01;37m\]'
 
     local clear='\[\033[0m\]'
-    local primary=$(eval "echo \$$__primary__")
-    local git_color=$(eval "echo \$$__git_color__")
-    local pyenv_color=$(eval "echo \$$__pyenv_color__")
+    local primary=${black}
+    local dir_color=${bold_red}
+    local user_color=${bold_green}
+    local git_color=${bold_yellow}
+    local pyenv_color=${bold_green}
 
     last_command_prompt() {
         local value="$?"
@@ -183,7 +181,7 @@ bash_prompt() {
 	PROMPT+="${primary}"
     PROMPT+="━"
 	PROMPT+='['
-	PROMPT+="${bold_green}"
+	PROMPT+="${user_color}"
     PROMPT+='\H'
 	PROMPT+="${primary}"
 	PROMPT+=']'
@@ -191,7 +189,7 @@ bash_prompt() {
     # directory
     PROMPT+="━"
 	PROMPT+='['
-	PROMPT+="${bold_red}"
+	PROMPT+="${dir_color}"
     PROMPT+='\W'
 	PROMPT+="${primary}"
 	PROMPT+=']'

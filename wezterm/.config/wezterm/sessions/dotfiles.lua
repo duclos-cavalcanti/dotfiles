@@ -35,7 +35,12 @@ return {
             cmds = {
                 "clear",
                 "nvim assets/system.lua",
-                "nvim ~/.bashrc"
+            },
+        },
+        {
+            name = "shell",
+            cmds = {
+                "nvim ~/.bashrc",
             },
         },
         {

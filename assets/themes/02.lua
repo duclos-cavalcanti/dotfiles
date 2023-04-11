@@ -273,8 +273,8 @@ M.terminal = {
 }
 
 M.wm = {
-    wp  = "ubuntu_mate_grey.png",
-    wp2  = "ubuntu_mate_grey_no_logo.png",
+    wp  = "ubuntu_mate.png",
+    wp2  = "ubuntu_mate_no_logo.png",
     generic = { -- default and tasklist
         normal = {
             bg = M.black,

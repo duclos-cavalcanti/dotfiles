@@ -45,16 +45,6 @@ function M.set_bar(s)
         return require("interface.widgets.tray").default()
     end
 
-    local function cpu()
-        local m = require("interface.widgets.cpu"); m.new()
-        return m
-    end
-
-    local function ram()
-        local m = require("interface.widgets.ram"); m.new()
-        return m
-    end
-
     local function space()
         local sp = wibox.widget.textbox()
         sp:set_text(" ")

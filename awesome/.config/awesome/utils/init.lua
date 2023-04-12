@@ -4,10 +4,8 @@ local timer = require("gears.timer")
 
 local M = {}
 
-M.startup = true
-
-function M.set_timer(args)
-    if type(args.callback) ~= "function" then return nil, false end
+function M.make_timer(args)
+    if type(args.callback) ~= "function" then return nil end
 
     local t = timer({
         timeout = args.timeout or 10,
@@ -16,7 +14,7 @@ function M.set_timer(args)
         callback = args.callback
     })
 
-    return t, true
+    return t
 end
 
 function M.marginalize(w, m)
@@ -30,18 +28,8 @@ function M.marginalize(w, m)
     )
 end
 
-function M.color_text(c, text)
-    local prefix = "<span foreground='"
-    local suffix = "</span>"
-    return prefix .. c .. "'>" .. text .. suffix
-end
-
-function M.merge_tables(tb, new)
-    for _,v in ipairs(new) do
-        table.insert(tb, v)
-    end
-
-    return tb
+function M.config_path()
+    return gears.filesystem.get_configuration_dir()
 end
 
 function M.load_file(file)
@@ -57,22 +45,6 @@ function M.file_exists(name)
     else
         return false
     end
-end
-
-function M.user()
-    return os.getenv("USER")
-end
-
-function M.home_path()
-    return os.getenv("HOME")
-end
-
-function M.config_path()
-    return gears.filesystem.get_configuration_dir()
-end
-
-function M.palette_path()
-    return M.home_path() .. "/.dotfiles/assets/themes/palette"
 end
 
 function M.log( msg)

@@ -77,7 +77,7 @@ bash_prompt() {
     local bold_white='\[\033[01;37m\]'
 
     local clear='\[\033[0m\]'
-    local primary=${black}
+    local primary=${white}
     local dir_color=${red}
     local user_color=${green}
     local git_color=${bold_yellow}

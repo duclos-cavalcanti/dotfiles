@@ -20,6 +20,9 @@ local function set_wallpaper(s)
     wp(s, hwp, vwp)
 end
 
+local function set_monitors()
+end
+
 function M.setup()
     -- screen property hook
     screen.connect_signal("property::geometry", function(s)
@@ -32,6 +35,8 @@ function M.setup()
         awful.tag(taglist, s, awful.layout.layouts[1])  -- setting taglist per screen
         require("interface.bar").setup(s)               -- setting up bar
     end)
+
+    set_monitors()
 end
 
 return M

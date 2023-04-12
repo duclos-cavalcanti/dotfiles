@@ -2,6 +2,15 @@ local awful = require("awful")
 local gears = require("gears")
 
 local M = {}
+local C = {
+    ['duclos'] = {
+        nr = 3,
+        displays = {
+            ['eDP1'] = 'xrandr --mode 1920x1080 --output eDP1',
+            ['DP2-2'] = 'xrandr --output DP2-2 --rotate left --right-of eDP1'
+        }
+    },
+}
 
 local function wp(s, hwp, vwp)
     local w = s.geometry.width
@@ -21,6 +30,49 @@ local function set_wallpaper(s)
 end
 
 local function set_monitors()
+    local config = C[os.getenv('HOSTNAME')]
+
+    local function run(cmd)
+        local f = assert(io.popen(cmd,'r'))
+        local s = assert(f:read('*a'))
+        return string.gsub(s, '[\n\r]+', ' ')
+    end
+
+    local function get_nr_displays()
+        local number=run("xrandr | grep ' connected' | wc -l")
+        return tonumber(number)
+    end
+
+    local function check_displays(config)
+        local i = 0
+        local j = 0
+        local displays=run("xrandr | grep --color=NEVER ' connected' | awk '{print $1}'")
+
+        for k, _ in pairs(config.displays) do
+            j = j + 1
+            for s in string.gmatch(displays, "([^%s]+)") do
+                if k == s then
+                    i = i + 1
+                end
+            end
+        end
+
+        return (i == j)
+    end
+
+    if config ~= nil then
+        if config.nr == get_nr_displays() then
+            if check_displays(config) then
+                for _,v in pairs(config.displays) do
+                    os.execute(v)
+                end
+            else
+                print("Displays missmatch in monitors config!")
+            end
+        end
+    else
+        print(os.getenv("USER") .. " is not found in the monitors config!")
+    end
 end
 
 function M.setup()

@@ -29,8 +29,7 @@ function M.default()
         image = beautiful.menu_icon,
         menu = menu.w,
     })
-
-    return utils.marginalize(w, 2)
+    return w
 end
 
 return M

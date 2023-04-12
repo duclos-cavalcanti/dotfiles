@@ -8,10 +8,22 @@ local dpi = require("beautiful.xresources").apply_dpi
 
 local M = {}
 
+local function marginalize(w, m)
+    return wibox.container.margin(
+        w,
+        m,
+        m,
+        m,
+        m,
+        beautiful.wibar_bg
+    )
+end
+
 function M.set_bar(s)
     -- Menu Launcher
     local function menu_launcher()
-        return require("interface.widgets.menu").default()
+        local w = require("interface.widgets.menu").default()
+        return marginalize(w, 2)
     end
 
     -- Clock
@@ -27,7 +39,7 @@ function M.set_bar(s)
     -- Layoutbox
     local function layoutbox(scr)
         local w = require("interface.widgets.layout").default(scr)
-        return utils.marginalize(w, 2)
+        return marginalize(w, 2)
     end
 
     -- Taglist

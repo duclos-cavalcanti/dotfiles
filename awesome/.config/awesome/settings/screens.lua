@@ -6,7 +6,7 @@ local C = {
     ['duclos'] = {
         nr = 3,
         displays = {
-            ['eDP1'] = 'xrandr --mode 1920x1080 --output eDP1',
+            ['eDP1'] = 'xrandr --output eDP1 --mode 1920x1080',
             ['DP2-2'] = 'xrandr --output DP2-2 --rotate left --right-of eDP1'
         }
     },
@@ -30,7 +30,7 @@ local function set_wallpaper(s)
 end
 
 local function set_monitors()
-    local config = C[os.getenv('HOSTNAME')]
+    local config = C[os.getenv('USER')]
 
     local function run(cmd)
         local f = assert(io.popen(cmd,'r'))
@@ -43,12 +43,12 @@ local function set_monitors()
         return tonumber(number)
     end
 
-    local function check_displays(config)
+    local function check_displays(c)
         local i = 0
         local j = 0
         local displays=run("xrandr | grep --color=NEVER ' connected' | awk '{print $1}'")
 
-        for k, _ in pairs(config.displays) do
+        for k, _ in pairs(c.displays) do
             j = j + 1
             for s in string.gmatch(displays, "([^%s]+)") do
                 if k == s then
@@ -69,6 +69,8 @@ local function set_monitors()
             else
                 print("Displays missmatch in monitors config!")
             end
+        else
+            print("Number of displays missmatch in monitors config!")
         end
     else
         print(os.getenv("USER") .. " is not found in the monitors config!")

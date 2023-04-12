@@ -5,7 +5,11 @@ local _ = require("signals")
 
 local config = {
     -- basics
-    font = wezterm.font 'UbuntuMono',
+    font = wezterm.font_with_fallback {
+        'Ubuntu Mono',
+        "JetBrains Mono",
+        "Symbols Nerd Fonto Mono"
+    },
     font_size = 10.5,
     cell_width = 1.0,
 

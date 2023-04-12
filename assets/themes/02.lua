@@ -1,11 +1,11 @@
 local M = {
     none = "NONE",
 
-    bg = "#222222",
-    fg = "#FAFAFA",
+    bg = "#FAFAFA",
+    fg = "#222222",
     -- based on
     -- https://ubuntu-mate.org/
-    black       = "#272727", -- #2C2C2C
+    black       = "#2C2C2C",
     red         = "#e01a4f",
     green       = "#87a556",
     yellow      = "#f9c22e",
@@ -14,7 +14,7 @@ local M = {
     cyan        = "#84dcc6",
     white       = "#616161",
 
-    black2      = "#151515", -- #3C3B37
+    black2      = "#3C3B37",
     red2        = "#f15946",
     green2      = "#a9be61",
     yellow2     = "#cdcebf",

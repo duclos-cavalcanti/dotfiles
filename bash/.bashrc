@@ -78,9 +78,10 @@ bash_prompt() {
 
     local clear='\[\033[0m\]'
     local primary=${white}
+    local user_color=${blue}
     local dir_color=${red}
-    local user_color=${green}
-    local git_color=${bold_yellow}
+    local last_color=${white}
+    local git_color=${yellow}
     local pyenv_color=${bold_green}
 
     last_command_prompt() {
@@ -92,9 +93,7 @@ bash_prompt() {
         local git_flag=$(git rev-parse --is-inside-work-tree 2>/dev/null | grep true)
 
         if [[ -n "$git_flag" ]]; then
-            local prefix="━"
-            prefix+="━"
-            prefix+="["
+            local prefix=" -> "
 
             echo -e "$prefix"
         fi
@@ -104,7 +103,7 @@ bash_prompt() {
         local git_flag=$(git rev-parse --is-inside-work-tree 2>/dev/null | grep true)
 
         if [[ -n "$git_flag" ]]; then
-            local suffix="]"
+            local suffix=""
 
             echo -e "$suffix"
         fi
@@ -123,7 +122,7 @@ bash_prompt() {
 
             prompt="${git_status}"
 
-            echo -e "$prompt"
+            echo -e "($prompt)"
         else
             echo -n ""
         fi
@@ -132,7 +131,7 @@ bash_prompt() {
     pyenv_prefix() {
         if [[ -n "$VIRTUAL_ENV" ]]; then
             local prefix="━"
-            prefix+="━"
+            prefix+="-"
             prefix+="["
 
             echo -e "$prefix"
@@ -171,28 +170,24 @@ bash_prompt() {
     local PROMPT=''
     local RIGHT='\033[500C'
 
-    # first line / host
-	PROMPT+="${primary}"
-	PROMPT+='┏━'
+    # last command return code
+    PROMPT+="${last_color}"
 	PROMPT+='['
     PROMPT+='$(last_command_prompt)'
 	PROMPT+=']'
-
+	PROMPT+=':'
 	PROMPT+="${primary}"
-    PROMPT+="━"
-	PROMPT+='['
+
 	PROMPT+="${user_color}"
     PROMPT+='\H'
 	PROMPT+="${primary}"
-	PROMPT+=']'
+	PROMPT+=':'
 
     # directory
-    PROMPT+="━"
-	PROMPT+='['
 	PROMPT+="${dir_color}"
     PROMPT+='\W'
 	PROMPT+="${primary}"
-	PROMPT+=']'
+
 
     # git
     PROMPT+="${primary}"
@@ -210,23 +205,11 @@ bash_prompt() {
     PROMPT+="${primary}"
     PROMPT+='$(pyenv_suffix)'
 
-    # jump line
-    PROMPT+=$'\n'
-
-    # second line
-    PROMPT+="${primary}"
-    PROMPT+='┗━━'
+    # prompt
     PROMPT+=' '
-    PROMPT+="${primary}"
+    PROMPT+='$'
+    PROMPT+=' '
 
-    # if this is a tty
-    if [ -z "$DISPLAY" ]; then
-        PROMPT+='$'
-        PROMPT+=' '
-    else # gui
-        PROMPT+='$'
-        PROMPT+=' '
-    fi
 
     PROMPT+="${clear}"
 

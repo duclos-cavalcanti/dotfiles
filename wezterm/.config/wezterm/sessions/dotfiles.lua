@@ -40,6 +40,7 @@ return {
         {
             name = "shell",
             cmds = {
+                "clear",
                 "nvim ~/.bashrc",
             },
         },

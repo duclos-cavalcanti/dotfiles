@@ -1,26 +1,26 @@
 local M = {
     none = "NONE",
 
-    bg = "#FFD990",
-    fg = "#000000",
+    bg = "#222222",
+    fg = "#FAFAFA",
+    -- based on
+    -- https://ubuntu-mate.org/
+    black       = "#272727", -- #2C2C2C
+    red         = "#e01a4f",
+    green       = "#87a556",
+    yellow      = "#f9c22e",
+    blue        = "#43acc7", -- #84a752
+    magenta     = "#8E56A4",
+    cyan        = "#84dcc6",
+    white       = "#616161",
 
-
-    black       = "#3E3B32",
-    red         = "#D82330",
-    green       = "#1C8557",
-    yellow      = "#5B5B0C",
-    blue        = "#113933",
-    magenta     = "#1C394D",
-    cyan        = "#0E8891",
-    white       = "#998663",
-
-    black2      = "#74655E",
-    red2        = "#93472D",
-    green2      = "#016644",
-    yellow2     = "#547805",
-    blue2       = "#3F4207",
-    magenta2    = "#1C394D",
-    cyan2       = "#0E8891",
+    black2      = "#151515", -- #3C3B37
+    red2        = "#f15946",
+    green2      = "#a9be61",
+    yellow2     = "#cdcebf",
+    blue2       = "#43acc7",
+    magenta2    = "#A45686",
+    cyan2       = "#84dcc6",
     white2      = "#FAFAFA",
 }
 
@@ -28,35 +28,35 @@ M.grey = M.white
 M.grey2 = M.white2
 
 M.editor = {
-    functions       = M.red,
-    fbuiltin        = M.green2,
+    functions       = M.green,
+    fbuiltin        = M.red,
     fparameters     = M.fg,
-    method          = M.cyan,
+    method          = M.green,
     constructor     = M.green,
-    namespace       = M.green2,
+    namespace       = M.grey,
     var             = M.fg,
-    field           = M.red2,
-    type            = M.green,
-    structure       = M.cyan,
+    field           = M.green2,
+    type            = M.blue,
+    structure       = M.cyan2,
     bool            = M.red,
     storage         = M.blue2,
-    string          = M.grey,
+    string          = M.yellow2,
     char            = M.red,
-    number          = M.red,
-    constant        = M.green2,
+    number          = M.blue2,
+    constant        = M.blue2,
     preproc         = M.red2,
     statement       = M.yellow,
-    keyword         = M.blue,
+    keyword         = M.magenta2,
     forwords        = M.green,    -- conditionals, loops
     label           = M.red,      -- goto's, names
     operator        = M.magenta,
     comment         = M.grey,
     linenr          = M.grey,
-    cur_linenr      = M.green,
-    column          = M.black,
+    cur_linenr      = M.yellow,
+    column          = M.black2,
     punctuation     = M.magenta,
-    special         = M.blue2,
-    icons           = M.blue,
+    special         = M.green,
+    icons           = M.blue2,
     text            = {
         todo = M.cyan2,
         title = M.red,        -- titles for output and tabline number of buffers
@@ -64,19 +64,19 @@ M.editor = {
         rare = M.blue2,
     },
     error           = {
-        bg = M.black, --column color should match
-        fg = M.red,
+        bg = M.black2, --column color should match
+        fg = M.red2,
     },
     warning     = {
-        bg = M.black, --column color should match
+        bg = M.black2, --column color should match
         fg = M.grey,
     },
     hint     = {
-        bg = M.black, --column color should match
+        bg = M.black2, --column color should match
         fg = M.white2,
     },
     info     = {
-        bg = M.black, --column color should match
+        bg = M.black2, --column color should match
         fg = M.fg,
     },
     success  = {
@@ -91,8 +91,8 @@ M.editor = {
         file    = M.blue,
     },
     visual = {
-        bg = M.grey,
-        fg = M.fg,
+        bg = M.fg,
+        fg = M.bg,
     },
     search = {
         bg = M.yellow,
@@ -118,29 +118,29 @@ M.editor = {
             line = {
                 a = {
                     normal = {
-                        bg = M.black,
-                        fg = M.white2,
+                        bg = M.black2,
+                        fg = M.fg,
                     },
                     insert = {
-                        bg = M.black,
+                        bg = M.black2,
                         fg = M.green,
                     },
                     command = {
-                        bg = M.black,
+                        bg = M.black2,
                         fg = M.yellow,
                     },
                     visual = {
-                        bg = M.black,
-                        fg = M.red,
+                        bg = M.black2,
+                        fg = M.magenta,
                     },
                 },
                 b = {
-                    bg = M.black2,
+                    bg = M.black,
                     fg = M.fg,
                 },
                 c = {
                     bg = M.bg,
-                    fg = M.grey,
+                    fg = M.yellow2,
                 },
             }
         },
@@ -149,8 +149,8 @@ M.editor = {
             fg = M.grey,
             fill = M.bg,
             selected = {
-                bg = M.black,
-                fg = M.white2,
+                bg = M.black2,
+                fg = M.fg,
             }
         },
         popmenu     = {
@@ -194,13 +194,7 @@ M.editor = {
 }
 
 M.terminal = {
-    -- window_background_image = os.getenv("HOME") .. "/.config/awesome/theme/wallpapers/05.png",
-    window_background_image = nil,
-    window_background_image_hsb = {
-        brightness = 0.1,
-        hue = 1.0,
-        saturation = 0.1
-    },
+    background = nil, -- background = {{ source = { File = os.getenv("HOME") .. "/.config/awesome/theme/wallpapers/05.png" } }},
     status = {
         background = M.bg,
         foreground = M.grey,
@@ -240,10 +234,10 @@ M.terminal = {
         cursor_fg = M.fg,
 
         split = M.green,
-        scrollbar_thumb = M.black2,
+        scrollbar_thumb = M.grey,
 
-        selection_bg = M.grey,
-        selection_fg = M.fg,
+        selection_bg = M.fg,
+        selection_fg = M.bg,
 
         quick_select_label_bg = { Color = M.black },
         quick_select_label_fg = { Color = M.fg },
@@ -253,8 +247,8 @@ M.terminal = {
         tab_bar = {
             background = M.bg,
             active_tab = {
-                bg_color = M.blue,
-                fg_color = M.white2,
+                bg_color = M.green,
+                fg_color = M.fg,
             },
             inactive_tab = {
                 bg_color = M.bg,
@@ -277,87 +271,87 @@ M.wm = {
     wp2  = "ubuntu_mate_no_logo.png",
     generic = { -- default and tasklist
         normal = {
-            bg = M.blue,
+            bg = M.bg,
             fg = M.grey,
         },
         focus  = {
-            bg = M.blue,
-            fg = M.white2,
+            bg = M.black2,
+            fg = M.fg,
         },
         urgent = {
             bg = M.red,
             fg = M.fg,
         },
         min = {
-            bg = M.blue2,
+            bg = M.grey,
             fg = M.fg,
         },
     },
     titlebar = {
         normal =  {
-            bg = M.blue,
-            fg = M.grey,
+            bg = M.black2,
+            fg = M.fg,
         },
         focus = {
-            bg = M.blue,
-            fg = M.white2,
+            bg = M.black,
+            fg = M.fg,
         }
     },
     bar = {
-        bg          = M.blue,
-        fg          = M.white2,
+        bg          = M.black2,
+        fg          = M.fg,
         highlight   = M.green,
     },
     border = {
         normal          = M.grey,
         focus           = M.green,
         sticky          = M.red,
-        marked          = M.cyan,
+        marked          = M.blue2
     },
     tray = {
-        bg = M.blue,
+        bg = M.black2,
         fg = M.fg,
-        popup = M.black,
+        popup = M.black2,
     },
     prompt = {
-        bg = M.blue,
-        fg = M.white2,
+        bg = M.black2,
+        fg = M.fg,
     },
     menu = {
-        normal  = M.blue,
+        normal  = M.black2,
         focus   = {
-            bg = M.black2,
+            bg = M.black,
             fg = M.fg,
         },
         border  = M.black,
     },
     clock = {
-        bg = M.blue,
-        fg = M.white2,
+        bg = M.black2,
+        fg = M.fg,
     },
     tag = {
         empty = {
-            bg = M.blue,
+            bg = M.black2,
             fg = M.grey,
         },
         occ = {
-            bg = M.blue,
-            fg = M.white2,
+            bg = M.black2,
+            fg = M.fg,
         },
         focus = {
             bg = M.green,
-            fg = M.white2,
+            fg = M.fg,
         },
         urgent = {
             bg = M.magenta2,
-            fg = M.white2,
+            fg = M.fg,
         },
     },
     separator = M.black2,
     notification = {
-        bg = M.blue,
+        bg = M.black2,
         fg = M.fg,
-        border = M.green,
+        border = M.cyan,
     },
 }
 

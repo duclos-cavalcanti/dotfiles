@@ -79,6 +79,9 @@ maim
 ffmpeg
 nitrogen
 # de-related
+gnome-control-center
+gnome-settings-daemon
+gnome-tweaks
 nautilus
 gedit
 evolution
@@ -87,6 +90,7 @@ gnome-calendar
 gnome-weather
 gnome-color-manager
 gnome-disk-utility
+gnome-power-manager
 galculator
 gimp
 gcolor3

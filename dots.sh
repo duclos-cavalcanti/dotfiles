@@ -16,6 +16,7 @@ usage() {
   printf "USAGE: syntax: ./dots.sh <options>
   OPTIONS:
     -i | --install:
+    -r | --reinstall:
     -u | --uninstall:
     -s | --system:
   "

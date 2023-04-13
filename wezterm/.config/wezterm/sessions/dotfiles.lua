@@ -34,7 +34,7 @@ return {
             name = "bash",
             cmds = {
                 "clear",
-                "nvim assets/system.lua",
+                "nvim dots.sh",
             },
         },
         {

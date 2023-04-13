@@ -77,35 +77,19 @@ bash_prompt() {
     local bold_white='\[\033[01;37m\]'
 
     local clear='\[\033[0m\]'
-    local primary=${white}
+    local default=${white}
     local user_color=${blue}
     local dir_color=${red}
-    local last_color=${white}
     local git_color=${yellow}
     local pyenv_color=${bold_green}
-
-    last_command_prompt() {
-        local value="$?"
-        printf "${value}"
-    }
 
     git_prefix() {
         local git_flag=$(git rev-parse --is-inside-work-tree 2>/dev/null | grep true)
 
         if [[ -n "$git_flag" ]]; then
-            local prefix=" -> "
+            local prefix=" on "
 
             echo -e "$prefix"
-        fi
-    }
-
-    git_suffix() {
-        local git_flag=$(git rev-parse --is-inside-work-tree 2>/dev/null | grep true)
-
-        if [[ -n "$git_flag" ]]; then
-            local suffix=""
-
-            echo -e "$suffix"
         fi
     }
 
@@ -130,9 +114,7 @@ bash_prompt() {
 
     pyenv_prefix() {
         if [[ -n "$VIRTUAL_ENV" ]]; then
-            local prefix="━"
-            prefix+="-"
-            prefix+="["
+            local prefix=" via "
 
             echo -e "$prefix"
         fi
@@ -146,13 +128,6 @@ bash_prompt() {
             echo -e "${venv}"
         else
             echo -n ""
-        fi
-    }
-
-    pyenv_suffix() {
-        if [[ -n "$VIRTUAL_ENV" ]]; then
-            local suffix="]"
-            echo -e "$suffix"
         fi
     }
 
@@ -170,42 +145,33 @@ bash_prompt() {
     local PROMPT=''
     local RIGHT='\033[500C'
 
-    # last command return code
-    PROMPT+="${last_color}"
-	PROMPT+='['
-    PROMPT+='$(last_command_prompt)'
-	PROMPT+=']'
-	PROMPT+=':'
-	PROMPT+="${primary}"
-
 	PROMPT+="${user_color}"
     PROMPT+='\H'
-	PROMPT+="${primary}"
-	PROMPT+=':'
+	PROMPT+="${default}"
+	PROMPT+=' at '
 
     # directory
 	PROMPT+="${dir_color}"
     PROMPT+='\W'
-	PROMPT+="${primary}"
+	PROMPT+="${default}"
 
 
     # git
-    PROMPT+="${primary}"
+    PROMPT+="${default}"
     PROMPT+='$(git_prefix)'
     PROMPT+="${git_color}"
     PROMPT+='$(git_prompt)'
-    PROMPT+="${primary}"
-    PROMPT+='$(git_suffix)'
+    PROMPT+="${default}"
 
     # pyenv
-    PROMPT+="${primary}"
+    PROMPT+="${default}"
     PROMPT+='$(pyenv_prefix)'
     PROMPT+="${pyenv_color}"
     PROMPT+='$(pyenv_prompt)'
-    PROMPT+="${primary}"
-    PROMPT+='$(pyenv_suffix)'
+    PROMPT+="${default}"
 
     # prompt
+    PROMPT+="${default}"
     PROMPT+=' '
     PROMPT+='$'
     PROMPT+=' '
@@ -249,6 +215,8 @@ __prompt_command__() {
         fi
         __ts__=$(stat -c %Y "${rc}")
     fi
+
+
     # history -a; history -w; history -c; history -r
     history -a
     printf "\n"

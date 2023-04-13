@@ -40,14 +40,14 @@ return {
         {
             name = "shell",
             cmds = {
-                "clear",
                 "nvim ~/.bashrc",
             },
         },
         {
             name = "deploy",
             cmds = {
-                "nvim install.sh"
+                "clear",
+                "nvim assets/install/ubuntu.sh"
             },
         },
     }

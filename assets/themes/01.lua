@@ -227,7 +227,7 @@ M.terminal = {
           M.white2,
         },
 
-        compose_cursor = M.yellow,
+        compose_cursor = M.green,
 
         cursor_bg = M.red,
         cursor_border = M.red,
@@ -245,22 +245,22 @@ M.terminal = {
         quick_select_match_fg = { Color = M.fg },
 
         tab_bar = {
-            background = M.bg,
+            background = M.black2,
             active_tab = {
                 bg_color = M.green,
-                fg_color = M.fg,
+                fg_color = M.black2,
             },
             inactive_tab = {
-                bg_color = M.bg,
+                bg_color = M.black2,
                 fg_color = M.grey,
             },
             new_tab = {
-                bg_color = M.bg,
-                fg_color = M.bg,
+                bg_color = M.black2,
+                fg_color = M.green,
             },
             new_tab_hover = {
-                bg_color = M.bg,
-                fg_color = M.bg,
+                bg_color = M.black2,
+                fg_color = M.green,
             }
         },
     },
@@ -290,10 +290,10 @@ M.wm = {
     titlebar = {
         normal =  {
             bg = M.black2,
-            fg = M.fg,
+            fg = M.grey,
         },
         focus = {
-            bg = M.black,
+            bg = M.black2,
             fg = M.fg,
         }
     },

@@ -100,10 +100,6 @@ bash_prompt() {
 
         if [[ -n "$git_flag" ]]; then
             local git_status="$(__git_ps1 "%s")"
-            # removes brackets
-            git_status=$(echo "$git_status" | sed 's/\[//g')
-            git_status=$(echo "$git_status" | sed 's/\]//g')
-
             prompt="${git_status}"
 
             echo -e "($prompt)"

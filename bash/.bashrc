@@ -95,11 +95,11 @@ bash_prompt() {
 
     git_prompt() {
         local prompt
-        local git_status
         local git_flag=$(git rev-parse --is-inside-work-tree 2>/dev/null | grep true)
 
         if [[ -n "$git_flag" ]]; then
             prompt="$(__git_ps1 "%s")"
+            prompt="$(echo ${prompt} | sed 's/[()]//g')"
             echo -e "($prompt)"
         else
             echo -n ""

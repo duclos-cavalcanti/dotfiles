@@ -32,7 +32,7 @@ OS | WM | Terminal | Editor | Shell
   <img alt="Ubuntu" src="https://img.shields.io/badge/ubuntu-red.svg" />
 </p>
 
-The arch installation still heavily relies on an inital base installation as per the [wiki](https://wiki.archlinux.org/title/Installation_guide) and 
+The arch installation still heavily relies on an inital base installation via the [wiki](https://wiki.archlinux.org/title/Installation_guide) and 
 the script is not yet ready to be published. 
 However, the ubuntu variation is well-tested and working. To avoid the annoying cloud-init output pollution as per this 
 [issue](https://askubuntu.com/questions/1333240/ubuntu-20-04-server-blocks-at-boot-cloud-init-and-login),

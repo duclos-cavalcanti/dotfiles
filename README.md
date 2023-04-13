@@ -42,7 +42,7 @@ simply create the `/etc/cloud/cloud-init.disabled` file afterwards.
 - Run: 
   ```bash
   curl \
-  https://raw.githubusercontent.com/duclos-cavalcanti/dotfiles/main/install.sh | bash
+  https://raw.githubusercontent.com/duclos-cavalcanti/dotfiles/main/assets/install/ubuntu.sh | bash
   ```
 
 <div align="center">

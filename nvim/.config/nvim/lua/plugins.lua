@@ -110,12 +110,6 @@ return require('packer').startup(function(use)
         config = function() require('ex.comment') end,
     }
 
-    -- markdown
-    use {
-        'iamcco/markdown-preview.nvim',
-        config  = function() require('ex.markdown') end,
-    }
-
     -- themes/ui
     use { 'nvim-lualine/lualine.nvim',
           requires = { 'kyazdani42/nvim-web-devicons', opt = true }

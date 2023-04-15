@@ -12,6 +12,7 @@ local function spawn_once()
         "blueman-applet",
         "pasystray",
         "unclutter",
+        "gnome-screensaver",
     }
 
     for k,v in pairs(auto) do

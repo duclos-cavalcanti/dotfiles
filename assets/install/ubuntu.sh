@@ -91,6 +91,7 @@ gnome-weather
 gnome-color-manager
 gnome-disk-utility
 gnome-power-manager
+gnome-screensaver
 galculator
 gimp
 gcolor3
@@ -111,7 +112,6 @@ arandr
 apt-rdepends
 xclip
 xserver-xephyr
-xtrlock
 )
 
 SNAP_PACKAGES=(

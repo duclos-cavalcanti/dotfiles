@@ -301,6 +301,7 @@ installation() {
             export GOPATH="$HOME/.go"
             [ -d go ] && mv go $HOME/.go
             go install golang.org/x/tools/gopls@latest
+            go install github.com/charmbracelet/glow@latest
         else
             printf "Go isn't installed? Skipping Go...\n"
         fi

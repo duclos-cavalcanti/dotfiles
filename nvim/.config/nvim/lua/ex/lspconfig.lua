@@ -1,19 +1,3 @@
---[[
-Servers:
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-rustup update stable
-rustup component add rust-src
-
-sudo npm i -g bash-language-server
-
-sudo apt install -S golang
-go install golang.org/x/tools/gopls@latest
-
-sudo apt install clangd
-
-pip install pyright
---]]
-
 local function _on_attach(client, bufnr)
   -- Set omnifunc
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
@@ -56,13 +40,14 @@ require('lspconfig').gopls.setup({
 })
 
 require'lspconfig'.rust_analyzer.setup{
-  settings = {
-    ['rustup run stable rust-analyzer'] = {
-      diagnostics = {
-        enable = false;
+    cmd = { "rustup", "run", "stable", "rust-analyzer" },
+    settings = {
+      ['rust-analyzer'] = {
+        diagnostics = {
+          enable = false;
+        }
       }
     }
-  }
 }
 
 require('lspconfig').pyright.setup({

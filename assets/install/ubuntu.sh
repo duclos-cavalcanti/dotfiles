@@ -285,9 +285,7 @@ installation() {
 
         if command -v rustup; then
             rustup update stable
-            rustup toolchain install nightly
-            rustup component add rls rust-analysis rust-src --toolchain nightly
-            rustup override set nightly
+            rustup component add rust-src rust-analyzer
 
             cargo install gitui
         else

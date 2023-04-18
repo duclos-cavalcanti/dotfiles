@@ -46,7 +46,6 @@ return {
         {
             name = "deploy",
             cmds = {
-                "clear",
                 "nvim assets/install/ubuntu.sh"
             },
         },

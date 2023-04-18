@@ -24,3 +24,4 @@ if [ -z "$DISPLAY" ] && [ "$(tty)" = /dev/tty1 ]; then
 fi
 
 
+. "$HOME/.cargo/env"

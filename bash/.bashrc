@@ -520,3 +520,4 @@ if command -v fzf &>/dev/null; then
     bind -m emacs-standard -x '"\C-g": pgit'
 fi
 
+. "$HOME/.cargo/env"

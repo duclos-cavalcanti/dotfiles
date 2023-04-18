@@ -2,8 +2,7 @@
 Servers:
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 rustup update stable
-rustup component add rls rust-analysis rust-src
-nightly with rustfmt
+rustup component add rust-src
 
 sudo npm i -g bash-language-server
 
@@ -58,7 +57,7 @@ require('lspconfig').gopls.setup({
 
 require'lspconfig'.rust_analyzer.setup{
   settings = {
-    ['rust-analyzer'] = {
+    ['rustup run stable rust-analyzer'] = {
       diagnostics = {
         enable = false;
       }

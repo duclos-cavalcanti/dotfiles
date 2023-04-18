@@ -26,25 +26,26 @@ function M.setup(keys)
                     "Library"
                 },
                 class = {
-                    "Arandr",
-                    "Blueman-manager",
-                    "Nautilus",
-                    "Nitrogen",
-                    "Gcolor3",
+                    "Arandr", -- xrandr/display manager
+                    "Blueman-manager", -- bluetooth manager
+                    "Nautilus", -- filemanager
+                    "Nitrogen", -- wallpaper utility
+                    "Gcolor3", -- color picker/utility
                     "Galculator",
-                    "Gpick",
-                    "Gedit",
+                    "Gpick", -- color picker
+                    "Gedit", -- gnome gui editor
                     "Weather",
-                    "Pavucontrol",
-                    "Baobab",
+                    "Pavucontrol", -- media utility
+                    "Baobab", -- disk utility
                     "Pidgin",
-                    "Eog",
-                    "Totem",
-                    "Eduvpn-gui",
+                    "Eog", -- image viewer
+                    "Totem", -- videos
+                    "Eduvpn-gui", -- vpn
                     "Xephyr"
                 },
                 name = {
                     "Event Tester",  -- xev.
+                    "Compose Message", -- email
                 },
                 role = {
                     "pop-up",
@@ -53,6 +54,26 @@ function M.setup(keys)
             properties = {
                 floating = true,
                 placement = awful.placement.centered,
+                ontop = true,
+            }
+        },
+        { -- floating window for games
+            rule_any = {
+                class = {
+                    "Wine",
+                    "mtga.exe",
+                },
+                role = {
+                    "pop-up",
+                }
+            },
+            properties = {
+                floating = true,
+                placement = awful.placement.centered,
+                honor_workarea = false,
+                honor_padding = false,
+                size_hints_honor = false,
+                maximized = false,
                 ontop = true,
             }
         },

@@ -19,7 +19,7 @@ M.base = {
 	{ key = "t", mods = "LEADER", 
       action = wezterm.action.SplitPane {
           direction = 'Down',
-          size = { Percent = 20 },
+          size = { Percent = 30 },
       }
     },
 

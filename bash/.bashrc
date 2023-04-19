@@ -146,7 +146,6 @@ bash_prompt() {
 
     # directory
 	PROMPT+="${dir_color}"
-    PROMPT+=' '
     PROMPT+='\W'
 	PROMPT+="${default}"
 

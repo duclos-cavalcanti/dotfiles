@@ -1,4 +1,4 @@
-local theme = "02"
+local theme = "01"
 local theme_path = os.getenv("HOME") .. "/.dotfiles/assets/themes/" .. theme .. ".lua"
 
 if io.open(theme_path,"r") == nil then

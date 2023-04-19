@@ -32,7 +32,7 @@ local config = {
 
     inactive_pane_hsb = {
       saturation = 1.0,
-      brightness = 0.8,
+      brightness = 0.7,
     },
 
     enable_scroll_bar = true,

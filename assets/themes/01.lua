@@ -197,9 +197,10 @@ M.terminal = {
     background = nil, -- background = {{ source = { File = os.getenv("HOME") .. "/.config/awesome/theme/wallpapers/05.png" } }},
     status = {
         background = M.bg,
-        foreground = M.grey,
-        mode = M.yellow,
-        ws = M.red,
+        foreground = M.fg,
+        faded = M.grey,
+        user = M.green,
+        ws = M.green,
     },
     colors = {
         background = M.bg,

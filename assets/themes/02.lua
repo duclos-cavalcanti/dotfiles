@@ -1,7 +1,7 @@
 local M = {
     none = "NONE",
 
-    bg = "#353535",
+    bg = "#222222",
     fg = "#F0F0F0",
     -- based on
     -- https://doc.rust-lang.org/ and https://ubuntu-mate.org/
@@ -11,45 +11,45 @@ local M = {
     yellow      = "#D2991D",
     blue        = "#43acc7",
     magenta     = "#846AA7",
-    cyan        = "#2DBFB8",
-    white       = "#505050",
+    cyan        = "#00B5BA",
+    white       = "#616161",
 
     black2      = "#151515",
-    red2        = "#f15946",
+    red2        = "#DF3224",
     green2      = "#87a556",
-    yellow2     = "#A97E23",
+    yellow2     = "#CEC5AD",
     blue2       = "#43acc7",
     magenta2    = "#846AA7",
-    cyan2       = "#2DBFB8",
-    white2      = "#cecece",
+    cyan2       = "#00B5BA",
+    white2      = "#F0F0F0",
 }
 
 M.grey = M.white
 M.grey2 = M.white2
 
 M.editor = {
-    functions       = M.yellow,
-    fbuiltin        = M.yellow2,
+    functions       = M.red,
+    fbuiltin        = M.yellow,
     fparameters     = M.fg,
     method          = M.red,
     constructor     = M.red,
     namespace       = M.grey,
     var             = M.fg,
-    field           = M.white2,
+    field           = M.yellow2,
     type            = M.red2,
     structure       = M.cyan2,
     bool            = M.blue,
     storage         = M.yellow,
     string          = M.cyan,
-    char            = M.red,
-    number          = M.red,
+    char            = M.red2,
+    number          = M.red2,
     constant        = M.red,
     preproc         = M.yellow,
     statement       = M.magenta,
     keyword         = M.yellow,
-    forwords        = M.red,    -- conditionals, loops
+    forwords        = M.green,    -- conditionals, loops
     label           = M.red,      -- goto's, names
-    operator        = M.green,
+    operator        = M.blue,
     comment         = M.grey,
     linenr          = M.grey,
     cur_linenr      = M.yellow,
@@ -197,9 +197,10 @@ M.terminal = {
     background = nil, -- background = {{ source = { File = os.getenv("HOME") .. "/.config/awesome/theme/wallpapers/05.png" } }},
     status = {
         background = M.bg,
-        foreground = M.grey,
-        mode = M.yellow,
-        ws = M.red,
+        foreground = M.fg,
+        faded = M.grey,
+        user = M.green,
+        ws = M.green,
     },
     colors = {
         background = M.bg,

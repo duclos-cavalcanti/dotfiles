@@ -6,14 +6,19 @@ function(window, pane)
     local mode = window:active_key_table()
     local ssh = pane:get_domain_name()
     local win = window:active_workspace()
+    local user = os.getenv("USER")
 
     window:set_right_status(wezterm.format {
-      { Foreground = { Color = theme.status.mode } },
-      { Text = string.format("%s", mode) },
+      { Foreground = { Color = theme.status.user } },
+      { Text = string.format("%s", user) },
       { Foreground = { Color = theme.status.foreground } },
-      { Text = string.format(" - %s@", ssh) },
+      { Text = string.format(" at ") },
       { Foreground = { Color = theme.status.ws } },
       { Text = string.format("%s", win) },
+      { Foreground = { Color = theme.status.foreground } },
+      { Text = string.format(" via ") },
+      { Foreground = { Color = theme.status.faded } },
+      { Text = string.format("%s ", ssh) },
     })
 end)
 

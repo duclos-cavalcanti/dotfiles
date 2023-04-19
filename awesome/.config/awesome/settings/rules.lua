@@ -27,6 +27,7 @@ function M.setup(keys)
                 },
                 class = {
                     "Arandr", -- xrandr/display manager
+                    "Nm-connection-editor", -- network manager
                     "Blueman-manager", -- bluetooth manager
                     "Nautilus", -- filemanager
                     "Nitrogen", -- wallpaper utility

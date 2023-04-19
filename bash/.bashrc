@@ -139,13 +139,14 @@ bash_prompt() {
     local PROMPT=''
     local RIGHT='\033[500C'
 
-	PROMPT+="${user_color}"
-    PROMPT+='\H'
-	PROMPT+="${default}"
-	PROMPT+=' at '
+	# PROMPT+="${user_color}"
+    # PROMPT+='\H'
+	# PROMPT+="${default}"
+	# PROMPT+=' at '
 
     # directory
 	PROMPT+="${dir_color}"
+    PROMPT+=' '
     PROMPT+='\W'
 	PROMPT+="${default}"
 

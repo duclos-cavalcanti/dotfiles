@@ -10,6 +10,7 @@ local config = {
         "JetBrains Mono",
         "Symbols Nerd Fonto Mono"
     },
+
     font_size = 10.5,
     cell_width = 1.0,
 

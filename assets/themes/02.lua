@@ -1,55 +1,55 @@
 local M = {
     none = "NONE",
 
-    bg = "#FAFAFA",
-    fg = "#222222",
+    bg = "#353535",
+    fg = "#F0F0F0",
     -- based on
-    -- https://ubuntu-mate.org/
-    black       = "#272727", -- #2C2C2C
-    red         = "#e01a4f",
+    -- https://doc.rust-lang.org/ and https://ubuntu-mate.org/
+    black       = "#000000",
+    red         = "#F46623",
     green       = "#87a556",
-    yellow      = "#f9c22e",
-    blue        = "#43acc7", -- #84a752
-    magenta     = "#8E56A4",
-    cyan        = "#84dcc6",
-    white       = "#616161",
+    yellow      = "#D2991D",
+    blue        = "#43acc7",
+    magenta     = "#846AA7",
+    cyan        = "#2DBFB8",
+    white       = "#505050",
 
-    black2      = "#151515", -- #3C3B37
+    black2      = "#151515",
     red2        = "#f15946",
-    green2      = "#a9be61",
-    yellow2     = "#cdcebf",
+    green2      = "#87a556",
+    yellow2     = "#A97E23",
     blue2       = "#43acc7",
-    magenta2    = "#A45686",
-    cyan2       = "#84dcc6",
-    white2      = "#FAFAFA",
+    magenta2    = "#846AA7",
+    cyan2       = "#2DBFB8",
+    white2      = "#cecece",
 }
 
 M.grey = M.white
 M.grey2 = M.white2
 
 M.editor = {
-    functions       = M.green,
-    fbuiltin        = M.red,
+    functions       = M.yellow,
+    fbuiltin        = M.yellow2,
     fparameters     = M.fg,
-    method          = M.green,
-    constructor     = M.green,
+    method          = M.red,
+    constructor     = M.red,
     namespace       = M.grey,
     var             = M.fg,
-    field           = M.green2,
-    type            = M.blue,
+    field           = M.white2,
+    type            = M.red2,
     structure       = M.cyan2,
-    bool            = M.red,
-    storage         = M.blue2,
-    string          = M.yellow2,
+    bool            = M.blue,
+    storage         = M.yellow,
+    string          = M.cyan,
     char            = M.red,
-    number          = M.blue2,
-    constant        = M.blue2,
-    preproc         = M.red2,
-    statement       = M.yellow,
-    keyword         = M.magenta2,
-    forwords        = M.green,    -- conditionals, loops
+    number          = M.red,
+    constant        = M.red,
+    preproc         = M.yellow,
+    statement       = M.magenta,
+    keyword         = M.yellow,
+    forwords        = M.red,    -- conditionals, loops
     label           = M.red,      -- goto's, names
-    operator        = M.magenta,
+    operator        = M.green,
     comment         = M.grey,
     linenr          = M.grey,
     cur_linenr      = M.yellow,

@@ -52,6 +52,7 @@ nnoremap("<C-w>-", "5<C-w>-")
 nnoremap("<leader>sf", "<cmd>lua require('telescope.builtin').find_files()<CR>")
 nnoremap("<leader>sF", "<cmd>lua require('telescope.builtin').find_files({cwd=vim.fn.input('Path: ')})<CR>")
 
+nnoremap("<leader>sd", "<cmd>lua require('telescope.builtin').find_files({cwd='~/.dotfiles'})<CR>")
 nnoremap("<leader>sb", "<cmd>lua require('telescope.builtin').buffers()<CR>")
 nnoremap("<leader>sl", "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>")
 nnoremap("<leader>sr", "<cmd>lua require('telescope.builtin').live_grep()<CR>")

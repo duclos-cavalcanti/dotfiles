@@ -12,6 +12,7 @@ local function spawn_once()
         "blueman-applet",
         "pasystray",
         "unclutter",
+        "xfce-power-manager",
         "gnome-screensaver",
     }
 

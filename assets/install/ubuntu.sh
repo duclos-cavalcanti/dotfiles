@@ -86,11 +86,11 @@ nautilus
 gedit
 evolution
 evince
+xfce4-power-manager
 gnome-calendar
 gnome-weather
 gnome-color-manager
 gnome-disk-utility
-gnome-power-manager
 gnome-screensaver
 galculator
 gimp

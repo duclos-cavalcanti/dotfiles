@@ -37,6 +37,7 @@ function M.setup(keys)
                     "Gedit", -- gnome gui editor
                     "Weather",
                     "Pavucontrol", -- media utility
+                    "xfce4-power-manager-settings", -- xfce power manager
                     "Baobab", -- disk utility
                     "Pidgin",
                     "Eog", -- image viewer

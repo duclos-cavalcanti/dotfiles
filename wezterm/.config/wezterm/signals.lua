@@ -9,15 +9,17 @@ function(window, pane)
     local user = os.getenv("USER")
 
     window:set_right_status(wezterm.format {
+      { Foreground = { Color = theme.status.faded } },
+      { Text = string.format("user:") },
       { Foreground = { Color = theme.status.user } },
       { Text = string.format("%s", user) },
-      { Foreground = { Color = theme.status.foreground } },
-      { Text = string.format(" at ") },
+      { Foreground = { Color = theme.status.faded } },
+      { Text = string.format(" | ws:") },
       { Foreground = { Color = theme.status.ws } },
       { Text = string.format("%s", win) },
-      { Foreground = { Color = theme.status.foreground } },
-      { Text = string.format(" via ") },
       { Foreground = { Color = theme.status.faded } },
+      { Text = string.format(" | ssh:") },
+      { Foreground = { Color = theme.status.foreground } },
       { Text = string.format("%s ", ssh) },
     })
 end)

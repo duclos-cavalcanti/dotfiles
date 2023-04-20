@@ -38,15 +38,10 @@ return {
             },
         },
         {
-            name = "shell",
+            name = "install",
             cmds = {
-                "nvim ~/.bashrc",
-            },
-        },
-        {
-            name = "deploy",
-            cmds = {
-                "nvim assets/install/ubuntu.sh"
+                "nvim assets/install/ubuntu.sh",
+                "clear",
             },
         },
     }

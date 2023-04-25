@@ -39,6 +39,7 @@ function M.setup(keys)
                     "Pavucontrol", -- media utility
                     "xfce4-power-manager-settings", -- xfce power manager
                     "Baobab", -- disk utility
+                    "Mainwindow.py", -- class for playonlinux
                     "Pidgin",
                     "Eog", -- image viewer
                     "Totem", -- videos

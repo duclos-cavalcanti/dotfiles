@@ -13,6 +13,8 @@ local config = {
 
     font_size = 10.5,
     cell_width = 1.0,
+    
+    adjust_window_size_when_changing_font_size = false,
 
     -- theme / ui
     colors = theme.colors,

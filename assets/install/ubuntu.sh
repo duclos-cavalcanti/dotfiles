@@ -323,6 +323,11 @@ installation() {
         popd
     } &>> ${LOG_FILE}
 
+    substep "Installing Wine and Wine-Related Packages..."
+    {
+        sudo dpkg --add-architecture i386 && sudo apt-get update
+        sudo apt-get install wine wine32 wine32-preloader 
+    } &>> ${LOG_FILE}
 }
 
 services() {

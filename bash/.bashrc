@@ -400,6 +400,7 @@ export WINIT_HIDPI_FACTOR=1
 export WINIT_X11_SCALE_FACTOR=1
 export _JAVA_AWT_WM_NONREPARENTING=1
 
+
 if command -v fd &>/dev/null && \
    command -v fzf &>/dev/null; then
   export FZF_DEFAULT_COMMAND="\

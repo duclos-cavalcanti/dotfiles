@@ -46,7 +46,7 @@ M.base = {
 	{ key = "9", mods = "LEADER", action = wezterm.action({ SwitchWorkspaceRelative = 1 }) },
 
 	{ key = "=", mods = "CTRL", action = "ResetFontSize" },
-	{ key = "+", mods = "CTRL", action = "IncreaseFontSize" },
+	{ key = "+", mods = "CTRL|SHIFT", action = "IncreaseFontSize" },
 	{ key = "-", mods = "CTRL", action = "DecreaseFontSize" },
 
 	{ key = "w", mods = "LEADER", action = wezterm.action.ShowLauncherArgs{ flags = 'WORKSPACES' } },

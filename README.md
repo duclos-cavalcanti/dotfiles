@@ -21,7 +21,7 @@ OS | WM | Terminal | Editor | Shell
 * For full installation, go [here](#install).
 * To simply stow the dotfiles, first install `stow` and run:
   ```sh
-  ./dots.sh -s
+  ./install.sh -s
   ```
 
 <a name="install"/>
@@ -42,7 +42,7 @@ simply create the `/etc/cloud/cloud-init.disabled` file afterwards.
 - Run: 
   ```bash
   curl \
-  https://raw.githubusercontent.com/duclos-cavalcanti/dotfiles/main/assets/install/ubuntu.sh | bash
+  https://raw.githubusercontent.com/duclos-cavalcanti/dotfiles/main/bootstrap.sh | bash
   ```
 
 <div align="center">

@@ -40,7 +40,7 @@ return {
         {
             name = "install",
             cmds = {
-                "nvim assets/install/ubuntu.sh",
+                "nvim bootstrap/ubuntu-awesome/bootstrap.sh",
                 "clear",
             },
         },

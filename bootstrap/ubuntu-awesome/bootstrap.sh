@@ -115,12 +115,7 @@ xserver-xephyr
 )
 
 SNAP_PACKAGES=(
-netflix-web
-)
-
-FLAT_PACKAGES=(
-flathub
-com.spotify.Client
+spotify
 )
 
 SERVICES=(
@@ -195,11 +190,7 @@ installation() {
             printf "Snap isn't installed? Skipping snap...\n"
         fi
 
-        sudo apt install flatpak
-        flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-        for p in "${FLAT_PACKAGES[@]}"; do
-            flatpak install ${p}
-        done
+        sudo apt install -y flatpak
     } &>> ${LOG_FILE}
 
     substep "Installing Browser (Firefox)..."

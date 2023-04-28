@@ -210,13 +210,9 @@ installation() {
     {
         # Wezterm
         pushd ~/Documents/clones/
-            curl -LO curl -LO https://github.com/wez/wezterm/releases/download/nightly/wezterm-nightly.Ubuntu22.04.deb
+            curl -LO https://github.com/wez/wezterm/releases/download/nightly/wezterm-nightly.Ubuntu22.04.deb
             sudo apt install -y ./wezterm-20230326-111934-3666303c.Ubuntu22.04.deb
         popd
-
-        # Alacritty
-        sudo add-apt-repository ppa:aslatter/ppa -y
-        sudo apt install -y alacritty
     } &>> ${LOG_FILE}
 
     substep "Installing Editor(Neovim)..."

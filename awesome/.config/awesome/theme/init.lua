@@ -7,7 +7,7 @@ local utils = require("utils")
 local config_path = utils.config_path
 
 local theme_path = config_path() .. "theme"
-local wallpaper_path = theme_path .. "/wallpapers"
+local wallpaper_path = os.getenv("HOME") .. "/.wallpapers"
 local icon_path = theme_path .. "/icons"
 
 local font_family     = "UbuntuMono"

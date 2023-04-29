@@ -195,7 +195,7 @@ installation() {
         fi
 
         sudo apt install -y flatpak
-
+        printf "%s\n" "FLATPAK DONE" &>> ${SUMMARY}
     } &>> ${LOG}
 
     substep "Installing Browser (Firefox)..."

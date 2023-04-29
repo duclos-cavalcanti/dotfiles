@@ -6,7 +6,6 @@ FILESYSTEM=(
 "${HOME}/Documents"
 "${HOME}/Downloads"
 "${HOME}/Music"
-"${HOME}/Media"
 "${HOME}/Pictures"
 "${HOME}/Videos"
 "${HOME}/.config"
@@ -28,38 +27,21 @@ FILESYSTEM=(
 "${HOME}/Documents/stuff/scripts"
 )
 
-DE_PACKAGES=(
-gnome-session
-gnome-tweaks
-virtualbox
-virtualbox-guest-additions-iso
-nautilus
-gedit
-evolution
-evince
-gnome-calendar
-gnome-weather
-gnome-color-manager
-gnome-disk-utility
-gnome-screensaver
-galculator
-gimp
-gcolor3
-baobab
-eog
-totem
-cheese
-mate-themes
-ubuntu-mate-themes
+# curl and vim are already installed
+CORE_PACKAGES=(
+xorg
+awesome
+picom
+stow
+tmux
+tmuxp
 fonts-ubuntu
 )
 
 DEV_PACKAGES=(
 unzip
 build-essential
-vim
 curl
-stow
 wget
 python3-pip
 golang
@@ -82,9 +64,51 @@ lua5.1
 lua5.1-doc
 picocom
 jq
+pandoc
+)
+
+DESKTOP_PACKAGES=(
+# de-related-independent
+blueman
+network-manager
+network-manager-openvpn
+pasystray
+pavucontrol
+unclutter
 maim
 ffmpeg
-pandoc
+nitrogen
+# de-related
+nautilus
+gedit
+evolution
+evince
+xfce4-power-manager
+gnome-calendar
+gnome-weather
+gnome-color-manager
+gnome-disk-utility
+gnome-screensaver
+galculator
+gimp
+gcolor3
+gpick
+baobab
+eog
+totem
+cheese
+network-manager-gnome
+network-manager-openvpn-gnome
+mate-themes
+ubuntu-mate-themes
+# non-de-related
+virtualbox
+neomutt
+pass
+arandr
+apt-rdepends
+xclip
+xserver-xephyr
 )
 
 SNAP_PACKAGES=(
@@ -118,14 +142,6 @@ setup() {
     printf "LOG:\n" > ${LOG_FILE}
 }
 
-check() {
-    if command -v ${1} &>/dev/null; then
-        return 1
-    else
-        return 0
-    fi
-}
-
 filesystem() {
     step "Filesystem"
     {
@@ -146,20 +162,9 @@ installation() {
     local dev_packages=""
     local total_packages=""
 
-    for p in ${DEV_PACKAGES[@]}; do
+    for p in ${DESKTOP_PACKAGES[@]} ${CORE_PACKAGES[@]} ${DEV_PACKAGES[@]}; do
         total_packages+="${p} "
     done
-
-
-    if [ -z $XDG_CURRENT_DESKTOP ]; then 
-        for p in ${DE_PACKAGES[@]}; do
-            total_packages+="${p} "
-        done
-    else
-        printf "%s\n" "${XDG_CURRENT_DESKTOP} already running!"
-        printf "%s\n" "If you wish to still install gnome, run: sudo apt install ${DE}"
-        printf "\n\n"
-    fi
 
     substep "Installing Packages..."
     {
@@ -174,7 +179,7 @@ installation() {
 
     substep "Installing Snap and Flatpak Packages..."
     {
-        if $(check snap); then
+        if command -v snap; then
             for p in "${SNAP_PACKAGES[@]}"; do
                 [ -z "$(ls -l /snap/bin | grep -o ${p})" ] && sudo snap install ${p}
             done
@@ -187,17 +192,15 @@ installation() {
 
     substep "Installing Browser (Firefox)..."
     {
-        if $(check firefox); then
-            sudo add-apt-repository ppa:mozillateam/ppa -y
+        sudo add-apt-repository ppa:mozillateam/ppa -y
 
-            printf '\nPackage: *\nPin: release o=LP-PPA-mozillateam\nPin-Priority: 1001\n' | \
-                sudo tee /etc/apt/preferences.d/mozilla-firefox
+        printf '\nPackage: *\nPin: release o=LP-PPA-mozillateam\nPin-Priority: 1001\n' | \
+            sudo tee /etc/apt/preferences.d/mozilla-firefox
 
-            printf 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:${distro_codename}";\n' | \
-                sudo tee /etc/apt/apt.conf.d/51unattended-upgrades-firefox
+        printf 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:${distro_codename}";\n' | \
+            sudo tee /etc/apt/apt.conf.d/51unattended-upgrades-firefox
 
-            sudo apt install -y firefox
-        fi
+        sudo apt install -y firefox
     } &>> ${LOG_FILE}
 
     substep "Installing Terminal (Wezterm)..."
@@ -205,13 +208,13 @@ installation() {
         # Wezterm
         pushd ~/Documents/clones/
             curl -LO https://github.com/wez/wezterm/releases/download/nightly/wezterm-nightly.Ubuntu22.04.deb
-            sudo apt install -y ./wezterm-nightly.Ubuntu22.04.deb
+            sudo apt install -y ./wezterm-20230326-111934-3666303c.Ubuntu22.04.deb
         popd
     } &>> ${LOG_FILE}
 
     substep "Installing Editor(Neovim)..."
     {
-        sudo apt-get install ninja-build gettext libtool-bin cmake g++ pkg-config unzip curl
+        sudo apt install -y ninja-build gettext libtool-bin cmake g++ pkg-config unzip curl
         pushd ~/Documents/programs
             git clone https://github.com/neovim/neovim.git
             pushd neovim
@@ -221,7 +224,7 @@ installation() {
                 # sudo cmake --build build/ --target uninstall
             popd
         popd
-        sudo apt remove ninja-build gettext libtool-bin pkg-config
+        sudo apt remove -y ninja-build gettext libtool-bin pkg-config
     } &>> ${LOG_FILE}
 
     substep "Installing Docker..."
@@ -250,7 +253,7 @@ installation() {
 
     substep "Installing Python Packages..."
     {
-        if $(check pip); then
+        if command -v pip; then
             pip install compiledb pyright ipython ipdb pyls
             pip install euporie ipykernel
         else
@@ -264,7 +267,7 @@ installation() {
         PATH=$PATH:${HOME}/.cargo/bin
         export PATH
 
-        if $(check rustup); then
+        if command -v rustup; then
             rustup update stable
             rustup component add rust-src rust-analyzer
 
@@ -276,7 +279,7 @@ installation() {
 
     substep "Installing Go Packages..."
     {
-        if $(check go); then
+        if command -v go; then
             export GOPATH="$HOME/.go"
             [ -d go ] && mv go $HOME/.go
             go install golang.org/x/tools/gopls@latest
@@ -288,7 +291,7 @@ installation() {
 
     substep "Installing Npm Packages..."
     {
-        if $(check npm); then
+        if command -v npm; then
             sudo npm i -g bash-language-server
         else
             printf "Npm isn't installed? Skipping Npm...\n"

@@ -1,6 +1,8 @@
 #!/bin/bash
 
-LOG_FILE=log.txt
+LOG=log.txt
+SUMMARY=summary.txt
+
 FILESYSTEM=(
 "${HOME}/Desktop"
 "${HOME}/Documents"
@@ -128,18 +130,19 @@ step() {
     number=$((++i))
     printf \
         "+++++++++++++++> ${number}: ${title}\n" | \
-        tee -a ${LOG_FILE}
+        tee -a ${LOG}
 }
 
 substep() {
     title="$1"
     printf \
         "+++> ${title}\n" | \
-        tee -a ${LOG_FILE}
+        tee -a ${LOG}
 }
 
 setup() {
-    printf "LOG:\n" > ${LOG_FILE}
+    printf "LOG:\n" > ${LOG}
+    printf "SUMMARY:\n" > ${SUMMARY}
 }
 
 filesystem() {
@@ -153,7 +156,8 @@ filesystem() {
                 printf "$p already exists!\n"
             fi
         done
-    } &>> ${LOG_FILE}
+        printf "%s\n" "FILESYSTEM DONE" &>> ${SUMMARY}
+    } &>> ${LOG}
 }
 
 installation() {
@@ -175,7 +179,9 @@ installation() {
         # yq
         sudo wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
         sudo chmod a+x /usr/local/bin/yq
-    } &>> ${LOG_FILE}
+
+        printf "%s\n" "MAIN PACKAGES DONE" &>> ${SUMMARY}
+    } &>> ${LOG}
 
     substep "Installing Snap and Flatpak Packages..."
     {
@@ -183,13 +189,14 @@ installation() {
             for p in "${SNAP_PACKAGES[@]}"; do
                 [ -z "$(ls -l /snap/bin | grep -o ${p})" ] && sudo snap install ${p}
             done
+            printf "%s\n" "SNAP DONE" &>> ${SUMMARY}
         else
-            printf "Snap isn't installed? Skipping snap...\n"
+            printf "%s\n" "SNAP ISNT INSTALLED - SKIP" &>> ${SUMMARY}
         fi
 
         sudo apt install -y flatpak
 
-    } &>> ${LOG_FILE}
+    } &>> ${LOG}
 
     substep "Installing Browser (Firefox)..."
     {
@@ -202,7 +209,8 @@ installation() {
             sudo tee /etc/apt/apt.conf.d/51unattended-upgrades-firefox
 
         sudo apt install -y firefox
-    } &>> ${LOG_FILE}
+        printf "%s\n" "BROWSER DONE" &>> ${SUMMARY}
+    } &>> ${LOG}
 
     substep "Installing Terminal (Wezterm)..."
     {
@@ -211,7 +219,8 @@ installation() {
             curl -LO https://github.com/wez/wezterm/releases/download/nightly/wezterm-nightly.Ubuntu22.04.deb
             sudo apt install -y ./wezterm-20230326-111934-3666303c.Ubuntu22.04.deb
         popd
-    } &>> ${LOG_FILE}
+        printf "%s\n" "TERMINAL DONE" &>> ${SUMMARY}
+    } &>> ${LOG}
 
     substep "Installing Editor(Neovim)..."
     {
@@ -227,8 +236,11 @@ installation() {
                 popd
             popd
             sudo apt remove -y ninja-build gettext libtool-bin pkg-config
+            printf "%s\n" "EDITOR DONE" &>> ${SUMMARY}
+        else
+            printf "%s\n" "NVIM ALREADY INSTALLED - SKIP" &>> ${SUMMARY}
         fi
-    } &>> ${LOG_FILE}
+    } &>> ${LOG}
 
     substep "Installing Docker..."
     {
@@ -252,17 +264,20 @@ installation() {
                             containerd.io \
                             docker-buildx-plugin \
                             docker-compose-plugin
-    } &>> ${LOG_FILE}
+
+        printf "%s\n" "DOCKER DONE" &>> ${SUMMARY}
+    } &>> ${LOG}
 
     substep "Installing Python Packages..."
     {
         if command -v pip; then
             pip install compiledb pyright ipython ipdb pyls
             pip install euporie ipykernel
+            printf "%s\n" "PYTHON DONE" &>> ${SUMMARY}
         else
-            printf "Pip isn't installed? Skipping Python...\n"
+            printf "%s\n" "PIP ISNT INSTALLED - SKIP" &>> ${SUMMARY}
         fi
-    } &>> ${LOG_FILE}
+    } &>> ${LOG}
 
     substep "Installing Rust and Rust Packages..."
     {
@@ -275,10 +290,11 @@ installation() {
             rustup component add rust-src rust-analyzer
 
             cargo install gitui
+            printf "%s\n" "RUST DONE" &>> ${SUMMARY}
         else
-            printf "Rustup isn't installed? Skipping Rust...\n"
+            printf "%s\n" "RUSTUP ISNT INSTALLED - SKIP" &>> ${SUMMARY}
         fi
-    } &>> ${LOG_FILE}
+    } &>> ${LOG}
 
     substep "Installing Go Packages..."
     {
@@ -287,19 +303,21 @@ installation() {
             [ -d go ] && mv go $HOME/.go
             go install golang.org/x/tools/gopls@latest
             go install github.com/charmbracelet/glow@latest
+            printf "%s\n" "GO DONE" &>> ${SUMMARY}
         else
-            printf "Go isn't installed? Skipping Go...\n"
+            printf "%s\n" "GO ISNT INSTALLED - SKIP" &>> ${SUMMARY}
         fi
-    } &>> ${LOG_FILE}
+    } &>> ${LOG}
 
     substep "Installing Npm Packages..."
     {
         if command -v npm; then
             sudo npm i -g bash-language-server
+            printf "%s\n" "NPM DONE" &>> ${SUMMARY}
         else
-            printf "Npm isn't installed? Skipping Npm...\n"
+            printf "%s\n" "NPM ISNT INSTALLED - SKIP" &>> ${SUMMARY}
         fi
-    } &>> ${LOG_FILE}
+    } &>> ${LOG}
 
     substep "Installing Lua Packages..."
     {
@@ -307,14 +325,16 @@ installation() {
             git clone https://github.com/LuaLS/lua-language-server
             cd lua-language-server
             ./make.sh
+            printf "%s\n" "LUA DONE" &>> ${SUMMARY}
         popd
-    } &>> ${LOG_FILE}
+    } &>> ${LOG}
 
     substep "Installing Wine and Wine-Related Packages..."
     {
         sudo dpkg --add-architecture i386 && sudo apt-get update
         sudo apt-get install -y wine wine32 wine32-preloader 
-    } &>> ${LOG_FILE}
+        printf "%s\n" "WINE DONE" &>> ${SUMMARY}
+    } &>> ${LOG}
 }
 
 services() {
@@ -328,7 +348,8 @@ services() {
                 printf "Service ${s} is already running!"
             fi
         done
-    } &>> ${LOG_FILE}
+        printf "%s\n" "SERVICES DONE" &>> ${SUMMARY}
+    } &>> ${LOG}
 }
 
 configuration() {
@@ -342,15 +363,16 @@ configuration() {
                     pushd .dotfiles
                         ./install.sh -s
                     popd
+                    printf "%s\n" "DOTFILES DONE" &>> ${SUMMARY}
                 else
-                    printf "Dotfiles pull down hasnt worked!\n"
+                    printf "%s\n" "DOTFILES PULL DOWN ERROR - SKIP" &>> ${SUMMARY}
                     exit -1
                 fi
             else
-                printf "dotfiles aleady installed!\n"
+                printf "%s\n" "DOTFILES ALREADY PRESENT - SKIP" &>> ${SUMMARY}
             fi
         popd
-    } &>> ${LOG_FILE}
+    } &>> ${LOG}
 }
 
 main() {

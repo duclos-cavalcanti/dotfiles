@@ -79,9 +79,9 @@ bash_prompt() {
     local clear='\[\033[0m\]'
     local default=${white}
     local user_color=${green}
-    local dir_color=${red}
+    local dir_color=${green}
     local git_color=${yellow}
-    local pyenv_color=${bold_green}
+    local pyenv_color=${red}
 
     git_prefix() {
         local git_flag=$(git rev-parse --is-inside-work-tree 2>/dev/null | grep true)

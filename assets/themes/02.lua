@@ -3,23 +3,23 @@ local M = {
 
     bg = "#080808", -- #222222
     fg = "#FAFAFA",
-    -- based on
-    -- https://ubuntu-mate.org/
-    black       = "#272727", -- #2C2C2C
-    red         = "#e01a4f",
-    green       = "#87a556",
-    yellow      = "#f9c22e",
-    blue        = "#43acc7",
-    magenta     = "#8E56A4",
-    cyan        = "#84dcc6",
-    white       = "#616161",
 
-    black2      = "#151515", -- #3C3B37
-    red2        = "#f15946",
-    green2      = "#a9be61",
-    yellow2     = "#cdcebf",
-    blue2       = "#43acc7",
-    magenta2    = "#A45686",
+
+    black       = "#2C2C2C", -- #2C2C2C
+    red         = "#FF5454",
+    green       = "#00FF28",
+    yellow      = "#FEFE00",
+    blue        = "#5851D4",
+    magenta     = "#D22CCF",
+    cyan        = "#84dcc6",
+    white       = "#A9A9A9",
+
+    black2      = "#151515",
+    red2        = "#FF5189",
+    green2      = "#36c692",
+    yellow2     = "#E3C78A",
+    blue2       = "#5851D4",
+    magenta2    = "#8C87FB",
     cyan2       = "#84dcc6",
     white2      = "#FAFAFA",
 }
@@ -28,27 +28,27 @@ M.grey = M.white
 M.grey2 = M.white2
 
 M.editor = {
-    functions       = M.white2,
-    fbuiltin        = M.red2,
+    functions       = M.yellow,
+    fbuiltin        = M.yellow,
     fparameters     = M.fg,
-    method          = M.red2,
-    constructor     = M.red2,
-    namespace       = M.yellow,
+    method          = M.cyan,
+    constructor     = M.magenta,
+    namespace       = M.magenta2,
     var             = M.fg,
     field           = M.white2,
-    type            = M.red2,
+    type            = M.green,
     structure       = M.cyan2,
     bool            = M.green,
     storage         = M.yellow,
-    string          = M.cyan,
+    string          = M.fg,
     char            = M.red,
-    number          = M.blue,
+    number          = M.green2,
     constant        = M.red,
-    preproc         = M.red,
+    preproc         = M.magenta2,
     statement       = M.yellow,
-    keyword         = M.red,
+    keyword         = M.green,
     forwords        = M.green,    -- conditionals, loops
-    label           = M.blue,      -- goto's, names
+    label           = M.red,      -- goto's, names
     operator        = M.blue,
     comment         = M.grey,
     linenr          = M.grey,
@@ -65,7 +65,7 @@ M.editor = {
     },
     error           = {
         bg = M.black2, --column color should match
-        fg = M.red2,
+        fg = M.red,
     },
     warning     = {
         bg = M.black2, --column color should match
@@ -228,11 +228,11 @@ M.terminal = {
           M.white2,
         },
 
-        compose_cursor = M.green,
+        compose_cursor = M.red,
 
-        cursor_bg = M.red,
-        cursor_border = M.red,
-        cursor_fg = M.fg,
+        cursor_bg = M.green,
+        cursor_border = M.green,
+        cursor_fg = M.bg,
 
         split = M.green,
         scrollbar_thumb = M.grey,

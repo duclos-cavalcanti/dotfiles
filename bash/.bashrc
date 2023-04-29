@@ -35,10 +35,6 @@ if command -v fzf &>/dev/null; then
     done
 fi
 
-if [ $XDG_SESSION_TYPE == "x11" ] && [ -f ${HOME}/.config/X11/Xmodmap ]; then 
-    xmodmap ${HOME}/.config/X11/Xmodmap
-fi
-
 bash_prompt() {
 # Prompt info
     # Colors             Backgrounds              Attributes

@@ -188,6 +188,7 @@ installation() {
         fi
 
         sudo apt install -y flatpak
+
     } &>> ${LOG_FILE}
 
     substep "Installing Browser (Firefox)..."
@@ -214,17 +215,19 @@ installation() {
 
     substep "Installing Editor(Neovim)..."
     {
-        sudo apt install -y ninja-build gettext libtool-bin cmake g++ pkg-config unzip curl
-        pushd ~/Documents/programs
-            git clone https://github.com/neovim/neovim.git
-            pushd neovim
-                git checkout stable
-                make CMAKE_BUILD_TYPE=Release
-                sudo make install
-                # sudo cmake --build build/ --target uninstall
+        if ! command -v nvim; then
+            sudo apt install -y ninja-build gettext libtool-bin cmake g++ pkg-config unzip curl
+            pushd ~/Documents/programs
+                git clone https://github.com/neovim/neovim.git
+                pushd neovim
+                    git checkout stable
+                    make CMAKE_BUILD_TYPE=Release
+                    sudo make install
+                    # sudo cmake --build build/ --target uninstall
+                popd
             popd
-        popd
-        sudo apt remove -y ninja-build gettext libtool-bin pkg-config
+            sudo apt remove -y ninja-build gettext libtool-bin pkg-config
+        fi
     } &>> ${LOG_FILE}
 
     substep "Installing Docker..."
@@ -310,7 +313,7 @@ installation() {
     substep "Installing Wine and Wine-Related Packages..."
     {
         sudo dpkg --add-architecture i386 && sudo apt-get update
-        sudo apt-get install wine wine32 wine32-preloader 
+        sudo apt-get install -y wine wine32 wine32-preloader 
     } &>> ${LOG_FILE}
 }
 

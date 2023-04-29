@@ -1,7 +1,7 @@
 local M = {
     none = "NONE",
 
-    bg = "#383838", -- #222222
+    bg = "#080808", -- #222222
     fg = "#FAFAFA",
     -- based on
     -- https://ubuntu-mate.org/

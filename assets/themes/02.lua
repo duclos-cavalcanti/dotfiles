@@ -290,7 +290,7 @@ M.wm = {
     },
     titlebar = {
         normal =  {
-            bg = M.black2,
+            bg = M.bg,
             fg = M.grey,
         },
         focus = {
@@ -305,7 +305,7 @@ M.wm = {
     },
     border = {
         normal          = M.grey,
-        focus           = M.green,
+        focus           = M.fg,
         sticky          = M.red,
         marked          = M.blue2
     },

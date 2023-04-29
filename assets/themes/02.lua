@@ -234,7 +234,7 @@ M.terminal = {
         cursor_border = M.green,
         cursor_fg = M.bg,
 
-        split = M.green,
+        split = M.grey,
         scrollbar_thumb = M.grey,
 
         selection_bg = M.fg,

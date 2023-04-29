@@ -217,7 +217,7 @@ installation() {
         # Wezterm
         pushd ~/Documents/clones/
             curl -LO https://github.com/wez/wezterm/releases/download/nightly/wezterm-nightly.Ubuntu22.04.deb
-            sudo apt install -y ./wezterm-20230326-111934-3666303c.Ubuntu22.04.deb
+            sudo apt install -y ./wezterm-nightly.Ubuntu22.04.deb
         popd
         printf "%s\n" "TERMINAL DONE" &>> ${SUMMARY}
     } &>> ${LOG}

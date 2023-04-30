@@ -5,22 +5,22 @@ local M = {
     fg = "#FAFAFA",
 
 
-    black       = "#2C2C2C", -- #2C2C2C
-    red         = "#FF5454",
-    green       = "#00FF28",
-    yellow      = "#FEFE00",
-    blue        = "#74b2ff",
-    magenta     = "#D22CCF",
-    cyan        = "#84dcc6",
+    black       = "#2F393B",
+    red         = "#7E4C26",
+    green       = "#91C777",
+    yellow      = "#778151",
+    blue        = "#417379",
+    magenta     = "#AFA1CC",
+    cyan        = "#B0E6C3",
     white       = "#A9A9A9",
 
     black2      = "#151515",
-    red2        = "#FF5189",
-    green2      = "#36c692",
-    yellow2     = "#E3C78A",
-    blue2       = "#74b2ff",
-    magenta2    = "#8C87FB",
-    cyan2       = "#84dcc6",
+    red2        = "#7E4C26",
+    green2      = "#73BD6B",
+    yellow2     = "#28651B",
+    blue2       = "#417379",
+    magenta2    = "#5C5676",
+    cyan2       = "#B0E6C3",
     white2      = "#FAFAFA",
 }
 
@@ -28,33 +28,33 @@ M.grey = M.white
 M.grey2 = M.white2
 
 M.editor = {
-    functions       = M.yellow,
+    functions       = M.green,
     fbuiltin        = M.green,
     fparameters     = M.fg,
     method          = M.cyan,
     constructor     = M.magenta,
-    namespace       = M.magenta2,
+    namespace       = M.grey,
     var             = M.fg,
     field           = M.white2,
-    type            = M.green,
-    structure       = M.cyan2,
-    bool            = M.red,
-    storage         = M.red,
-    string          = M.fg,
+    type            = M.yellow,
+    structure       = M.magenta,
+    bool            = M.magenta2,
+    storage         = M.blue,
+    string          = M.cyan,
     char            = M.red,
-    number          = M.green2,
+    number          = M.red,
     constant        = M.magenta,
     preproc         = M.magenta2,
     statement       = M.yellow,
-    keyword         = M.green,
-    forwords        = M.green,    -- conditionals, loops
+    keyword         = M.magenta,
+    forwords        = M.blue,    -- conditionals, loops
     label           = M.red,      -- goto's, names
     operator        = M.grey,
     comment         = M.grey,
     linenr          = M.grey,
     cur_linenr      = M.yellow,
     column          = M.black2,
-    punctuation     = M.red,
+    punctuation     = M.magenta,
     special         = M.green,
     icons           = M.blue2,
     text            = {
@@ -119,7 +119,7 @@ M.editor = {
                 a = {
                     normal = {
                         bg = M.black2,
-                        fg = M.fg,
+                        fg = M.blue,
                     },
                     insert = {
                         bg = M.black2,
@@ -139,8 +139,8 @@ M.editor = {
                     fg = M.fg,
                 },
                 c = {
-                    bg = M.bg,
-                    fg = M.yellow2,
+                    bg = M.black,
+                    fg = M.grey,
                 },
             }
         },

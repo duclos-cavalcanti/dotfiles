@@ -34,7 +34,7 @@ return {
             name = "bash",
             cmds = {
                 "clear",
-                "nvim dots.sh",
+                "nvim install.sh",
             },
         },
         {

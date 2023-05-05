@@ -50,6 +50,15 @@ require'lspconfig'.rust_analyzer.setup{
     }
 }
 
+require'lspconfig'.cssls.setup{}
+
+require('lspconfig').tsserver.setup({
+    on_attach = _on_attach,
+    capabilities = _capabilities,
+    cmd = { "typescript-language-server", "--stdio" },
+    filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
+})
+
 require('lspconfig').pyright.setup({
     on_attach = _on_attach,
     capabilities = _capabilities,

@@ -312,7 +312,9 @@ installation() {
     substep "Installing Npm Packages..."
     {
         if command -v npm; then
-            sudo npm i -g bash-language-server
+            npm i -g bash-language-server
+            npm i -g typescript typescript-language-server
+            npm i -g vscode-langservers-extracted
             printf "%s\n" "NPM DONE" &>> ${SUMMARY}
         else
             printf "%s\n" "NPM ISNT INSTALLED - SKIP" &>> ${SUMMARY}

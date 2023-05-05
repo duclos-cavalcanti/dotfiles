@@ -263,7 +263,11 @@ PATH=$PATH:${HOME}/.cargo/bin
 # js/node/npm
 if command -v npm &>/dev/null; then
     export NPM_CONFIG_PREFIX="${HOME}/.node_modules"
+    export N_PREFIX="${HOME}/.n"
+    export NODE="${HOME}/.n/bin/node"
+    PATH="${HOME}/.n/bin/":$PATH
     PATH=$PATH:"${HOME}/.node_modules"
+    PATH=$PATH:"${HOME}/.node_modules/bin"
 fi
 
 export PATH

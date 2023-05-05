@@ -315,6 +315,7 @@ installation() {
             npm i -g bash-language-server
             npm i -g typescript typescript-language-server
             npm i -g vscode-langservers-extracted
+            npm install -g cssmodules-language-server
             printf "%s\n" "NPM DONE" &>> ${SUMMARY}
         else
             printf "%s\n" "NPM ISNT INSTALLED - SKIP" &>> ${SUMMARY}

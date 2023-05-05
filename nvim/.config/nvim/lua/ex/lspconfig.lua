@@ -50,7 +50,15 @@ require'lspconfig'.rust_analyzer.setup{
     }
 }
 
-require'lspconfig'.cssls.setup{}
+require('lspconfig').cssls.setup {
+  on_attach = _on_attach,
+  capabilities = _capabilities
+}
+
+require('lspconfig').html.setup {
+  on_attach = _on_attach,
+  capabilities = _capabilities
+}
 
 require('lspconfig').tsserver.setup({
     on_attach = _on_attach,

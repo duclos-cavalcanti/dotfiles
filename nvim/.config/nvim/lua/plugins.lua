@@ -1,127 +1,104 @@
-local install_path = vim.fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-    packer_bootstrap = vim.fn.system({
-        'git',
-        'clone',
-        '--depth',
-        '1',
-        'https://github.com/wbthomason/packer.nvim',
-        install_path})
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
 end
 
--- Rerun PackerCompile everytime pluggins.lua is updated
-vim.cmd([[
-    augroup packer_user_config
-        autocmd!
-        autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-    augroup end
-]])
+vim.opt.rtp:prepend(lazypath)
 
--- Load Packer
-vim.cmd([[packadd packer.nvim]])
-
-return require('packer').startup(function(use)
-    -- plugin manager packer
-    use "wbthomason/packer.nvim"
-
-    -- lsp and completion
-    use {
+local plugins = {
+    { -- lsp
         "neovim/nvim-lspconfig",
         config = function() require('ex.lspconfig') end,
-    }
-
-    use {
+    },
+    { -- completion
         "hrsh7th/nvim-cmp",
-        -- Sources for nvim-cmp
-        requires = {
-          "hrsh7th/cmp-nvim-lsp",
-          "hrsh7th/cmp-buffer",
-          "hrsh7th/cmp-path",
-          "hrsh7th/cmp-cmdline",
-          "hrsh7th/cmp-nvim-lua",
-          "saadparwaiz1/cmp_luasnip",
+        event = "InsertEnter",
+        dependencies = {
+            "hrsh7th/cmp-nvim-lsp",
+            "hrsh7th/cmp-buffer",
+            "hrsh7th/cmp-path",
+            "hrsh7th/cmp-cmdline",
+            "hrsh7th/cmp-nvim-lua",
+            "saadparwaiz1/cmp_luasnip",
         },
         config = function() require('ex.completion') end,
-      }
-
-    -- fuzzy finder and picker
-    use {'nvim-telescope/telescope.nvim',
-          config = function() require('ex.telescope') end,
-          requires = {
-              {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'},
-              'nvim-telescope/telescope-dap.nvim',
-              'nvim-lua/plenary.nvim',
-          },
-      }
-
-    -- file browser
-    use {
-      'nvim-tree/nvim-tree.lua',
-       config = function() require('ex.file-browser') end,
-      requires = { 'nvim-tree/nvim-web-devicons'},
-    }
-
-    -- treesitter
-    use { "nvim-treesitter/nvim-treesitter",
-          config = function() require('ex.treesitter') end,
-        }
-
-    -- debugger
-    use { "mfussenegger/nvim-dap",
-          config = function() require('ex.debugger') end,
-      }
-
-    -- debugger ui
-    use { "rcarriga/nvim-dap-ui",
-           config = function() require("ex.debugger-ui") end,
-           requires = {"mfussenegger/nvim-dap"} }
-
-    -- tagsbar / tags outliner
-    use { 'simrat39/symbols-outline.nvim',
-          config = function() require('ex.tagsbar') end
-        }
-
-    -- snippets
-    use {
+    },
+    { -- fuzzy finder
+        'nvim-telescope/telescope.nvim',
+        dependencies = {
+            {'nvim-telescope/telescope-fzf-native.nvim', build = 'make'},
+            'nvim-telescope/telescope-dap.nvim',
+            'nvim-lua/plenary.nvim',
+        },
+        config = function() require('ex.telescope') end,
+    },
+    { -- treesitter
+        "nvim-treesitter/nvim-treesitter",
+        dependencies = {
+            "windwp/nvim-ts-autotag",
+        },
+        config = function() require('ex.treesitter') end,
+    },
+    { -- file browser
+        'stevearc/oil.nvim',
+        config = function() require('oil').setup() end
+    },
+    { -- snippets
         "L3MON4D3/LuaSnip",
-        config = function()
+        config = function() 
             local s = require('ex.luasnip')
             s.config()
             s.setup()
-        end
-    }
-
-    -- autopairs, html autotagging
-    use {
+        end,
+    },
+    { -- tagsbar
+        'simrat39/symbols-outline.nvim',
+        config = function() require('ex.tagsbar') end
+    },
+    { -- debugger
+        "mfussenegger/nvim-dap",
+        dependencies = {
+            {
+                "rcarriga/nvim-dap-ui",
+                config = function() require("ex.debugger-ui") end,
+            },
+        },
+        config = function() require('ex.debugger') end
+    }, 
+    { -- auto pairs
         "windwp/nvim-autopairs",
-        requires = { "windwp/nvim-ts-autotag" },
-        config = function() require('ex.pair') end,
-    }
-
-    -- code formatting
-    use {
+        config = function() require('nvim-autopairs').setup({}) end
+    }, 
+    { -- formatting
         'mhartington/formatter.nvim',
-        config = function() require('ex.format') end,
-    }
-
-    -- comment utility
-    use {
+        config = function() require('ex.format') end
+    },
+    { -- comment
         "numToStr/Comment.nvim",
         config = function() require('ex.comment') end,
-    }
+    },
+    { -- themes/ui
+        'nvim-lualine/lualine.nvim',
+        dependencies = {
+                'kyazdani42/nvim-web-devicons', 
+                {
+                    'norcalli/nvim-colorizer.lua',
+                    config  = function() require('colorizer').setup() end,
+                }
+        },
+    },
+}
 
-    -- themes/ui
-    use { 'nvim-lualine/lualine.nvim',
-          requires = { 'kyazdani42/nvim-web-devicons', opt = true }
-        }
+local opts = {
 
-    -- view colors in nvim
-    use { 'norcalli/nvim-colorizer.lua',
-           config  = function() require('colorizer').setup() end,
-        }
+}
 
-    if packer_bootstrap then
-        require('packer').sync()
-    end
-end)
+require("lazy").setup(plugins, opts)

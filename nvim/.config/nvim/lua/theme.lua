@@ -17,6 +17,9 @@ local opts = {
     lualine_bold           = false,
 }
 
+vim.cmd[[
+let &rtp.=',~/.config/nvim/pack/plugins/start/schemer'
+]]
 require("schemer").setup(opts, palette)
 require('lualine').setup {
     options = {

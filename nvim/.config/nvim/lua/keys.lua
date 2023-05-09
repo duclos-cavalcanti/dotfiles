@@ -61,7 +61,7 @@ nnoremap("<leader>sh", "<cmd>lua require('telescope.builtin').help_tags()<CR>")
 nnoremap("<leader>sm", "<cmd>lua require('telescope.builtin').man_pages({sections={'ALL'}})<CR>")
 
 -- File explorer
-nnoremap("<leader>e", ":NvimTreeToggle<CR>")
+nnoremap("<leader>e", "wincmd v | :Oil .<CR>")
 
 -- Formatter
 nnoremap("<leader>f", ":Format<CR>")

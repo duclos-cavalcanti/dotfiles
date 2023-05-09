@@ -99,6 +99,7 @@ return require('packer').startup(function(use)
         config = function() require('ex.pair') end,
     }
 
+    -- code formatting
     use {
         'mhartington/formatter.nvim',
         config = function() require('ex.format') end,
@@ -114,7 +115,6 @@ return require('packer').startup(function(use)
     use { 'nvim-lualine/lualine.nvim',
           requires = { 'kyazdani42/nvim-web-devicons', opt = true }
         }
-    
 
     -- view colors in nvim
     use { 'norcalli/nvim-colorizer.lua',
@@ -123,6 +123,5 @@ return require('packer').startup(function(use)
 
     if packer_bootstrap then
         require('packer').sync()
-        vim.cmd [[TSUpdate]]
     end
 end)

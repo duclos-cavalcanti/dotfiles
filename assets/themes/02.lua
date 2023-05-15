@@ -306,7 +306,7 @@ M.wm = {
     border = {
         normal          = M.grey,
         focus           = M.fg,
-        sticky          = M.red,
+        sticky          = M.black,
         marked          = M.blue2
     },
     tray = {

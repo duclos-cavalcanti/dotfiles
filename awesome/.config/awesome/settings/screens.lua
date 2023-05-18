@@ -7,7 +7,7 @@ local C = {
         nr = 3,
         displays = {
             ['eDP1'] = 'xrandr --output eDP1 --mode 1920x1080',
-            ['DP2-2'] = 'xrandr --output DP2-2 --rotate left --right-of eDP1'
+            ['DP2-1'] = 'xrandr --output DP2-1 --rotate left --right-of eDP1'
         }
     },
 }

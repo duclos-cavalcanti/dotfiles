@@ -67,6 +67,7 @@ lua5.1-doc
 picocom
 jq
 pandoc
+jupyter
 )
 
 DESKTOP_PACKAGES=(

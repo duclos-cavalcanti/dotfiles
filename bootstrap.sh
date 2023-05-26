@@ -55,6 +55,7 @@ bat
 exa
 tree
 cmake
+ninja
 clangd
 gcc-arm-linux-gnueabi
 gdb

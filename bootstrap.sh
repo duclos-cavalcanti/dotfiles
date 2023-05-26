@@ -55,7 +55,6 @@ bat
 exa
 tree
 cmake
-ninja
 clangd
 gcc-arm-linux-gnueabi
 gdb
@@ -181,6 +180,11 @@ installation() {
         # yq
         sudo wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
         sudo chmod a+x /usr/local/bin/yq
+
+        # ninja
+        sudo wget -qO /usr/local/bin/ninja.gz https://github.com/ninja-build/ninja/releases/latest/download/ninja-linux.zip
+        sudo gunzip /usr/local/bin/ninja.gz
+        sudo chmod a+x /usr/local/bin/ninja
 
         printf "%s\n" "MAIN PACKAGES DONE" &>> ${SUMMARY}
     } &>> ${LOG}

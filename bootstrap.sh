@@ -333,13 +333,6 @@ installation() {
             printf "%s\n" "LUA DONE" &>> ${SUMMARY}
         popd
     } &>> ${LOG}
-
-    substep "Installing Wine and Wine-Related Packages..."
-    {
-        sudo dpkg --add-architecture i386 && sudo apt-get update
-        sudo apt-get install -y wine wine32 wine32-preloader 
-        printf "%s\n" "WINE DONE" &>> ${SUMMARY}
-    } &>> ${LOG}
 }
 
 services() {

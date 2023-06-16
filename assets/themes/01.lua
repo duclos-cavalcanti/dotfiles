@@ -1,26 +1,26 @@
 local M = {
     none = "NONE",
 
-    bg = "#222222", -- #383838
-    fg = "#FAFAFA",
-    -- based on
-    -- https://ubuntu-mate.org/
-    black       = "#272727", -- #2C2C2C
-    red         = "#e01a4f",
-    green       = "#87a556",
-    yellow      = "#f9c22e",
-    blue        = "#43acc7",
-    magenta     = "#8E56A4",
-    cyan        = "#84dcc6",
-    white       = "#616161",
+    bg = "#eeeeee", -- #383838
+    fg = "#080808",
 
-    black2      = "#151515", -- #3C3B37
-    red2        = "#f15946",
-    green2      = "#a9be61",
-    yellow2     = "#cdcebf",
-    blue2       = "#43acc7",
-    magenta2    = "#A45686",
-    cyan2       = "#84dcc6",
+
+    black       = "#222222",
+    red         = "#af0000",
+    green       = "#008700",
+    yellow      = "#d75f00",
+    blue        = "#0087af",
+    magenta     = "#d70087",
+    cyan        = "#005f87",
+    white       = "#878787",
+
+    black2      = "#444444",
+    red2        = "#7E4C26",
+    green2      = "#5f8700",
+    yellow2     = "#d75f00",
+    blue2       = "#005faf",
+    magenta2    = "#8700af",
+    cyan2       = "#005f87",
     white2      = "#FAFAFA",
 }
 
@@ -28,33 +28,33 @@ M.grey = M.white
 M.grey2 = M.white2
 
 M.editor = {
-    functions       = M.white2,
-    fbuiltin        = M.red2,
+    functions       = M.fg,
+    fbuiltin        = M.magenta2,
     fparameters     = M.fg,
-    method          = M.red2,
-    constructor     = M.red2,
+    method          = M.magenta,
+    constructor     = M.magenta,
     namespace       = M.yellow,
     var             = M.fg,
-    field           = M.white2,
-    type            = M.red2,
+    field           = M.fg,
+    type            = M.magenta,
     structure       = M.cyan2,
     bool            = M.green,
-    storage         = M.yellow,
-    string          = M.cyan,
+    storage         = M.magenta2,
+    string          = M.yellow,
     char            = M.red,
-    number          = M.blue,
-    constant        = M.red,
+    number          = M.red,
+    constant        = M.magenta,
     preproc         = M.red,
     statement       = M.yellow,
-    keyword         = M.red,
+    keyword         = M.magenta2,
     forwords        = M.green,    -- conditionals, loops
-    label           = M.blue,      -- goto's, names
-    operator        = M.blue,
+    label           = M.red,      -- goto's, names
+    operator        = M.red,
     comment         = M.grey,
     linenr          = M.grey,
-    cur_linenr      = M.yellow,
-    column          = M.black2,
-    punctuation     = M.magenta,
+    cur_linenr      = M.white2,
+    column          = M.black,
+    punctuation     = M.blue,
     special         = M.green,
     icons           = M.blue2,
     text            = {
@@ -64,19 +64,19 @@ M.editor = {
         rare = M.blue2,
     },
     error           = {
-        bg = M.black2, --column color should match
+        bg = M.black, --column color should match
         fg = M.red2,
     },
     warning     = {
-        bg = M.black2, --column color should match
+        bg = M.black, --column color should match
         fg = M.grey,
     },
     hint     = {
-        bg = M.black2, --column color should match
-        fg = M.white2,
+        bg = M.black, --column color should match
+        fg = M.grey,
     },
     info     = {
-        bg = M.black2, --column color should match
+        bg = M.black, --column color should match
         fg = M.fg,
     },
     success  = {
@@ -118,29 +118,29 @@ M.editor = {
             line = {
                 a = {
                     normal = {
-                        bg = M.black2,
-                        fg = M.fg,
+                        bg = M.black,
+                        fg = M.white2,
                     },
                     insert = {
-                        bg = M.black2,
+                        bg = M.black,
                         fg = M.green,
                     },
                     command = {
-                        bg = M.black2,
-                        fg = M.yellow,
+                        bg = M.black,
+                        fg = M.blue,
                     },
                     visual = {
-                        bg = M.black2,
+                        bg = M.black,
                         fg = M.magenta,
                     },
                 },
                 b = {
-                    bg = M.black,
-                    fg = M.fg,
+                    bg = M.black2,
+                    fg = M.white2,
                 },
                 c = {
                     bg = M.bg,
-                    fg = M.yellow2,
+                    fg = M.grey,
                 },
             }
         },
@@ -149,7 +149,7 @@ M.editor = {
             fg = M.grey,
             fill = M.bg,
             selected = {
-                bg = M.black2,
+                bg = M.bg,
                 fg = M.fg,
             }
         },
@@ -175,7 +175,7 @@ M.editor = {
             fg = M.green,
             nc = {
                 bg = M.black,
-                fg = M.white2,
+                fg = M.fg,
             }
         },
         floatwin = {
@@ -246,21 +246,21 @@ M.terminal = {
         quick_select_match_fg = { Color = M.fg },
 
         tab_bar = {
-            background = M.black2,
+            background = M.black,
             active_tab = {
-                bg_color = M.green,
-                fg_color = M.black2,
+                bg_color = M.grey,
+                fg_color = M.fg,
             },
             inactive_tab = {
-                bg_color = M.black2,
+                bg_color = M.black,
                 fg_color = M.grey,
             },
             new_tab = {
-                bg_color = M.black2,
+                bg_color = M.black,
                 fg_color = M.green,
             },
             new_tab_hover = {
-                bg_color = M.black2,
+                bg_color = M.black,
                 fg_color = M.green,
             }
         },

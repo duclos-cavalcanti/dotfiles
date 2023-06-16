@@ -199,8 +199,8 @@ M.terminal = {
         background = M.bg,
         foreground = M.fg,
         faded = M.grey,
-        user = M.green,
-        ws = M.green,
+        user = M.red,
+        ws = M.magenta2,
     },
     colors = {
         background = M.bg,
@@ -246,21 +246,21 @@ M.terminal = {
         quick_select_match_fg = { Color = M.fg },
 
         tab_bar = {
-            background = M.black,
+            background = M.bg,
             active_tab = {
-                bg_color = M.grey,
+                bg_color = M.bg,
                 fg_color = M.fg,
             },
             inactive_tab = {
-                bg_color = M.black,
+                bg_color = M.bg,
                 fg_color = M.grey,
             },
             new_tab = {
-                bg_color = M.black,
+                bg_color = M.bg,
                 fg_color = M.green,
             },
             new_tab_hover = {
-                bg_color = M.black,
+                bg_color = M.bg,
                 fg_color = M.green,
             }
         },

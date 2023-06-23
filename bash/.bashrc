@@ -79,7 +79,7 @@ bash_prompt() {
     local clear='\[\033[0m\]'
     local default=${white}
     local user_color=${green}
-    local dir_color=${green}
+    local dir_color=${red}
     local git_color=${yellow}
     local pyenv_color=${red}
 
@@ -165,7 +165,7 @@ bash_prompt() {
     PROMPT+="${default}"
 
     # prompt
-    PROMPT+="${default}"
+    PROMPT+="${clear}"
     PROMPT+=' '
     PROMPT+='$'
     PROMPT+=' '

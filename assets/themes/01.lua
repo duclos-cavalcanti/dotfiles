@@ -1,18 +1,18 @@
 local M = {
     none = "NONE",
 
-    bg = "#eeeeee", -- #383838
+    bg = "#cccccc", -- #383838
     fg = "#080808",
 
 
-    black       = "#222222",
-    red         = "#af0000",
+    black       = "#080808",
+    red         = "#FF0000",
     green       = "#008700",
     yellow      = "#d75f00",
     blue        = "#0087af",
     magenta     = "#d70087",
     cyan        = "#005f87",
-    white       = "#878787",
+    white       = "#777777",
 
     black2      = "#444444",
     red2        = "#7E4C26",
@@ -29,27 +29,27 @@ M.grey2 = M.white2
 
 M.editor = {
     functions       = M.fg,
-    fbuiltin        = M.magenta2,
+    fbuiltin        = M.red,
     fparameters     = M.fg,
-    method          = M.magenta,
-    constructor     = M.magenta,
+    method          = M.red,
+    constructor     = M.red,
     namespace       = M.yellow,
     var             = M.fg,
     field           = M.fg,
-    type            = M.magenta,
+    type            = M.red,
     structure       = M.cyan2,
     bool            = M.green,
-    storage         = M.magenta2,
-    string          = M.yellow,
+    storage         = M.yellow,
+    string          = M.fg,
     char            = M.red,
     number          = M.red,
     constant        = M.magenta,
-    preproc         = M.red,
+    preproc         = M.blue,
     statement       = M.yellow,
-    keyword         = M.magenta2,
+    keyword         = M.green,
     forwords        = M.green,    -- conditionals, loops
-    label           = M.red,      -- goto's, names
-    operator        = M.red,
+    label           = M.magenta2,      -- goto's, names
+    operator        = M.magenta2,
     comment         = M.grey,
     linenr          = M.grey,
     cur_linenr      = M.white2,
@@ -199,8 +199,8 @@ M.terminal = {
         background = M.bg,
         foreground = M.fg,
         faded = M.grey,
-        user = M.red,
-        ws = M.magenta2,
+        user = M.fg,
+        ws = M.fg,
     },
     colors = {
         background = M.bg,
@@ -234,7 +234,7 @@ M.terminal = {
         cursor_border = M.red,
         cursor_fg = M.fg,
 
-        split = M.green,
+        split = M.black,
         scrollbar_thumb = M.grey,
 
         selection_bg = M.fg,

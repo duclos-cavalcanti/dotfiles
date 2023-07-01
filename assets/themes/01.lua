@@ -5,22 +5,22 @@ local M = {
     fg = "#F4F4F4",
 
 
-    black       = "#000000",
-    red         = "#E01A4F",
-    green       = "#87A556",
-    yellow      = "#EEBA2D",
-    blue        = "#83a598",
-    magenta     = "#c678dd",
-    cyan        = "#84dcc6",
-    white       = "#616161",
+    black       = "#222222", --#1d2021
+    red         = "#cc241d", --#fb4934
+    green       = "#b8bb26", --#98971a
+    yellow      = "#fabd2f", --#d79921
+    blue        = "#83a598", --#458588
+    magenta     = "#d3869b", --#b16286
+    cyan        = "#689d6a",
+    white       = "#928374",
 
     black2      = "#2C2C2C",
-    red2        = "#E01A4F",
-    green2      = "#87A556",
-    yellow2     = "#EEBA2D",
-    blue2       = "#458588",
-    magenta2    = "#c678dd",
-    cyan2       = "#84dcc6",
+    red2        = "#fb4934",
+    green2      = "#b8bb26",
+    yellow2     = "#fabd2f",
+    blue2       = "#83a598",
+    magenta2    = "#b16286",
+    cyan2       = "#689d6a", --#83c07c
     white2      = "#F4F4F4",
 }
 

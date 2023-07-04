@@ -41,7 +41,6 @@ return {
             name = "install",
             cmds = {
                 "nvim bootstrap.sh",
-                "clear",
             },
         },
     }

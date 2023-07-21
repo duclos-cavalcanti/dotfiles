@@ -24,7 +24,7 @@ return {
         {
             name = "bash",
             cmds = {
-                "clear",
+                "clear && make serve",
                 "nvim Makefile"
             },
         },

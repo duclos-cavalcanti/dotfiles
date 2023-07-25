@@ -329,7 +329,7 @@ installation() {
         pushd ~/Documents/programs
             git clone https://github.com/LuaLS/lua-language-server
             cd lua-language-server
-            ./make.sh
+            # ./make.sh
             printf "%s\n" "LUA DONE" &>> ${SUMMARY}
         popd
     } &>> ${LOG}

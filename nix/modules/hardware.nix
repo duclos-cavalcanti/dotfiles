@@ -1,6 +1,10 @@
 {   config, ... }:
 
 {
+    environment.systemPackages = with pkgs; [
+        intel-ucode
+    ];
+
     # Enable Intel microcode updates for improved CPU stability and security
     boot.kernelPackages = pkgs.linuxPackages_latest;
 

@@ -1,101 +1,141 @@
 {   pkgs, ... }:
 
 let
-  PyPackages = with pkgs.python3Packages;
-  [
-    tensorflow
-    numpy
-    pandas
-    compiledb 
-    pyright 
-    ipython 
-    ipdb 
-    pyls
-    euporie 
-    ipykernel
-  ];
-
-  NdPackages = with pkgs.nodePackages; 
-  [
-    npm
-    bash-language-server
-    typescript
-    typescript-language-server
-    vscode-langservers-extracted
-    cssmodules-language-server
-  ];
-in
-
-{
-    # Set your desired list of packages
-    environment.systemPackages = with pkgs; [
-        # X11
+    X11Packages = with pkgs; [
         xorg.xorg 
         xorg.xinit 
         xorg.xrandr 
         xorg.xset 
         xclip
         xvfb-run
-        # Fonts
-        fonts.ubuntu-fonts
-        # Base
+    ]; 
+
+    DriverPackages = with pkgs; [
+        pulseaudio 
+        networkmanager 
+        wireless-tools 
+        firmware-linux-nonfree
+        bluez
+        bluezPackages.bluezTools
+        bluezPackages.bluezUtils
+    ]; 
+
+    BasePackages = with pkgs; [
         awesome
         firefox
         wezterm
         neovim
         stow
+        fonts.ubuntu-fonts
+    ]; 
+
+    GoPackages = with pkgs;
+    [
+        gopls
+        glow
+        vhs
+    ];
+
+    RustPackages = with pkgs;
+    [
+        cargo 
+        rustc
+        rust-analyzer
+        rustfmt
+    ];
+
+    LuaPackages = with pkgs;
+    [
+        lua
+        lua-language-server
+    ];
+
+
+    PyPackages = with pkgs.python3Packages;
+    [
+        jupyter-notebook
+        euporie 
+        ipython 
+        ipdb 
+        ipykernel
+        compiledb 
+        pyright 
+        pyls
+    ];
+
+    NdPackages = with pkgs.nodePackages; 
+    [
+        npm
+        bash-language-server
+        typescript
+        typescript-language-server
+        vscode-langservers-extracted
+        cssmodules-language-server
+    ];
+in
+
+{
+    environment.systemPackages = with pkgs; [
+        # X11
+        X11Packages
+
+        # Drivers
+        DriverPackages
+
+        # Base
+        BasePackages 
+
         # Dev
         git
+        gitui
         gnumake
         gcc
         gcc-arm-embedded
         gdb
         glibc
+        cmake 
+        ninja
+        clang
+        pandoc
+        docker
         curl
         wget
         unzip
-        python3 
-        python3Packages.pip
-        python3.10-notebook
-        go
-        gopls
-        glow
-        vhs
-        nodejs
         fzf 
         fd
         ripgrep
         bat 
         exa
         tree
-        cmake 
-        ninja
-        clang
+        jq
+        yq
         cppcheck
         doxygen
         lcov
         valgrind
-        lua
-        lua-language-server
-        pandoc
-        docker
-        jq
-        yq
-        cargo 
-        rustc
-        rust-analyzer
-        rustfmt
-        gitui
+
+        python3 
+        python3Packages.pip
+        PyPackages
+
+        go
+        GoPackages
+
+        nodejs
+        NdPackages
+
+        RustPackages
+
+        LuaPackages
+
         # Hardware
         blueman
-        bluez
         arandr
-        networkmanager
         network-manager-applet
         NetworkManager-openvpn
-        pulseaudio
         pasystray
         pavucontrol
+
         # Desktop
         spotify
         nitrogen
@@ -121,5 +161,5 @@ in
         mate.mate-icon-theme
         arc-theme
         arc-icon-theme
-    ] ++ PyPackages ++ NdPackages;
+    ];
 }

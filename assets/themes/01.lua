@@ -1,27 +1,27 @@
 local M = {
     none = "NONE",
 
-    bg = "#222222",
+    bg = "#2e3440",
     fg = "#F4F4F4",
 
 
-    black       = "#222222", --#1d2021
-    red         = "#fb4934", --#cc241d
-    green       = "#b8bb26", --#98971a
-    yellow      = "#fabd2f", --#d79921
-    blue        = "#83a598", --#458588
-    magenta     = "#d3869b", --#b16286
-    cyan        = "#689d6a",
-    white       = "#928374",
+    black       = "#3b4252",
+    red         = "#bf616a",
+    green       = "#a3be8c",
+    yellow      = "#ebcb8b",
+    blue        = "#81a1c1",
+    magenta     = "#b48ead",
+    cyan        = "#88c0d0",
+    white       = "#e5e9f0",
 
-    black2      = "#2C2C2C",
-    red2        = "#fb4934",
-    green2      = "#b8bb26",
-    yellow2     = "#fabd2f",
-    blue2       = "#83a598",
-    magenta2    = "#b16286",
-    cyan2       = "#689d6a", --#83c07c
-    white2      = "#F4F4F4",
+    black2      = "#4c566a",
+    red2        = "#bf616a",
+    green2      = "#a3be8c",
+    yellow2     = "#ebcb8b",
+    blue2       = "#81a1c1",
+    magenta2    = "#b48ead",
+    cyan2       = "#8fbcbb",
+    white2      = "#eceff4",
 }
 
 M.grey = M.white
@@ -268,8 +268,8 @@ M.terminal = {
 }
 
 M.wm = {
-    wp  = "ubuntu_mate.png",
-    wp2  = "ubuntu_mate_no_logo.png",
+    wp  = "01.png",
+    wp2  = "01.png",
     generic = { -- default and tasklist
         normal = {
             bg = M.bg,

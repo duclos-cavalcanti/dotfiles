@@ -17,8 +17,14 @@
       libva-utils
     ];
 
+    kernelModules = [ "kvm-intel" ];
+
     # Enable Intel CPU microcode updates
     boot.kernelParams = [ "intel_iommu=on" ];
+
+    hardware.cpu.intel.updateMicrocode = true;
+    networking.networkmanager.enable = true;
+    networking.networkmanager.wifi.powersave = false;
 
     sound.enable = true;
     hardware.bluetooth.enable = true;

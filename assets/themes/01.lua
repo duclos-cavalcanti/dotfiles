@@ -1,20 +1,20 @@
 local M = {
     none = "NONE",
 
-    bg = "#2e3440",
+    bg = "#0D1117", -- #2e3440
     fg = "#F4F4F4",
 
 
-    black       = "#3b4252",
+    black       = "#2e3440",
     red         = "#bf616a",
     green       = "#a3be8c",
     yellow      = "#ebcb8b",
     blue        = "#81a1c1",
     magenta     = "#b48ead",
     cyan        = "#88c0d0",
-    white       = "#e5e9f0",
+    white       = "#4B5368",
 
-    black2      = "#4c566a",
+    black2      = "#3A4151",
     red2        = "#bf616a",
     green2      = "#a3be8c",
     yellow2     = "#ebcb8b",
@@ -32,7 +32,7 @@ M.editor = {
     fbuiltin        = M.red,
     fparameters     = M.fg,
     method          = M.red,
-    constructor     = M.red,
+    constructor     = M.blue,
     namespace       = M.green,
     var             = M.fg,
     field           = M.fg,
@@ -49,12 +49,12 @@ M.editor = {
     keyword         = M.yellow,
     forwords        = M.magenta,    -- conditionals, loops
     label           = M.red,      -- goto's, names
-    operator        = M.red,
+    operator        = M.yellow,
     comment         = M.grey,
     linenr          = M.grey,
     cur_linenr      = M.white2,
-    column          = M.black,
-    punctuation     = M.grey,
+    column          = M.bg,
+    punctuation     = M.cyan,
     special         = M.blue,
     icons           = M.blue2,
     text            = {
@@ -272,11 +272,11 @@ M.wm = {
     wp2  = "01.png",
     generic = { -- default and tasklist
         normal = {
-            bg = M.bg,
+            bg = M.black,
             fg = M.grey,
         },
         focus  = {
-            bg = M.black2,
+            bg = M.bg,
             fg = M.fg,
         },
         urgent = {
@@ -290,36 +290,36 @@ M.wm = {
     },
     titlebar = {
         normal =  {
-            bg = M.black2,
-            fg = M.grey,
+            bg = M.black,
+            fg = M.fg,
         },
         focus = {
-            bg = M.black2,
+            bg = M.bg,
             fg = M.fg,
         }
     },
     bar = {
-        bg          = M.black2,
+        bg          = M.bg,
         fg          = M.fg,
         highlight   = M.green,
     },
     border = {
         normal          = M.grey,
-        focus           = M.green,
+        focus           = M.cyan,
         sticky          = M.red,
-        marked          = M.blue2
+        marked          = M.green
     },
     tray = {
-        bg = M.black2,
+        bg = M.bg,
         fg = M.fg,
-        popup = M.black2,
+        popup = M.black,
     },
     prompt = {
-        bg = M.black2,
+        bg = M.bg,
         fg = M.fg,
     },
     menu = {
-        normal  = M.black2,
+        normal  = M.black,
         focus   = {
             bg = M.black,
             fg = M.fg,
@@ -327,30 +327,30 @@ M.wm = {
         border  = M.black,
     },
     clock = {
-        bg = M.black2,
+        bg = M.bg,
         fg = M.fg,
     },
     tag = {
         empty = {
-            bg = M.black2,
+            bg = M.bg,
             fg = M.grey,
         },
         occ = {
-            bg = M.black2,
+            bg = M.bg,
             fg = M.fg,
         },
         focus = {
-            bg = M.green,
-            fg = M.fg,
+            bg = M.cyan,
+            fg = M.bg,
         },
         urgent = {
             bg = M.magenta2,
             fg = M.fg,
         },
     },
-    separator = M.black2,
+    separator = M.black,
     notification = {
-        bg = M.black2,
+        bg = M.black,
         fg = M.fg,
         border = M.cyan,
     },

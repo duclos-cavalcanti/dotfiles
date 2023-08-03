@@ -272,7 +272,7 @@ M.wm = {
     wp2  = "01.png",
     generic = { -- default and tasklist
         normal = {
-            bg = M.black,
+            bg = M.bg,
             fg = M.grey,
         },
         focus  = {
@@ -305,7 +305,7 @@ M.wm = {
     },
     border = {
         normal          = M.grey,
-        focus           = M.cyan,
+        focus           = M.fg,
         sticky          = M.red,
         marked          = M.green
     },
@@ -340,7 +340,7 @@ M.wm = {
             fg = M.fg,
         },
         focus = {
-            bg = M.cyan,
+            bg = M.green,
             fg = M.bg,
         },
         urgent = {

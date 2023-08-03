@@ -27,16 +27,12 @@ OS | WM | Terminal | Editor | Shell
 <a name="install"/>
 
 ## Installation
+### NixOS
+
+### Ubuntu __(deprecated)__
 <p>
-  <img alt="Arch Linux" src="https://img.shields.io/badge/arch linux-blue.svg" />
   <img alt="Ubuntu" src="https://img.shields.io/badge/ubuntu-red.svg" />
 </p>
-
-The arch installation still heavily relies on an inital base installation via the [wiki](https://wiki.archlinux.org/title/Installation_guide) and 
-the script is not yet ready to be published. 
-However, the ubuntu variation is well-tested and working. To avoid the annoying cloud-init output pollution as per this 
-[issue](https://askubuntu.com/questions/1333240/ubuntu-20-04-server-blocks-at-boot-cloud-init-and-login),
-simply create the `/etc/cloud/cloud-init.disabled` file afterwards.
 
 - Install the [ubuntu-server](https://www.releases.ubuntu.com/jammy/) image
 - Run: 
@@ -48,6 +44,10 @@ simply create the `/etc/cloud/cloud-init.disabled` file afterwards.
 <div align="center">
   <img src=".github/assets/deploy.png" width="80%" align="center"/>
 </div>
+
+To avoid the annoying cloud-init output pollution as per this 
+[issue](https://askubuntu.com/questions/1333240/ubuntu-20-04-server-blocks-at-boot-cloud-init-and-login),
+simply create the `/etc/cloud/cloud-init.disabled` file afterwards.
 
 
 ## License

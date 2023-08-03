@@ -5,8 +5,12 @@
         intel-ucode
     ];
 
-    # Enable Intel microcode updates for improved CPU stability and security
-    boot.kernelPackages = pkgs.linuxPackages_latest;
+    boot = {
+        # Enable Intel microcode updates for improved CPU stability and security
+        kernelPackages = pkgs.linuxPackages_latest;
+
+    };
+
 
     # Set Intel graphics driver for the integrated GPU
     hardware.opengl.driSupport32Bit = true;

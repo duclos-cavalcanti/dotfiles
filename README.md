@@ -29,7 +29,7 @@ OS | WM | Terminal | Editor | Shell
 ## Installation
 ### NixOS
 <p>
-  <img alt="NixOS" src="https://img.shields.io/badge/Nix-5277C3.svg" />
+  <img alt="NixOS" src="https://img.shields.io/badge/nixos-5277C3.svg" />
 </p>
 A linux distribution based on the `Nix` package manager, who enables a __declarative__ and __reproducible__ 
 build system. When a _NixOS_ system is built, a configuration file is generated which states every aspect of it 

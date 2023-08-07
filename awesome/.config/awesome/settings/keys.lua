@@ -202,6 +202,12 @@ function M.set_keybindings()
                       "spawn awesome prompt",
                       "applications"
                   }),
+        awful.key({ M.modkey, "Shift" }, "s",
+                  function() awful.spawn("maim -s ~/Downloads/Screenshot.png") end,
+                  {
+                      "selectable screenshot",
+                      "applications"
+                  }),
 
         -- awesome shortcuts
         awful.key({ M.modkey, "Control" }, "r",

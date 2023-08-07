@@ -28,6 +28,10 @@ OS | WM | Terminal | Editor | Shell
 
 ## Installation
 ### NixOS
+A linux distribution based on the `Nix` package manager, who enables a __declarative__ and __reproducible__ 
+build system. When a _NixOS_ system is built, a configuration file is generated which states every aspect of it 
+from low-level boot options up to desktop environments.
+
 
 ### Ubuntu __(deprecated)__
 <p>
@@ -38,7 +42,7 @@ OS | WM | Terminal | Editor | Shell
 - Run: 
   ```bash
   curl \
-  https://raw.githubusercontent.com/duclos-cavalcanti/dotfiles/main/bootstrap.sh | bash
+  https://raw.githubusercontent.com/duclos-cavalcanti/dotfiles/ubuntu/bootstrap.sh | bash
   ```
 
 <div align="center">

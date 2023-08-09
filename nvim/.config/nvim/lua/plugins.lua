@@ -51,14 +51,18 @@ local plugins = {
         'stevearc/oil.nvim',
         config = function() require('oil').setup() end
     },
-    { -- snippets
-        "L3MON4D3/LuaSnip",
-        config = function() 
-            local s = require('ex.luasnip')
-            s.config()
-            s.setup()
-        end,
+    { -- markdown
+        "iamcco/markdown-preview.nvim",
+        config = function() vim.fn["mkdp#util#install"]() end,
     },
+    -- { -- snippets
+    --     "L3MON4D3/LuaSnip",
+    --     config = function() 
+    --         local s = require('ex.luasnip')
+    --         s.config()
+    --         s.setup()
+    --     end,
+    -- },
     { -- tagsbar
         'simrat39/symbols-outline.nvim',
         config = function() require('ex.tagsbar') end

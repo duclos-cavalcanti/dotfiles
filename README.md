@@ -32,9 +32,56 @@ OS | WM | Terminal | Editor | Shell
   <img alt="NixOS" src="https://img.shields.io/badge/nixos-5277C3.svg" />
 </p>
 
-A linux distribution based on the `Nix` package manager, who enables a __declarative__ and __reproducible__ 
-build system. When a _NixOS_ system is built, a configuration file is generated which states every aspect of it 
-from low-level boot options up to desktop environments.
+A linux distribution based on the [nix](https://nixos.org/) package manager, who enables a __declarative__ and __reproducible__ 
+build system. When the system is built, a configuration file is generated which states every aspect of it 
+from low-level boot options up to desktop environments. There are also the option to have customized and 
+sandboxed environments using `nix-env`.
+
+#### Steps
+
+0. Burn USB with [nix-os](https://nixos.org/) image.
+1. Set keyboard layout.
+```sh
+setxkbmap us
+```
+
+2. Partition filesystem.
+```sh
+# example: 
+# needs sudo and will launch a CLI interface
+sudo parted /dev/sda
+
+# Create a GPT partition table
+mklabel gpt
+
+# Create the EFI System Partition (ESP)
+mkpart ESP fat32 1MiB 512MiB
+set 1 esp on
+name 1 EFI
+
+# Create the root partition
+mkpart primary ext4 512MiB -8GiB
+name 2 root
+
+# Create a swap partition
+mkpart primary linux-swap -8GiB 100%
+name 3 swap
+
+# Exit parted
+quit
+
+sudo mkfs.fat -F32 -n EFI /dev/sda1
+sudo mkfs.ext4 -L root /dev/sda2
+sudo mkswap /dev/sda3
+sudo swapon /dev/sda3
+
+mount /dev/disk/by-label/root /mnt
+
+mkdir -p /mnt/boot
+mount /dev/disk/by-label/root /mnt
+
+mount /dev/disk/by-label/root /mnt
+```
 
 
 ### Ubuntu __(deprecated)__
@@ -42,7 +89,8 @@ from low-level boot options up to desktop environments.
   <img alt="Ubuntu" src="https://img.shields.io/badge/ubuntu-red.svg" />
 </p>
 
-- Install the [ubuntu-server](https://www.releases.ubuntu.com/jammy/) image
+### Steps
+- burn USB with [ubuntu-server](https://www.releases.ubuntu.com/jammy/) image
 - Run: 
   ```bash
   curl \

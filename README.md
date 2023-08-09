@@ -8,7 +8,7 @@
 
 OS | WM | Terminal | Editor | Shell
 ---|---|---|---|---
-[ubuntu](https://ubuntu.com/) | [awesome](https://github.com/awesomeWM/awesome) + [picom](https://github.com/yshui/picom) + [wallpapers](https://github.com/ubuntu-mate/ubuntu-mate-artwork) | [wezterm](https://github.com/wez/wezterm) | [neovim](https://github.com/neovim/neovim) | [bash](https://www.gnu.org/software/bash/)
+[NixOS/](https://nixos.org/)[ubuntu](https://ubuntu.com/) | [awesome](https://github.com/awesomeWM/awesome) + [picom](https://github.com/yshui/picom) + [wallpapers](https://github.com/ubuntu-mate/ubuntu-mate-artwork) | [wezterm](https://github.com/wez/wezterm) | [neovim](https://github.com/neovim/neovim) | [bash](https://www.gnu.org/software/bash/)
 
 </div>
 
@@ -89,7 +89,7 @@ mount /dev/disk/by-label/root /mnt
   <img alt="Ubuntu" src="https://img.shields.io/badge/ubuntu-red.svg" />
 </p>
 
-### Steps
+#### Steps
 - burn USB with [ubuntu-server](https://www.releases.ubuntu.com/jammy/) image
 - Run: 
   ```bash

@@ -83,6 +83,11 @@ mount /dev/disk/by-label/root /mnt
 mount /dev/disk/by-label/root /mnt
 ```
 
+3. Run: 
+  ```bash
+  curl \
+  https://raw.githubusercontent.com/duclos-cavalcanti/dotfiles/main/bootstrap.sh | bash
+  ```
 
 ### Ubuntu __(deprecated)__
 <p>

@@ -33,9 +33,8 @@ OS | WM | Terminal | Editor | Shell
 </p>
 
 A linux distribution based on the [nix](https://nixos.org/) package manager, who enables a __declarative__ and __reproducible__ 
-build system. When the system is built, a configuration file is generated which states every aspect of it 
-from low-level boot options up to desktop environments. There are also the option to have customized and 
-sandboxed environments using `nix-env`.
+build system. When the system is built, a configuration file is generated which states every aspect of the operating 
+system.
 
 #### Steps
 

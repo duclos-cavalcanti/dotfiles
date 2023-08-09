@@ -48,8 +48,8 @@ setxkbmap us
 2. Partition filesystem.
 ```sh
 # example: 
-# needs sudo and will launch a CLI interface
 sudo parted /dev/sda
+# Launches parted
 
 # Create a GPT partition table
 mklabel gpt
@@ -67,20 +67,18 @@ name 2 root
 mkpart primary linux-swap -8GiB 100%
 name 3 swap
 
-# Exit parted
 quit
+# Exits parted
 
 sudo mkfs.fat -F32 -n EFI /dev/sda1
 sudo mkfs.ext4 -L root /dev/sda2
 sudo mkswap /dev/sda3
 sudo swapon /dev/sda3
 
-mount /dev/disk/by-label/root /mnt
+mount -L root /mnt
 
-mkdir -p /mnt/boot
-mount /dev/disk/by-label/root /mnt
-
-mount /dev/disk/by-label/root /mnt
+mkdir -p /mnt/boot/efi
+mount -L EFI /mnt/boot/efi
 ```
 
 3. Run: 

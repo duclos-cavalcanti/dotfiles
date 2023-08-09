@@ -80,7 +80,12 @@ mkdir -p /mnt/boot/efi
 mount -L EFI /mnt/boot/efi
 ```
 
-3. Run: 
+3. Install git and stow
+```sh
+nix-env -iA nixpkgs.git nixpkgs.stow
+```
+
+4. Run: 
   ```bash
   curl \
   https://raw.githubusercontent.com/duclos-cavalcanti/dotfiles/main/bootstrap.sh | bash

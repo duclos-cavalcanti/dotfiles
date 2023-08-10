@@ -12,7 +12,7 @@ local icon_path = theme_path .. "/icons"
 
 local font_family     = "UbuntuMono"
 
-local config          = dofile(os.getenv("HOME") .. "/.dotfiles/assets/system.lua")
+local config          = dofile(os.getenv("HOME") .. "/.config/system/system.lua")
 local palette         = config.palette
 
 local theme = {}

@@ -21,10 +21,6 @@
         initrd.availableKernelModules = [ "ext4" "usbmon" "ahci" "xhci_pci" "virtio_pci" "sr_mod" "virtio_blk" ];
     };
 
-    kernelModules = [ 
-        "kvm-intel" 
-    ];
-
     # Set Intel graphics driver for the integrated GPU
     hardware.opengl.driSupport32Bit = true;
     hardware.opengl.enable = true;
@@ -36,9 +32,6 @@
         vulkan-loader
         vulkan-tools
     ];
-    
-    # Use Intel integrated graphics
-    services.xserver.videoDrivers = [ "intel" ];
 
     networking.networkmanager.enable = true;
     networking.networkmanager.wifi.powersave = false;

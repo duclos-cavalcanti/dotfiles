@@ -18,7 +18,7 @@
             extraGroups = [ "wheel" "networkmanager" ];  # Additional groups the user belongs to
             createHome = true;
             shell = pkgs.bash;
-            hashedPassword = lib.mkForce (lib.mkpasswd "Enter the chosen password: ");
+            hashedPassword = lib.mkForce (lib.mkpasswd (builtins.readLine "Enter the chosen password: "));
        };
      };
 }

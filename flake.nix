@@ -3,7 +3,7 @@
     inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
     outputs = { self, nixpkgs }: {
-        nixosConfigurations.myhostname = nixpkgs.lib.nixosSystem {
+        nixosConfigurations.nix-think = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
             ./modules/base.nix 

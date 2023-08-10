@@ -40,41 +40,7 @@ system.
 setxkbmap us
 ```
 
-2. Partition filesystem.
-```sh
-# example: 
-sudo parted /dev/sda
-# Launches parted
-
-# Create a GPT partition table
-mklabel gpt
-
-# Create the EFI System Partition (ESP)
-mkpart ESP fat32 1MiB 512MiB
-set 1 esp on
-name 1 EFI
-
-# Create the root partition
-mkpart primary ext4 512MiB -8GiB
-name 2 root
-
-# Create a swap partition
-mkpart primary linux-swap -8GiB 100%
-name 3 swap
-
-quit
-# Exits parted
-
-sudo mkfs.fat -F32 -n EFI /dev/sda1
-sudo mkfs.ext4 -L root /dev/sda2
-sudo mkswap /dev/sda3
-sudo swapon /dev/sda3
-
-mount -L root /mnt
-
-mkdir -p /mnt/boot/efi
-mount -L EFI /mnt/boot/efi
-```
+2. Partition filesystem. Too see an example, click [here](https://gist.github.com/duclos-cavalcanti/e78ea4c665cdd3bb814b6fb57db68dc4).
 
 3. Run
 ```sh

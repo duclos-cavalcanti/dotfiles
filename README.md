@@ -12,10 +12,6 @@ OS | WM | Terminal | Editor | Shell
 
 </div>
 
-<div align="center">
-  <img src=".github/assets/screen.png?" width="85%" align="center"/>
-</div>
-
 
 ## Deployment
 * For full installation, go [here](#install).
@@ -89,6 +85,10 @@ nix run github:duclos-cavalcanti/dotfiles
 <p>
   <img alt="Ubuntu" src="https://img.shields.io/badge/ubuntu-red.svg" />
 </p>
+
+<div align="center">
+  <img src=".github/assets/screen.png?" width="85%" align="center"/>
+</div>
 
 #### Steps
 - burn USB with [ubuntu-server](https://www.releases.ubuntu.com/jammy/) image

@@ -35,14 +35,8 @@ system.
 #### Steps
 
 0. Burn USB with [nix-os](https://nixos.org/) image.
-1. Set keyboard layout.
-```sh
-setxkbmap us
-```
-
-2. Partition filesystem. Too see an example, click [here](https://gist.github.com/duclos-cavalcanti/e78ea4c665cdd3bb814b6fb57db68dc4).
-
-3. Run
+1. Partition filesystem. [_(Example)_](https://gist.github.com/duclos-cavalcanti/e78ea4c665cdd3bb814b6fb57db68dc4).
+2. Run
 ```sh
 nix run github:duclos-cavalcanti/dotfiles
 ```

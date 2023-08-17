@@ -2,7 +2,7 @@
     description = "Daniel Cavalcanti's NixOS configuration";
     inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
-    outputs = { self, nixpkgs }: {
+    outputs = { self, nixpkgs, ... }: {
         nixosConfigurations.nix-think = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [

@@ -26,8 +26,9 @@ system.
 #### Steps
 
 0. Burn USB with [nix-os](https://nixos.org/) image.
-1. Partition filesystem. [_(Example)_](https://gist.github.com/duclos-cavalcanti/e78ea4c665cdd3bb814b6fb57db68dc4)
-2. Run
+1. Connect to WiFi if needed. [_(Example)_](https://gist.github.com/duclos-cavalcanti/07a35299de7e095052562ea9ef492b6d)
+2. Partition filesystem. [_(Example)_](https://gist.github.com/duclos-cavalcanti/e78ea4c665cdd3bb814b6fb57db68dc4)
+3. Run
 ```sh
 nix run github:duclos-cavalcanti/dotfiles
 ```

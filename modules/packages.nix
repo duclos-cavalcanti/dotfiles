@@ -10,7 +10,7 @@ let
         xvfb-run
     ]; 
 
-    DriverPackages = with pkgs; [
+    HardwarePackages = with pkgs; [
         pulseaudio 
         networkmanager 
         wireless-tools 
@@ -18,6 +18,15 @@ let
         bluez
         bluezPackages.bluezTools
         bluezPackages.bluezUtils
+    ]; 
+
+    HardwareRelatedPackages = with pkgs; [
+        blueman
+        arandr
+        network-manager-applet
+        NetworkManager-openvpn
+        pasystray
+        pavucontrol
     ]; 
 
     BasePackages = with pkgs; [
@@ -30,11 +39,33 @@ let
         fonts.ubuntu-fonts
     ]; 
 
+    PyPackages = with pkgs.python3Packages;
+    [
+        jupyter-notebook
+        euporie 
+        ipython 
+        ipdb 
+        ipykernel
+        compiledb 
+        pyright 
+        pyls
+    ];
+
     GoPackages = with pkgs;
     [
         gopls
         glow
         vhs
+    ];
+
+    NdPackages = with pkgs.nodePackages; 
+    [
+        npm
+        bash-language-server
+        typescript
+        typescript-language-server
+        vscode-langservers-extracted
+        cssmodules-language-server
     ];
 
     RustPackages = with pkgs;
@@ -51,28 +82,6 @@ let
         lua-language-server
     ];
 
-
-    PyPackages = with pkgs.python3Packages;
-    [
-        jupyter-notebook
-        euporie 
-        ipython 
-        ipdb 
-        ipykernel
-        compiledb 
-        pyright 
-        pyls
-    ];
-
-    NdPackages = with pkgs.nodePackages; 
-    [
-        npm
-        bash-language-server
-        typescript
-        typescript-language-server
-        vscode-langservers-extracted
-        cssmodules-language-server
-    ];
 in
 
 {
@@ -80,8 +89,9 @@ in
         # X11
         X11Packages
 
-        # Drivers
-        DriverPackages
+        # Hardware 
+        HardwarePackages
+        HardwareRelatedPackages
 
         # Base
         BasePackages 
@@ -128,14 +138,6 @@ in
         RustPackages
 
         LuaPackages
-
-        # Hardware
-        blueman
-        arandr
-        network-manager-applet
-        NetworkManager-openvpn
-        pasystray
-        pavucontrol
 
         # Desktop
         spotify

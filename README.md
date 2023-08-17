@@ -13,15 +13,6 @@ OS | WM | Terminal | Editor | Shell
 </div>
 
 
-## Deployment
-* For full installation, go [here](#install).
-* To simply stow the dotfiles, first install `stow` and run:
-  ```sh
-  ./install.sh -s
-  ```
-
-<a name="install"/>
-
 ## Installation
 ### NixOS
 <p>

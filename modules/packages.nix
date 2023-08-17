@@ -25,6 +25,7 @@ let
         firefox
         wezterm
         neovim
+        vim
         stow
         fonts.ubuntu-fonts
     ]; 

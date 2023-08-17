@@ -21,7 +21,8 @@
         initrd.availableKernelModules = [ "ext4" "usbmon" "ahci" "xhci_pci" "virtio_pci" "sr_mod" "virtio_blk" ];
     };
 
-    # Set Intel graphics driver for the integrated GPU
+    # intel related paraemeters for graphics
+    # needed for intel integrated GPU
     hardware.opengl.driSupport32Bit = true;
     hardware.opengl.enable = true;
     hardware.opengl.extraPackages = with pkgs; [
@@ -36,8 +37,9 @@
     networking.networkmanager.enable = true;
     networking.networkmanager.wifi.powersave = false;
 
-    sound.enable = true;
+    hardware.touchpad.enable = true;
     hardware.bluetooth.enable = true;
+    hardware.pulseaudio.enable = true;
 
     fileSystems."/boot/efi" = {
        device = "/dev/disk/by-label/EFI";  # Use the labeled EFI partition

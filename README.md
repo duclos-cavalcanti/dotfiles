@@ -21,7 +21,9 @@ OS | WM | Terminal | Editor | Shell
 
 A linux distribution based on the [nix](https://nixos.org/) package manager, who enables a __declarative__ and __reproducible__ 
 build system. When the system is built, a configuration file is generated which states every aspect of the operating 
-system.
+system. It is a very powerful system, enables easy self-packaging of projects, sandboxed environments, infrastructure as code 
+to define multiple systems, and so many more. It is my system of choice and the steps below are to be done in case 
+you would like to try my system out!
 
 #### Steps
 

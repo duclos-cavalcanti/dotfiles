@@ -340,11 +340,11 @@ M.wm = {
             fg = M.fg,
         },
         focus = {
-            bg = M.green,
+            bg = M.magenta,
             fg = M.bg,
         },
         urgent = {
-            bg = M.magenta2,
+            bg = M.red,
             fg = M.fg,
         },
     },

@@ -37,6 +37,18 @@ M.base = {
 	{ key = "c", mods = "LEADER", action = wezterm.action({ SpawnTab = "CurrentPaneDomain" }) },
     { key = 'n', mods = 'LEADER', action = wezterm.action.SpawnWindow },
 
+    {
+        key = "s",
+        mods = "ALT",
+        action = wezterm.action_callback(
+        function(win, pane) 
+            local tab = win:active_tab()
+            tab:set_zoomed(false)
+            win:perform_action(wezterm.action.RotatePanes("Clockwise"), pane)
+            tab:set_zoomed(true)
+        end)
+     },
+
 	{ key = "j", mods = "ALT", action = wezterm.action({ ActivateTabRelative=-1 }) },
 	{ key = "k", mods = "ALT", action = wezterm.action({ ActivateTabRelative=1 }) },
 	{ key = "h", mods = "ALT", action = wezterm.action({ MoveTabRelative = -1 }) },

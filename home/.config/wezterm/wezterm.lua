@@ -11,7 +11,7 @@ local config = {
         "Symbols Nerd Fonto Mono"
     },
 
-    font_size = 10.5,
+    font_size = 14.5,
     cell_width = 1.0,
     
     adjust_window_size_when_changing_font_size = false,
@@ -20,6 +20,7 @@ local config = {
     colors = theme.colors,
     window_background_image = theme.window_background_image,
     window_background_image_hsb = theme.window_background_image_hsb,
+    unzoom_on_switch_pane = true,
 
     window_padding = {
         left =  5,

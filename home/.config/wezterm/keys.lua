@@ -38,7 +38,7 @@ M.base = {
     { key = 'n', mods = 'LEADER', action = wezterm.action.SpawnWindow },
 
     {
-        key = "s",
+        key = "Tab",
         mods = "ALT",
         action = wezterm.action_callback(
         function(win, pane) 

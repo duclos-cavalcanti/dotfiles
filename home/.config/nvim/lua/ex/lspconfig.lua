@@ -19,6 +19,14 @@ local function _on_attach(client, bufnr)
     bufnnoremap("<C-p>", "<Cmd>lua vim.diagnostic.goto_prev()<CR>")
 end
 
+vim.diagnostic.config({
+  virtual_text = false
+})
+
+-- Show line diagnostics automatically in hover window
+vim.o.updatetime = 250
+vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
+
 -- add capabilities from nvim-cmp
 local _capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 local runtime_path = vim.split(package.path, ';')

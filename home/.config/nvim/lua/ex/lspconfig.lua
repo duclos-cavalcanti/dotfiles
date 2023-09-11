@@ -50,6 +50,8 @@ require'lspconfig'.rust_analyzer.setup{
     }
 }
 
+-- require('nixd').clangd.setup({})
+
 require('lspconfig').cssls.setup {
   on_attach = _on_attach,
   capabilities = _capabilities

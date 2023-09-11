@@ -344,7 +344,7 @@ alias fgrep='fgrep --colour=always'
 alias gupd="git add --all && git commit -m 'Update' && git push origin"
 alias grd="git add README.md && git commit -m 'Updated README' && git push origin"
 alias ggi="git add .gitignore && git commit -m 'Updated gitignore' && git push origin"
-alias ggo="git add --all && git commit -m"
+alias ggo="git add --all && git commit"
 alias gs="git status"
 alias ga="git add"
 alias gc="git checkout"

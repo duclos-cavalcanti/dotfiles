@@ -40,13 +40,13 @@ local plugins = {
         },
         config = function() require('ex.telescope') end,
     },
-    { -- treesitter
-        "nvim-treesitter/nvim-treesitter",
-        dependencies = {
-            "windwp/nvim-ts-autotag",
-        },
-        config = function() require('ex.treesitter') end,
-    },
+    -- { -- treesitter
+    --     "nvim-treesitter/nvim-treesitter",
+    --     dependencies = {
+    --         "windwp/nvim-ts-autotag",
+    --     },
+    --     config = function() require('ex.treesitter') end,
+    -- },
     { -- file browser
         'stevearc/oil.nvim',
         config = function() require('oil').setup() end
@@ -55,14 +55,14 @@ local plugins = {
         "iamcco/markdown-preview.nvim",
         config = function() vim.fn["mkdp#util#install"]() end,
     },
-    -- { -- snippets
-    --     "L3MON4D3/LuaSnip",
-    --     config = function() 
-    --         local s = require('ex.luasnip')
-    --         s.config()
-    --         s.setup()
-    --     end,
-    -- },
+    { -- snippets
+        "L3MON4D3/LuaSnip",
+        config = function() 
+            local s = require('ex.luasnip')
+            s.config()
+            s.setup()
+        end,
+    },
     { -- tagsbar
         'simrat39/symbols-outline.nvim',
         config = function() require('ex.tagsbar') end

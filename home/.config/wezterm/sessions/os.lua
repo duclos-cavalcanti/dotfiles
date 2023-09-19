@@ -1,6 +1,6 @@
 
 return {
-    name = "work",
+    name = "os",
     dir = os.getenv('HOME') .. "/Documents/work/os-nyu",
     tabs = {
         {

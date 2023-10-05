@@ -11,7 +11,7 @@ local config = {
         "Symbols Nerd Fonto Mono"
     },
 
-    font_size = 14.5,
+    font_size = 12.0,
     cell_width = 1.0,
     
     adjust_window_size_when_changing_font_size = false,

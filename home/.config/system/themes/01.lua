@@ -1,27 +1,27 @@
 local M = {
     none = "NONE",
 
-    bg = "#0D1117", -- #2e3440
-    fg = "#F4F4F4",
+    bg = "#080808",
+    fg = "#D8D8D8",
 
 
-    black       = "#2e3440",
-    red         = "#bf616a",
-    green       = "#a3be8c",
-    yellow      = "#ebcb8b",
-    blue        = "#81a1c1",
-    magenta     = "#b48ead",
-    cyan        = "#88c0d0",
-    white       = "#4B5368",
+    black       = "#282C33",
+    red         = "#B27B78",
+    green       = "#99AE63",
+    yellow      = "#D8C27A",
+    blue        = "#7495B6",
+    magenta     = "#B59CD8",
+    cyan        = "#8DC9C3",
+    white       = "#BCC5D1",
 
-    black2      = "#3A4151",
-    red2        = "#bf616a",
-    green2      = "#a3be8c",
-    yellow2     = "#ebcb8b",
-    blue2       = "#81a1c1",
-    magenta2    = "#b48ead",
-    cyan2       = "#8fbcbb",
-    white2      = "#eceff4",
+    black2      = "#383E47",
+    red2        = "#B27B78",
+    green2      = "#99AE63",
+    yellow2     = "#D8C27A",
+    blue2       = "#7495B6",
+    magenta2    = "#CC99B3",
+    cyan2       = "#79dac8",
+    white2      = "#FDFEFF",
 }
 
 M.grey = M.white
@@ -33,9 +33,9 @@ M.editor = {
     fparameters     = M.fg,
     method          = M.red,
     constructor     = M.blue,
-    namespace       = M.green,
-    var             = M.fg,
-    field           = M.fg,
+    namespace       = M.blue,
+    var             = M.grey,
+    field           = M.blue,
     type            = M.cyan,
     structure       = M.red,
     bool            = M.magenta,
@@ -340,11 +340,11 @@ M.wm = {
             fg = M.fg,
         },
         focus = {
-            bg = M.magenta,
-            fg = M.bg,
+            bg = M.grey,
+            fg = M.fg,
         },
         urgent = {
-            bg = M.red,
+            bg = M.magenta2,
             fg = M.fg,
         },
     },

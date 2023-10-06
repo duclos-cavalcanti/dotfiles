@@ -1,26 +1,26 @@
 local M = {
     none = "NONE",
 
-    bg = "#080808",
-    fg = "#D8D8D8",
+    bg = "#000000",
+    fg = "#ffffff",
 
 
-    black       = "#282C33",
-    red         = "#B27B78",
-    green       = "#99AE63",
-    yellow      = "#D8C27A",
-    blue        = "#7495B6",
-    magenta     = "#B59CD8",
-    cyan        = "#8DC9C3",
-    white       = "#BCC5D1",
+    black       = "#2f2f2f",
+    red         = "#ee3333",
+    green       = "#55FF55",
+    yellow      = "#ffff1a",
+    blue        = "#3075ff",
+    magenta     = "#ff55ff",
+    cyan        = "#22cccc",
+    white       = "#777777",
 
-    black2      = "#383E47",
-    red2        = "#B27B78",
-    green2      = "#99AE63",
-    yellow2     = "#D8C27A",
-    blue2       = "#7495B6",
-    magenta2    = "#CC99B3",
-    cyan2       = "#79dac8",
+    black2      = "#494949",
+    red2        = "#ee3333",
+    green2      = "#55FF55",
+    yellow2     = "#ffff1a",
+    blue2       = "#3075ff",
+    magenta2    = "#7777ff",
+    cyan2       = "#22cccc",
     white2      = "#FDFEFF",
 }
 
@@ -34,7 +34,7 @@ M.editor = {
     method          = M.red,
     constructor     = M.blue,
     namespace       = M.blue,
-    var             = M.grey,
+    var             = M.fg,
     field           = M.blue,
     type            = M.cyan,
     structure       = M.red,
@@ -64,11 +64,11 @@ M.editor = {
         rare = M.blue2,
     },
     error           = {
-        bg = M.black, --column color should match
+        bg = M.bg, --column color should match
         fg = M.red2,
     },
     warning     = {
-        bg = M.black, --column color should match
+        bg = M.bg, --column color should match
         fg = M.grey,
     },
     hint     = {

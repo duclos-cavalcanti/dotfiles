@@ -24,7 +24,10 @@
                 home-manager.nixosModules.home-manager {
                     home-manager.useGlobalPkgs = true;
                     home-manager.useUserPackages = true;
-                    home-manager.users.duclos = import ./home.nix;
+                    home-manager.username = "duclos";
+                    home-manager.homeDirectory = "/home/duclos";
+                    home-manager.stateVersion = "23.05";
+                    programs.home-manager.enable = true;
                 }
             }
         }

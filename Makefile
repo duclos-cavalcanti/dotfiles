@@ -6,4 +6,4 @@ update:
 	nix flake update --write-lock-file
 
 build:
-	printf "Build\n"
+	echo nixos-rebuild switch --flake <flake-uri>

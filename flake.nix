@@ -13,7 +13,6 @@
         nixosConfigurations = {
             hostname = nixpkgs.lib.nixosSystem {
                 system = "x86_64-linux";
-
                 modules = [
                     home-manager.nixosModules.home-manager {
                         home-manager.useGlobalPkgs = true;
@@ -29,8 +28,7 @@
                     ./modules/x11.nix
                     ./modules/packages.nix
                 ];
-
-            }
-        }
+            };
+        };
     };
 }

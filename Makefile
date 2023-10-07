@@ -3,7 +3,7 @@
 all: build
 
 update:
-	nix flake update --write-lock-file
+	nix --experimental-features 'nix-command flakes' flake update
 
 build:
 	echo nixos-rebuild switch --flake <flake-uri>

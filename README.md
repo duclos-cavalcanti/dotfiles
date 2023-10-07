@@ -32,7 +32,7 @@ you would like to try my system out!
 2. Partition filesystem. [_(Example)_](https://gist.github.com/duclos-cavalcanti/e78ea4c665cdd3bb814b6fb57db68dc4)
 3. Run
 ```sh
-nix run github:duclos-cavalcanti/dotfiles#flake
+nix --experimental-features 'nix-command flakes' run github:duclos-cavalcanti/dotfiles#flake
 ```
 
 ### Ubuntu __(deprecated)__

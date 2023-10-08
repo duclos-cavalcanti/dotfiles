@@ -6,4 +6,4 @@ update:
 	nix --experimental-features 'nix-command flakes' flake update
 
 build:
-	echo nixos-rebuild switch --flake <flake-uri>
+	nixos-rebuild switch --flake ./

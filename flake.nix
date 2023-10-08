@@ -9,30 +9,19 @@
         };
     };
 
-    outputs = inputs@{ nixpkgs, home-manager, ... }:
-        let
-          home = nixpkgs.legacyPackages.x86_64-linux.home-manager;
-        in
-        {
-            nixosConfigurations = {
-                hostname = nixpkgs.lib.nixosSystem {
-                    system = "x86_64-linux";
-                    modules = [
-                        home-manager.nixosModules.home-manager {
-                            home-manager.useGlobalPkgs = true;
-                            home-manager.useUserPackages = true;
-                            home-manager.username = "duclos";
-                            home-manager.homeDirectory = "/home/duclos";
-                            home-manager.stateVersion = "23.05";
-                            programs.home-manager.enable = true;
-                        }
+    outputs = inputs@{ nixpkgs, home-manager, ... }: {
+        nixosConfigurations = {
+            hostname = nixpkgs.lib.nixosSystem {
+                system = "x86_64-linux";
+                modules = [
+                    ./modules/home.nix 
 
-                        ./modules/base.nix 
-                        ./modules/hardware.nix
-                        ./modules/x11.nix
-                        ./modules/packages.nix
-                    ];
-                };
+                    # ./modules/base.nix 
+                    # ./modules/hardware.nix
+                    # ./modules/x11.nix
+                    # ./modules/packages.nix
+                ];
             };
         };
+    };
 }

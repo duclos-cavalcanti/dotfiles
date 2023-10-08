@@ -1,4 +1,7 @@
-.PHONY: update
+.PHONY: update container build foo
+
+PWD := $(shell pwd)
+DOCKER := nix-docker
 
 all: build
 
@@ -7,3 +10,12 @@ update:
 
 build:
 	nixos-rebuild switch --flake ./
+
+container:
+	docker run -it --name ${DOCKER} -v ${PWD}:/home/nixos nixos/nix
+
+stop:
+	docker stop ${DOCKER}
+
+remove: stop
+	docker rm ${DOCKER}

@@ -9,7 +9,7 @@
         };
     };
 
-    outputs = inputs@{ nixpkgs, home-manager, ... }: {
+    outputs = inputs@{ nixpkgs, home-manager, ... }:
         let
           home = nixpkgs.legacyPackages.x86_64-linux.home-manager;
         in

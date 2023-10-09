@@ -1,9 +1,6 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, home-manager, ... }:
 
 {
-  home.username = "duclos";
-  home.homeDirectory = "/home/duclos";
-  home.stateVersion = "23.05";
-
-  programs.home-manager.enable = true;
+    home.stateVersion = "23.05";
+    programs.home-manager.enable = true;
 }

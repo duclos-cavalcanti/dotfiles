@@ -25,9 +25,9 @@
                 modules = [
                     ./modules/configuration.nix 
                     ./modules/boot.nix 
-                    ./modules/packages.nix
 
                     # ./modules/base.nix 
+                    # ./modules/packages.nix
                     # ./modules/hardware.nix
                     # ./modules/x11.nix
                     # ./modules/packages.nix

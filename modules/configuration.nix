@@ -29,6 +29,18 @@
        };
      };
 
+    environment.systemPackages = with pkgs; [
+        xorg.xorg 
+        xorg.xinit 
+        awesome
+        firefox
+        wezterm
+        neovim
+        vim
+        stow
+        fonts.ubuntu-fonts
+    ]
+
     services.xserver = {
         enable = true;
         # wm

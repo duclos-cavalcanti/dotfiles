@@ -18,23 +18,13 @@
         };
     in
     {
-        duclos = home-manager.lib.homeManagerConfiguration {
-            inherit system pkgs;
-            username = "duclos";
-            homeDirectory = "/home/duclos";
-            configuration = {
-                imports = [
-                    "./modules/home.nix"
-                ];
-            };
-        };
-
         nixosConfigurations = {
             default = nixpkgs.lib.nixosSystem {
                 inherit system;
 
                 modules = [
-                    ./modules/base.nix 
+                    ./modules/configuration.nix 
+                    ./modules/boot.nix 
                     ./modules/packages.nix
 
                     # ./modules/base.nix 

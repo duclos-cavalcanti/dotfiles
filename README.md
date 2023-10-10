@@ -35,7 +35,7 @@ you would like to try my system out!
 nix --experimental-features 'nix-command flakes' run github:duclos-cavalcanti/dotfiles#flake
 ```
 
-### Ubuntu __(deprecated)__
+### Ubuntu 
 <p>
   <img alt="Ubuntu" src="https://img.shields.io/badge/ubuntu-red.svg" />
 </p>
@@ -43,6 +43,8 @@ nix --experimental-features 'nix-command flakes' run github:duclos-cavalcanti/do
 <div align="center">
   <img src=".github/assets/screen.png?" width="85%" align="center"/>
 </div>
+
+Will be moved eventually to the `ubuntu` branch.
 
 #### Steps
 - burn USB with [ubuntu-server](https://www.releases.ubuntu.com/jammy/) image

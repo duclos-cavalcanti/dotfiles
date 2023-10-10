@@ -10,7 +10,7 @@ switch:
 	sudo nixos-rebuild switch --flake ./
 
 update:
-	nix ${EXPERIMENTAL} flake update --recreate-lock-file
+	nix ${EXPERIMENTAL} flake update
 
 build:
 	nix ${EXPERIMENTAL} build .#default

@@ -49,7 +49,7 @@ nix --experimental-features 'nix-command flakes' run github:duclos-cavalcanti/do
 - Run: 
   ```bash
   curl \
-  https://raw.githubusercontent.com/duclos-cavalcanti/dotfiles/ubuntu/bootstrap.sh | bash
+  https://raw.githubusercontent.com/duclos-cavalcanti/dotfiles/ubuntu/install.sh | bash
   ```
 
 <div align="center">

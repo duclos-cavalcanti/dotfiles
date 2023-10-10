@@ -1,0 +1,20 @@
+! xmodmap Xmodmap set keyboard layout
+! setxkbmap resets keyboard layout
+!
+! Changes CapsLock into Control
+clear lock
+clear control
+keycode 66 = Control_L
+add control = Control_L Control_R
+!
+! Changes Grave to ESC
+! keycode  49 = Escape asciitilde grave asciitilde
+!
+! Changes right alt to alt_gr
+keycode  108 = Mode_switch
+!
+! German Symbols - ä, ü, ö, ß - alt_gr + a/u/o/s
+keycode  38 = a A adiaeresis Adiaeresis adiaeresis Adiaeresis
+keycode  30 = u U udiaeresis Udiaeresis udiaeresis Udiaeresis
+keycode  32 = o O odiaeresis Odiaeresis odiaeresis Odiaeresis
+keycode  39 = s S ssharp

@@ -12,12 +12,12 @@ FOLDERS=(bash
          X11)
 
 usage() {
-  printf "USAGE: syntax: ./install.sh <options>
+  printf "USAGE: syntax: ./stow.sh <options>
   OPTIONS:
     -i | --install:
     -r | --reinstall:
     -u | --uninstall:
-    -s | --system:
+    -h | --help:
   "
 }
 
@@ -30,7 +30,6 @@ check() {
 }
 
 main() {
-    local target=
     local uninstall="stow -Dvt $HOME"
     local install="stow -Svt $HOME"
 
@@ -41,41 +40,18 @@ main() {
 
     while [[ $# -gt 0 ]]; do
        case $1 in
-            -s|--system)
-                pushd home
-                for f in ${FOLDERS[@]}; do
-                  if [ -d $f ]; then
-                    $install --adopt $f
-                  fi
-                done
-                popd
-                exit 0
-                ;;
-
             -i|--install)
-                shift
-                target="${1}"
-                if [ -d $target ]; then
-                    $install $target
-                fi
+                $install ./home
                 shift
                 ;;
 
             -r|--reinstall)
-                shift
-                target="${1}"
-                if [ -d $target ]; then
-                    $install --restow $target
-                fi
+                $install --restow ./home
                 shift
                 ;;
 
             -u|--uninstall)
-                shift
-                target="${1}"
-                if [ -d $target ]; then
-                    $uninstall $target
-                fi
+                $uninstall ./home
                 shift
                 ;;
 
@@ -92,5 +68,5 @@ main() {
     done
 }
 
-check stow
+check "stow"
 main "$@"

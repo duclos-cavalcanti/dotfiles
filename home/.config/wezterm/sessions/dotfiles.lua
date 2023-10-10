@@ -37,11 +37,5 @@ return {
                 "nvim install.sh",
             },
         },
-        {
-            name = "install",
-            cmds = {
-                "nvim bootstrap.sh",
-            },
-        },
     }
 }

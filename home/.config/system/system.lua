@@ -1,5 +1,5 @@
 local theme = "01"
-local theme_path = os.getenv("HOME") .. "/.dotfiles/assets/themes/" .. theme .. ".lua"
+local theme_path = os.getenv("HOME") .. "/.config/system/themes/" .. theme .. ".lua"
 
 if io.open(theme_path,"r") == nil then
     print(string.format("ERROR: The file %s doesn't exist!", theme_path))

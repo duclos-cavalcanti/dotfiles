@@ -41,17 +41,17 @@ main() {
     while [[ $# -gt 0 ]]; do
        case $1 in
             -i|--install)
-                $install ./home
+                $install home
                 shift
                 ;;
 
             -r|--reinstall)
-                $install --restow ./home
+                $install --restow home
                 shift
                 ;;
 
             -u|--uninstall)
-                $uninstall ./home
+                $uninstall home
                 shift
                 ;;
 

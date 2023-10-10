@@ -195,7 +195,7 @@ export PS4="> "
 # also prints new line for better visualization
 # updates history file as well
 __prompt_command__() {
-    local rc="${HOME}/.dotfiles/bash/.bashrc"
+    local rc="${HOME}/.bashrc"
     local current=$(stat -c %Y "${rc}")
 
     # global variable for timestamp of bashrc

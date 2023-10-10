@@ -19,7 +19,7 @@
      };
 
     fileSystems."swap" = {
-      device = "/dev/disk/by-label/swap";  # Use the labeled swap partition
+      device = "/dev/sda3";  # Use the labeled swap partition
       fsType = "swap";
     };
 }

@@ -446,7 +446,7 @@ extract () {
 
 if command -v fzf &>/dev/null; then
     ptmux(){
-        local name=$(tmux list-sessions -F '#S' | fzf)
+        local name=$(tmux list-sessions -F '#S' | fzf --height 40% --reverse)
         [ -n "$name" ] && tmux attach-session -t $name
     }
 
@@ -459,7 +459,7 @@ if command -v fzf &>/dev/null; then
             path="$HOME/Downloads/templates"
         fi
 
-        local dir=$(/usr/bin/ls -1 -d ${path}/* | xargs -I {} basename {} | fzf)
+        local dir=$(/usr/bin/ls -1 -d ${path}/* | xargs -I {} basename {} | fzf --height 40% --reverse)
         [ -z "$dir" ] && exit 0
         
         cp -r ${path}/${dir} ./TEMPLATE-${dir}
@@ -470,7 +470,7 @@ if command -v fzf &>/dev/null; then
                      grep -o --color=never 'git@[^"]*' | 
                      cut -d '/' -f2 | 
                      cut -d '.' -f1 | 
-                     fzf)
+                     fzf --height 40% --reverse)
 
         if command -v gh &>/dev/null; then
             [ -n "$repo" ] && gh repo clone duclos-cavalcanti/${repo}

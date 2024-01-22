@@ -23,6 +23,10 @@ OS | WM | Terminal | Editor | Shell
   <img src=".github/assets/screenshot.png" width="85%" align="center"/>
 </div>
 
+I have used several different distributions throughout my time daily driving 
+linux. 
+
+
 Previously I've used _Arch Linux_ with several different window managers.
 Eventually, ended up on Ubuntu with _Openbox_. I felt it utilizes configurable and non-changing _dotfiles_ that 
 bring a consistency and flexibility to one's workflow, as well as is the easiest setup to maintain. Both Ubuntu 

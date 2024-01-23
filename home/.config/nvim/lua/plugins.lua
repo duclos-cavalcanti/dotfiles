@@ -94,15 +94,12 @@ local plugins = {
         "windwp/nvim-autopairs",
         config = function() require('nvim-autopairs').setup({}) end
     }, 
-    { -- formatting
-        'mhartington/formatter.nvim',
-        config = function() require('ex.format') end
-    },
     { -- comment
         "numToStr/Comment.nvim",
         config = function() require('ex.comment') end,
     },
     { -- themes/ui
+        "projekt0n/github-nvim-theme",
         'nvim-lualine/lualine.nvim',
         dependencies = {
                 'kyazdani42/nvim-web-devicons', 
@@ -111,9 +108,6 @@ local plugins = {
                     config  = function() require('colorizer').setup() end,
                 }
         },
-    },
-    { -- scheme
-        "projekt0n/github-nvim-theme",
     },
 }
 

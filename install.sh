@@ -36,7 +36,6 @@ gnome-shell-extensions
 gnome-shell-extension-manager
 dconf-cli
 dconf-editor
-gpaste
 tmux
 stow
 vim

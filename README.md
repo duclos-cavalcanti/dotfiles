@@ -24,8 +24,7 @@ OS | WM | Terminal | Editor | Shell
 </div>
 
 I have used several different distributions throughout my time daily driving 
-linux. 
-
+linux. Those
 
 Previously I've used _Arch Linux_ with several different window managers.
 Eventually, ended up on Ubuntu with _Openbox_. I felt it utilizes configurable and non-changing _dotfiles_ that 

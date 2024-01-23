@@ -32,6 +32,7 @@ check() {
 main() {
     local uninstall="stow -Dvt"
     local install="stow -Svt"
+    local reinstall="stow -RSvt"
 
     if [ $# -lt 1 ]; then
       usage
@@ -46,7 +47,7 @@ main() {
                 ;;
 
             -r|--reinstall)
-                $install --restow $HOME home
+                $reinstall $HOME home
                 shift
                 ;;
 

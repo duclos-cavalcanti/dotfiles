@@ -3,3 +3,5 @@
 	name = Daniel Duclos-Cavalcanti
 [alias]
 	squash-all = "!f(){ git reset $(git commit-tree HEAD^{tree} \"$@\");};f"
+[safe]
+	directory = module/

@@ -122,11 +122,11 @@ main() {
         wnew        "dev"
         wsend       2 "ls -l"
 
-        wnew        "ssh" "${DIR}/dom-tenant-service"
+        wnew        "sh" "${DIR}/module"
         wsend       3 "ls -l"
 
-        wnew        "src" "${DIR}/dom-tenant-service/src"
-        wsend       4 "nvim ."
+        wnew        "src" "${DIR}/module/src"
+        wsend       4 "make dev"
 
         wsel        2
     }

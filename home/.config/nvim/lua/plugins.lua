@@ -89,7 +89,21 @@ local plugins = {
             },
         },
         config = function() require('ex.debugger') end
-    }, 
+    },
+    {
+        "NeogitOrg/neogit",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "sindrets/diffview.nvim",
+
+            "nvim-telescope/telescope.nvim",
+            "ibhagwan/fzf-lua",
+      },
+        config = function() 
+            local neogit = require('neogit')
+            neogit.setup {}
+        end
+    },
     { -- auto pairs
         "windwp/nvim-autopairs",
         config = function() require('nvim-autopairs').setup({}) end

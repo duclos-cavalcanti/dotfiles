@@ -22,7 +22,7 @@ elif [ -r /etc/bash_completion.d/ ]; then # ubuntu
     . /etc/bash_completion.d/git-prompt
 fi
 
-# fzf
+# fzf bindings and completions
 if command -v fzf &>/dev/null; then
     fzf_dirs=(
     /usr/share/fzf/key-bindings.bash
@@ -48,40 +48,8 @@ bash_prompt() {
     # Cyan    36         Cyan       46            Hidden      8
     # White   37         White      47
 
-    local black='\[\033[00;30m\]'
-    local red='\[\033[00;31m\]'
-    local green='\[\033[00;32m\]'
-    local yellow='\[\033[00;33m\]'
-    local blue='\[\033[00;34m\]'
-    local purple='\[\033[00;35m\]'
-    local cyan='\[\033[00;36m\]'
-    local white='\[\033[00;37m\]'
-    local clear='\[\033[0m\]'
-
-    local light_black='\[\033[00;90m\]'
-    local light_red='\[\033[00;91m\]'
-    local light_green='\[\033[00;92m\]'
-    local light_yellow='\[\033[00;93m\]'
-    local light_blue='\[\033[00;94m\]'
-    local light_purple='\[\033[00;95m\]'
-    local light_cyan='\[\033[00;96m\]'
-    local light_white='\[\033[00;97m\]'
-
-    local bold_black='\[\033[01;30m\]'
-    local bold_red='\[\033[01;31m\]'
-    local bold_green='\[\033[01;32m\]'
-    local bold_yellow='\[\033[01;33m\]'
-    local bold_blue='\[\033[01;34m\]'
-    local bold_purple='\[\033[01;35m\]'
-    local bold_cyan='\[\033[01;36m\]'
-    local bold_white='\[\033[01;37m\]'
-
     local clear='\[\033[0m\]'
     local default=${white}
-    local user_color=${green}
-    local dir_color=${red}
-    local git_color=${green}
-    local pyenv_color=${red}
 
     git_prefix() {
         local git_flag=$(git rev-parse --is-inside-work-tree 2>/dev/null | grep true)
@@ -106,10 +74,7 @@ bash_prompt() {
         fi
     }
 
-    # pyenv
     export VIRTUAL_ENV_DISABLE_PROMPT=0
-
-    # git
     export GIT_PS1_SHOWUPSTREAM=1
     export GIT_PS1_SHOWDIRTYSTATE=1
     export GIT_PS1_SHOWSTASHSTATE=1
@@ -120,26 +85,17 @@ bash_prompt() {
     local PROMPT=''
     local RIGHT='\033[500C'
 
-    # directory
-	PROMPT+="${dir_color}"
+	PROMPT+="\[\033[00;31m\]"
     PROMPT+='\W'
-	PROMPT+="${default}"
 
-
-    # git
-    PROMPT+="${default}"
+	PROMPT+="\[\033[00;37m\]"
     PROMPT+='$(git_prefix)'
-    PROMPT+="${git_color}"
+
+	PROMPT+="\[\033[00;32m\]"
     PROMPT+='$(git_prompt)'
-    PROMPT+="${default}"
-
-    # prompt
     PROMPT+="${clear}"
-    PROMPT+=' '
-    PROMPT+='$'
-    PROMPT+=' '
 
-
+    PROMPT+=' $ '
     PROMPT+="${clear}"
 
     PS1=$PROMPT
@@ -159,10 +115,8 @@ export PS2=">> "
 # debug prompt
 export PS4="> "
 
-# Is executed after every command at prompt.
-# sources bashrc automagically if written to,
-# also prints new line for better visualization
-# updates history file as well
+# Executed after every command at prompt.
+# Sources bashrc automagically if written to.
 __prompt_command__() {
     local rc="${HOME}/.bashrc"
     local current=$(stat -c %Y "${rc}")
@@ -179,9 +133,7 @@ __prompt_command__() {
         __ts__=$(stat -c %Y "${rc}")
     fi
 
-
     # history -a; history -w; history -c; history -r
-    history -a
 }
 export PROMPT_COMMAND='__prompt_command__'
 
@@ -222,9 +174,6 @@ if command -v go &>/dev/null; then
     PATH=$PATH:${GOPATH}/bin
 fi
 
-# custom golang install for SingularityCE
-PATH=$PATH:/usr/local/go/bin
-
 # haskell/cabal
 if command -v ghc &>/dev/null; then
     export CABAL_PATH="$HOME/.cabal"
@@ -250,7 +199,7 @@ export PATH
 export HISTFILE="${HOME}/.bash_history"
 export HISTSIZE=
 export HISTFILESIZE=
-HISTCONTROL=ignoreboth:ignoredups:ignorespace:erasedups
+export HISTCONTROL=ignoreboth:ignoredups:ignorespace:erasedups
 
 shopt -s histappend     # append to the history file, dont overwrite
 shopt -s autocd         # type directly dir name to cd
@@ -321,8 +270,6 @@ alias gbD="git push --delete origin"
 alias greset="git reset --hard"
 alias greb="git rebase -i --root"
 
-export DOWNLOAD_KEYSERVER="hkp://keyserver.ubuntu.com"
-
 export VISUAL='nvim'
 export EDITOR="nvim"
 export GIT_EDITOR='nvim'
@@ -341,6 +288,8 @@ export XDG_DATA_HOME="$HOME/.local/"
 export XDG_CACHE_HOME="$HOME/.cache/"
 export XDG_CONFIG_HOME="$HOME/.config/"
 
+export TMUXP_CONFIGDIR="$HOME/.dotfiles/sessions"
+
 export TERM='tmux-256color'
 export BAT_THEME='ansi'
 export QT_QPA_PLATFORMTHEME='qt5ct'
@@ -353,6 +302,8 @@ export XINITRC="$HOME/.xinitrc"
 export LESSHISTFILE=-
 export WINIT_HIDPI_FACTOR=1
 export WINIT_X11_SCALE_FACTOR=1
+
+export DOWNLOAD_KEYSERVER="hkp://keyserver.ubuntu.com"
 
 if command -v fd &>/dev/null && \
    command -v fzf &>/dev/null; then

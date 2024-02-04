@@ -114,6 +114,7 @@ local plugins = {
     },
     { -- themes/ui
         "projekt0n/github-nvim-theme",
+        "https://github.com/Mofiqul/adwaita.nvim",
         'nvim-lualine/lualine.nvim',
         dependencies = {
                 'kyazdani42/nvim-web-devicons', 

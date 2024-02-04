@@ -1,0 +1,27 @@
+session_name: work
+start_directory: ~/Documents/work/master-arbeit
+windows:
+  - window_name: readme
+    layout: tiled
+    panes:
+      - nvim README.md
+  - window_name: tool
+    panes:
+      - nvim Makefile -c 'tabedit Dockerfile'
+  - window_name: shell
+    layout: tiled
+    shell_command_before:
+      - source ./utils.sh
+    panes:
+      - ls
+      - ls
+      - ls
+      - ls
+  - window_name: src
+    layout: tiled
+    shell_command_before:
+      - source ./utils.sh
+    panes:
+      - cd module/src && nvim .
+      - make dev
+

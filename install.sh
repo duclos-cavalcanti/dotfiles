@@ -37,6 +37,7 @@ gnome-shell-extension-manager
 dconf-cli
 dconf-editor
 tmux
+tmuxp
 stow
 vim
 fonts-ubuntu

@@ -1,0 +1,22 @@
+session_name: dotfiles
+start_directory: ~/.dotfiles
+windows:
+  - window_name: readme
+    panes:
+      - nvim README.md
+  - window_name: bash
+    layout: tiled
+    panes:
+      - ls -l
+      - nvim install.sh -c 'tabedit ~/.bin/launch.sh'
+  - window_name: rc
+    panes:
+      - nvim ~/.bashrc
+  - window_name: editor
+    shell_command_before:
+      - cd ~/.config/nvim
+    panes:
+      - nvim init.lua
+  - window_name: mux
+    panes:
+      - nvim ~/.tmux.conf

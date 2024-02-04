@@ -1,0 +1,24 @@
+session_name: web
+start_directory: ~/.web
+windows:
+  - window_name: readme
+    panes:
+      - nvim README.md
+  - window_name: bash
+    layout: tiled
+    panes:
+      - make serve
+      - nvim build.sh -c 'vsplit Makefile'  
+  - window_name: web
+    panes:
+      - nvim pages/about/index.md
+  - window_name: cover
+    panes:
+      - nvim cover/cover.md -c 'tabedit cover/template.tex'
+  - window_name: github
+    shell_command_before:
+      - cd /home/duclos/Documents/stuff/personal/duclos-cavalcanti
+    panes:
+      - nvim README.md
+
+

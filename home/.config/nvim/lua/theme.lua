@@ -1,10 +1,13 @@
 -- colorscheme
-vim.cmd('colorscheme github_dark_default')
+local scheme="adwaita"
+vim.cmd('colorscheme ' .. scheme)
+
+vim.g.adwaita_darker = true
 
 -- statusline
 require('lualine').setup {
     options = {
-        theme = "github_dark_default",
+        theme = scheme,
         component_separators = {left = '', right = ''},
         section_separators = {left = '', right = ''},
         disabled_filetypes = {},

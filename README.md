@@ -8,7 +8,7 @@
 
 OS | WM | Terminal | Editor | Shell
 ---|---|---|---|---
-[ubuntu](https://ubuntu.com/) | [openbox](http://openbox.org/wiki/Help:Getting_started)/[tint2](https://gitlab.com/o9000/tint2) | [xterm](https://invisible-island.net/xterm/)/[tmux](https://github.com/tmux/tmux/wiki) | [neovim](https://github.com/neovim/neovim) | [bash](https://www.gnu.org/software/bash/)
+[ubuntu](https://ubuntu.com/) | [gnome](https://www.gnome.org/) | [gnome-terminal](https://en.wikipedia.org/wiki/GNOME_Terminal)/[tmux](https://github.com/tmux/tmux/wiki) | [neovim](https://github.com/neovim/neovim) | [bash](https://www.gnu.org/software/bash/)
 
 </div></p>
 

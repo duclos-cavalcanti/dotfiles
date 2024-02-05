@@ -20,7 +20,7 @@ windows:
   - window_name: src
     layout: tiled
     shell_command_before:
-      - source ./utils.sh
+      - source ./scripts/utils.sh
     panes:
       - cd module/src && nvim .
       - make dev

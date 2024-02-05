@@ -8,15 +8,15 @@ local function _on_attach(client, bufnr)
         vim.api.nvim_buf_set_keymap(bufnr, 'n', lhs, rhs, opts)
     end
 
-    bufnnoremap("gd", "<Cmd>lua vim.lsp.buf.definition()<CR>")
-    bufnnoremap("gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>")
-    bufnnoremap("gi", "<Cmd>lua vim.lsp.buf.implementation()<CR>")
-    bufnnoremap("gr", "<cmd>Telescope lsp_references<CR>")  -- Uses Telescope
-    bufnnoremap("K", "<Cmd>lua vim.lsp.buf.hover()<CR>")
-    bufnnoremap("<gh>", "<Cmd>lua vim.lsp.buf.signature_help()<CR>")
-    bufnnoremap("<leader>R", "<Cmd>lua vim.lsp.buf.rename()<CR>")
-    bufnnoremap("<C-n>", "<Cmd>lua vim.diagnostic.goto_next()<CR>")
-    bufnnoremap("<C-p>", "<Cmd>lua vim.diagnostic.goto_prev()<CR>")
+    bufnnoremap("gd",           "<Cmd>lua vim.lsp.buf.definition()<CR>")
+    bufnnoremap("gD",           "<Cmd>lua vim.lsp.buf.declaration()<CR>")
+    bufnnoremap("gi",           "<Cmd>lua vim.lsp.buf.implementation()<CR>")
+    bufnnoremap("gr",           "<cmd>Telescope lsp_references<CR>") 
+    bufnnoremap("K",            "<Cmd>lua vim.lsp.buf.hover()<CR>")
+    bufnnoremap("<gh>",         "<Cmd>lua vim.lsp.buf.signature_help()<CR>")
+    bufnnoremap("<leader>R",    "<Cmd>lua vim.lsp.buf.rename()<CR>")
+    bufnnoremap("gn",           "<Cmd>lua vim.diagnostic.goto_next()<CR>")
+    bufnnoremap("gp",           "<Cmd>lua vim.diagnostic.goto_prev()<CR>")
 end
 
 vim.diagnostic.config({

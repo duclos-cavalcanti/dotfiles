@@ -14,7 +14,7 @@ local function _on_attach(client, bufnr)
     bufnnoremap("gr",           "<cmd>Telescope lsp_references<CR>") 
     bufnnoremap("K",            "<Cmd>lua vim.lsp.buf.hover()<CR>")
     bufnnoremap("<gh>",         "<Cmd>lua vim.lsp.buf.signature_help()<CR>")
-    bufnnoremap("<leader>R",    "<Cmd>lua vim.lsp.buf.rename()<CR>")
+  --bufnnoremap("<leader>R",    "<Cmd>lua vim.lsp.buf.rename()<CR>")
     bufnnoremap("gn",           "<Cmd>lua vim.diagnostic.goto_next()<CR>")
     bufnnoremap("gp",           "<Cmd>lua vim.diagnostic.goto_prev()<CR>")
 end

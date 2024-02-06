@@ -95,7 +95,7 @@ bash_prompt() {
     PROMPT+='$(git_prompt)'
     PROMPT+="${clear}"
 
-    PROMPT+=' $ '
+    PROMPT+=' [$__ret__] $'
     PROMPT+="${clear}"
 
     PS1=$PROMPT
@@ -117,7 +117,9 @@ export PS4="> "
 
 # Executed after every command at prompt.
 # Sources bashrc automagically if written to.
+__ret__=0
 __prompt_command__() {
+    __ret__=$?
     local rc="${HOME}/.bashrc"
     local current=$(stat -c %Y "${rc}")
 

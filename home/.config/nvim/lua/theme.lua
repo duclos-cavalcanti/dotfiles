@@ -1,7 +1,6 @@
 -- colorscheme
 local scheme="adwaita"
 vim.cmd('colorscheme ' .. scheme)
-
 vim.g.adwaita_darker = true
 
 -- statusline
@@ -34,3 +33,6 @@ require('lualine').setup {
 }
 
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+vim.api.nvim_set_hl(0, "TelescopeSelection", { fg = "red" })
+vim.api.nvim_set_hl(0, "TelescopeMatching", { fg = "red" })
+vim.api.nvim_set_hl(0, "StatusLineNC", { fg = "red", underline = true })

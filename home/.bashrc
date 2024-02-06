@@ -95,7 +95,7 @@ bash_prompt() {
     PROMPT+='$(git_prompt)'
     PROMPT+="${clear}"
 
-    PROMPT+=' [$__ret__] $'
+    PROMPT+=' [$__ret__] $ '
     PROMPT+="${clear}"
 
     PS1=$PROMPT

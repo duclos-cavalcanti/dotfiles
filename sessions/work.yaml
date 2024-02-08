@@ -10,7 +10,7 @@ windows:
   - window_name: tool
     panes:
       - nvim src/Makefile
-  - window_name: shell
+  - window_name: bash
     layout: tiled
     panes:
       - ls

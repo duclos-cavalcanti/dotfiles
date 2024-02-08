@@ -1,0 +1,26 @@
+session_name: ma
+start_directory: ~/Documents/work/master-arbeit
+windows:
+  - window_name: readme
+    layout: tiled
+    panes:
+      - nvim README.md
+  - window_name: tool
+    panes:
+      - nvim CMakeLists.txt
+  - window_name: bash
+    layout: tiled
+    panes:
+      - cd build
+      - ls
+  - window_name: src
+    layout: tiled
+    panes:
+      - nvim src
+  - window_name: script
+    layout: tiled
+    panes:
+      - nvim deploy
+
+
+

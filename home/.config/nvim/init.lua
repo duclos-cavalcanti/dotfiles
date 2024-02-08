@@ -12,3 +12,8 @@ require("theme")
 
 -- treesitter issue 
 -- https://github.com/nvim-treesitter/nvim-treesitter/issues/3092
+
+-- local args = vim.fn.argv()
+-- if args[1] == "g" then
+--     vim.cmd[["execute ':Neogit'"]]
+-- end

@@ -76,10 +76,6 @@ local plugins = {
             s.setup()
         end,
     },
-    { -- symbol outline
-        'simrat39/symbols-outline.nvim',
-        config = function() require('ex.tagsbar') end
-    },
     { -- debugger
         "mfussenegger/nvim-dap",
         dependencies = {
@@ -90,7 +86,7 @@ local plugins = {
         },
         config = function() require('ex.debugger') end
     },
-    {
+    { -- git
         "NeogitOrg/neogit",
         dependencies = {
             "nvim-lua/plenary.nvim",
@@ -113,7 +109,6 @@ local plugins = {
         config = function() require('ex.comment') end,
     },
     { -- themes/ui
-        "projekt0n/github-nvim-theme",
         "https://github.com/Mofiqul/adwaita.nvim",
         'nvim-lualine/lualine.nvim',
         dependencies = {

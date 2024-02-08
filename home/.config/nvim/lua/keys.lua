@@ -64,6 +64,3 @@ nnoremap("<leader>F", "<silent>:FormatWRite<CR>")
 
 -- Debugger
 nnoremap("<leader>d", ":lua require('telescope').extensions.dap.commands{}<CR>")
-
--- symbols ouline
-nnoremap("<C-Space>", ":SymbolsOutline<CR>")

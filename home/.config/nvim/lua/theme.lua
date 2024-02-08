@@ -1,12 +1,13 @@
 -- colorscheme
 local scheme="adwaita"
+local statusline = require('lualine.themes.' .. scheme)
+
 vim.cmd('colorscheme ' .. scheme)
-vim.g.adwaita_darker = true
 
 -- statusline
 require('lualine').setup {
     options = {
-        theme = scheme,
+        theme = statusline,
         component_separators = {left = '', right = ''},
         section_separators = {left = '', right = ''},
         disabled_filetypes = {},
@@ -32,7 +33,7 @@ require('lualine').setup {
     extensions = {}
 }
 
-vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+-- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+
 vim.api.nvim_set_hl(0, "TelescopeSelection", { fg = "red" })
 vim.api.nvim_set_hl(0, "TelescopeMatching", { fg = "red" })
-vim.api.nvim_set_hl(0, "StatusLineNC", { fg = "red", underline = true })

@@ -8,7 +8,7 @@ windows:
     layout: tiled
     panes:
       - ls -l
-      - nvim install.sh -c 'tabedit ~/.bin/launch.sh'
+      - nvim install.sh
   - window_name: rc
     panes:
       - nvim ~/.bashrc

@@ -7,3 +7,5 @@ start() {
 
 xrdb -merge ~/.Xresources &
 xmodmap     ~/.Xmodmap &
+
+echo TEST > ~/.TEST.TXT

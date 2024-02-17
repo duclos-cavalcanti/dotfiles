@@ -7,7 +7,3 @@ start() {
 
 xrdb -merge ~/.Xresources &
 xmodmap     ~/.Xmodmap &
-
-~/.bin/launch.sh dotfiles
-~/.bin/launch.sh web
-~/.bin/launch.sh work

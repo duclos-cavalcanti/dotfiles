@@ -45,8 +45,6 @@ also for being ubiquitous across many flavors of _linux_.
     git clone https://github.com/duclos-cavalcanti/dotfiles/ $HOME/.dotfiles
     cd .dotfiles
     ./install.sh
-    # only if you want my intel/xorg configurations
-    sudo make root
   ```
 
 Output:

@@ -4,11 +4,14 @@ windows:
   - window_name: readme
     panes:
       - nvim README.md
+  - window_name: install
+    layout: tiled
+    panes:
+      - nvim install.sh
   - window_name: bash
     layout: tiled
     panes:
       - ls -l
-      - nvim install.sh
   - window_name: rc
     panes:
       - nvim ~/.bashrc

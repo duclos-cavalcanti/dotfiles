@@ -77,6 +77,7 @@ pandoc
 wkhtmltopdf
 jupyter
 gh
+sshfs
 )
 
 DESKTOP_PACKAGES=(

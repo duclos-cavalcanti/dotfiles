@@ -15,13 +15,29 @@ vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
     { -- ssh
-        'chipsenkbeil/distant.nvim', 
-        branch = 'v0.3',
-        config = function() require('ex.ssh') end
+        'nosduco/remote-sshfs.nvim',
+        dependencies = { 'nvim-telescope/telescope.nvim' },
+        config = function() 
+            -- require('ex.ssh') 
+            require('remote-sshfs').setup({})
+            require('telescope').load_extension 'remote-sshfs'
+        end
     },
     { -- lsp
         "neovim/nvim-lspconfig",
         config = function() require('ex.lspconfig') end,
+    },
+    { -- job manager / overseer
+        'stevearc/overseer.nvim',
+        opts = {},
+        dependencies = {
+            "stevearc/dressing.nvim",
+            "nvim-telescope/telescope.nvim",
+            "rcarriga/nvim-notify",
+        },
+        config = function() 
+            require('overseer').setup()
+        end,
     },
     { -- completion
         "hrsh7th/nvim-cmp",

@@ -41,11 +41,15 @@ tnoremap("<ESC>", "<C-\\><C-n>")
 tnoremap("<C-w>", "<C-\\><C-N><C-w>")
 nnoremap("<leader><space>", ":split <BAR> :resize 20 <BAR> term<CR>i")
 
+-- File explorer
+nnoremap("<leader>e", ":Telescope file_browser<CR>")
+
 -- Telescope
-nnoremap("<C-f>>", "<cmd>lua require('telescope.builtin').find_files({})<CR>")
+nnoremap("<C-f>", "<cmd>lua require('telescope.builtin').find_files({})<CR>")
+
 nnoremap("<leader>sf", "<cmd>lua require('telescope.builtin').find_files({})<CR>")
-nnoremap("<leader>si", "<cmd>lua require('telescope.builtin').find_files({no_ignore=true})<CR>")
 nnoremap("<leader>sF", "<cmd>lua require('telescope.builtin').find_files({cwd=vim.fn.input('Path: ')})<CR>")
+nnoremap("<leader>si", "<cmd>lua require('telescope.builtin').find_files({no_ignore=true})<CR>")
 
 nnoremap("<leader>sd", "<cmd>lua require('telescope.builtin').find_files({cwd='~/.config/system'})<CR>")
 nnoremap("<leader>sb", "<cmd>lua require('telescope.builtin').buffers()<CR>")
@@ -54,13 +58,6 @@ nnoremap("<leader>sr", "<cmd>lua require('telescope.builtin').live_grep()<CR>")
 
 nnoremap("<leader>sh", "<cmd>lua require('telescope.builtin').help_tags()<CR>")
 nnoremap("<leader>sm", "<cmd>lua require('telescope.builtin').man_pages({sections={'ALL'}})<CR>")
-
--- File explorer
-nnoremap("<leader>e", ":Telescope file_browser<CR>")
-
--- Formatter
-nnoremap("<leader>f", ":Format<CR>")
-nnoremap("<leader>F", "<silent>:FormatWRite<CR>")
 
 -- Debugger
 nnoremap("<leader>d", ":lua require('telescope').extensions.dap.commands{}<CR>")

@@ -1,6 +1,6 @@
 <h1 align="center">(dot)files</h1>
 <p align="center">
-  Personal config files used on my linux daily-driver 
+  Personal configuration files used on my linux daily-driver 
 </p>
 <br>
 
@@ -23,14 +23,11 @@ OS | WM | Terminal | Editor | Shell
   <img src=".github/assets/screenshot.png" width="85%" align="center"/>
 </div>
 
-I have used several different distributions throughout my time daily driving 
-linux. Those
+I have used different distributions throughout my time using _linux_ systems. I started at _Manjaro_, went to _Arch Linux_ and 
+eventually settled for _Ubuntu_ as it is the most used distribution and also very much expected in an academic/industry setting.
 
-Previously I've used _Arch Linux_ with several different window managers.
-Eventually, ended up on Ubuntu with _Openbox_. I felt it utilizes configurable and non-changing _dotfiles_ that 
-bring a consistency and flexibility to one's workflow, as well as is the easiest setup to maintain. Both Ubuntu 
-and Openbox are long-standing projects, that don't seem to be going anywhere. In addition to that, utilizing a ditribution 
-that is pretty much a standard or expected across the industry is helpful. 
+As a tinkerer, I've also played around window managers but ended up settling for [Gnome](https://www.gnome.org/) for its simplicity and 
+also for being ubiquitous across many flavors of _linux_. 
 
 #### Steps
 - burn USB with [ubuntu-desktop](https://ubuntu.com/download/desktop) image.
@@ -57,39 +54,6 @@ Output:
 <div align="center">
   <img src=".github/assets/deploy.png" width="80%" align="center"/>
 </div>
-
-### 1.2 NixOS  _(WIP)_
-
-<details closed>
-<summary>
-click
-</summary>
-<p>
-
-<p>
-  <img alt="NixOS" src="https://img.shields.io/badge/nixos-5277C3.svg" />
-</p>
-
-A linux distribution based on the [nix](https://nixos.org/) package manager, who enables a __declarative__ and __reproducible__ 
-build system. When the system is built, a configuration file is generated which states every aspect of the operating 
-system. It is a very powerful system, enables easy self-packaging of projects, sandboxed environments, infrastructure as code 
-to define multiple systems, and so many more. It is my system of choice and the steps below are to be done in case 
-you would like to try my system out!
-
-#### Steps
-
-0. Burn USB with [nix-os](https://nixos.org/) image.
-1. Connect to WiFi if needed. [_(Example)_](https://gist.github.com/duclos-cavalcanti/07a35299de7e095052562ea9ef492b6d)
-2. Partition filesystem. [_(Example)_](https://gist.github.com/duclos-cavalcanti/e78ea4c665cdd3bb814b6fb57db68dc4)
-3. Run
-```sh
-nix --experimental-features 'nix-command flakes' run github:duclos-cavalcanti/dotfiles#flake
-```
-
-
-
-</p>
-</details>
 
 ## 2. License
 These dotfiles are released under the MIT license. See [LICENSE](LICENSE).

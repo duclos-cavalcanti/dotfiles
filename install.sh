@@ -95,6 +95,7 @@ SNAP=(
 spotify
 zoom-client
 slack
+keepapp
 )
 
 # debugging

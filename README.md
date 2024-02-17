@@ -20,7 +20,7 @@ OS | WM | Terminal | Editor | Shell
 </p>
 
 <div align="center">
-  <img src=".github/assets/screenshot.png" width="85%" align="center"/>
+  <img src=".github/assets/screen.png" width="85%" align="center"/>
 </div>
 
 I have used different distributions throughout my time using _linux_ systems. I started at _Manjaro_, went to _Arch Linux_ and 

@@ -49,7 +49,6 @@ bash_prompt() {
     # White   37         White      47
 
     local clear='\[\033[0m\]'
-    local default=${white}
 
     git_prefix() {
         local git_flag=$(git rev-parse --is-inside-work-tree 2>/dev/null | grep true)
@@ -74,6 +73,13 @@ bash_prompt() {
         fi
     }
 
+    exit_prompt() {
+        local ret=$__ret__
+        local width=$((COLUMNS - 4))
+        local restore="\[\e[u\]"
+        echo -n "\e[${width}C[${ret}]${restore}"
+    }
+
     export VIRTUAL_ENV_DISABLE_PROMPT=0
     export GIT_PS1_SHOWUPSTREAM=1
     export GIT_PS1_SHOWDIRTYSTATE=1
@@ -83,7 +89,6 @@ bash_prompt() {
     unset GIT_PS1_HIDE_IF_PWD_IGNORED
 
     local PROMPT=''
-    local RIGHT='\033[500C'
 
 	PROMPT+="\[\033[00;31m\]"
     PROMPT+='\W'
@@ -95,7 +100,19 @@ bash_prompt() {
     PROMPT+='$(git_prompt)'
     PROMPT+="${clear}"
 
-    PROMPT+=' [$__ret__] $ '
+    # save cursor
+    # PROMPT+="\[\033[s\]"
+
+    # exit code to the right
+    # PROMPT+='\e[$((COLUMNS - 4))C[$__ret__]'
+
+    # restore cursor
+    # PROMPT+='\[\033[u\]'
+
+	PROMPT+="\[\033[00;37m\]"
+    PROMPT+=' [$__ret__]'
+    PROMPT+="${clear}"
+    PROMPT+=' \$ '
     PROMPT+="${clear}"
 
     PS1=$PROMPT
@@ -257,6 +274,7 @@ alias gi="git add .gitignore && git commit -m 'Updated gitignore' && git push or
 alias gmk="git add Makefile && git commit -m 'Updated Makefile' && git push origin"
 alias gada="git add --all && git commit"
 alias g="git status"
+alias gunchange="git update-index --assume-unchanged"
 alias ga="git add"
 alias gc="git checkout"
 alias gcb="git checkout -b"

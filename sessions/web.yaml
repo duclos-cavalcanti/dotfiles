@@ -4,18 +4,24 @@ windows:
   - window_name: readme
     panes:
       - nvim README.md
-  - window_name: bash
-    layout: tiled
-    panes:
-      - make serve
-      - nvim build.sh -c 'vsplit Makefile'  
   - window_name: web
     panes:
       - nvim pages/about/index.md
+  - window_name: bash
+    panes:
+      - make serve
+  - window_name: make
+    panes:
+      - nvim Makefile -c 'tabedit resume/Makefile | tabedit cover/Makefile'
+  - window_name: resume
+    shell_command_before:
+      - cd ./resume
+    panes:
+      - nvim resume.tex
   - window_name: cover
     panes:
       - nvim cover/cover.md -c 'tabedit cover/template.tex'
-  - window_name: github
+  - window_name: gh
     shell_command_before:
       - cd /home/duclos/Documents/stuff/personal/duclos-cavalcanti
     panes:

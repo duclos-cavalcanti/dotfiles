@@ -78,7 +78,6 @@ wkhtmltopdf
 jupyter
 gh
 sshfs
-hugo
 )
 
 DESKTOP_PACKAGES=(

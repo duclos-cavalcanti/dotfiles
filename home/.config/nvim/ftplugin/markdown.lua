@@ -1,5 +1,5 @@
 vim.cmd([[setlocal syntax=markdown]])
-vim.cmd([[setlocal nowrap]])
+vim.cmd([[setlocal wrap]])
 vim.cmd([[setlocal spell spelllang=en_us]])
 
 vim.cmd [[setlocal expandtab ]]

@@ -1,0 +1,21 @@
+session_name: exs
+start_directory: ~/Documents/work/exercises/
+windows:
+  - window_name: code
+    shell_command_before:
+      - cd leetcode
+    layout: tiled
+    panes:
+      - ls
+  - window_name: fintech-make
+    shell_command_before:
+      - cd nyu/fintech
+    layout: tiled
+    panes:
+      - nvim Makefile
+  - window_name: fintech-md
+    shell_command_before:
+      - cd nyu/fintech
+    layout: tiled
+    panes:
+      - nvim .

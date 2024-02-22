@@ -26,9 +26,9 @@ windows:
       - cd module
     layout: tiled
     panes:
-      - ls
-      - ls
-      - ls
+      - clear
+      - clear
+      - clear
   - window_name: module-src
     shell_command_before:
       - cd module/src

@@ -5,6 +5,10 @@ windows:
     layout: tiled
     panes:
       - nvim README.md
+  - window_name: docs
+    layout: tiled
+    panes:
+      - nvim docs
   - window_name: tool
     panes:
       - nvim CMakeLists.txt

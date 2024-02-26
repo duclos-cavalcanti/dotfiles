@@ -32,7 +32,6 @@ windows:
     panes:
       - clear
       - clear
-      - clear
   - window_name: module-src
     shell_command_before:
       - cd module/src

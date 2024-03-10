@@ -15,15 +15,14 @@ OS | WM | Terminal | Editor | Shell
 
 ## 1. Installation
 ### 1.1 Ubuntu 
-<p>
-  <img alt="Ubuntu" src="https://img.shields.io/badge/ubuntu-red.svg" />
-</p>
 
 <div align="center">
   <img src=".github/assets/screen.png" width="85%" align="center"/>
 </div>
 
-
+<p>
+  <img alt="Ubuntu" src="https://img.shields.io/badge/ubuntu-red.svg" />
+</p>
 
 I have used different distributions throughout my time using `Linux` systems, from _Manjaro_,  to _Arch Linux_ and 
 finally _Ubuntu_. As someone who loves tinkering, I've also played around window managers but ended up settling 

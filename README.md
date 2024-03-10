@@ -23,9 +23,11 @@ OS | WM | Terminal | Editor | Shell
   <img src=".github/assets/screen.png" width="85%" align="center"/>
 </div>
 
-I have used different distributions throughout my time using _linux_ systems, from _Manjaro_,  to _Arch Linux_ and 
+
+
+I have used different distributions throughout my time using `Linux` systems, from _Manjaro_,  to _Arch Linux_ and 
 finally _Ubuntu_. As someone who loves tinkering, I've also played around window managers but ended up settling 
-for [Gnome](https://www.gnome.org/) for its simplicity and ubiquity across many flavors of _GNU/Linux_. 
+for [Gnome](https://www.gnome.org/) for its simplicity and ubiquity.
 
 #### Steps
 - burn USB with [ubuntu-desktop](https://ubuntu.com/download/desktop) image.

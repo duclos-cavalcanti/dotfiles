@@ -5,6 +5,11 @@ windows:
     layout: tiled
     panes:
       - nvim README.md
+  - window_name: wiki
+    shell_command_before:
+      - cd ~/Documents/work/master-arbeit.wiki
+    panes:
+      - nvim README.md
   - window_name: docs
     layout: tiled
     panes:
@@ -12,19 +17,18 @@ windows:
   - window_name: tool
     panes:
       - nvim CMakeLists.txt
-  - window_name: bash
-    layout: tiled
-    panes:
-      - cd build
-      - ls
-  - window_name: src
-    layout: tiled
-    panes:
-      - nvim src
   - window_name: script
     layout: tiled
     panes:
       - nvim deploy
+  - window_name: src
+    layout: tiled
+    panes:
+      - nvim src
+  - window_name: bash
+    layout: tiled
+    panes:
+      - ls
   - window_name: module
     shell_command_before:
       - cd module
@@ -32,7 +36,7 @@ windows:
     panes:
       - clear
       - clear
-  - window_name: module-src
+  - window_name: module-dev
     shell_command_before:
       - cd module/src
     layout: tiled

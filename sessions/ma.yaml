@@ -21,15 +21,15 @@ windows:
     layout: tiled
     panes:
       - ls
-  - window_name: module
+  - window_name: jasper
     shell_command_before:
-      - cd module
+      - cd jasper
     layout: tiled
     panes:
       - clear
-  - window_name: module-dev
+  - window_name: jasper-dev
     shell_command_before:
-      - cd module/src
+      - cd jasper/src
     layout: tiled
     panes:
       - nvim .

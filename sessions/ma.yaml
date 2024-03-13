@@ -20,7 +20,7 @@ windows:
   - window_name: bash
     layout: tiled
     panes:
-      - ls
+      - clear
   - window_name: jasper
     shell_command_before:
       - cd jasper

@@ -21,15 +21,7 @@ windows:
     layout: tiled
     panes:
       - clear
-  - window_name: jasper
-    shell_command_before:
-      - cd jasper
-    layout: tiled
-    panes:
-      - clear
-  - window_name: jasper-dev
-    shell_command_before:
-      - cd jasper/src
+  - window_name: src
     layout: tiled
     panes:
       - nvim .

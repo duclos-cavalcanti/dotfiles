@@ -1,0 +1,9 @@
+session_name: ra
+start_directory: ~/Documents/work/master-arbeit/jasper
+windows:
+  - window_name: bash
+    panes:
+      - clear
+  - window_name: src
+    panes:
+      - cd src && nvim .

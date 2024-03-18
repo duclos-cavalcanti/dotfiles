@@ -78,7 +78,7 @@ local plugins = {
             vim.fn["mkdp#util#install"]()
             vim.cmd[[
             function OpenMarkdownPreview (url)
-                execute "silent ! firefox --new-tab " . a:url
+                execute "silent ! google-chrome --new-tab " . a:url
             endfunction
             let g:mkdp_browserfunc = 'OpenMarkdownPreview'
             ]]

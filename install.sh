@@ -164,6 +164,13 @@ installation() {
         printf "%s\n" "SNAP PACKAGES DONE" &>> ${SUMMARY}
     } &>> ${LOG}
 
+    substep "Installing Browser..."
+    {
+        wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+        sudo apt -f install ./google-chrome-stable_current_amd64.deb
+        printf "%s\n" "BROWSER DONE" &>> ${SUMMARY}
+    } &>> ${LOG}
+
     substep "Installing Editor(Neovim)..."
     {
         if ! command -v nvim; then

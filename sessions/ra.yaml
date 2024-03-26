@@ -3,7 +3,7 @@ start_directory: ~/Documents/work/master-arbeit/jasper
 windows:
   - window_name: readme
     panes:
-      - nvim README.md
+      - nvim readme.md
   - window_name: bash
     panes:
       - clear

@@ -11,7 +11,7 @@ windows:
   - window_name: sys
     layout: tiled
     panes:
-      - btop
+      - top
   - window_name: install
     layout: tiled
     panes:

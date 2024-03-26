@@ -8,6 +8,10 @@ windows:
     layout: tiled
     panes:
       - ls -l
+  - window_name: sys
+    layout: tiled
+    panes:
+      - btop
   - window_name: install
     layout: tiled
     panes:

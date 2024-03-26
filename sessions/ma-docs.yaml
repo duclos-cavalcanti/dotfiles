@@ -1,10 +1,19 @@
 session_name: ma
 start_directory: ~/Documents/work/master-arbeit
 windows:
+  - window_name: wiki
+    shell_command_before:
+      - cd ~/Documents/work/master-arbeit.wiki
+    panes:
+      - nvim Home.md
   - window_name: readme
     layout: tiled
     panes:
       - nvim README.md
+  - window_name: docs
+    layout: tiled
+    panes:
+      - cd docs && nvim .
   - window_name: tool
     panes:
       - nvim CMakeLists.txt

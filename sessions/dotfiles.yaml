@@ -8,10 +8,6 @@ windows:
     layout: tiled
     panes:
       - ls -l
-  - window_name: sys
-    layout: tiled
-    panes:
-      - top
   - window_name: install
     layout: tiled
     panes:

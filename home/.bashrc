@@ -431,7 +431,7 @@ if command -v fzf &>/dev/null; then
         fi
 
         local dir=$(/usr/bin/ls -1 -d ${path}/* | xargs -I {} basename {} | fzf --height 40% --reverse)
-        [ -z "$dir" ] && exit 0
+        [ -z "$dir" ] && return
         
         cp -r ${path}/${dir} ./TEMPLATE-${dir}
     }

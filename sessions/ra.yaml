@@ -18,4 +18,4 @@ windows:
     shell_command_before:
       - cd ~/Documents/work/master-arbeit/
     panes:
-      - make dev
+      - make jasper

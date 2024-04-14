@@ -10,12 +10,6 @@ windows:
   - window_name: src
     panes:
       - cd src && nvim .
-
   - window_name: analysis
     panes:
       - cd analysis && nvim .
-  - window_name: docker
-    shell_command_before:
-      - cd ~/Documents/work/master-arbeit/
-    panes:
-      - make jasper

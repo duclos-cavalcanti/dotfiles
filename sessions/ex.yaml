@@ -7,15 +7,7 @@ windows:
     layout: tiled
     panes:
       - ls
-  - window_name: fintech-make
-    shell_command_before:
-      - cd nyu/fintech
+  - window_name: bash-make
     layout: tiled
     panes:
-      - nvim Makefile
-  - window_name: fintech-md
-    shell_command_before:
-      - cd nyu/fintech
-    layout: tiled
-    panes:
-      - nvim .
+      - ls

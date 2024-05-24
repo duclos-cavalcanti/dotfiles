@@ -11,7 +11,7 @@ windows:
     layout: tiled
     panes:
       - nvim README.md
-  - window_name: tool
+  - window_name: dash
     panes:
       - nvim CMakeLists.txt
   - window_name: bash

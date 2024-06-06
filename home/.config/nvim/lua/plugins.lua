@@ -27,18 +27,6 @@ local plugins = {
         "neovim/nvim-lspconfig",
         config = function() require('ex.lspconfig') end,
     },
-    { -- job manager / overseer
-        'stevearc/overseer.nvim',
-        opts = {},
-        dependencies = {
-            "stevearc/dressing.nvim",
-            "nvim-telescope/telescope.nvim",
-            "rcarriga/nvim-notify",
-        },
-        config = function() 
-            require('overseer').setup()
-        end,
-    },
     { -- completion
         "hrsh7th/nvim-cmp",
         event = "InsertEnter",
@@ -134,6 +122,12 @@ local plugins = {
                     config  = function() require('colorizer').setup() end,
                 }
         },
+    },
+    { -- logging
+        'fei6409/log-highlight.nvim',
+        config = function()
+            require('log-highlight').setup {}
+        end,
     },
 }
 

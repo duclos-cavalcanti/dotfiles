@@ -62,4 +62,12 @@ nnoremap("<leader>sm", "<cmd>lua require('telescope.builtin').man_pages({section
 -- Debugger
 nnoremap("<leader>d", ":lua require('telescope').extensions.dap.commands{}<CR>")
 
-vim.cmd([[command! Scratch vsplit | enew | setlocal buftype=nofile bufhidden=wipe]])
+vim.cmd([[command!  Scratch vsplit | enew | setlocal buftype=nofile bufhidden=wipe]])
+
+vim.api.nvim_create_user_command('PrettyPrintJson', function()
+    local f = vim.fn.expand('%')
+    vim.cmd('vnew')
+    vim.cmd('setlocal buftype=nofile')
+    vim.cmd('setfiletype json')
+    vim.cmd('read !cat ' .. f .. ' | jq .')
+end, {})

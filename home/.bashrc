@@ -268,6 +268,8 @@ alias grep='grep --colour=always'
 alias egrep='egrep --colour=always'
 alias fgrep='fgrep --colour=always'
 
+alias drmall='docker rm $(docker ps -a -q)'
+
 alias gupd="git add --all && git commit -m 'Update' && git push origin"
 alias grd="git add README.md && git commit -m 'Updated README' && git push origin"
 alias gi="git add .gitignore && git commit -m 'Updated gitignore' && git push origin"

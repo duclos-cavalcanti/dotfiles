@@ -393,6 +393,16 @@ man() {
 	man "$@"
 }
 
+compress( ) {
+    local src="$1"
+    local dst="$2"
+    if [ -d $dst ]; then
+        tar -zvcf ${src} ${dst}
+    else
+        echo "DST: ${dir} is not a directory"
+    fi
+}
+
 # decompress file
 extract () {
   if [ -f $1 ] ; then

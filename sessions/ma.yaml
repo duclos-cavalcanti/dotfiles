@@ -12,8 +12,10 @@ windows:
     panes:
       - nvim README.md
   - window_name: dash
+    layout: tiled
     panes:
-      - nvim CMakeLists.txt
+      - clear
+      - nvim Makefile
   - window_name: bash
     layout: tiled
     panes:

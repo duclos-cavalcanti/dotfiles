@@ -1,0 +1,42 @@
+#!/bin/sh
+# nvim-difftool — Neovim adapter for `git difftool`. Handles both invocation
+# modes: a single-file diff, and --dir-diff (two temp dirs, which lazygit's
+# <c-t>/openDiffTool uses) -- opening each changed file pair in its own diff tab.
+# Wired via difftool.nvimdiff.cmd (see install.sh); git passes $LOCAL $REMOTE.
+#
+#   nvim-difftool <LOCAL> <REMOTE>
+
+L=$1
+R=$2
+
+# Single-file mode: git passes two files (one may be /dev/null on add/delete).
+if [ ! -d "$L" ] && [ ! -d "$R" ]; then
+    exec nvim -d "$L" "$R"
+fi
+
+# Directory mode: union of relative file paths present in either side (git only
+# copies the changed files into the temp dirs).
+# NOTE: assumes no spaces/newlines in paths (true for git temp dirs + code repos).
+files=$(
+    {
+        [ -d "$L" ] && (cd "$L" && find . -type f)
+        [ -d "$R" ] && (cd "$R" && find . -type f)
+    } | sed 's|^\./||' | sort -u
+)
+[ -n "$files" ] || exit 0
+
+# First pair fills the initial diff tab; the rest open in new diff tabs. A
+# missing side (add/delete) diffs against an empty buffer.
+set --
+first=1
+for f in $files; do
+    lf="$L/$f"; [ -f "$lf" ] || lf=/dev/null
+    rf="$R/$f"; [ -f "$rf" ] || rf=/dev/null
+    if [ "$first" = 1 ]; then
+        set -- -d "$lf" "$rf"
+        first=0
+    else
+        set -- "$@" -c "tabedit $lf" -c "vert diffsplit $rf"
+    fi
+done
+exec nvim "$@"

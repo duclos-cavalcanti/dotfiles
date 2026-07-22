@@ -46,11 +46,11 @@ function install_dotfiles() {
 }
 
 function install_git_config() {
-    print_section "Configuring git difftool (codediff.nvim)"
-    # Branch on directory: git --dir-diff hands the tool two temp dirs (use `CodeDiff dir`),
-    # otherwise two files (use `CodeDiff file`). `CodeDiff file` on a dir errors out.
-    git config --global diff.tool codediff
-    git config --global difftool.codediff.cmd 'if [ -d "$LOCAL" ]; then nvim +"CodeDiff dir $LOCAL $REMOTE"; else nvim "$LOCAL" "$REMOTE" +"CodeDiff file $LOCAL $REMOTE"; fi'
+    print_section "Configuring git difftool (neovim diff mode)"
+    # nvim-difftool (~/.bin) adapts `git difftool` to Neovim for both file diffs
+    # and --dir-diff (two temp dirs, as lazygit's <c-t>/openDiffTool uses).
+    git config --global diff.tool nvimdiff
+    git config --global difftool.nvimdiff.cmd 'nvim-difftool "$LOCAL" "$REMOTE"'
     git config --global difftool.prompt false
     print_status "git difftool configured successfully"
 }

@@ -1,8 +1,8 @@
 # Ghostty config 
 
 # Theme
-# `ghostty +list-themes`.
-theme = Github Dark Default
+theme = spaceduck
+# custom themes live in ghostty/themes/
 
 macos-titlebar-style = tabs
 

@@ -7,7 +7,7 @@ local options = {
     tags = "./tags,tags;/",
     clipboard = "unnamedplus",                          -- allows neovim to access the system clipboard
     cmdheight = 2,                                      -- more space in the neovim command line for displaying messages
-    completeopt = { "menuone","noinsert","noselect" },  -- mostly just for cmp
+    completeopt = { "menuone","noinsert","noselect" },  -- for mini.completion + <CR> accept
     conceallevel = 0,                                   -- so that `` is visible in markdown files
     fileencoding = "utf-8",                             -- the encoding written to a file
     hlsearch = false,                                   -- highlight all matches on previous search pattern
@@ -66,61 +66,7 @@ vim.diagnostic.config {
     signs = true,                -- Keep gutter signs
 }
 
--- buffer
-vim.api.nvim_set_keymap("n", "z.", "zszH", {noremap=true, silent=true})
-
--- tabs
-vim.api.nvim_set_keymap("n", "<C-w>>", ":tabmove +1<CR>", {noremap=true, silent=true})
-vim.api.nvim_set_keymap("n", "<C-w><lt>", ":tabmove -1<CR>", {noremap=true, silent=true})
-
--- terminal
-vim.api.nvim_set_keymap("t", "<ESC>", "<C-\\><C-n>", {noremap=true, silent=true})
-vim.api.nvim_set_keymap("t", "<C-w>", "<C-\\><C-N><C-w>", {noremap=true, silent=true})
-
--- toggle a single reusable terminal in a bottom split
-local function toggle_terminal()
-    local t = vim.g._term or {}
-    if t.win and vim.api.nvim_win_is_valid(t.win) then
-        vim.api.nvim_win_hide(t.win)              -- visible -> hide
-        t.win = nil
-    else
-        vim.cmd("botright 30 split")               -- open a bottom split
-        if t.buf and vim.api.nvim_buf_is_valid(t.buf) then
-            vim.api.nvim_set_current_buf(t.buf)   -- reuse existing terminal
-        else
-            vim.cmd("terminal")                   -- first time: spawn shell
-            t.buf = vim.api.nvim_get_current_buf()
-        end
-        t.win = vim.api.nvim_get_current_win()
-        vim.cmd("startinsert")
-    end
-    vim.g._term = t
-end
-vim.keymap.set("n", "<leader><space>", toggle_terminal, {noremap=true, silent=true, desc="Toggle Terminal"})
-
--- quickfix navigation
--- Function to check if quickfix window is open in current tab
-local function is_quickfix_open()
-    for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
-        local buf = vim.api.nvim_win_get_buf(win)
-        if vim.bo[buf].buftype == 'quickfix' then
-            return true
-        end
-    end
-    return false
-end
-
-vim.keymap.set('n', '<C-n>', function()
-    if is_quickfix_open() then
-        vim.cmd('cnext')
-    end
-end, {noremap=true, silent=true, desc="Next quickfix item (if quickfix is open)"})
-
-vim.keymap.set('n', '<C-p>', function()
-    if is_quickfix_open() then
-        vim.cmd('cprev')
-    end
-end, {noremap=true, silent=true, desc="Next quickfix item (if quickfix is open)"})
+-- Keymaps live in lua/keys.lua; reusable functions in lua/utils.lua.
 
 vim.api.nvim_create_autocmd("VimResized", {
     command = "wincmd =",
@@ -142,25 +88,3 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     end,
     desc = "Remove trailing whitespace and blank lines at EOF for Lua files"
 })
-
--- Markdown Preview.app — open the current buffer's file in the macOS app
--- (https://markdownpreview.app, installed via install.sh). Verifies the app is
--- installed before launching, and that the buffer is a saved file.
-local function open_markdown_preview()
-    local app = "Markdown Preview"
-    -- ask LaunchServices (what `open -a` uses) if the app is registered anywhere
-    -- — location-agnostic, unlike a PATH/executable() check (a GUI .app isn't on PATH)
-    vim.fn.system({ "osascript", "-e", ('id of app "%s"'):format(app) })
-    if vim.v.shell_error ~= 0 then
-        vim.notify(app .. ".app not found — install it (install.sh)", vim.log.levels.WARN)
-        return
-    end
-    local file = vim.api.nvim_buf_get_name(0)
-    if file == "" or vim.fn.filereadable(file) == 0 then
-        vim.notify("Markdown Preview: no saved file in this buffer", vim.log.levels.WARN)
-        return
-    end
-    vim.fn.jobstart({ "open", "-a", app, file }, { detach = true })
-end
-vim.keymap.set("n", "<leader>mp", open_markdown_preview,
-    { noremap = true, silent = true, desc = "Open buffer in Markdown Preview.app" })

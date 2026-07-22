@@ -27,6 +27,7 @@ Refs: [cmux docs](https://cmux.com/docs) · [ghostty docs](https://ghostty.org/d
 - [ ] Add per-appearance ghostty `[appearance=dark]` / `[appearance=light]` conditional blocks (padding-color, minimum-contrast).
 - [ ] Add `font-codepoint-map = U+E000-U+F8FF=Symbols Nerd Font Mono` for icon-font glyph routing.
 - [ ] Switch ghostty to light/dark auto-switch theme: `theme = light:Adwaita,dark:Adwaita Dark`.
+- [ ] `base16` script: adopt `yq` (add to Brewfile) to parse base16 schemes and pull them directly from upstream GitHub unmodified — `tinted-theming/schemes` (canonical, nested `palette:` format) and legacy `tinted-theming/base16-schemes` (flat). Would replace the awk flat-format parser and drop the manual flatten step. Trade-off: +1 dependency vs awk's zero-install POSIX surface — only worth it if consuming upstream schemes regularly.
 
 ## Shell integration & performance
 
@@ -45,7 +46,7 @@ Refs: [cmux docs](https://cmux.com/docs) · [ghostty docs](https://ghostty.org/d
 Track the NEOVIM.md thesis ("native core eats plugins") against the actual `home/.config/nvim` config, which still runs the older stack.
 
 - [ ] Replace completion stack `nvim-cmp` + the six `cmp-*` sources + `cmp_luasnip` (7 packages in `lua/plugins.lua`) with `blink.cmp` (1 package) — the LazyVim/kickstart default per NEOVIM.md.
-- [ ] Drop the `nvim-lspconfig` dependency: the config already uses the native 0.11 path (`vim.lsp.config('*')` / `vim.lsp.enable()` + own `home/.config/nvim/lsp/*.lua`). Verify the `lsp/` files are self-contained via a headless smoke, then remove it.
+- [x] ~~Drop `nvim-lspconfig`~~ **Kept as a data provider** (decided during vim.pack port). The native 0.11 path is in use (`vim.lsp.enable()` + `lsp/*.lua`), but the `lsp/*.lua` are NOT self-contained: 8/13 servers (denols, csharp_ls, metals, marksman, cssls, html = `return {}`; yamlls, bashls = no file; rust_analyzer = settings-only; clangd = cmd-only) rely on lspconfig's bundled `lsp/<name>.lua` for `cmd`/`filetypes`/root markers, merged under our overrides. Fully dropping it = hand-writing defs + root-dir detection for all 13 — not worth it. On 0.11+ lspconfig is just a definitions package feeding core, so keeping it is still "toward core".
 - [ ] Migrate plugin manager `lazy.nvim` → native `vim.pack` (0.12) with lockfile (bigger lift; per NEOVIM.md + echasnovski's vim.pack guide).
 - [ ] Remove dead colorscheme `gruvbox.nvim`: it's the top-level theme spec (priority 1000) in `lua/plugins.lua` but `colorscheme adwaita` is what gets set, so gruvbox never activates. Promote adwaita to the parent spec, delete gruvbox.
 - [ ] Collapse duplicate devicons in `lua/plugins.lua`: both `kyazdani42/nvim-web-devicons` (stale, moved repo) and `nvim-tree/nvim-web-devicons` are listed — same plugin. Keep `nvim-tree/...`.

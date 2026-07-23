@@ -12,6 +12,9 @@
 #   crew edit       edit the registry in $EDITOR
 #   crew render     draw one sidebar frame
 #   crew run        persistent sidebar refresh loop (run inside a pane)
+#   crew tmux-statusline   emit a one-line tmux-formatted crew summary (pure;
+#                          pipe into a status line from tmux.conf)
+#   crew signal <event>    map a Claude hook event -> state for this session
 
 DIR=$(cd "$(dirname "$0")" && pwd)
 
@@ -19,11 +22,16 @@ DIR=$(cd "$(dirname "$0")" && pwd)
 # machine-specific state (your session names + paths), so it's .gitignore'd
 # -- see ./.gitignore. An ordered list of `name=path` lines; index = line no.
 CREW_FILE="$DIR/registry"
+# Per-session agent state files (working|done|waiting|idle), written by `signal`
+# and read by the renderer. Also runtime -> .gitignore'd.
+# shellcheck disable=SC2034  # used by the sourced lib/signal.sh + lib/render.sh
+CREW_STATE="$DIR/state"
 touch "$CREW_FILE"
 
-# Sidebar presentation + the agent-state growth seam.
+# shellcheck source=lib/signal.sh
+. "$DIR/lib/signal.sh"   # capture: crew_signal (producer)
 # shellcheck source=lib/render.sh
-. "$DIR/lib/render.sh"
+. "$DIR/lib/render.sh"   # display: crew_state + glyphs + render (consumer)
 
 # --- registry (bookmark / jump; formerly the `harpoon` script) --------------
 
@@ -64,16 +72,18 @@ crew_edit() { "${EDITOR:-vi}" "$CREW_FILE"; }
 # --- dispatch ---------------------------------------------------------------
 
 case "$1" in
-    add)    crew_add ;;
-    go)     crew_go "$2" ;;
-    pick)   crew_pick ;;
-    list)   crew_list ;;
-    rm)     crew_rm "$2" ;;
-    edit)   crew_edit ;;
-    render) crew_render ;;
-    run)    while :; do clear; crew_render; sleep 2; done ;;
+    add)             crew_add ;;
+    go)              crew_go "$2" ;;
+    pick)            crew_pick ;;
+    list)            crew_list ;;
+    rm)              crew_rm "$2" ;;
+    edit)            crew_edit ;;
+    render)          crew_render ;;
+    run)             while :; do clear; crew_render; sleep 2; done ;;
+    tmux-statusline) crew_statusline ;;
+    signal)          crew_signal "$2" ;;
     *)
-        echo "usage: crew {add|go <n>|pick|list|rm <n>|edit|render|run}" >&2
+        echo "usage: crew {add|go <n>|pick|list|rm <n>|edit|render|run|tmux-statusline|signal <state>}" >&2
         exit 2
         ;;
 esac

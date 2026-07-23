@@ -1,3 +1,4 @@
-# Runtime registry (your registered sessions + local paths) -- not tracked.
+# Runtime state (registered sessions + per-session agent state) -- not tracked.
 registry
 registry.tmp
+state/

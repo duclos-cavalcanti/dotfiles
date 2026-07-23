@@ -59,32 +59,10 @@ for k, v in pairs(options) do
     vim.opt[k] = v
 end
 
--- En/Disable inline error messages
+-- Diagnostics display. virtual_text off: diagnostics show on hover instead,
+-- via the CursorHold float in lua/autocmds.lua (avoids noisy inline text).
 vim.diagnostic.config {
-    virtual_text = true,
-    underline = true,            -- Keep error underline
-    signs = true,                -- Keep gutter signs
+    virtual_text = false,
+    underline = true,            -- keep error underline
+    signs = true,                -- keep gutter signs
 }
-
--- Keymaps live in lua/keys.lua; reusable functions in lua/utils.lua.
-
-vim.api.nvim_create_autocmd("VimResized", {
-    command = "wincmd =",
-})
-
-vim.api.nvim_create_autocmd("BufWritePre", {
-    pattern = "*.lua",
-    callback = function()
-        local cursor_pos = vim.api.nvim_win_get_cursor(0)
-
-        -- Remove trailing whitespace
-        vim.cmd([[%s/\s\+$//e]])
-
-        -- Remove blank lines at end of file
-        vim.cmd([[%s/\n\+\%$//e]])
-
-        -- Restore cursor position
-        pcall(vim.api.nvim_win_set_cursor, 0, cursor_pos)
-    end,
-    desc = "Remove trailing whitespace and blank lines at EOF for Lua files"
-})

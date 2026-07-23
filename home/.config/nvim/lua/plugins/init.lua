@@ -1,16 +1,8 @@
--- Plugin manifest. A single vim.pack.add() lists every plugin the config uses
--- (echasnovski's recommended vim.pack pattern). Declaration lives here;
--- configuration (setup, keymaps, runtime autocmds) lives in the per-topic files
--- required at the bottom -- never inside the spec.
---
--- vim.pack.add() clones each `src` into
---   ~/.local/share/nvim/site/pack/core/opt/<name>
--- puts it on 'runtimepath', and pins revisions in ~/.config/nvim/nvim-pack-lock.json
--- (commit that lockfile). Update all: `:lua vim.pack.update()`.
+-- vim.pack manifest: declare every plugin here; configure them in the per-topic
+-- files required at the bottom. Lockfile: nvim-pack-lock.json (commit it).
 
--- Build/install hooks: vim.pack has no `build =` field. These run on
--- install/update and MUST be registered before vim.pack.add() to fire on first
--- install. On "install" the plugin is not loaded yet, so packadd first.
+-- Build hooks (vim.pack has no `build =`): must be registered before add().
+-- On "install" the plugin isn't loaded yet, so packadd before running it.
 vim.api.nvim_create_autocmd("PackChanged", {
     callback = function(ev)
         local name, kind = ev.data.spec.name, ev.data.kind

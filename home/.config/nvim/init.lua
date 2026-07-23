@@ -3,3 +3,4 @@
 require("config")
 require("plugins")
 require("keys")
+require("autocmds")

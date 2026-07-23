@@ -3,9 +3,9 @@
 -- not vim.pack-managed).
 
 -- Treesitter -----------------------------------------------------------------
--- nvim-treesitter `main` branch: parsers installed via .install(), highlighting
--- is core `vim.treesitter.start` per buffer (main dropped the plugin's own
--- highlighter). Parser recompiles run via the build hook in plugins/init.lua.
+-- nvim-treesitter `main` branch: install the parser set here. Highlighting is
+-- core `vim.treesitter.start`, triggered per buffer by the FileType autocmd in
+-- lua/autocmds.lua. Parser recompiles run via the build hook in plugins/init.lua.
 require("nvim-treesitter").install({
     "bash",
     "c",
@@ -28,47 +28,27 @@ require("nvim-treesitter").install({
     "vimdoc",
 })
 
-vim.api.nvim_create_autocmd("FileType", {
-    callback = function()
-        pcall(vim.treesitter.start)
-    end,
-})
-
 -- LSP ------------------------------------------------------------------------
 -- Native 0.11 path. Server definitions (cmd/filetypes/root markers) come from
 -- nvim-lspconfig's lsp/*.lua on the runtimepath; per-server overrides live in
 -- ~/.config/nvim/lsp/*.lua and are merged over them by core. Here we only enable
--- servers, configure diagnostics, and bind keys on attach.
+-- servers -- on-attach keymaps live in lua/autocmds.lua (LspAttach), diagnostics
+-- display in lua/config.lua + lua/autocmds.lua. All editor-wide, not LSP-specific.
 -- (Completion capabilities are added later by the completion port.)
-vim.diagnostic.config({ virtual_text = false })
-
--- Diagnostics float on hover (CursorHold; 'updatetime' set in config.lua).
-vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-    callback = function() vim.diagnostic.open_float(nil, { focus = false }) end,
-})
-
-vim.api.nvim_create_autocmd("LspAttach", {
-    desc = "LSP buffer keymaps",
-    callback = function(args)
-        local function map(lhs, rhs, desc)
-            vim.keymap.set("n", lhs, rhs, { buffer = args.buf, desc = desc })
-        end
-        map("gd", vim.lsp.buf.definition, "Goto definition")
-        map("gD", vim.lsp.buf.declaration, "Goto declaration")
-        map("gi", vim.lsp.buf.implementation, "Goto implementation")
-        map("gh", vim.lsp.buf.signature_help, "Signature help")
-        map("GT", vim.lsp.buf.type_definition, "Goto type definition")
-        map("K", vim.lsp.buf.hover, "Hover")
-        map("<leader>R", vim.lsp.buf.rename, "Rename")
-        map("gn", function() vim.diagnostic.jump({ count = 1, float = true }) end, "Next diagnostic")
-        map("gp", function() vim.diagnostic.jump({ count = -1, float = true }) end, "Prev diagnostic")
-        map("gf", vim.diagnostic.open_float, "Diagnostic float")
-    end,
-})
-
 vim.lsp.enable({
-    "clangd", "gopls", "metals", "marksman", "csharp_ls", "denols",
-    "rust_analyzer", "cssls", "html", "pyright", "lua_ls", "yamlls", "bashls",
+    "bashls",
+    "clangd",
+    "csharp_ls",
+    "cssls",
+    "denols",
+    "gopls",
+    "html",
+    "lua_ls",
+    "marksman",
+    "metals",
+    "pyright",
+    "rust_analyzer",
+    "yamlls",
 })
 
 -- Completion -----------------------------------------------------------------

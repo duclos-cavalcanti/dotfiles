@@ -1,0 +1,3 @@
+# Runtime registry (your registered sessions + local paths) -- not tracked.
+registry
+registry.tmp

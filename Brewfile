@@ -37,6 +37,11 @@ brew "reattach-to-user-namespace"
 brew "ollama"
 brew "anomalyco/tap/opencode"
 
+# containers
+brew "docker"
+brew "docker-compose"
+brew "colima"
+
 # dev
 brew "autoconf"
 brew "shellcheck"

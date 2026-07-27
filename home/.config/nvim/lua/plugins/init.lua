@@ -15,13 +15,14 @@ vim.api.nvim_create_autocmd("PackChanged", {
 
 vim.pack.add({
     { src = "https://github.com/nvim-mini/mini.pick" },
+    { src = "https://github.com/nvim-mini/mini.extra" },
     { src = "https://github.com/nvim-mini/mini.completion" },
     { src = "https://github.com/nvim-mini/mini.icons" },
     { src = "https://github.com/nvim-mini/mini.statusline" },
     { src = "https://github.com/nvim-mini/mini.tabline" },
     { src = "https://github.com/nvim-mini/mini.base16" },
     { src = "https://github.com/nvim-mini/mini.diff" },
-    { src = "https://github.com/nvim-mini/mini-git" }, -- repo is mini-git; module is mini.git
+    { src = "https://github.com/nvim-mini/mini-git" },
     { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
     { src = "https://github.com/neovim/nvim-lspconfig" },
 })

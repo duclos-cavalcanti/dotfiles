@@ -44,7 +44,7 @@ crew_glyph() {
     local env="${1:-ascii}" state="$2" color sym
     case "$state" in
         working) color=yellow; sym='»' ;;
-        done)    color=green;  sym='✓' ;;
+        done)    color=green;  sym='⏸' ;;
         waiting) color=cyan;   sym='⏸' ;;
         idle)    color=dim;    sym='●' ;;
         live)    color=green;  sym='●' ;;
@@ -70,7 +70,7 @@ crew_render() {
 
 crew_tmux_statusline() {
     [ -s "$CREW_FILE" ] || return 0
-    local current="$1" out="" line name state
+    local current="$1" out=" " line name state
     while IFS= read -r line; do
         [ -n "$line" ] || continue
         name=${line%%=*}

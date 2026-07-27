@@ -2,7 +2,7 @@ require("mini.icons").setup()
 require("mini.statusline").setup()
 require("mini.tabline").setup()
 
-local scheme = "spaceduck"
+local scheme = "citruszest"
 
 -- 'termguicolors' is set in config.lua.
 local ok, palette = pcall(require, "theme." .. scheme)

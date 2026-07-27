@@ -52,6 +52,12 @@ Track the NEOVIM.md thesis ("native core eats plugins") against the actual `home
 - [ ] Collapse duplicate devicons in `lua/plugins.lua`: both `kyazdani42/nvim-web-devicons` (stale, moved repo) and `nvim-tree/nvim-web-devicons` are listed — same plugin. Keep `nvim-tree/...`.
 - [ ] Fix double-managed `agentic` plugin: it lives in `pack/plugins/start/agentic` (auto-sourced natively by nvim at startup) *and* is registered in `lua/plugins.lua` via lazy with `dir=` + `lazy=true`. Pick one — move it to `pack/plugins/opt/` so only lazy loads it, or drop the lazy spec and let pack own it.
 
+### Org ideas from orcnvim (zootedb0t)
+
+- [ ] Move per-filetype settings out of `FileType` autocmds in `autocmds.lua` into core-native `after/ftplugin/<ft>.lua` files (Neovim auto-loads by filetype; filename is the trigger, no autocmd). More core, less indirection — aligns with the "toward core" thesis. Ref: `orcnvim/after/ftplugin/markdown.lua` (`vim.opt_local.spell = true`). Worth it once there's >1 per-ft tweak.
+- [ ] Consider namespacing the config modules under a user dir (`lua/<ns>/…`, e.g. `require("<ns>.config")`) so generic names (`config`, `utils`) can't collide with a plugin module on the runtimepath. Trade-off: more nesting for a collision that may never bite. Ref: `orcnvim/lua/orcnvim/`.
+- [ ] Minor: use tiered `root_markers` in `lsp/*.lua` (nested table = same-priority tier before fallback), e.g. `root_markers = { { ".luarc.json", ".luarc.jsonc" }, ".git" }` (0.11 feature). Ref: `orcnvim/after/lsp/lua_ls.lua`.
+
 ## Ideas / TBD
 
 - [ ] _add your own here_

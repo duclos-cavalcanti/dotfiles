@@ -1,9 +1,10 @@
 # Ghostty config 
 
 # Theme
-theme = spaceduck
+theme = citruszest
 # custom themes live in ghostty/themes/
 
+# hidden, tabs, visible, transparent, native
 macos-titlebar-style = tabs
 
 ## Font

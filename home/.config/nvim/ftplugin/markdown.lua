@@ -6,7 +6,7 @@ vim.cmd [[setlocal expandtab ]]
 vim.cmd [[setlocal tabstop=2 ]]
 vim.cmd [[setlocal softtabstop=2]]
 vim.cmd [[setlocal shiftwidth=2]]
-vim.cmd [[setlocal nowrap]]
+vim.cmd [[setlocal wrap]]
 -- Hard-wrap at 80: insert a real newline once a line crosses the threshold.
 vim.opt_local.textwidth = 80
 vim.opt_local.formatoptions:append("t") -- auto-wrap text using textwidth

@@ -34,6 +34,28 @@ function install_packages() {
     fi
 }
 
+function install_docker_plugins() {
+    print_section "Linking docker CLI plugins"
+    # Homebrew installs docker CLI plugins under $(brew --prefix)/lib/docker/
+    # cli-plugins, a dir the docker CLI does NOT search by default -- so the
+    # `docker compose` / `docker buildx` subcommand forms aren't found (the
+    # hyphenated binaries on PATH still work regardless). Link whatever plugins
+    # are installed into ~/.docker/cli-plugins, a default search dir. Idempotent.
+    local src
+    src="$(brew --prefix)/lib/docker/cli-plugins"
+    if [ ! -d "$src" ]; then
+        print_status "No docker CLI plugins found, skipping"
+        return 0
+    fi
+    mkdir -p "$HOME/.docker/cli-plugins"
+    shopt -s nullglob
+    for p in "$src"/*; do
+        ln -sfn "$p" "$HOME/.docker/cli-plugins/$(basename "$p")"
+    done
+    shopt -u nullglob
+    print_status "docker CLI plugins linked"
+}
+
 function install_dotfiles() {
     print_section "Setting up dotfiles with stow"
     if [ -f "stow.sh" ]; then
@@ -69,6 +91,7 @@ function main() {
 
     install_brew
     install_packages
+    install_docker_plugins
     install_dotfiles
     install_git_config
 

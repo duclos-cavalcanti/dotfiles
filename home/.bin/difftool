@@ -1,10 +1,10 @@
 #!/bin/sh
-# nvim-difftool — Neovim adapter for `git difftool`. Handles both invocation
+# difftool — Neovim adapter for `git difftool`. Handles both invocation
 # modes: a single-file diff, and --dir-diff (two temp dirs, which lazygit's
 # <c-t>/openDiffTool uses) -- opening each changed file pair in its own diff tab.
 # Wired via difftool.nvimdiff.cmd (see install.sh); git passes $LOCAL $REMOTE.
 #
-#   nvim-difftool <LOCAL> <REMOTE>
+#   difftool <LOCAL> <REMOTE>
 
 L=$1
 R=$2

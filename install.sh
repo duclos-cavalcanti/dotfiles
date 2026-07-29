@@ -69,10 +69,10 @@ function install_dotfiles() {
 
 function install_git_config() {
     print_section "Configuring git difftool (neovim diff mode)"
-    # nvim-difftool (~/.bin) adapts `git difftool` to Neovim for both file diffs
+    # difftool (~/.bin) adapts `git difftool` to Neovim for both file diffs
     # and --dir-diff (two temp dirs, as lazygit's <c-t>/openDiffTool uses).
     git config --global diff.tool nvimdiff
-    git config --global difftool.nvimdiff.cmd 'nvim-difftool "$LOCAL" "$REMOTE"'
+    git config --global difftool.nvimdiff.cmd 'difftool "$LOCAL" "$REMOTE"'
     git config --global difftool.prompt false
     print_status "git difftool configured successfully"
 }

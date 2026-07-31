@@ -1,7 +1,7 @@
 # Ghostty config 
 
 # Theme
-theme = citruszest
+theme = dark-pastel
 # custom themes live in ghostty/themes/
 
 # hidden, tabs, visible, transparent, native

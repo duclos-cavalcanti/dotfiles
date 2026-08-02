@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>base16 editor — macfiles</title>
+<style>
+  :root { font: 14px/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #14171c; color: #cdd3de; }
+  header { padding: 12px 16px; border-bottom: 1px solid #2a2f38; display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+  header h1 { font-size: 14px; margin: 0; font-weight: 700; letter-spacing: .04em; }
+  header .meta { display: flex; gap: 8px; align-items: center; }
+  header input[type=text] { background: #0e1116; color: #cdd3de; border: 1px solid #2a2f38; border-radius: 4px; padding: 4px 6px; font: inherit; }
+  button, label.btn { background: #232a34; color: #cdd3de; border: 1px solid #39414d; border-radius: 4px; padding: 5px 10px; font: inherit; cursor: pointer; }
+  button:hover, label.btn:hover { background: #2c3542; }
+  main { display: grid; grid-template-columns: 340px 1fr; gap: 0; min-height: calc(100vh - 52px); }
+  #slots { border-right: 1px solid #2a2f38; padding: 10px; overflow: auto; }
+  .slot { display: grid; grid-template-columns: 20px 52px 1fr 88px; gap: 8px; align-items: center; padding: 3px 4px; border-radius: 4px; }
+  .slot:hover { background: #191d24; }
+  .slot .sw { width: 20px; height: 20px; border-radius: 3px; border: 1px solid #00000055; }
+  .slot .key { color: #7d8797; }
+  .slot .role { color: #8f99a8; font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .slot input[type=color] { width: 0; height: 0; opacity: 0; position: absolute; }
+  .slot .hex { width: 84px; background: #0e1116; color: #cdd3de; border: 1px solid #2a2f38; border-radius: 4px; padding: 3px 5px; font: inherit; text-transform: lowercase; }
+  #preview { padding: 16px; overflow: auto; }
+  /* live preview surface — all colors come from CSS vars set by JS */
+  .term { background: var(--base00); color: var(--base05); padding: 16px; border-radius: 8px; border: 1px solid #00000040; }
+  .term pre { margin: 0; white-space: pre-wrap; }
+  .kw { color: var(--base0E); } .fn { color: var(--base0D); } .str { color: var(--base0B); }
+  .num { color: var(--base09); } .cls { color: var(--base0A); } .cyan { color: var(--base0C); }
+  .var { color: var(--base08); } .brown { color: var(--base0F); } .cmt { color: var(--base03); font-style: italic; }
+  .sel { background: var(--base02); }
+  .term .bar { background: var(--base01); color: var(--base04); margin: -16px -16px 12px; padding: 6px 12px; border-radius: 8px 8px 0 0; font-size: 12px; }
+  .ansi { display: flex; gap: 4px; margin-top: 14px; flex-wrap: wrap; }
+  .ansi div { width: 34px; height: 22px; border-radius: 3px; border: 1px solid #00000040; font-size: 9px; color: #000; display: flex; align-items: flex-end; justify-content: center; }
+  .ramp { display: flex; margin-top: 8px; }
+  .ramp div { flex: 1; height: 18px; }
+  #out { width: 100%; height: 200px; margin-top: 14px; background: #0e1116; color: #cdd3de; border: 1px solid #2a2f38; border-radius: 6px; padding: 8px; font: inherit; }
+  .row { display: flex; gap: 8px; align-items: center; margin-top: 14px; flex-wrap: wrap; }
+  .hint { color: #6b7480; font-size: 12px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>base16 editor</h1>
+  <div class="meta">
+    <span class="hint">scheme</span> <input type="text" id="scheme" size="14">
+    <span class="hint">author</span> <input type="text" id="author" size="20">
+  </div>
+  <label class="btn">Load .yaml<input type="file" id="file" accept=".yaml,.yml" hidden></label>
+  <button id="export">Export ▸</button>
+  <span class="hint">edit any swatch — preview updates live</span>
+</header>
+
+<main>
+  <section id="slots"></section>
+  <section id="preview">
+    <div class="term">
+      <div class="bar">NORMAL &nbsp; ~/.macfiles/theme &nbsp;·&nbsp; base16 preview</div>
+<pre><span class="cmt">-- palette.lua — a base16 preview</span>
+<span class="kw">local</span> <span class="var">theme</span> = <span class="fn">require</span>(<span class="str">"theme.base16"</span>)
+
+<span class="kw">function</span> <span class="fn">render</span>(<span class="var">count</span>, <span class="var">name</span>)
+  <span class="kw">local</span> <span class="var">n</span> = <span class="num">0x1F</span> + <span class="num">42</span>
+  <span class="kw">for</span> i = <span class="num">1</span>, <span class="var">count</span> <span class="kw">do</span>
+    <span class="fn">print</span>(<span class="str">"hello, "</span> .. <span class="var">name</span>)   <span class="cmt">-- greet</span>
+    <span class="cls">Buffer</span>:<span class="fn">write</span>(<span class="cyan">"\n"</span>)
+  <span class="kw">end</span>
+  <span class="kw">return</span> <span class="brown">nil</span>, <span class="span sel">selection looks like this</span>
+<span class="kw">end</span></pre>
+      <div class="ansi" id="ansi"></div>
+      <div class="ramp" id="ramp"></div>
+    </div>
+    <div class="row">
+      <button id="copy">Copy YAML</button>
+      <button id="download">Download .yaml</button>
+      <span class="hint">then save into theme/ and run <code>base16 lua &lt;name&gt;</code> / <code>base16 ghostty &lt;name&gt;</code></span>
+    </div>
+    <textarea id="out" spellcheck="false" placeholder="Exported YAML appears here (also paste YAML here and press ⌘/Ctrl+Enter to load)"></textarea>
+  </section>
+</main>
+
+<script>
+"use strict";
+// base16 slot roles (chriskempson base16 spec) — label only, no recommendations.
+const ROLES = {
+  base00:"Default bg", base01:"Lighter bg", base02:"Selection bg", base03:"Comments",
+  base04:"Dark fg", base05:"Default fg", base06:"Light fg", base07:"Lightest bg",
+  base08:"red — vars", base09:"orange — nums", base0A:"yellow — classes", base0B:"green — strings",
+  base0C:"cyan — escapes", base0D:"blue — funcs", base0E:"magenta — keywords", base0F:"brown — deprecated",
+};
+const KEYS = Object.keys(ROLES);
+const DEFAULT = { // fallback so the app isn't blank on open
+  scheme:"Custom", author:"edited in theme/editor.html",
+  base00:"0a0a0a",base01:"282828",base02:"383838",base03:"585858",
+  base04:"b8b8b8",base05:"d8d8d8",base06:"e8e8e8",base07:"f8f8f8",
+  base08:"ab4642",base09:"dc9656",base0A:"f7ca88",base0B:"a1b56c",
+  base0C:"86c1b9",base0D:"7cafc2",base0E:"ba8baf",base0F:"a16946",
+};
+
+const model = { scheme:"", author:"", ...Object.fromEntries(KEYS.map(k=>[k,"000000"])) };
+const norm = h => (h||"").replace(/^#/,"").trim().toLowerCase();
+const hex6 = h => /^[0-9a-f]{6}$/.test(norm(h));
+
+// --- parse our flat schema: `key: "value"` (hex may be quoted and/or #-prefixed) ---
+function parseYaml(text){
+  const out = {};
+  text.split(/\r?\n/).forEach(line=>{
+    const m = line.match(/^\s*([A-Za-z0-9_]+)\s*:\s*"?#?([^"\r\n]*?)"?\s*$/);
+    if (m) out[m[1]] = m[2];
+  });
+  return out;
+}
+function loadModel(obj){
+  model.scheme = obj.scheme ?? model.scheme;
+  model.author = obj.author ?? model.author;
+  KEYS.forEach(k => { if (hex6(obj[k])) model[k] = norm(obj[k]); });
+  syncInputs(); apply();
+}
+
+// --- serialize back to our schema ---
+function toYaml(){
+  const q = v => `"${v}"`;
+  let s = `scheme: ${q(model.scheme)}\nauthor: ${q(model.author)}\n`;
+  KEYS.forEach(k => s += `${k}: ${q(model[k])}\n`);
+  return s;
+}
+
+// --- build the editable slot rows ---
+const slotsEl = document.getElementById("slots");
+KEYS.forEach(k=>{
+  const row = document.createElement("label");
+  row.className = "slot";
+  row.innerHTML =
+    `<span class="sw" data-sw="${k}"></span>`+
+    `<span class="key">${k}</span>`+
+    `<span class="role">${ROLES[k]}</span>`+
+    `<span><input type="color" data-color="${k}"><input class="hex" data-hex="${k}" maxlength="7"></span>`;
+  slotsEl.appendChild(row);
+});
+
+function syncInputs(){
+  document.getElementById("scheme").value = model.scheme;
+  document.getElementById("author").value = model.author;
+  KEYS.forEach(k=>{
+    document.querySelector(`[data-color="${k}"]`).value = "#"+model[k];
+    document.querySelector(`[data-hex="${k}"]`).value = model[k];
+  });
+}
+
+// --- apply model to the live preview via CSS variables ---
+function apply(){
+  const root = document.documentElement.style;
+  KEYS.forEach(k=>{
+    root.setProperty("--"+k, "#"+model[k]);
+    const sw = document.querySelector(`[data-sw="${k}"]`);
+    if (sw) sw.style.background = "#"+model[k];
+  });
+  const ansi = document.getElementById("ansi"); ansi.innerHTML="";
+  KEYS.forEach(k=>{ const d=document.createElement("div"); d.style.background="#"+model[k]; d.textContent=k.slice(4); ansi.appendChild(d); });
+  const ramp = document.getElementById("ramp"); ramp.innerHTML="";
+  ["base00","base01","base02","base03","base04","base05","base06","base07"].forEach(k=>{
+    const d=document.createElement("div"); d.style.background="#"+model[k]; ramp.appendChild(d);
+  });
+}
+
+// --- events: edit picker or hex → update model live ---
+function setKey(k, v){ if (hex6(v)){ model[k]=norm(v); apply();
+  document.querySelector(`[data-color="${k}"]`).value="#"+model[k];
+  document.querySelector(`[data-hex="${k}"]`).value=model[k]; } }
+slotsEl.addEventListener("input", e=>{
+  const c=e.target.dataset.color, h=e.target.dataset.hex;
+  if (c) setKey(c, e.target.value);
+  else if (h) setKey(h, e.target.value);
+});
+document.getElementById("scheme").addEventListener("input", e=>model.scheme=e.target.value);
+document.getElementById("author").addEventListener("input", e=>model.author=e.target.value);
+
+// --- load / export ---
+document.getElementById("file").addEventListener("change", e=>{
+  const f=e.target.files[0]; if(!f) return;
+  const r=new FileReader(); r.onload=()=>{ loadModel(parseYaml(r.result));
+    if(!model.scheme) model.scheme=f.name.replace(/\.ya?ml$/,""); syncInputs(); }; r.readAsText(f);
+});
+document.getElementById("export").addEventListener("click", ()=>document.getElementById("out").value=toYaml());
+document.getElementById("copy").addEventListener("click", ()=>{ const o=document.getElementById("out");
+  if(!o.value) o.value=toYaml(); o.select(); document.execCommand("copy"); });
+document.getElementById("download").addEventListener("click", ()=>{
+  const name=(model.scheme||"scheme").toLowerCase().replace(/\s+/g,"-");
+  const blob=new Blob([toYaml()],{type:"text/yaml"});
+  const a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download=name+".yaml"; a.click();
+});
+document.getElementById("out").addEventListener("keydown", e=>{
+  if((e.metaKey||e.ctrlKey)&&e.key==="Enter"){ loadModel(parseYaml(e.target.value)); }
+});
+
+loadModel(DEFAULT);
+</script>
+</body>
+</html>

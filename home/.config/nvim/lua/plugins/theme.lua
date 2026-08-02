@@ -2,7 +2,7 @@ require("mini.icons").setup()
 require("mini.statusline").setup()
 require("mini.tabline").setup()
 
-local DEFAULT = "dark-pastel"
+local DEFAULT = "custom"
 local dir     = vim.uv.fs_realpath(vim.fn.expand("~/.config/theme")) or vim.fn.expand("~/.config/theme")
 local pointer = dir .. "/current"
 

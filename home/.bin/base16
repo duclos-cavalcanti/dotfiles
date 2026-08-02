@@ -1,6 +1,8 @@
 #!/bin/sh
 # base16 — render a base16 palette for a specific consumer.
-# One source of truth: base16 YAML schemes in $THEME_DIR (default ~/.config/theme).
+# One source of truth: base16 YAML schemes in $THEME_DIR (default ~/.macfiles/theme).
+# That dir lives in the repo (NOT stowed) — it is a build input; this tool renders
+# it into the stowed consumers (ghostty themes, nvim lua).
 # Each consumer imports its own data format from the same file.
 #
 #   base16 ghostty <scheme>    Ghostty theme  -> ghostty/themes/<scheme>, `theme = <scheme>`
@@ -16,7 +18,7 @@
 #   github.com/tinted-theming/schemes         canonical NESTED format (palette:, #hex);
 #                                             flatten before use (or switch to yq).
 
-THEME_DIR="${THEME_DIR:-$HOME/.config/theme}"
+THEME_DIR="${THEME_DIR:-$HOME/.macfiles/theme}"
 
 usage() {
     echo "usage: base16 <ghostty|lua> <scheme|path|->" >&2

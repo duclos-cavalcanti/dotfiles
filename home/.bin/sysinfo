@@ -1,12 +1,7 @@
 #!/bin/sh
-# sysinfo — disk / mem / cpu usage as PLAIN text for a status bar; the consumer
-# (zellij/zjstatus top bar) applies color. Output:  󰋊  67% 󰍛  20% 󰻠   8%
-# Icons (Material Design): 󰋊 disk U+F02CA  󰍛 mem U+F035B  󰻠 cpu U+F0EE0
-#
-# df $HOME, not /: on macOS / is the sealed system volume (~8%); the writable
-# Data volume (where files live) is the meaningful fill level.
-disk=$(df "$HOME" | awk 'NR==2 {gsub(/%/,"",$5); print $5}')
-mem=$(memory_pressure 2>/dev/null | awk -F': ' '/free percentage/ {gsub(/%/,"",$2); print 100-$2}')
-cpu=$(ps -A -o %cpu= | awk -v n="$(getconf _NPROCESSORS_ONLN)" '{s+=$1} END {printf "%d", s/n}')
-
-printf 'disk: %3s%% | ram: %3s%% | cpu: %3s%%\n' "$disk" "$mem" "$cpu"
+# sysinfo — combined disk / ram / cpu line for a status bar (zellij/zjstatus).
+# Aggregates the bare-number per-metric scripts into a labeled line:
+#   disk:  67% | ram:  20% | cpu:   8%
+bin=$(dirname "$0")
+printf 'disk: %3s%% | ram: %3s%% | cpu: %3s%%\n' \
+    "$("$bin/disk-info")" "$("$bin/ram-info")" "$("$bin/cpu-info")"

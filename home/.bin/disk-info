@@ -1,0 +1,5 @@
+#!/bin/sh
+# disk-info — writable-volume fill percentage (0-100), bare number; the caller labels/formats.
+# df $HOME, not /: on macOS / is the sealed system volume (~8%); the writable
+# Data volume (where files live) is the meaningful fill level.
+df "$HOME" | awk 'NR==2 {gsub(/%/,"",$5); print $5}'

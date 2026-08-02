@@ -1,7 +1,7 @@
 # Ghostty config 
 
 # Theme
-theme = dark-pastel
+theme = custom
 # custom themes live in ghostty/themes/
 
 # hidden, tabs, visible, transparent, native

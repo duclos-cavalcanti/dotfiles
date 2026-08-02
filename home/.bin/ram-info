@@ -1,0 +1,4 @@
+#!/bin/sh
+# ram-info — memory in-use percentage (0-100), bare number; the caller labels/formats.
+# memory_pressure reports free %; in-use is the complement.
+memory_pressure 2>/dev/null | awk -F': ' '/free percentage/ {gsub(/%/,"",$2); print 100-$2}'

@@ -228,4 +228,3 @@ fi
 
 # Work
 [ -f "/Users/dduclos-cavalcanti/Work/zshrc" ] && source "/Users/dduclos-cavalcanti/Work/zshrc"
-

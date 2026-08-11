@@ -25,7 +25,6 @@ vim.pack.add({
     { src = "https://github.com/nvim-mini/mini-git" },
 
     { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
-    { src = "https://github.com/neovim/nvim-lspconfig" },
 })
 
 require("plugins.core")    -- treesitter + LSP + local agentic plugin

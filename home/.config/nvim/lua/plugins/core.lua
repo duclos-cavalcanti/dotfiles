@@ -26,20 +26,14 @@ require("nvim-treesitter").install({
 })
 
 -- LSP ------------------------------------------------------------------------
+-- nvim-lspconfig removed: each server is a self-contained base config in
+-- `lsp/<name>.lua` (cmd + filetypes + root_markers). To add a server: drop a
+-- `lsp/<name>.lua` and list it here.
 vim.lsp.enable({
     "bashls",
-    "clangd",
-    "csharp_ls",
-    "cssls",
-    "denols",
-    "gopls",
-    "html",
     "lua_ls",
     "marksman",
-    "metals",
-    "pyright",
     "rust_analyzer",
-    "yamlls",
 })
 
 -- Completion -----------------------------------------------------------------

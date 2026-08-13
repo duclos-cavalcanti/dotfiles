@@ -1,4 +1,4 @@
 #!/bin/sh
-# cpu-info — aggregate CPU usage percentage (0-100), bare number; the caller labels/formats.
+# cpu-info — aggregate CPU usage, formatted e.g. "  7%" (3-wide, % included).
 # Sum of per-process %cpu / online core count (100 = all cores saturated).
-ps -A -o %cpu= | awk -v n="$(getconf _NPROCESSORS_ONLN)" '{s+=$1} END {printf "%d\n", s/n}'
+ps -A -o %cpu= | awk -v n="$(getconf _NPROCESSORS_ONLN)" '{s+=$1} END {printf "%3d%%\n", s/n}'

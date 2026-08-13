@@ -9,7 +9,7 @@ selection-foreground = 030202
 palette = 0=#030202
 palette = 1=#e5211d
 palette = 2=#83b23f
-palette = 3=#f4c31a
+palette = 3=#d99a4e
 palette = 4=#3f9ec6
 palette = 5=#cf5fa6
 palette = 6=#2fae9c
@@ -17,7 +17,7 @@ palette = 7=#f3e7cf
 palette = 8=#a15c4d
 palette = 9=#e5211d
 palette = 10=#83b23f
-palette = 11=#f4c31a
+palette = 11=#d99a4e
 palette = 12=#3f9ec6
 palette = 13=#cf5fa6
 palette = 14=#2fae9c
@@ -26,5 +26,5 @@ palette = 16=#f2701c
 palette = 17=#a5611e
 palette = 18=#2b1214
 palette = 19=#45191b
-palette = 20=#d99a4e
+palette = 20=#f4c31a
 palette = 21=#f8f0df

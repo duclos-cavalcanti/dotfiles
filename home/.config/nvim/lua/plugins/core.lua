@@ -1,8 +1,4 @@
--- Core editing config: treesitter, LSP, and the local agentic plugin.
--- Plugins declared in plugins/init.lua (agentic is a local pack/start plugin,
--- not vim.pack-managed).
-
--- Treesitter -----------------------------------------------------------------
+-- Treesitter
 require("nvim-treesitter").install({
     "bash",
     "c",
@@ -25,20 +21,19 @@ require("nvim-treesitter").install({
     "vimdoc",
 })
 
--- LSP ------------------------------------------------------------------------
--- nvim-lspconfig removed: each server is a self-contained base config in
--- `lsp/<name>.lua` (cmd + filetypes + root_markers). To add a server: drop a
--- `lsp/<name>.lua` and list it here.
-vim.lsp.enable({
-    "bashls",
-    "lua_ls",
-    "marksman",
-    "rust_analyzer",
-})
-
--- Completion -----------------------------------------------------------------
+-- Completion
 require("mini.completion").setup()
 
--- Agentic --------------------------------------------------------------------
--- Local plugin under pack/plugins/start/agentic, auto-sourced by Neovim at
-require("agentic").setup()
+-- Diff
+require("mini.diff").setup({
+    -- Default apply/reset are `gh`/`gH`; `gh` collides with LSP signature_help
+    -- (core.lua). Move hunk actions under the <leader>g git namespace. Hunk
+    -- navigation stays on ]h / [h (mini.diff defaults).
+    mappings = {
+        apply = "<leader>gh",
+        reset = "<leader>gH",
+    },
+})
+
+-- Git
+require("mini.git").setup()

@@ -1,5 +1,7 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
+vim.g.netrw_liststyle = 3
+vim.g.netrw_winsize = 25
 
 local options = {
     backup = false,                                     -- creates a backup file

@@ -1,4 +1,4 @@
--- Trim trailing whitespace and trailing blank lines on save (Lua files).
+-- Trim trailing whitespace and trailing blank lines on save
 vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = "*.lua",
     callback = function()
@@ -21,7 +21,7 @@ vim.api.nvim_create_autocmd("FileType", {
     desc = "Start treesitter highlighting",
 })
 
--- LSP buffer-local keymaps on attach (servers enabled in plugins/core.lua).
+-- LSP buffer-local keymaps on attach
 vim.api.nvim_create_autocmd("LspAttach", {
     desc = "LSP buffer keymaps",
     callback = function(args)
@@ -41,8 +41,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end,
 })
 
--- Show diagnostics in a float on hover (pairs with virtual_text=false in
--- config.lua). 'updatetime' controls the delay (also config.lua).
+-- Show diagnostics in a float on hover
 vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
     desc = "Diagnostics float on hover",
     callback = function()

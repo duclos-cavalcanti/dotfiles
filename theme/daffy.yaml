@@ -1,18 +1,52 @@
 scheme: "Daffy"
 author: "Inspired by the Looney Tunes 'Daffy Duck' card (red vortex / black duck / gold)"
-base00: "000000"
+#
+# Design note: a source image only yields ~4 hues, but base16 needs all 16.
+# So the palette is built in two halves:
+#   - OBSERVED  — taken straight from the card: the black, the cream paper, and
+#                 the hot red/orange/gold accents.
+#   - DERIVED   — the four "cold" accents (green/cyan/blue/magenta) do NOT exist
+#                 in the art. They're engineered as the desaturated COMPLEMENT of
+#                 the warm trio: cool hues give max separation for legibility,
+#                 dialed down so the invented colors stay subordinate to the real
+#                 ones. This keeps it readable as code while still reading "Daffy".
+#
+# IMPORTANT: keep comments on their own lines. The base16 renderer parses the
+# value as everything after the colon, so a trailing `# ...` would corrupt the hex.
+
+# --- OBSERVED: neutral ramp (base00-07), warmed toward the card ---------------
+# The card has no gray, so the dark->light ladder is tinted, not neutral:
+# blacks/oxblood from the duck + rings, creams from the paper, gold from the beak.
+base00: "030202"
+# base01/02: dark chrome + selection, oxblood from the outer rings
 base01: "2b1214"
 base02: "45191b"
+# base03: comments = muted brick (a desaturated red, so dim text still belongs)
 base03: "a15c4d"
+# base04: statusline text = gold-tan lifted from Daffy's beak/feet
 base04: "d99a4e"
+# base05-07: foreground = the card's cream paper / whites, warmed
 base05: "f3e7cf"
 base06: "f8f0df"
 base07: "fdf8ee"
+
+# --- OBSERVED: hot accents, straight from the art ----------------------------
 base08: "e5211d"
+# base09: orange = the center-vortex glow
 base09: "f2701c"
+# base0A: yellow = the "LOONEY TUNES" title gold
 base0A: "f4c31a"
+
+# --- DERIVED: cold accents (not in the image; complements, desaturated) -------
+# base0B: strings = olive/leaf green, yellow-leaning to bridge toward the gold
 base0B: "83b23f"
+# base0C: escapes = teal, the direct complement of red for widest separation
 base0C: "2fae9c"
+# base0D: functions = muted azure; bright enough to pop on black, not fight the reds
 base0D: "3f9ec6"
+# base0E: keywords = orchid/rose (pushed off true magenta to keep a gap from red)
 base0E: "cf5fa6"
+
+# --- IN-FAMILY: brown --------------------------------------------------------
+# base0F: deprecated = dark amber/brown from the gold->maroon warm range
 base0F: "a5611e"

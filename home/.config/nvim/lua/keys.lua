@@ -30,6 +30,18 @@ local function _qf_prev()
     end
 end
 
+local function _search_files()
+    MiniPick.builtin.cli(
+        { command = { "rg", "--files", "--hidden", "--no-ignore", "--glob", "!.git" } },
+        { source = { name = "Files", cwd = vim.fn.getcwd() } }
+    )
+end
+
+local function _buffers()
+    local wipeout = function() vim.api.nvim_buf_delete(MiniPick.get_picker_matches().current.bufnr, {}) end
+    MiniPick.builtin.buffers({}, { mappings = { wipeout = { char = "<C-d>", func = wipeout } } })
+end
+
 function _terminal()
     local term = vim.g._term or {}
     local api = vim.api
@@ -64,21 +76,23 @@ end
 
 map("t", "<ESC>", "<C-\\><C-n>", { silent = true })
 map("t", "<C-w>", "<C-\\><C-N><C-w>", { silent = true })
-
 map("n", "<C-w>>", ":tabmove +1<CR>", { silent = true })
 map("n", "<C-w><lt>", ":tabmove -1<CR>", { silent = true })
-
 map("n", "<leader>e", "<cmd>Lexplore<CR>", { silent = true, desc = "Toggle Netrw" })
 map("n", "<leader><space>", _terminal, { silent = true, desc = "Toggle Terminal" })
-
 map("n", "<leader>o", _open, { silent = true, desc = "Open buffer in Markdown Preview.app" })
-
 map("n", "<C-n>", _qf_next, { silent = true, desc = "Next quickfix item" })
 map("n", "<C-p>", _qf_prev, { silent = true, desc = "Prev quickfix item" })
-
+map("n", "<leader>gp", function() MiniDiff.toggle_overlay() end, { desc = "Git: toggle hunk overlay" })
+map({ "n", "x" }, "<leader>gb", function() MiniGit.show_at_cursor() end, { desc = "Git: blame / show at cursor" })
+map("n", "<leader>sf",  _search_files, { desc = "Find files (hidden + ignored)" })
+map("n", "<leader>sg", function() MiniPick.builtin.grep_live() end, { desc = "Live grep" })
+map("n", "<leader>sg", function() MiniPick.builtin.grep_live() end, { desc = "Live grep" })
+map("n", "<leader>sb", _buffers,                         { desc = "Find buffers (<C-d> wipeout)" })
+map("n", "<leader>sh", function() MiniPick.builtin.help() end,      { desc = "Help tags" })
+map("n", "<leader><Tab>", function() MiniExtra.pickers.lsp({ scope = "document_symbol" }) end, { desc = "LSP symbols (document)" })
+map("n", "<leader><S-Tab>", function() MiniExtra.pickers.lsp({ scope = "workspace_symbol" }) end, { desc = "LSP symbols (workspace)" })
 map("n", "<C-g>f", "<cmd>AgenticSendFile<CR>",       { desc = "Agentic: send file ref" })
 map("n", "<C-g>r", "<cmd>AgenticRegister<CR>",       { desc = "Agentic: register tmux session" })
-
 map("x", "<C-g>i", ":<C-u>AgenticSendSelection<CR>", { desc = "Agentic: send selection ref" })
-
 map("i", "<CR>", _complete, { expr = true, replace_keycodes = false })

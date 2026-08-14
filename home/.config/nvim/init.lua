@@ -33,5 +33,6 @@ vim.lsp.enable({
     "bashls",
     "lua_ls",
     "marksman",
+    "pyright",
     "rust_analyzer",
 })

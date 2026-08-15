@@ -34,8 +34,7 @@ brew "watch"
 brew "reattach-to-user-namespace"
 
 # ai
-brew "ollama"
-brew "anomalyco/tap/opencode"
+brew "pi-coding-agent"
 
 # containers
 brew "docker"

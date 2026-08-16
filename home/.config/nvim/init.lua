@@ -1,4 +1,4 @@
--- loads all configs
+-- inspired by https://github.com/nvim-mini/mini.nvim
 
 vim.api.nvim_create_autocmd("PackChanged", {
     callback = function(ev)

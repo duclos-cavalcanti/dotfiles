@@ -13,7 +13,7 @@
       "src": "https://github.com/nvim-mini/mini.completion"
     },
     "mini.diff": {
-      "rev": "b3d8507929f8df54ab9b08c77564c1afd7d62110",
+      "rev": "626b8a5b93874c4d05ca25aedec56cfff0b378fb",
       "src": "https://github.com/nvim-mini/mini.diff"
     },
     "mini.extra": {
@@ -24,9 +24,17 @@
       "rev": "98faae31e9be1cc054ae63485e58ceb185efcad0",
       "src": "https://github.com/nvim-mini/mini.icons"
     },
+    "mini.pairs": {
+      "rev": "b1c5a726921b7a8c9321e9a7a208aa0571de5810",
+      "src": "https://github.com/nvim-mini/mini.pairs"
+    },
     "mini.pick": {
       "rev": "04e73ab07222508361095bb6e27621b315e6b9f1",
       "src": "https://github.com/nvim-mini/mini.pick"
+    },
+    "mini.snippets": {
+      "rev": "050638170639ceb7bef4e804507cbf209e565b2c",
+      "src": "https://github.com/nvim-mini/mini.snippets"
     },
     "mini.statusline": {
       "rev": "127997ebef7ef632161203b960c5ef9d158f4810",
@@ -37,7 +45,7 @@
       "src": "https://github.com/nvim-mini/mini.tabline"
     },
     "nvim-treesitter": {
-      "rev": "7248feaca45e4d944591497964bc19afa89ad1c6",
+      "rev": "074aa4422bf029908338e855d0c0f71470a971bb",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter",
       "version": "'main'"
     }

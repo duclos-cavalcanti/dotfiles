@@ -24,6 +24,14 @@ require("nvim-treesitter").install({
 -- Completion
 require("mini.completion").setup()
 
+-- Auto-pairs
+require("mini.pairs").setup()
+
+-- Snippets
+require("mini.snippets").setup({
+    snippets = { require("mini.snippets").gen_loader.from_lang() },
+})
+
 -- Diff
 require("mini.diff").setup({
     -- Default apply/reset are `gh`/`gH`; `gh` collides with LSP signature_help

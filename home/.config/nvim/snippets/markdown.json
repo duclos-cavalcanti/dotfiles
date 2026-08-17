@@ -1,0 +1,55 @@
+{
+  "content": {
+    "prefix": "content",
+    "body": [
+      "1. [Introduction](#intro)",
+      "    1. [sub](#sub1)",
+      "    2. [sub2](#sub2)",
+      "    3. [sub3](#sub3)",
+      "",
+      "<a name=\"intro\"/>"
+    ]
+  },
+  "foot": {
+    "prefix": "foot",
+    "body": ["[^${1:note}]", "[${1}]: ${0:Reference}"]
+  },
+  "cite": {
+    "prefix": "cite",
+    "body": ["[@${1:citation}]"]
+  },
+  "table": {
+    "prefix": "tb",
+    "body": [
+      "Item | Price | # In stock",
+      "---|---|---",
+      "Juicy Apples | 1.99 | 739",
+      "Bananas | 1.89 | 6"
+    ]
+  },
+  "checkbox": {
+    "prefix": "ch",
+    "body": ["- [ ] ${1:todo}"]
+  },
+  "dropdown": {
+    "prefix": "drop",
+    "body": [
+      "<details closed>",
+      "<summary>",
+      "${1:title}",
+      "</summary>",
+      "<p>",
+      "${0:content}",
+      "</p>",
+      "</details>"
+    ]
+  },
+  "image": {
+    "prefix": "img",
+    "body": ["![${1:title}](.imgs/${2:img}.png)"]
+  },
+  "link": {
+    "prefix": "link",
+    "body": ["[${1:word}](${2:url})"]
+  }
+}

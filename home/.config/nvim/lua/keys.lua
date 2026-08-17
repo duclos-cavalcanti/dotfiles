@@ -69,11 +69,6 @@ function _terminal()
     vim.g._term = term
 end
 
-local function _complete()
-    if vim.fn.pumvisible() == 0 then return vim.keycode("<CR>") end
-    return vim.fn.complete_info().selected ~= -1 and vim.keycode("<C-y>") or vim.keycode("<C-y><CR>")
-end
-
 map("t", "<ESC>", "<C-\\><C-n>", { silent = true })
 map("t", "<C-w>", "<C-\\><C-N><C-w>", { silent = true })
 map("n", "<C-w>>", ":tabmove +1<CR>", { silent = true })
@@ -95,4 +90,3 @@ map("n", "<leader><S-Tab>", function() MiniExtra.pickers.lsp({ scope = "workspac
 map("n", "<C-g>f", "<cmd>AgenticSendFile<CR>",       { desc = "Agentic: send file ref" })
 map("n", "<C-g>r", "<cmd>AgenticRegister<CR>",       { desc = "Agentic: register tmux session" })
 map("x", "<C-g>i", ":<C-u>AgenticSendSelection<CR>", { desc = "Agentic: send selection ref" })
-map("i", "<CR>", _complete, { expr = true, replace_keycodes = false })

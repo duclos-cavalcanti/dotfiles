@@ -14,6 +14,8 @@ vim.pack.add({
     { src = "https://github.com/nvim-mini/mini.pick" },
     { src = "https://github.com/nvim-mini/mini.extra" },
     { src = "https://github.com/nvim-mini/mini.completion" },
+    { src = "https://github.com/nvim-mini/mini.pairs" },
+    { src = "https://github.com/nvim-mini/mini.snippets" },
     { src = "https://github.com/nvim-mini/mini.icons" },
     { src = "https://github.com/nvim-mini/mini.statusline" },
     { src = "https://github.com/nvim-mini/mini.tabline" },

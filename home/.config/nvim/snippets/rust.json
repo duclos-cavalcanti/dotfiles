@@ -1,0 +1,27 @@
+{
+  "struct": {
+    "prefix": "struct",
+    "body": ["struct ${1:Name} {", "\t$0", "}"]
+  },
+  "enum": {
+    "prefix": "enum",
+    "body": ["enum ${1:Name} {", "\t$0", "}"]
+  },
+  "impl": {
+    "prefix": "impl",
+    "body": ["impl ${1:Type} {", "\t$0", "}"]
+  },
+  "fn": {
+    "prefix": "fn",
+    "body": ["fn ${1:name}(${2}) ${3:-> ${4:()} }{", "\t$0", "}"]
+  },
+  "test": {
+    "prefix": "test",
+    "body": [
+      "#[test]",
+      "fn ${1:name}() {",
+      "\t$0",
+      "}"
+    ]
+  }
+}

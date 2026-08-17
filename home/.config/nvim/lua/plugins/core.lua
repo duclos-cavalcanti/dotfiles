@@ -30,6 +30,8 @@ require("mini.pairs").setup()
 -- Snippets
 require("mini.snippets").setup({
     snippets = { require("mini.snippets").gen_loader.from_lang() },
+    -- default <C-j>; jump_next/prev stay <C-l>/<C-h>
+    mappings = { expand = "<C-k>" },
 })
 
 -- Diff

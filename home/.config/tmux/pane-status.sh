@@ -1,5 +1,5 @@
 #!/bin/sh
-# pane-border.sh <index> <active> <command> <path> — one-line label drawn on a
+# pane-status.sh <index> <active> <command> <path> — one-line label drawn on a
 # pane's border. Called from pane-border-format; tmux expands the #{...} args
 # per-pane before invoking, so each pane gets its own context.
 #
@@ -31,7 +31,7 @@ main() {
     fi
 
     dir=$(basename "$path")
-    printf ' [%s] %s  %s %s ' "$index" "$command" "$dir" "{n=$n}"
+    printf ' [%s] %s  %s %s ' "$index" "$command" "$dir" "n=$n"
 }
 
 main "$@"

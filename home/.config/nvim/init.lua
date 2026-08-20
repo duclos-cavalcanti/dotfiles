@@ -37,4 +37,5 @@ vim.lsp.enable({
     "marksman",
     "pyright",
     "rust_analyzer",
+    "yamlls",
 })

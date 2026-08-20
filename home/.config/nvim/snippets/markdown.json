@@ -19,7 +19,7 @@
     "body": ["[@${1:citation}]"]
   },
   "table": {
-    "prefix": "tb",
+    "prefix": "table",
     "body": [
       "Item | Price | # In stock",
       "---|---|---",
@@ -28,7 +28,7 @@
     ]
   },
   "checkbox": {
-    "prefix": "ch",
+    "prefix": "check",
     "body": ["- [ ] ${1:todo}"]
   },
   "dropdown": {
@@ -45,7 +45,7 @@
     ]
   },
   "image": {
-    "prefix": "img",
+    "prefix": "image",
     "body": ["![${1:title}](.imgs/${2:img}.png)"]
   },
   "link": {

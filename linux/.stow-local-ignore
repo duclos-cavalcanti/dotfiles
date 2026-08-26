@@ -1,0 +1,18 @@
+# Restored from stow's built-in defaults
+# (presence of this file overrides them, so re-listed here)
+^CVS$
+\.cvsignore
+^RCS$
+,v$
+^\.svn$
+^\.git$
+^\.gitignore$
+^\.gitmodules$
+^\.hg$
+^\.hgignore$
+\.swp$
+~$
+\.#.+
+\.bak$
+\.orig$
+\.rej$

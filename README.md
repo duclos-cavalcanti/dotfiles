@@ -37,3 +37,20 @@ base16 lua     <scheme> > ~/.config/nvim/lua/theme/custom.lua
 base16 ghostty <scheme> > ~/.config/ghostty/themes/custom
 # then reload: ghostty reload-config keybind; nvim restart (or re-source)
 ```
+
+## 4. License
+
+Released under the MIT license. See [LICENSE](LICENSE).
+
+---
+<p align="center">
+<a href="LICENSE">
+  <img src="https://img.shields.io/badge/license-MIT-blue.svg" />
+</a>
+<a>
+  <img src="https://img.shields.io/github/languages/code-size/duclos-cavalcanti/dotfiles.svg" />
+</a>
+<a>
+  <img src="https://img.shields.io/github/commit-activity/m/duclos-cavalcanti/dotfiles.svg" />
+</a>
+</p>

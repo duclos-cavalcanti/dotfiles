@@ -67,16 +67,6 @@ function install_dotfiles() {
     fi
 }
 
-function install_git_config() {
-    print_section "Configuring git difftool (neovim diff mode)"
-    # difftool (~/.bin) adapts `git difftool` to Neovim for both file diffs
-    # and --dir-diff (two temp dirs, as lazygit's <c-t>/openDiffTool uses).
-    git config --global diff.tool nvimdiff
-    git config --global difftool.nvimdiff.cmd 'difftool "$LOCAL" "$REMOTE"'
-    git config --global difftool.prompt false
-    print_status "git difftool configured successfully"
-}
-
 function main() {
     print_status "Starting macfiles setup..."
 
@@ -93,7 +83,6 @@ function main() {
     install_packages
     install_docker_plugins
     install_dotfiles
-    install_git_config
 
     print_status "Setup complete!"
     echo

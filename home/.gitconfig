@@ -1,0 +1,16 @@
+; Portable git config (macfiles).
+; Machine-specific identity ([user]) lives in ~/.gitconfig.local (untracked)
+; and is pulled in via the [include] below. Missing includes are ignored,
+; so a fresh machine simply has no identity until that file is created.
+
+; difftool -> Neovim diff mode. `difftool` is the ~/.bin wrapper, which adapts
+; `git difftool` (and --dir-diff, as lazygit's <c-t> uses) to nvim.
+[diff]
+	tool = nvimdiff
+[difftool]
+	prompt = false
+[difftool "nvimdiff"]
+	cmd = difftool "$LOCAL" "$REMOTE"
+
+[include]
+	path = ~/.gitconfig.local

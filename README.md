@@ -14,8 +14,19 @@ OS | Terminal | Editor | Shell
 
 ## 1. Installation
 
+Clone the repo with its submodules (`~/.config/crew` is a submodule), then run
+the installer:
+
 ```bash
+git clone --recurse-submodules git@github.com:duclos-cavalcanti/dotfiles.git ~/.dotfiles
+cd ~/.dotfiles
 ./install.sh
+```
+
+Already cloned without `--recurse-submodules`? Pull them in with:
+
+```bash
+git submodule update --init --recursive
 ```
 
 ## 2. Tools

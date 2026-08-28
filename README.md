@@ -8,7 +8,7 @@
 
 OS | Terminal | Editor | Shell
 ---|---|---|---
-[macOS](https://www.apple.com)| [ghostty](https://ghostty.org)/[tmux](http://linuxcommand.org/lc3_man_pages/tmux1.html) | [neovim](https://github.com/neovim/neovim) | [zsh](https://www.zsh.org)
+[macOS](https://www.apple.com)/[Ubuntu](https://ubuntu.com/download)| [ghostty](https://ghostty.org)/[tmux](http://linuxcommand.org/lc3_man_pages/tmux1.html) | [neovim](https://github.com/neovim/neovim) | [zsh](https://www.zsh.org)
 
 </div></p>
 
@@ -35,7 +35,6 @@ re-emitting any scheme into that slot with the `base16` generator, then reload:
 ```bash
 base16 lua     <scheme> > ~/.config/nvim/lua/theme/custom.lua
 base16 ghostty <scheme> > ~/.config/ghostty/themes/custom
-# then reload: ghostty reload-config keybind; nvim restart (or re-source)
 ```
 
 ## 4. License

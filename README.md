@@ -1,4 +1,4 @@
-<h1 align="center">(mac)files</h1>
+<h1 align="center">fotfiles</h1>
 <p align="center">
     Personal dotfiles and system setup automation.
 </p>

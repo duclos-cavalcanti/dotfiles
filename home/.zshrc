@@ -4,6 +4,7 @@ export TERM='xterm-256color'
 export VISUAL='nvim'
 export EDITOR='nvim'
 export PAGER='less'
+export LANG='en_US.UTF-8'
 
 # Custom
 export MACFILES="$HOME/.macfiles"

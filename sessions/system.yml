@@ -1,0 +1,35 @@
+session_name: system
+start_directory: ~/.dotfiles
+
+windows:
+  - window_name: zsh
+    layout: main-vertical
+    panes:
+      - shell_command: claude
+      - shell_command: lazygit
+
+  - window_name: home
+    panes:
+      - shell_command: nvim .tmux.conf
+        start_directory: ~/.dotfiles/home
+
+  - window_name: nvim
+    layout: main-vertical
+    start_directory: ~/.dotfiles/home/.config/nvim
+    panes:
+      - shell_command: nvim init.lua
+      - shell_command: zsh
+
+  - window_name: term
+    layout: main-vertical
+    panes:
+      - shell_command: nvim config
+        start_directory: ~/.dotfiles/home/.config/ghostty
+      - start_directory: ~/.dotfiles
+
+  - window_name: mail
+    layout: main-vertical
+    panes:
+      - start_directory: ~/.dotfiles/home/.config
+      - shell_command: nvim neomutt/neomuttrc
+        start_directory: ~/.dotfiles/home/.config/neomutt

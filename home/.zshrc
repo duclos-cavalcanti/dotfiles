@@ -11,6 +11,7 @@ export MACFILES="$HOME/.macfiles"
 
 # Configuration
 export BAT_THEME='ansi'
+export TMUXP_CONFIGDIR="$HOME/.dotfiles/sessions"
 
 # XDG
 export XDG_DESKTOP_DIR="$HOME/Desktop"

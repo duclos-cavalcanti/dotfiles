@@ -21,9 +21,9 @@ check() {
 }
 
 main() {
-    local uninstall="stow -Dvt"
-    local install="stow -Svt"
-    local reinstall="stow -RSvt"
+    local uninstall="stow --no-folding -Dvt"
+    local install="stow --no-folding -Svt"
+    local reinstall="stow --no-folding -RSvt"
 
     if [ $# -lt 1 ]; then
       usage

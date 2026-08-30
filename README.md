@@ -64,7 +64,19 @@ palette values (`ghostty +list-themes` to browse names):
 cat /Applications/Ghostty.app/Contents/Resources/ghostty/themes/<name>
 ```
 
-## 4. License
+## 4. AI (Local)
+
+Install ollama and opencode, then pull a model:
+
+```bash
+brew install ollama opencode
+ollama serve &
+ollama pull qwen2.5-coder:7b
+```
+
+Launch opencode and set provider to **Ollama**, select the pulled model.
+
+## 5. License
 
 Released under the MIT license. See [LICENSE](LICENSE).
 

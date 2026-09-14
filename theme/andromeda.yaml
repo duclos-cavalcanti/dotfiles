@@ -1,0 +1,49 @@
+scheme: "Andromeda"
+author: "Ghostty Andromeda (terminal, verbatim) + inferred base16 -- macfiles"
+
+# --- terminal: 16 ANSI colors + UI, ground truth (copied verbatim from the
+#     source theme; here Ghostty's built-in Andromeda). Consumed by `base16 ghostty`.
+background: "262a33"
+foreground: "e5e5e5"
+cursor: "f8f8f0"
+cursor-text: "b5b5a8"
+selection-background: "5a5c62"
+selection-foreground: "ece7e7"
+color00: "000000"
+color01: "cd3131"
+color02: "05bc79"
+color03: "e5e512"
+color04: "2472c8"
+color05: "bc3fbc"
+color06: "0fa8cd"
+color07: "e5e5e5"
+color08: "666666"
+color09: "cd3131"
+color10: "05bc79"
+color11: "e5e512"
+color12: "2472c8"
+color13: "bc3fbc"
+color14: "0fa8cd"
+color15: "e5e5e5"
+
+# --- base16: for mini.base16 (nvim), consumed by `base16 lua`. A mix of direct
+#     copies from the 16 above and inferred slots:
+#       copies : 08<-color1 0A<-color3 0B<-color2 0C<-color6 0D<-color4 0E<-color5
+#                00<-background 02<-selection-background 03<-color8 05<-foreground
+#       inferred: 01 04 06 07 (ramp steps), 09 (orange), 0F (coral) -- no ANSI slot.
+base00: "262a33"
+base01: "2e323c"
+base02: "5a5c62"
+base03: "666666"
+base04: "b5b5a8"
+base05: "e5e5e5"
+base06: "ece7e7"
+base07: "f8f8f0"
+base08: "cd3131"
+base09: "f39c12"
+base0A: "e5e512"
+base0B: "05bc79"
+base0C: "0fa8cd"
+base0D: "2472c8"
+base0E: "bc3fbc"
+base0F: "ee5d43"

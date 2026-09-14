@@ -39,13 +39,28 @@ git submodule update --init --recursive
 
 ## 3. Theming
 
-base16 schemes are YAML in `theme/` (repo root, not stowed) — the source library.
+Theme schemes are YAML in `theme/` (repo root, not stowed) — the source library.
+Each scheme carries two blocks (see `theme/andromeda.yaml`, the exemplar):
+
+- **terminal** — the 16 ANSI colors + UI (`background`/`foreground`/`cursor`/
+  `selection-*`), copied *verbatim* from the source theme. Consumed by ghostty.
+- **base16** — `base00`–`base0F` for nvim (mini.base16): a mix of direct copies
+  from the 16 above and inferred slots (ramp steps + `base09`/`base0F`, which
+  have no ANSI equivalent).
+
 Both nvim and ghostty consume one active slot named `custom`; switch schemes by
-re-emitting any scheme into that slot with the `base16` generator, then reload:
+re-emitting a scheme into that slot with the `base16` generator, then reload:
 
 ```bash
-base16 lua     <scheme> > ~/.config/nvim/lua/theme/custom.lua
-base16 ghostty <scheme> > ~/.config/ghostty/themes/custom
+base16 lua     <scheme> > ~/.config/nvim/lua/theme/custom.lua   # base16 block
+base16 ghostty <scheme> > ~/.config/ghostty/themes/custom       # terminal block
+```
+
+To seed a new scheme's terminal block, inspect any built-in ghostty theme's 16
+palette values (`ghostty +list-themes` to browse names):
+
+```bash
+cat /Applications/Ghostty.app/Contents/Resources/ghostty/themes/<name>
 ```
 
 ## 4. License

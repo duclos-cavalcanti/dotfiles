@@ -1,0 +1,54 @@
+scheme: "Desert"
+author: "Ghostty Desert (terminal, verbatim) + usability-derived base16 -- macfiles"
+
+# --- terminal: 16 ANSI colors + UI, ground truth (copied verbatim from the
+#     source theme; here Ghostty's built-in Desert). Consumed by `base16 ghostty`.
+background: "333333"
+foreground: "ffffff"
+cursor: "00ff00"
+cursor-text: "000000"
+selection-background: "b5d5ff"
+selection-foreground: "000000"
+color00: "4d4d4d"
+color01: "ff2b2b"
+color02: "98fb98"
+color03: "f0e68c"
+color04: "cd853f"
+color05: "ffdead"
+color06: "ffa0a0"
+color07: "f5deb3"
+color08: "626262"
+color09: "ff5555"
+color10: "55ff55"
+color11: "ffff55"
+color12: "87ceff"
+color13: "ff55ff"
+color14: "ffd700"
+color15: "ffffff"
+
+# --- base16: for mini.base16 (nvim). Unlike the copy-driven schemes, Desert's
+#     ANSI accents are unconventional (its "blue/magenta/cyan" slots hold brown/
+#     cream/salmon), its selection-bg is *light*, and its fg is pure white -- so
+#     the usual copy rules break. Per operator: terminal stays verbatim, base16 is
+#     hand-derived for a USABLE editor palette that keeps Desert's warm identity.
+#       ramp   : 00 bg; 01<-color0; 02<-color8 (real dark shade, not light sel-bg);
+#                03/04 inferred grays; 05-07 a light ramp topping at Desert's white.
+#       accents: 08<-color9 (softer red)  09<-color4 (peru/tan, the desert orange)
+#                0A<-color3 (khaki)  0B<-color2 (green)  0D<-color12 (sky blue)
+#                0E<-color13 (magenta)  0C inferred teal, 0F inferred sienna.
+base00: "333333"
+base01: "4d4d4d"
+base02: "626262"
+base03: "808080"
+base04: "b3b3b3"
+base05: "e6e6e6"
+base06: "f2f2f2"
+base07: "ffffff"
+base08: "ff5555"
+base09: "cd853f"
+base0A: "f0e68c"
+base0B: "98fb98"
+base0C: "66cdaa"
+base0D: "87ceff"
+base0E: "ff55ff"
+base0F: "a0522d"

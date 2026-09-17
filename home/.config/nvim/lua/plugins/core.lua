@@ -29,7 +29,13 @@ require("mini.pairs").setup()
 
 -- Snippets
 require("mini.snippets").setup({
-    snippets = { require("mini.snippets").gen_loader.from_lang() },
+    -- markdown_inline: the injected TS lang for markdown body text reports as
+    -- "markdown_inline" -- remap it to load markdown.json (per mini.snippets docs).
+    snippets = {
+        require("mini.snippets").gen_loader.from_lang({
+            lang_patterns = { markdown_inline = { "markdown.json" } },
+        }),
+    },
     -- default <C-j>; jump_next/prev stay <C-l>/<C-h>
     mappings = { expand = "<C-k>" },
 })

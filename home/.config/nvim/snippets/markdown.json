@@ -31,6 +31,10 @@
     "prefix": "check",
     "body": ["- [ ] ${1:todo}"]
   },
+  "code": {
+    "prefix": "code",
+    "body": ["```$1", "$CLIPBOARD", "```", "$0"]
+  },
   "dropdown": {
     "prefix": "drop",
     "body": [

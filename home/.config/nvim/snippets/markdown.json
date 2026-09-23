@@ -33,7 +33,7 @@
   },
   "code": {
     "prefix": "code",
-    "body": ["```$1", "$CLIPBOARD", "```", "$0"]
+    "body": ["```", "$CLIPBOARD", "```", "$1"]
   },
   "dropdown": {
     "prefix": "drop",

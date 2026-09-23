@@ -48,12 +48,13 @@ Each scheme carries two blocks (see `theme/andromeda.yaml`, the exemplar):
   from the 16 above and inferred slots (ramp steps + `base09`/`base0F`, which
   have no ANSI equivalent).
 
-Both nvim and ghostty consume one active slot named `custom`; switch schemes by
-re-emitting a scheme into that slot with the `base16` generator, then reload:
+Both nvim and ghostty consume one active slot named `custom`. Switch schemes with
+the `theme.sh` helper (a repo tool, run from the repo root like `stow.sh`), then
+reload (ghostty reload-config keybind; restart nvim):
 
 ```bash
-base16 lua     <scheme> > ~/.config/nvim/lua/theme/custom.lua   # base16 block
-base16 ghostty <scheme> > ~/.config/ghostty/themes/custom       # terminal block
+./theme.sh <scheme>   # render <scheme> into the custom slot for both consumers
+./theme.sh            # print the active scheme + list available ones
 ```
 
 To seed a new scheme's terminal block, inspect any built-in ghostty theme's 16

@@ -1,0 +1,50 @@
+scheme: "Espresso"
+author: "Ghostty Espresso (terminal, verbatim) + inferred base16 -- macfiles"
+
+# --- terminal: 16 ANSI colors + UI, ground truth (copied verbatim from the
+#     source theme; here Ghostty's built-in Espresso). Consumed by `base16 ghostty`.
+background: "323232"
+foreground: "ffffff"
+cursor: "d6d6d6"
+cursor-text: "999999"
+selection-background: "5b5b5b"
+selection-foreground: "ffffff"
+color00: "353535"
+color01: "d25252"
+color02: "a5c261"
+color03: "ffc66d"
+color04: "6c99bb"
+color05: "d197d9"
+color06: "bed6ff"
+color07: "eeeeec"
+color08: "606060"
+color09: "f00c0c"
+color10: "c2e075"
+color11: "e1e48b"
+color12: "8ab7d9"
+color13: "efb5f7"
+color14: "dcf4ff"
+color15: "ffffff"
+
+# --- base16: for mini.base16 (nvim), consumed by `base16 lua`. A mix of direct
+#     copies from the 16 above and inferred slots:
+#       copies : 08<-color1 0A<-color3 0B<-color2 0C<-color6 0D<-color4 0E<-color5
+#                00<-background 02<-selection-background 03<-color8 05<-foreground
+#       inferred: 01 04 06 07 (ramp steps; fg is pure white so 05-07 top out there),
+#                 09 (orange), 0F (coffee brown) -- no ANSI slot.
+base00: "323232"
+base01: "353535"
+base02: "5b5b5b"
+base03: "606060"
+base04: "999999"
+base05: "ffffff"
+base06: "ffffff"
+base07: "ffffff"
+base08: "d25252"
+base09: "cc7833"
+base0A: "ffc66d"
+base0B: "a5c261"
+base0C: "bed6ff"
+base0D: "6c99bb"
+base0E: "d197d9"
+base0F: "9d6b53"

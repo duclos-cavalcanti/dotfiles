@@ -1,3 +1,0 @@
-[submodule "home/.config/crew"]
-	path = home/.config/crew
-	url = git@github.com:duclos-cavalcanti/crew-rs.git

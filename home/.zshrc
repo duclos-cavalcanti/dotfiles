@@ -180,6 +180,7 @@ fi
 alias v='nvim'
 alias tv='NVIM_APPNAME=nvim-test nvim'
 alias g='git status'
+alias lg='lazygit'
 
 if command -v bat &>/dev/null || command -v batcat &>/dev/null; then
     alias cat='bat -p'

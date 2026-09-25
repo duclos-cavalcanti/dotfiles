@@ -60,4 +60,5 @@ Track the NEOVIM.md thesis ("native core eats plugins") against the actual `home
 
 ## Ideas / TBD
 
+- [ ] Minimal Apple Notes control in nvim — a single `notes.lua`, `osascript`-only (no sqlite3/pandoc/telescope, no Full Disk Access — just Automation→Notes), native `vim.ui.select` picker, wired to a keymap (e.g. `<leader>n`) like the `<leader>o` markdown-preview. ~4 AppleScript calls: list / read (`plaintext` → markdown scratch buffer) / write (buffer→HTML on `:w`) / create. Scope fork: **A** read/browse-only vs **B** +write+create. Trade-off: Notes stores HTML, so `plaintext` round-trips plain notes cleanly but drops rich formatting/checklists/images — that lossiness is exactly what the heavy upstream `rdrkr/apple-notes.nvim` (pandoc) buys back. A leaner no-dep alternative to that plugin.
 - [ ] _add your own here_

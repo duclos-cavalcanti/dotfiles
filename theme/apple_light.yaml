@@ -1,0 +1,54 @@
+scheme: "Apple System Colors Light"
+author: "Ghostty Apple System Colors Light (terminal, verbatim) + usability-derived base16 -- macfiles"
+
+# --- terminal: 16 ANSI colors + UI, ground truth (copied verbatim from the
+#     source theme; here Ghostty's built-in Apple System Colors Light).
+#     Consumed by `base16 ghostty`.
+background: "feffff"
+foreground: "000000"
+cursor: "98989d"
+cursor-text: "ffffff"
+selection-background: "abd8ff"
+selection-foreground: "000000"
+color00: "1a1a1a"
+color01: "cc372e"
+color02: "26a439"
+color03: "cdac08"
+color04: "0869cb"
+color05: "9647bf"
+color06: "479ec2"
+color07: "98989d"
+color08: "464646"
+color09: "ff453a"
+color10: "32d74b"
+color11: "e5bc00"
+color12: "0a84ff"
+color13: "bf5af2"
+color14: "69c9f2"
+color15: "ffffff"
+
+# --- base16: for mini.base16 (nvim). This is a LIGHT scheme, so the ramp runs
+#     light -> dark (base00 lightest bg -> base07 darkest), the reverse of the
+#     dark schemes. Hand-derived for a usable light editor palette.
+#       ramp   : 00 bg (light); 02<-selection-background (Apple light blue);
+#                03<-color7 (systemGray comments); 01/04/06 inferred grays;
+#                05 near-black text; 07 the verbatim black foreground.
+#       accents: uses the NORMAL (darker) ANSI colors for contrast on white --
+#                08<-color1 0A<-color3 0B<-color2 0C<-color6 0D<-color4 0E<-color5;
+#                09 (systemOrange) and 0F (systemBrown) inferred -- no ANSI slot.
+base00: "feffff"
+base01: "f2f2f7"
+base02: "abd8ff"
+base03: "98989d"
+base04: "636366"
+base05: "1a1a1a"
+base06: "0d0d0d"
+base07: "000000"
+base08: "cc372e"
+base09: "ff9500"
+base0A: "cdac08"
+base0B: "26a439"
+base0C: "479ec2"
+base0D: "0869cb"
+base0E: "9647bf"
+base0F: "a2845e"

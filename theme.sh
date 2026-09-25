@@ -5,6 +5,7 @@
 # scheme pointer; git-ignored machine state).
 #
 #   ./theme.sh <scheme>   activate scheme (resolved to theme/<scheme>.yaml)
+#   ./theme.sh --list     list available schemes, one per line
 #   ./theme.sh            print the active scheme and list the available ones
 #
 # Reload is manual: ghostty via its reload-config keybind, nvim via restart.
@@ -23,6 +24,11 @@ list() {
 }
 
 scheme=$1
+
+if [ "$scheme" = "-l" ] || [ "$scheme" = "--list" ]; then
+    list
+    exit 0
+fi
 
 if [ -z "$scheme" ]; then
     printf 'active: %s\n' "$(cat "$THEME_DIR/current" 2>/dev/null || echo '(none)')"

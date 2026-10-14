@@ -1,0 +1,20 @@
+# tmuxp: reproduce the `system` session.  Load with: tmuxp load system
+session_name: system
+start_directory: ~/.macfiles
+
+windows:
+  - window_name: zsh
+    layout: even-horizontal
+    panes:
+      - claude
+      - nvim
+
+  - window_name: shell
+    start_directory: ~/.macfiles/home
+    panes:
+      - nvim
+
+  - window_name: nvim
+    start_directory: ~/.macfiles/home/.config/nvim
+    panes:
+      - nvim

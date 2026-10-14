@@ -8,38 +8,34 @@
 
 set -euo pipefail
 
+# The popup's cwd is set by the binding's `-d` flag (tmux expands the format
+# there; it does NOT expand formats in the popup shell-command). So root is
+# $PWD unless a caller passes one explicitly.
 action="${1:-}"
-root="${2:-$HOME}"
-
-# Copy a value to the system clipboard + tmux buffer, and flash it.
-yank() {
-  local val="$1"
-  [ -z "$val" ] && exit 0
-  printf '%s' "$val" | pbcopy
-  tmux set-buffer -- "$val"
-  tmux display-message "copied: $val"
-}
+root="${2:-$PWD}"
 
 case "$action" in
-  # Fuzzy-pick a file or dir under $root; yank its path.
+  # Fuzzy-pick a file or dir under $root; copy its path.
   path)
-    sel="$(
-      fd --hidden --follow --exclude .git . "$root" \
-        | fzf --prompt='path> ' --height=100% --reverse \
-              --preview 'test -d {} && ls -la --color=always {} || cat {} 2>/dev/null' \
-              --preview-window=right:50%
-    )" || exit 0
-    yank "$sel"
+    fd --hidden --follow --exclude .git . "$root" \
+      | fzf --prompt='path> ' --height=100% --reverse \
+            --preview 'test -d {} && ls -la --color=always {} || cat {} 2>/dev/null' \
+            --preview-window=right:50% \
+      | pbcopy
     ;;
 
-  # Fuzzy-pick a directory only; yank its path.
+  # Fuzzy-pick a directory only; copy its path.
   dir)
-    sel="$(
-      fd --type d --hidden --follow --exclude .git . "$root" \
-        | fzf --prompt='dir> ' --height=100% --reverse \
-              --preview 'ls -la --color=always {}' --preview-window=right:50%
-    )" || exit 0
-    yank "$sel"
+    fd --type d --hidden --follow --exclude .git . "$root" \
+      | fzf --prompt='dir> ' --height=100% --reverse \
+            --preview 'ls -la --color=always {}' --preview-window=right:50% \
+      | pbcopy
+    ;;
+
+  # Launch lazygit in $root (popup cwd = session path, set via -d).
+  # Plain lazygit in-cwd so git worktrees (where .git is a file) resolve.
+  git)
+    cd "$root" && exec lazygit
     ;;
 
   *)

@@ -1,0 +1,4 @@
+# crew runtime state (not tracked)
+registry
+registry.tmp
+state/

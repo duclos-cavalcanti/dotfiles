@@ -1,0 +1,84 @@
+#!/usr/bin/env bash
+# crew — entry/orchestrator: a thin shell over the crew-rs binary.
+#
+# Division of the tool: the crew-rs BINARY (the "app") lives in its own repo;
+# this wrapper + the runtime data are personal dotfiles. The binary REFLECTS
+# and RESOLVES (reads registry/state, resolves a jump target, renders status);
+# this script performs the tmux SIDE-EFFECTS it avoids — create/switch sessions,
+# the native picker, opening $EDITOR, and recording hook-driven state.
+#
+# Locations (override via env):
+#   CREW_BIN        the crew-rs binary [default: mady-factory build]
+#   CREW_DIRECTORY  dir holding `registry` + `state/` [default: ~/.config/tmux]
+#
+#   crew add                 bookmark the current session
+#   crew go <n|name|next|prev>  jump to a bookmark (create at its path if absent)
+#   crew pick                native choose-tree picker over the bookmarks
+#   crew list                plain bookmarks, one per line
+#   crew rm <n|name>         drop a bookmark
+#   crew edit                edit the registry in $EDITOR
+#   crew tmux-statusline     emit a one-line tmux-formatted crew summary
+#   crew signal <event>      map a Claude hook event -> state for this session
+
+set -u
+
+BIN="${CREW_BIN:-$HOME/Work/mady/mady-factory/crew/target/release/crew}"
+CREW_DIRECTORY="${CREW_DIRECTORY:-$HOME/.config/tmux}"
+export CREW_DIRECTORY
+CREW_FILE="$CREW_DIRECTORY/registry"
+CREW_STATE="$CREW_DIRECTORY/state"
+
+# signal (producer): map a Claude Code hook event to an agent state and record
+# it for this tmux session. No-op outside tmux / on unknown events.
+crew_signal() {
+    local state sess
+    case "$1" in
+        SessionStart)     state="idle" ;;
+        UserPromptSubmit) state="working" ;;
+        Stop)             state="done" ;;
+        Notification)     state="waiting" ;;
+        *)                return 0 ;;
+    esac
+    sess=$(tmux display-message -p '#{session_name}' 2>/dev/null) || return 0
+    [ -n "$sess" ] || return 0
+    mkdir -p "$CREW_STATE"
+    printf '%s\n' "$state" > "$CREW_STATE/$sess"
+}
+
+crew_go() {
+    local entry name path
+    entry=$("$BIN" go "$1") || return 0
+    [ -n "$entry" ] || { tmux display "crew: nothing to jump to"; return 0; }
+    name=${entry%%=*}
+    path=${entry#*=}
+    tmux has-session -t "=$name" 2>/dev/null || tmux new-session -ds "$name" -c "$path"
+    tmux switch-client -t "=$name"
+}
+
+crew_pick() {
+    # Native picker: tmux choose-tree restricted (via -f) to the registered
+    # sessions. Only shows those currently running; selecting switches to it.
+    local alt
+    alt=$("$BIN" list | paste -sd '|' -)
+    [ -n "$alt" ] || { tmux display "crew: registry empty"; return 0; }
+    tmux choose-tree -Zs -f "#{m/r:^(${alt})\$,#{session_name}}"
+}
+
+crew_edit() {
+    "${EDITOR:-vi}" "$CREW_FILE"
+}
+
+case "${1:-}" in
+    add)             "$BIN" add ;;
+    go)              crew_go "$2" ;;
+    pick)            crew_pick ;;
+    list)            "$BIN" list ;;
+    rm)              "$BIN" rm "$2" ;;
+    edit)            crew_edit ;;
+    tmux-statusline) "$BIN" status --format tmux ;;
+    signal)          crew_signal "$2" ;;
+    *)
+        echo "usage: crew {add|go <n|name|next|prev>|pick|list|rm <n|name>|edit|tmux-statusline|signal <event>}" >&2
+        exit 2
+        ;;
+esac

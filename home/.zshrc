@@ -41,7 +41,18 @@ setopt HIST_VERIFY
 setopt PROMPT_SUBST
 
 # Completions & plugins
-autoload -Uz compinit && compinit
+# Rebuild the completion dump (with the slow security audit) at most once a
+# day; otherwise trust the cached dump and skip compaudit (compinit -C).
+autoload -Uz compinit
+# $_zdump is non-empty only when the dump is >24h old (N nullglob, mh+24),
+# so the slow audit runs at most once a day; otherwise compinit -C skips it.
+_zdump=($HOME/.zcompdump(Nmh+24))
+if (( $#_zdump )); then
+    compinit
+else
+    compinit -C
+fi
+unset _zdump
 autoload -z edit-command-line
 autoload -Uz vcs_info
 autoload -Uz is-at-least
@@ -71,6 +82,9 @@ if [[ -d /opt/homebrew/share ]]; then
         zstyle ':autocomplete:*' automatic-expansion off
         zstyle ':autocomplete:*' real-time-completion off
 
+        # Make zsh-autocomplete's own compinit skip the audit too (it reads
+        # these args); without this it re-audits fpath on every startup.
+        zstyle ':autocomplete::compinit' arguments -C
         source /opt/homebrew/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
         zstyle ':autocomplete:*' ignored-input '*'

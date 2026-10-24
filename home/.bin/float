@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-# float.sh — dispatcher for "float + select + connect back to tmux" actions.
+# float — dispatcher for "float + select + connect back to tmux" actions.
 # Invoked from a `display-popup -E` binding in the `float` key-table.
 # Each action: open a popup, fuzzy-select something, feed the result back
 # into tmux (clipboard / buffer / switch / etc). Add new actions as cases.
 #
-#   usage: float.sh <action> [root]
+#   usage: float <action> [root]
 
 set -euo pipefail
 
@@ -39,7 +39,7 @@ case "$action" in
     ;;
 
   *)
-    tmux display-message "float.sh: unknown action '${action}'"
+    tmux display-message "float: unknown action '${action}'"
     exit 1
     ;;
 esac

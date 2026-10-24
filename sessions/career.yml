@@ -1,0 +1,21 @@
+session_name: career
+start_directory: ~/Work/duclos-cavalcanti.github.io
+
+windows:
+  - window_name: zsh
+    layout: main-vertical
+    panes:
+      - shell_command: claude
+      - shell_command: make
+
+  - window_name: resume
+    layout: main-vertical
+    panes:
+      - shell_command: nvim
+        start_directory: ~/Work/duclos-cavalcanti.github.io/resume
+      - start_directory: ~/Work/duclos-cavalcanti.github.io
+
+  - window_name: web
+    panes:
+      - shell_command: nvim
+        start_directory: ~/Work/duclos-cavalcanti.github.io/src

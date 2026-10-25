@@ -11,11 +11,10 @@ windows:
   - window_name: resume
     layout: main-vertical
     panes:
-      - shell_command: nvim
+      - shell_command: nvim resume.tex
         start_directory: ~/Work/duclos-cavalcanti.github.io/resume
-      - start_directory: ~/Work/duclos-cavalcanti.github.io
 
   - window_name: web
     panes:
-      - shell_command: nvim
+      - shell_command: nvim .
         start_directory: ~/Work/duclos-cavalcanti.github.io/src

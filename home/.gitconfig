@@ -10,7 +10,7 @@
 [difftool]
 	prompt = false
 [difftool "nvimdiff"]
-	cmd = difftool "$LOCAL" "$REMOTE"
+	cmd = "$HOME/.bin/difftool" "$LOCAL" "$REMOTE"
 
 [include]
 	path = ~/.gitconfig.local

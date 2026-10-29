@@ -18,6 +18,8 @@ brew "zsh-autocomplete"
 cask "font-iosevka-nerd-font"
 cask "font-dejavu-sans-mono-nerd-font"
 cask "markdown-preview"
+cask "obsidian"
+cask "excalidrawz"
 
 # utils
 brew "curl"

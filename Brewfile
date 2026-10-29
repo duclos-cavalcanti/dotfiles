@@ -20,7 +20,6 @@ cask "font-dejavu-sans-mono-nerd-font"
 cask "markdown-preview"
 cask "obsidian"
 cask "excalidrawz"
-cask "drawio"
 
 # utils
 brew "curl"

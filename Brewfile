@@ -37,9 +37,10 @@ brew "reattach-to-user-namespace"
 # ai
 brew "pi-coding-agent"
 
-# containers
+# containers (headless docker via colima; docker-* are CLI + plugins)
 brew "docker"
 brew "docker-compose"
+brew "docker-buildx"
 brew "colima"
 
 # dev

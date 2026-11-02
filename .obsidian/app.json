@@ -1,0 +1,10 @@
+{
+  "defaultViewMode": "preview",
+  "userIgnoreFilters": [
+    "target/",
+    "demos/node_modules/",
+    "demos/fleet/node_modules/",
+    "example_claude/",
+    "projects/"
+  ]
+}

@@ -5,3 +5,8 @@ home/.config/configstore/
 home/.config/github-copilot/
 
 home/.config/nvim/pack/plugins/start/nvim-todo/lua/dooing/
+
+# Obsidian vault — track config, ignore heavy plugin binaries + per-machine state
+**/.obsidian/workspace*.json
+**/.obsidian/plugins/*/main.js
+**/.obsidian/plugins/*/styles.css

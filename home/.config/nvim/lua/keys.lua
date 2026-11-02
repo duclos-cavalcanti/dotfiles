@@ -3,10 +3,13 @@ local map = vim.keymap.set
 local function _open()
     local file = vim.api.nvim_buf_get_name(0)
     if file == "" or vim.fn.filereadable(file) == 0 then
-        vim.notify("Markdown Preview: no saved file in this buffer", vim.log.levels.WARN)
+        vim.notify("Obsidian: no saved file in this buffer", vim.log.levels.WARN)
         return
     end
-    vim.fn.jobstart({ "open", "-a", "Markdown Preview", file }, { detach = true })
+    -- Hand the file to Obsidian via its URI scheme. Opens only if the file
+    -- lives inside a registered vault (e.g. ~/.macfiles, ~/Work/notes).
+    local uri = "obsidian://open?path=" .. vim.uri_encode(file)
+    vim.fn.jobstart({ "open", uri }, { detach = true })
 end
 
 local function _is_qf_open()
@@ -75,7 +78,7 @@ map("n", "<C-w>>", ":tabmove +1<CR>", { silent = true })
 map("n", "<C-w><lt>", ":tabmove -1<CR>", { silent = true })
 map("n", "<leader>e", "<cmd>Lexplore<CR>", { silent = true, desc = "Toggle Netrw" })
 map("n", "<leader><space>", _terminal, { silent = true, desc = "Toggle Terminal" })
-map("n", "<leader>o", _open, { silent = true, desc = "Open buffer in Markdown Preview.app" })
+map("n", "<leader>o", _open, { silent = true, desc = "Open buffer in Obsidian" })
 map("n", "<C-n>", _qf_next, { silent = true, desc = "Next quickfix item" })
 map("n", "<C-p>", _qf_prev, { silent = true, desc = "Prev quickfix item" })
 map("n", "<leader>gp", function() MiniDiff.toggle_overlay() end, { desc = "Git: toggle hunk overlay" })

@@ -38,6 +38,28 @@ case "$action" in
     cd "$root" && exec lazygit --screen-mode half
     ;;
 
+  # Fuzzy-pick another pane in the session; swap it with the current one,
+  # and swap the two windows' names so each name follows its pane.
+  # The popup isn't a pane, so a bare `tmux display` resolves to the pane
+  # that opened it (the active one).
+  swap)
+    cur="$(tmux display -p '#{pane_id}')"
+    pick="$(tmux list-panes -s -F $'#{pane_id}\t#{window_index}:#{window_name}.#{pane_index}\t#{pane_current_command}\t#{pane_current_path}' \
+      | awk -F'\t' -v cur="$cur" '$1 != cur' \
+      | fzf --prompt='swap> ' --height=100% --reverse \
+            --delimiter=$'\t' --with-nth=2.. \
+            --preview 'tmux capture-pane -ep -t {1}' --preview-window=right:60% \
+      | cut -f1)" || exit 0
+    [[ -n "$pick" ]] || exit 0
+    IFS=$'\t' read -r cur_win cur_name < <(tmux display -p -t "$cur" $'#{window_id}\t#{window_name}')
+    IFS=$'\t' read -r pick_win pick_name < <(tmux display -p -t "$pick" $'#{window_id}\t#{window_name}')
+    tmux swap-pane -d -s "$pick" -t "$cur"
+    if [[ "$cur_win" != "$pick_win" ]]; then
+      tmux rename-window -t "$cur_win" "$pick_name"
+      tmux rename-window -t "$pick_win" "$cur_name"
+    fi
+    ;;
+
   *)
     tmux display-message "float: unknown action '${action}'"
     exit 1

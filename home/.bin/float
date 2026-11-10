@@ -32,7 +32,7 @@ case "$action" in
       | pbcopy
     ;;
 
-  # Launch lazygit in $root (popup cwd = session path, set via -d).
+  # Launch lazygit in $root (popup cwd = pane path, set via -d).
   # Plain lazygit in-cwd so git worktrees (where .git is a file) resolve.
   git)
     cd "$root" && exec lazygit --screen-mode half

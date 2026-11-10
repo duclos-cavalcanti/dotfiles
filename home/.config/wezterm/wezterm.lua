@@ -13,7 +13,8 @@ end
 -- Tabs (Flatcap: native tab bar, themed via colors.tab_bar + window_frame)
 config.use_fancy_tab_bar = true
 
--- Right status: disk/ram/cpu as plain text (tmux's ~/.bin scripts, every 5s).
+-- Right status: disk/ram/cpu as plain text (tmux's ~/.bin scripts, every 5s),
+-- each in the theme's ANSI red/green/blue; separators in the tab bar's text color.
 config.status_update_interval = 5000
 
 local function info(script)
@@ -22,10 +23,18 @@ local function info(script)
 end
 
 wezterm.on('update-status', function(window)
-  local tab_bar = config.colors.tab_bar
+  local sep = { Color = config.colors.tab_bar.inactive_tab.fg_color }
   window:set_right_status(wezterm.format {
-    { Foreground = { Color = tab_bar.inactive_tab.fg_color } },
-    { Text = string.format(' disk: %s  |  ram: %s  |  cpu: %s ', info 'disk-info', info 'ram-info', info 'cpu-info') },
+    { Foreground = { AnsiColor = 'Maroon' } },
+    { Text = ' disk: ' .. info 'disk-info' },
+    { Foreground = sep },
+    { Text = '  |  ' },
+    { Foreground = { AnsiColor = 'Green' } },
+    { Text = 'ram: ' .. info 'ram-info' },
+    { Foreground = sep },
+    { Text = '  |  ' },
+    { Foreground = { AnsiColor = 'Navy' } },
+    { Text = 'cpu: ' .. info 'cpu-info' .. ' ' },
     { Text = '  ' },
   })
 end)

@@ -99,6 +99,9 @@ config.keys = {
   { key = 't', mods = 'CMD', action = act.SpawnTab 'CurrentPaneDomain' },
   { key = 'Tab', mods = 'CTRL',       action = act.ActivateTabRelative(1) },
   { key = 'Tab', mods = 'CTRL|SHIFT', action = act.ActivateTabRelative(-1) },
+  -- Swap the tab left/right. phys: so SHIFT doesn't turn , . into < >.
+  { key = 'phys:Comma',  mods = 'CMD|CTRL|SHIFT', action = act.MoveTabRelative(-1) },
+  { key = 'phys:Period', mods = 'CMD|CTRL|SHIFT', action = act.MoveTabRelative(1) },
 
   -- super+l (prompt_tab_title)
   {

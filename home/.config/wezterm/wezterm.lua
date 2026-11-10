@@ -13,8 +13,7 @@ end
 -- Tabs (Flatcap: native tab bar, themed via colors.tab_bar + window_frame)
 config.use_fancy_tab_bar = true
 
--- Right status: tmux's status-right info (same scripts, every 5s like tmux).
--- The time is styled as the active tab; disk/ram/cpu are plain text.
+-- Right status: disk/ram/cpu as plain text (tmux's ~/.bin scripts, every 5s).
 config.status_update_interval = 5000
 
 local function info(script)
@@ -24,11 +23,10 @@ end
 
 wezterm.on('update-status', function(window)
   local tab_bar = config.colors.tab_bar
-  local active = tab_bar.active_tab
   window:set_right_status(wezterm.format {
     { Foreground = { Color = tab_bar.inactive_tab.fg_color } },
     { Text = string.format(' disk: %s  |  ram: %s  |  cpu: %s ', info 'disk-info', info 'ram-info', info 'cpu-info') },
-    { Text = '  '},
+    { Text = '  ' },
   })
 end)
 

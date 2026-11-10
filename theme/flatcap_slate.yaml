@@ -1,0 +1,53 @@
+scheme: "Flatcap Slate"
+author: "Flatcap Slate by Cheycron Blaine (terminal, verbatim) + token-mapped base16 -- macfiles"
+
+# --- terminal: 16 ANSI colors + UI, ground truth (copied verbatim from the
+#     source theme; here flatcap-wezterm's colors/Flatcap Slate.toml, v2.0.0,
+#     https://github.com/cheycron/flatcap-wezterm). Consumed by `base16 ghostty`.
+background: "191d22"
+foreground: "d5dbe3"
+cursor: "9bbfdf"
+cursor-text: "101820"
+selection-background: "3c546b"
+selection-foreground: "d5dbe3"
+color00: "3d4652"
+color01: "e2a0a5"
+color02: "9fc3ad"
+color03: "d8bc87"
+color04: "9bbfdf"
+color05: "b6aed5"
+color06: "abc9cb"
+color07: "aeb8c4"
+color08: "a7b3c2"
+color09: "e2a0a5"
+color10: "9fc3ad"
+color11: "d8bc87"
+color12: "accce7"
+color13: "b6aed5"
+color14: "abc9cb"
+color15: "d5dbe3"
+
+# --- base16: for mini.base16 (nvim), consumed by `base16 lua`. Mapped from the
+#     theme's own semantic tokens (src/theme.json), not inferred:
+#       ramp   : 00<-bg.canvas 01<-bg.raised 02<-selection.bg 03<-syntax.comment
+#                04<-text.secondary 05<-text.primary 07<-contrast.text.primary;
+#                06 inferred (midpoint of 05 and 07).
+#       accents: 08<-danger.fg 09<-syntax.type 0A<-warning.fg 0B<-success.fg
+#                0C<-syntax.function 0D<-accent.fg 0E<-syntax.number
+#                0F<-border.control.
+base00: "191d22"
+base01: "292f36"
+base02: "3c546b"
+base03: "a7b3c2"
+base04: "aeb8c4"
+base05: "d5dbe3"
+base06: "e2e7ed"
+base07: "eff3f8"
+base08: "e2a0a5"
+base09: "d6af95"
+base0A: "d8bc87"
+base0B: "9fc3ad"
+base0C: "abc9cb"
+base0D: "9bbfdf"
+base0E: "b6aed5"
+base0F: "8593a5"

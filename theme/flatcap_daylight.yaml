@@ -1,0 +1,54 @@
+scheme: "Flatcap Daylight"
+author: "Flatcap Daylight by Cheycron Blaine (terminal, verbatim) + token-mapped base16 -- macfiles"
+
+# --- terminal: 16 ANSI colors + UI, ground truth (copied verbatim from the
+#     source theme; here flatcap-wezterm's colors/Flatcap Daylight.toml, v2.0.0,
+#     https://github.com/cheycron/flatcap-wezterm). Consumed by `base16 ghostty`.
+background: "f3f5f7"
+foreground: "28313b"
+cursor: "285d85"
+cursor-text: "fafbfc"
+selection-background: "c8ddf0"
+selection-foreground: "28313b"
+color00: "28313b"
+color01: "a43f4a"
+color02: "32664d"
+color03: "765319"
+color04: "285d85"
+color05: "68598c"
+color06: "306770"
+color07: "465463"
+color08: "536273"
+color09: "a43f4a"
+color10: "32664d"
+color11: "765319"
+color12: "214f73"
+color13: "68598c"
+color14: "306770"
+color15: "ffffff"
+
+# --- base16: for mini.base16 (nvim). This is a LIGHT scheme, so the ramp runs
+#     light -> dark (base00 lightest bg -> base07 darkest). Mapped from the
+#     theme's own semantic tokens (src/theme.json), not inferred:
+#       ramp   : 00<-bg.canvas 01<-bg.hover 02<-selection.bg 03<-syntax.comment
+#                04<-text.secondary 05<-text.primary 07<-contrast.text.primary;
+#                06 inferred (midpoint of 05 and 07).
+#       accents: 08<-danger.fg 09<-syntax.type 0A<-warning.fg 0B<-success.fg
+#                0C<-syntax.function 0D<-accent.fg 0E<-syntax.number
+#                0F<-border.control.
+base00: "f3f5f7"
+base01: "e6ebf0"
+base02: "c8ddf0"
+base03: "536273"
+base04: "465463"
+base05: "28313b"
+base06: "202934"
+base07: "17212c"
+base08: "a43f4a"
+base09: "84533d"
+base0A: "765319"
+base0B: "32664d"
+base0C: "306770"
+base0D: "285d85"
+base0E: "68598c"
+base0F: "6c7a89"

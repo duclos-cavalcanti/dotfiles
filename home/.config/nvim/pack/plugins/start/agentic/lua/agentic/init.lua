@@ -1,11 +1,21 @@
 local vim = vim
 
 local ref = require("agentic.ref")
-local tmux = require("agentic.tmux")
+
+-- Backend: wezterm when nvim runs in a WezTerm pane outside tmux; tmux
+-- otherwise (also when in neither, so :AgenticRegister can still reach a
+-- tmux server).
+local function backend()
+    if (vim.env.TMUX or "") == "" and (vim.env.WEZTERM_PANE or "") ~= "" then
+        return require("agentic.wezterm")
+    end
+    return require("agentic.tmux")
+end
 
 local M = {}
 
--- A registered session name overrides the current session for future sends.
+-- A registered scope (tmux session / wezterm workspace) overrides the current
+-- one for future sends.
 local registered = nil
 
 local function pick(targets, prompt, callback)
@@ -24,29 +34,30 @@ local function pick(targets, prompt, callback)
     end)
 end
 
--- Decide which session to act in (registered override, else nvim's current
--- tmux session), then pick a claude pane within it.
-local function resolve(callback)
-    local session = registered
-    if session and not tmux.has_session(session) then
-        registered = nil -- registered session is gone; fall back to current
-        session = nil
+-- Decide which scope to act in (registered override, else nvim's current
+-- one), then pick a claude pane within it.
+local function resolve(b, callback)
+    local scope = registered
+    if scope and not b.has_scope(scope) then
+        registered = nil -- registered scope is gone; fall back to current
+        scope = nil
     end
-    session = session or tmux.current_session()
-    if not session then
-        vim.notify("agentic: not in a tmux session (use :AgenticRegister)", vim.log.levels.WARN)
+    scope = scope or b.current_scope()
+    if not scope then
+        vim.notify(("agentic: not in a %s (use :AgenticRegister)"):format(b.noun), vim.log.levels.WARN)
         return
     end
-    local targets = tmux.claude_panes(session)
+    local targets = b.claude_panes(scope)
     if #targets == 0 then
-        vim.notify(("agentic: no claude in session '%s' (try :AgenticRegister)"):format(session), vim.log.levels.WARN)
+        vim.notify(("agentic: no claude in %s '%s' (try :AgenticRegister)"):format(b.noun, scope), vim.log.levels.WARN)
         return
     end
     pick(targets, "agentic: select claude", callback)
 end
 
 function M.send(text, press_enter)
-    resolve(function(t) tmux.send(t, text, press_enter) end)
+    local b = backend()
+    resolve(b, function(t) b.send(t, text, press_enter) end)
 end
 
 function M.send_file(press_enter)
@@ -59,13 +70,14 @@ function M.send_selection(press_enter)
     if text then M.send(text, press_enter) end
 end
 
--- Register against ANY session on the server (works even if nvim isn't in
--- tmux). Future sends look for claude in that session. Sticky until
--- re-registered or the session dies.
+-- Register against ANY scope (tmux: any session on the server, so it works
+-- even if nvim isn't in tmux; wezterm: any workspace). Future sends look for
+-- claude there. Sticky until re-registered or the scope dies.
 function M.register()
-    pick(tmux.sessions(), "agentic: register session", function(choice)
-        registered = choice.session
-        vim.notify("agentic: registered session " .. choice.session, vim.log.levels.INFO)
+    local b = backend()
+    pick(b.scopes(), "agentic: register " .. b.noun, function(choice)
+        registered = choice.scope
+        vim.notify(("agentic: registered %s %s"):format(b.noun, choice.scope), vim.log.levels.INFO)
     end)
 end
 
@@ -82,7 +94,7 @@ function M.setup(_)
         range = true,
     })
     vim.api.nvim_create_user_command("AgenticRegister", function() M.register() end, {
-        desc = "Register any tmux session (overrides current-session targeting)",
+        desc = "Register any tmux session / wezterm workspace (overrides current targeting)",
     })
 end
 

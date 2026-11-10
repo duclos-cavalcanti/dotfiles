@@ -1,11 +1,11 @@
-*agentic.txt*    Send file/selection refs to a claude pane in tmux
+*agentic.txt*    Send file/selection refs to a claude pane in tmux or WezTerm
 
 ==============================================================================
 INTRODUCTION                                              *agentic-introduction*
 
 agentic forwards a reference to the current file (or visual selection) into a
-running claude on a tmux pane, then focuses that pane. It talks to the tmux
-server directly, so nvim need not be inside tmux itself.
+running claude on a tmux or WezTerm pane, then focuses that pane. It talks to
+the tmux server (or `wezterm cli`) directly.
 
 Reference format mirrors GitHub-style anchors:
 
@@ -16,19 +16,29 @@ Reference format mirrors GitHub-style anchors:
 Paths are relative to the git root when available, else to cwd.
 
 ==============================================================================
+BACKENDS                                                       *agentic-backends*
+
+nvim in a WezTerm pane outside tmux ($WEZTERM_PANE set, $TMUX unset) uses the
+wezterm backend; anything else uses tmux. Below, "scope" is a tmux session or a
+WezTerm workspace. WezTerm panes running claude are found via `ps` (the
+foreground process of the pane's tty).
+
+==============================================================================
 TARGETING                                                     *agentic-targeting*
 
-By default a send assumes nvim is inside tmux: it reads the current session
-and finds claude panes within it. One match → sent. Several → you're prompted.
-None (or nvim isn't in tmux) → a warning pointing you at :AgenticRegister.
+By default a send reads nvim's current scope and finds claude panes within
+it. One match → sent. Several → you're prompted. None (or no scope) → a warning
+pointing you at :AgenticRegister.
 
-:AgenticRegister overrides the session: it lists ALL sessions on the server
-(works even when nvim isn't in tmux) so you can lock onto one; future sends
-then look for claude in that session. Sticky until you re-register or the
-session dies, at which point sends fall back to the current session.
+:AgenticRegister overrides the scope: it lists ALL scopes (tmux: every session
+on the server, so it works even when nvim isn't in tmux; WezTerm: every
+workspace) so you can lock onto one; future sends then look for claude there.
+Sticky until you re-register or the scope dies, at which point sends fall back
+to the current scope.
 
-Delivery is load-buffer + paste-buffer (no trailing Enter — review, then
-submit yourself), followed by select-pane.
+Delivery has no trailing Enter — review, then submit yourself. tmux:
+load-buffer + paste-buffer, then select-pane. WezTerm: send-text --no-paste,
+then activate-tab + activate-pane.
 
 ==============================================================================
 COMMANDS                                                      *agentic-commands*
@@ -40,7 +50,8 @@ COMMANDS                                                      *agentic-commands*
     Send the current visual selection as a line-range reference.
 
 :AgenticRegister                                            *:AgenticRegister*
-    Register against any tmux claude, overriding repo correlation.
+    Register against any tmux session / WezTerm workspace, overriding the
+    current one.
 
 ==============================================================================
 vim:tw=78:ts=8:ft=help:norl:

@@ -1,9 +1,13 @@
 local vim = vim
 
--- Default targeting assumes nvim runs inside a tmux session: find claude panes
--- in the *current* session and send to one. :AgenticRegister overrides the
--- session (pick any on the server), so it also works when nvim isn't in tmux.
+-- tmux backend. Scope = a tmux session: find claude panes in the *current*
+-- session and send to one. :AgenticRegister overrides the session (pick any on
+-- the server), so it also works when nvim isn't in tmux.
+-- Backend interface (shared with agentic.wezterm): noun, current_scope,
+-- claude_panes, scopes, has_scope, send.
 local M = {}
+
+M.noun = "session"
 
 local function run(cmd, stdin)
     local out = vim.fn.system(cmd, stdin)
@@ -12,7 +16,7 @@ local function run(cmd, stdin)
 end
 
 -- The tmux session nvim is in, or nil if nvim isn't inside tmux.
-function M.current_session()
+function M.current_scope()
     if (vim.env.TMUX or "") == "" then return nil end
     local out = run({ "tmux", "display-message", "-p", "#{session_name}" })
     return out and vim.trim(out) or nil
@@ -38,7 +42,7 @@ function M.claude_panes(session)
             table.insert(targets, {
                 id = pane,
                 pane = pane,
-                session = session,
+                scope = session,
                 label = string.format("%s  (%s)", name, pane),
             })
         end
@@ -47,7 +51,7 @@ function M.claude_panes(session)
 end
 
 -- Every session on the server (for :AgenticRegister).
-function M.sessions()
+function M.scopes()
     local out = run({
         "tmux", "list-sessions",
         "-F", "#{session_name}\t#{session_attached}\t#{session_path}",
@@ -59,7 +63,7 @@ function M.sessions()
         local name, att, path = line:match("([^\t]+)\t([^\t]*)\t(.*)")
         if name then
             table.insert(targets, {
-                session = name,
+                scope = name,
                 label = string.format("%s%s  %s",
                     name, (att ~= "0") and " *" or "", vim.fn.fnamemodify(path or "", ":~")),
             })
@@ -68,7 +72,7 @@ function M.sessions()
     return targets
 end
 
-function M.has_session(name)
+function M.has_scope(name)
     vim.fn.system({ "tmux", "has-session", "-t", name })
     return vim.v.shell_error == 0
 end

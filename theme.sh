@@ -1,20 +1,21 @@
 #!/bin/sh
 # theme.sh — switch the active color scheme (repo tool; sibling of stow.sh).
-# Renders theme/<scheme>.yaml into the "custom" slot for both consumers via the
-# repo's base16 generator, and records the choice in theme/current (the active-
-# scheme pointer; git-ignored machine state).
+# Renders theme/<scheme>.yaml into the "custom" slot for each consumer (ghostty,
+# wezterm, nvim) via the repo's base16 generator, and records the choice in
+# theme/current (the active-scheme pointer; git-ignored machine state).
 #
 #   ./theme.sh <scheme>   activate scheme (resolved to theme/<scheme>.yaml)
 #   ./theme.sh --list     list available schemes, one per line
 #   ./theme.sh            print the active scheme and list the available ones
 #
-# Reload is manual: ghostty via its reload-config keybind, nvim via restart.
+# Reload is manual: ghostty/wezterm via their reload-config keybind, nvim via restart.
 
 DIR=$(cd -- "$(dirname -- "$0")" && pwd)
 THEME_DIR="$DIR/theme"
 BASE16="$DIR/home/.bin/base16"
 NVIM_LUA="$DIR/home/.config/nvim/lua/theme/custom.lua"
 GHOSTTY="$DIR/home/.config/ghostty/themes/custom"
+WEZTERM="$DIR/home/.config/wezterm/theme/custom.lua"
 
 list() {
     for f in "$THEME_DIR"/*.yaml; do
@@ -45,6 +46,7 @@ fi
 
 "$BASE16" lua     "$THEME_DIR/$scheme.yaml" > "$NVIM_LUA" || exit 1
 "$BASE16" ghostty "$THEME_DIR/$scheme.yaml" > "$GHOSTTY"  || exit 1
+"$BASE16" wezterm "$THEME_DIR/$scheme.yaml" > "$WEZTERM"  || exit 1
 printf '%s\n' "$scheme" > "$THEME_DIR/current"
 
-echo "theme -> $scheme (reload ghostty + restart/re-source nvim)"
+echo "theme -> $scheme (reload ghostty/wezterm + restart/re-source nvim)"

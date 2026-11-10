@@ -4,8 +4,14 @@ local wezterm = require 'wezterm'
 local act = wezterm.action
 local config = wezterm.config_builder()
 
--- Theme: the "custom" slot theme.sh renders (theme/custom.lua)
-config.colors = require 'theme.custom'
+-- Theme: the "custom" slot theme.sh renders (theme/custom.lua): colors, plus
+-- a Flatcap-style tab bar, window frame and overlays derived from the scheme.
+for k, v in pairs(require 'theme.custom') do
+  config[k] = v
+end
+
+-- Tabs (Flatcap: native tab bar, themed via colors.tab_bar + window_frame)
+config.use_fancy_tab_bar = true
 
 -- Font
 config.font = wezterm.font 'DejaVuSansM Nerd Font'

@@ -78,6 +78,9 @@ config.keys = {
   { key = 'w', mods = 'CMD',       action = act.CloseCurrentPane { confirm = false } },  -- ghostty default: close split
 
   { key = 'Enter', mods = 'CMD|CTRL', action = act.TogglePaneZoomState },
+  -- tmux `prefix Space`: zoom the next pane (cycle through panes full-size).
+  -- Not CMD|CTRL: macOS takes ctrl+cmd+space for the emoji picker.
+  { key = 'Space', mods = 'CMD|SHIFT', action = act.Multiple { act.ActivatePaneDirection 'Next', act.SetPaneZoomState(true) } },
   { key = 'o', mods = 'CMD',       action = act.ActivatePaneDirection 'Prev' },
   { key = 'o', mods = 'CMD|SHIFT', action = act.ActivatePaneDirection 'Next' },
 

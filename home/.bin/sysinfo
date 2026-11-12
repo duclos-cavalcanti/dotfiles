@@ -1,7 +1,7 @@
 #!/bin/sh
 # sysinfo — combined disk / ram / cpu line for a status bar (zellij/zjstatus).
-# Aggregates the bare-number per-metric scripts into a labeled line:
-#   disk:  67% | ram:  20% | cpu:   8%
+# Aggregates the per-metric scripts into a labeled line:
+#   disk: 88% 54G free | ram: 31/48G swap 5.1G | cpu: 15% load 9.6
 bin=$(dirname "$0")
-printf 'disk: %3s%% | ram: %3s%% | cpu: %3s%%\n' \
+printf 'disk: %s | ram: %s | cpu: %s\n' \
     "$("$bin/disk-info")" "$("$bin/ram-info")" "$("$bin/cpu-info")"

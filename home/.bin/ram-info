@@ -1,4 +1,19 @@
 #!/bin/sh
-# ram-info — memory in-use, formatted e.g. " 51%" (3-wide, % included).
-# memory_pressure reports free %; in-use is the complement.
-memory_pressure 2>/dev/null | awk -F': ' '/free percentage/ {gsub(/%/,"",$2); printf "%3d%%\n", 100-$2}'
+# ram-info — memory used of total and swap used, plus the pressure level when it isn't normal,
+# e.g. "31/48G swap 5.1G" or "45/48G swap 6.0G warn".
+# Used = app (anonymous - purgeable) + wired + compressed, as Activity Monitor and btop count it.
+vm_stat | awk \
+    -v total="$(sysctl -n hw.memsize)" \
+    -v swap="$(sysctl -n vm.swapusage | awk '{print $6}')" \
+    -v level="$(sysctl -n kern.memorystatus_vm_pressure_level)" '
+    /page size of/                  { page  = $8 }
+    /^Anonymous pages/              { anon  = $3 }
+    /^Pages purgeable/              { purge = $3 }
+    /^Pages wired down/             { wired = $4 }
+    /^Pages occupied by compressor/ { comp  = $5 }
+    END {
+        g = 1024 ^ 3
+        printf "%.0f/%.0fG swap %.1fG", (anon - purge + wired + comp) * page / g, total / g, swap / 1024
+        if (level == 2) printf " warn"; else if (level == 4) printf " critical"
+        print ""
+    }'

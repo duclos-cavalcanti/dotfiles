@@ -1,5 +1,5 @@
 #!/bin/sh
-# disk-info — writable-volume fill, formatted e.g. " 72%" (3-wide, % included).
+# disk-info — writable-volume fill and free space, e.g. "88% 54G free".
 # df $HOME, not /: on macOS / is the sealed system volume (~8%); the writable
 # Data volume (where files live) is the meaningful fill level.
-df "$HOME" | awk 'NR==2 {gsub(/%/,"",$5); printf "%3d%%\n", $5}'
+df -k "$HOME" | awk 'NR==2 {printf "%d%% %dG free\n", $5, $4 / 1024 / 1024}'

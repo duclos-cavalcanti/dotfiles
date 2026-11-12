@@ -41,7 +41,11 @@ local function _search_files()
 end
 
 local function _buffers()
-    local wipeout = function() vim.api.nvim_buf_delete(MiniPick.get_picker_matches().current.bufnr, {}) end
+    local wipeout = function()
+        local buf = MiniPick.get_picker_matches().current.bufnr
+        -- force a terminal, so <C-d> also stops a :Run job
+        vim.api.nvim_buf_delete(buf, { force = vim.bo[buf].buftype == "terminal" })
+    end
     MiniPick.builtin.buffers({}, { mappings = { wipeout = { char = "<C-d>", func = wipeout } } })
 end
 
@@ -72,12 +76,49 @@ function _terminal()
     vim.g._term = term
 end
 
+-- :Run <cmd> (or <leader>r, which prompts): run a shell command, e.g. `make serve-notes`, in a
+-- hidden terminal buffer `run://<cmd>` that keeps running. Find it with <leader>sb; stop it
+-- there with <C-d>, or Ctrl-C inside it.
+local _runs = {}  -- cmd -> its terminal buffer
+
+local function _run(cmd)
+    if not cmd or cmd == "" then return end
+    local old = _runs[cmd]
+    if old and vim.api.nvim_buf_is_valid(old) then
+        if vim.fn.jobwait({ vim.b[old].terminal_job_id }, 0)[1] == -1 then
+            vim.notify("run: already running: " .. cmd, vim.log.levels.WARN)
+            return
+        end
+        vim.api.nvim_buf_delete(old, { force = true })
+    end
+
+    local buf = vim.api.nvim_create_buf(true, false)
+    vim.api.nvim_buf_call(buf, function()
+        vim.fn.jobstart(cmd, {
+            term = true,
+            on_exit = function(_, code) vim.notify(("run: %s exited (%d)"):format(cmd, code)) end,
+        })
+    end)
+    vim.api.nvim_buf_set_name(buf, "run://" .. cmd)
+    _runs[cmd] = buf
+    vim.notify("run: " .. cmd)
+end
+
+local function _run_prompt()
+    vim.ui.input({ prompt = "run: ", completion = "shellcmdline" }, _run)
+end
+
+vim.api.nvim_create_user_command("Run", function(opts)
+    if opts.args == "" then _run_prompt() else _run(opts.args) end
+end, { nargs = "*", complete = "shellcmdline", desc = "Run a command in a hidden terminal" })
+
 map("t", "<ESC>", "<C-\\><C-n>", { silent = true })
 map("t", "<C-w>", "<C-\\><C-N><C-w>", { silent = true })
 map("n", "<C-w>>", ":tabmove +1<CR>", { silent = true })
 map("n", "<C-w><lt>", ":tabmove -1<CR>", { silent = true })
 map("n", "<leader>e", "<cmd>Lexplore<CR>", { silent = true, desc = "Toggle Netrw" })
 map("n", "<leader><space>", _terminal, { silent = true, desc = "Toggle Terminal" })
+map("n", "<leader>r", _run_prompt, { desc = "Run a command in a hidden terminal" })
 map("n", "<leader>o", _open, { silent = true, desc = "Open buffer in Obsidian" })
 map("n", "<C-n>", _qf_next, { silent = true, desc = "Next quickfix item" })
 map("n", "<C-p>", _qf_prev, { silent = true, desc = "Prev quickfix item" })

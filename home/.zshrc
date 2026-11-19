@@ -143,7 +143,7 @@ export PS2=">> "
 export PS4="> "
 
 # PATH & toolchains
-export PATH=$PATH:$HOME/.local/bin:$HOME/.bin
+export PATH=$PATH:$HOME/.local/bin:$HOME/.bin:$HOME/bin
 
 # Homebrew
 if [[ -d /opt/homebrew ]]; then

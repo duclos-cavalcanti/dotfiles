@@ -31,6 +31,7 @@ brew "bat"
 brew "jq"
 brew "yq"
 brew "watch"
+brew "btop"
 brew "reattach-to-user-namespace"
 
 # ai

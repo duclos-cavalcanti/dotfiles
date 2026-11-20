@@ -241,6 +241,18 @@ if command -v fzf &>/dev/null; then
 
     [ -f /opt/homebrew/opt/fzf/shell/key-bindings.zsh ] && source /opt/homebrew/opt/fzf/shell/key-bindings.zsh
     [ -f /opt/homebrew/opt/fzf/shell/completion.zsh ] && source /opt/homebrew/opt/fzf/shell/completion.zsh
+
+    if command -v tmux &>/dev/null; then
+        tsel() {
+            local s
+            s=$(tmux ls -F '#S' 2>/dev/null | fzf --exit-0 --layout=reverse --prompt='tmux> ') || return
+            if [[ -n $TMUX ]]; then
+                tmux switch-client -t "=$s"
+            else
+                tmux attach -t "=$s"
+            fi
+        }
+    fi
 fi
 
 # Work

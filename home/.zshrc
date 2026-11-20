@@ -243,7 +243,7 @@ if command -v fzf &>/dev/null; then
     [ -f /opt/homebrew/opt/fzf/shell/completion.zsh ] && source /opt/homebrew/opt/fzf/shell/completion.zsh
 
     if command -v tmux &>/dev/null; then
-        tsel() {
+        tmux_select() {
             local s
             s=$(tmux ls -F '#S' 2>/dev/null | fzf --exit-0 --layout=reverse --prompt='tmux> ') || return
             if [[ -n $TMUX ]]; then
@@ -253,6 +253,29 @@ if command -v fzf &>/dev/null; then
             fi
         }
     fi
+
+    # background_select: Ctrl-Z on an empty prompt picks a suspended job to resume
+    zmodload zsh/parameter
+    background_select() {
+        if [[ -n $BUFFER ]]; then zle push-input; return; fi
+        local -a lines; local k
+        for k in ${(k)jobtexts}; do lines+="%$k ${jobtexts[$k]}"; done
+        (( $#lines )) || return
+        local pick=$(print -l $lines | fzf --exit-0 --layout=reverse --prompt='jobs> ')
+        [[ -n $pick ]] || { zle reset-prompt; return; }
+        BUFFER="fg ${pick%% *}"
+        zle accept-line
+    }
+    zle -N background_select
+    bindkey -M emacs '^Z' background_select
+
+    # clear the screen when the last foreground job was suspended (status 128+SIGTSTP)
+    _background_select_clear() {
+        local st=$?
+        (( st > 128 )) && [[ ${signals[st-127]} == TSTP ]] && clear
+    }
+    autoload -Uz add-zsh-hook
+    add-zsh-hook precmd _background_select_clear
 fi
 
 # Work

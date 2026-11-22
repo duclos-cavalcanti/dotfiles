@@ -252,6 +252,15 @@ if command -v fzf &>/dev/null; then
                 tmux attach -t "=$s"
             fi
         }
+
+        # Alt-O: pick a tmux session (stashes any typed input first)
+        tmux_select_widget() {
+            [[ -n $BUFFER ]] && zle push-input
+            BUFFER=tmux_select
+            zle accept-line
+        }
+        zle -N tmux_select_widget
+        bindkey -M emacs '^[o' tmux_select_widget
     fi
 
     # background_select: Ctrl-Z on an empty prompt picks a suspended job to resume

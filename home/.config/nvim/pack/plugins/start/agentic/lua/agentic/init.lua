@@ -14,8 +14,9 @@ end
 
 local M = {}
 
--- A registered scope (tmux session / wezterm workspace) overrides the current
--- one for future sends.
+-- A registered claude pane: once picked via :AgenticRegister, every send goes
+-- straight to it, no prompt. Sticky until re-registered or the pane stops
+-- running claude.
 local registered = nil
 
 local function pick(targets, prompt, callback)
@@ -34,25 +35,38 @@ local function pick(targets, prompt, callback)
     end)
 end
 
--- Decide which scope to act in (registered override, else nvim's current
--- one), then pick a claude pane within it.
-local function resolve(b, callback)
-    local scope = registered
-    if scope and not b.has_scope(scope) then
-        registered = nil -- registered scope is gone; fall back to current
-        scope = nil
-    end
-    scope = scope or b.current_scope()
+-- Pick a claude pane in nvim's current scope: the one there, or the one you
+-- choose when there are several.
+local function choose(b, callback)
+    local scope = b.current_scope()
     if not scope then
-        vim.notify(("agentic: not in a %s (use :AgenticRegister)"):format(b.noun), vim.log.levels.WARN)
+        vim.notify(("agentic: not in a %s"):format(b.noun), vim.log.levels.WARN)
         return
     end
     local targets = b.claude_panes(scope)
     if #targets == 0 then
-        vim.notify(("agentic: no claude in %s '%s' (try :AgenticRegister)"):format(b.noun, scope), vim.log.levels.WARN)
+        vim.notify(("agentic: no claude in %s '%s'"):format(b.noun, scope), vim.log.levels.WARN)
         return
     end
     pick(targets, "agentic: select claude", callback)
+end
+
+-- The registered pane, if it still runs claude; else forget it.
+local function live_registered(b)
+    if not registered then return nil end
+    for _, t in ipairs(b.claude_panes(registered.scope)) do
+        if t.id == registered.id then return t end
+    end
+    vim.notify(("agentic: registered claude (%s) is gone"):format(registered.label), vim.log.levels.WARN)
+    registered = nil
+    return nil
+end
+
+-- The registered pane when live, else the same pick a send makes.
+local function resolve(b, callback)
+    local t = live_registered(b)
+    if t then return callback(t) end
+    choose(b, callback)
 end
 
 function M.send(text, press_enter)
@@ -70,14 +84,13 @@ function M.send_selection(press_enter)
     if text then M.send(text, press_enter) end
 end
 
--- Register against ANY scope (tmux: any session on the server, so it works
--- even if nvim isn't in tmux; wezterm: any workspace). Future sends look for
--- claude there. Sticky until re-registered or the scope dies.
+-- Register a claude pane: the same menu a send shows. Every send after goes
+-- straight there.
 function M.register()
     local b = backend()
-    pick(b.scopes(), "agentic: register " .. b.noun, function(choice)
-        registered = choice.scope
-        vim.notify(("agentic: registered %s %s"):format(b.noun, choice.scope), vim.log.levels.INFO)
+    choose(b, function(t)
+        registered = t
+        vim.notify(("agentic: registered %s"):format(t.label), vim.log.levels.INFO)
     end)
 end
 
@@ -94,7 +107,7 @@ function M.setup(_)
         range = true,
     })
     vim.api.nvim_create_user_command("AgenticRegister", function() M.register() end, {
-        desc = "Register any tmux session / wezterm workspace (overrides current targeting)",
+        desc = "Pick a claude pane; every send goes there without asking",
     })
 end
 

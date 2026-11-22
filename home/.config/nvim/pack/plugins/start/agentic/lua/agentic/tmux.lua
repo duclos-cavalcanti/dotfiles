@@ -1,10 +1,9 @@
 local vim = vim
 
 -- tmux backend. Scope = a tmux session: find claude panes in the *current*
--- session and send to one. :AgenticRegister overrides the session (pick any on
--- the server), so it also works when nvim isn't in tmux.
+-- session and send to one (or to the pane :AgenticRegister pinned).
 -- Backend interface (shared with agentic.wezterm): noun, current_scope,
--- claude_panes, scopes, has_scope, send.
+-- claude_panes, send.
 local M = {}
 
 M.noun = "session"
@@ -48,33 +47,6 @@ function M.claude_panes(session)
         end
     end
     return targets
-end
-
--- Every session on the server (for :AgenticRegister).
-function M.scopes()
-    local out = run({
-        "tmux", "list-sessions",
-        "-F", "#{session_name}\t#{session_attached}\t#{session_path}",
-    })
-    if not out then return {} end
-
-    local targets = {}
-    for line in out:gmatch("[^\n]+") do
-        local name, att, path = line:match("([^\t]+)\t([^\t]*)\t(.*)")
-        if name then
-            table.insert(targets, {
-                scope = name,
-                label = string.format("%s%s  %s",
-                    name, (att ~= "0") and " *" or "", vim.fn.fnamemodify(path or "", ":~")),
-            })
-        end
-    end
-    return targets
-end
-
-function M.has_scope(name)
-    vim.fn.system({ "tmux", "has-session", "-t", name })
-    return vim.v.shell_error == 0
 end
 
 function M.send(target, text, press_enter)

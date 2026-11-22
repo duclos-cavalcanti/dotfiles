@@ -2,7 +2,7 @@ local vim = vim
 
 -- wezterm backend (nvim in a WezTerm pane, outside tmux), via `wezterm cli`.
 -- Scope = a WezTerm workspace: find claude panes in the *current* workspace and
--- send to one. :AgenticRegister overrides the workspace.
+-- send to one (or to the pane :AgenticRegister pinned).
 -- Same interface as agentic.tmux.
 local M = {}
 
@@ -65,34 +65,6 @@ function M.claude_panes(workspace)
         end
     end
     return targets
-end
-
--- Every workspace (for :AgenticRegister); "*" marks nvim's own.
-function M.scopes()
-    local current = M.current_scope()
-    local counts, order = {}, {}
-    for _, p in ipairs(panes()) do
-        if not counts[p.workspace] then
-            counts[p.workspace] = 0
-            table.insert(order, p.workspace)
-        end
-        counts[p.workspace] = counts[p.workspace] + 1
-    end
-    local targets = {}
-    for _, ws in ipairs(order) do
-        table.insert(targets, {
-            scope = ws,
-            label = string.format("%s%s  (%d panes)", ws, (ws == current) and " *" or "", counts[ws]),
-        })
-    end
-    return targets
-end
-
-function M.has_scope(name)
-    for _, p in ipairs(panes()) do
-        if p.workspace == name then return true end
-    end
-    return false
 end
 
 function M.send(target, text, press_enter)

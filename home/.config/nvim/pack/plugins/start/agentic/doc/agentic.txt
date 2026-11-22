@@ -27,14 +27,13 @@ foreground process of the pane's tty).
 TARGETING                                                     *agentic-targeting*
 
 By default a send reads nvim's current scope and finds claude panes within
-it. One match → sent. Several → you're prompted. None (or no scope) → a warning
-pointing you at :AgenticRegister.
+it. One match → sent. Several → you're prompted. None (or no scope) → a
+warning.
 
-:AgenticRegister overrides the scope: it lists ALL scopes (tmux: every session
-on the server, so it works even when nvim isn't in tmux; WezTerm: every
-workspace) so you can lock onto one; future sends then look for claude there.
-Sticky until you re-register or the scope dies, at which point sends fall back
-to the current scope.
+:AgenticRegister shows that same prompt and pins the claude pane you pick:
+every send after goes straight there, without asking. Sticky until you
+re-register or the pane stops running claude, at which point sends warn once
+and go back to prompting.
 
 Delivery has no trailing Enter — review, then submit yourself. tmux:
 load-buffer + paste-buffer, then select-pane. WezTerm: send-text --no-paste,
@@ -50,8 +49,8 @@ COMMANDS                                                      *agentic-commands*
     Send the current visual selection as a line-range reference.
 
 :AgenticRegister                                            *:AgenticRegister*
-    Register against any tmux session / WezTerm workspace, overriding the
-    current one.
+    Pick a claude pane in the current scope (the same menu a send shows);
+    every send after goes there without asking.
 
 ==============================================================================
 vim:tw=78:ts=8:ft=help:norl:

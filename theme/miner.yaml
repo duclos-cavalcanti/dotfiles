@@ -1,0 +1,55 @@
+scheme: "Miner"
+author: "operator's Miner palette (terminal, verbatim) + inferred base16 -- macfiles"
+
+# --- terminal: 16 ANSI colors + UI, ground truth (the operator's palette,
+#     verbatim). Consumed by `base16 ghostty`.
+#       inferred: cursor-text (<- background) and selection-foreground
+#                 (<- foreground) -- the source palette leaves them unset.
+background: "000000"
+foreground: "d3c8b9"
+cursor: "ffc982"
+cursor-text: "000000"
+selection-background: "383432"
+selection-foreground: "d3c8b9"
+color00: "000000"
+color01: "e0614f"
+color02: "a3c77e"
+color03: "e8873f"
+color04: "8fb8d6"
+color05: "ffc982"
+color06: "5fcde4"
+color07: "a99f91"
+color08: "7e7568"
+color09: "8f563b"
+color10: "4b692f"
+color11: "d9a066"
+color12: "cbdbfc"
+color13: "a7804c"
+color14: "d3c8b9"
+color15: "ece5dd"
+
+# --- base16: for mini.base16 (nvim), consumed by `base16 lua`. Miner's ANSI
+#     slots are warm and off-convention (its "yellow" is orange, its "magenta"
+#     is gold, and it has no purple), so accents map by hue, not by slot:
+#       ramp   : 00<-background 02<-selection-background 03<-color8
+#                04<-color7 05<-foreground 06<-color15; 01 07 inferred.
+#       accents: 08<-color1 (red)  09<-color3 (orange)  0A<-color5 (gold)
+#                0B<-color2 (green)  0C<-color6 (cyan)  0D<-color4 (blue)
+#                0E<-color12 (periwinkle, the nearest to a purple)
+#                0F<-color9 (rust).
+base00: "000000"
+base01: "1c1a19"
+base02: "383432"
+base03: "7e7568"
+base04: "a99f91"
+base05: "d3c8b9"
+base06: "ece5dd"
+base07: "f6f2ed"
+base08: "e0614f"
+base09: "e8873f"
+base0A: "ffc982"
+base0B: "a3c77e"
+base0C: "5fcde4"
+base0D: "8fb8d6"
+base0E: "cbdbfc"
+base0F: "8f563b"

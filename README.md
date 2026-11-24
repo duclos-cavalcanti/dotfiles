@@ -22,12 +22,6 @@ cd ~/.dotfiles
 ./install.sh
 ```
 
-Already cloned without `--recurse-submodules`? Pull them in with:
-
-```bash
-git submodule update --init --recursive
-```
-
 ## 2. Tools
 
 - **fzf**

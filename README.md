@@ -14,11 +14,10 @@ OS | Terminal | Editor | Shell
 
 ## 1. Installation
 
-Clone the repo with its submodules (`~/.config/crew` is a submodule), then run
-the installer:
+Clone the repo, then run the installer:
 
 ```bash
-git clone --recurse-submodules git@github.com:duclos-cavalcanti/dotfiles.git ~/.dotfiles
+git clone git@github.com:duclos-cavalcanti/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 ./install.sh
 ```
